@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="La presente entrada es una traducción del artículo Variable types and examples elaborado por Antoine Soetewey (2019).
+Este artículo presenta los diferentes tipos de variables desde un punto de vista estadístico." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/resource/r-datatypes-example/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/resource/r-datatypes-example/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis avanzado de datos 2" />
+  <meta property="og:url" content="/resource/r-datatypes-example/" />
+  <meta property="og:title" content="Tipos de variables y ejemplos | Análisis avanzado de datos 2" />
+  <meta property="og:description" content="La presente entrada es una traducción del artículo Variable types and examples elaborado por Antoine Soetewey (2019).
+Este artículo presenta los diferentes tipos de variables desde un punto de vista estadístico." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+    
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis avanzado de datos 2" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Tipos de variables y ejemplos | Análisis avanzado de datos 2</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/resource/">Recursos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/resource/">Recursos adicionales</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/resource/install/">Tutoriales</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/resource/install/">Instalación de R, RStudio y Slack</a>
+      </li>
+
+      
+      <li >
+        <a href="/resource/install-zotero/">Instalación Zotero</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/resource/r-datatypes/">Material complementario</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/resource/r-datatypes/">Tipos de datos en R</a>
+      </li>
+
+      
+      <li >
+        <a href="/resource/markdown/">¿Qué es Markdown?</a>
+      </li>
+
+      
+      <li class="active">
+        <a href="/resource/r-datatypes-example/">Tipos de variables y ejemplos</a>
+      </li>
+
+      
+      <li >
+        <a href="/resource/unzipping/">Descomprimir archivos</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/resource/zotero-rmd/">Talleres</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/resource/zotero-rmd/">Zotero &#43; RMarkdown</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+        <div class="d-none d-xl-block col-xl-2 docs-toc">
+            <ul class="nav toc-top">
+                <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+            </ul>
+
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#discretas">Discretas</a></li>
+    <li><a href="#continuas">Continuas</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#nominales">Nominales</a></li>
+    <li><a href="#ordinales">Ordinales</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#de-continua-a-discreta">De continua a discreta</a></li>
+    <li><a href="#de-cuantitativa-a-cualitativa">De cuantitativa a cualitativa</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#diferentes-tipos-de-variables-para-diferentes-tipos-de-análisis-estadísticos">Diferentes tipos de variables para diferentes tipos de análisis estadísticos</a></li>
+    <li><a href="#codificación-engañosa-de-datos">Codificación engañosa de datos</a></li>
+  </ul>
+</nav>
+
+ 
+        </div>
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Tipos de variables y ejemplos</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        <script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/viz/viz.js"></script>
+<link href="/rmarkdown-libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/grViz-binding/grViz.js"></script>
+<p>La presente entrada es una traducción del artículo <a href="https://statsandr.com/blog/variable-types-and-examples/" target="_blank" rel="noopener"><strong>Variable types and examples</strong></a> elaborado por <em>Antoine Soetewey</em> (2019).</p>
+<p>Este artículo presenta los diferentes tipos de variables desde un punto de vista estadístico. Para aprender sobre los diferentes tipos de datos en R, revisen <a href="https://learn-r-udp.netlify.app/resource/r-datatypes/" target="_blank" rel="noopener">Tipos de datos en R</a>.</p>
+<h1 id="imágen-panorámica">Imágen panorámica</h1>
+<p>En estadística, las variables son clasificadas en 4 tipos diferentes:</p>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"diagram":"digraph {\n\n\n\n\n  \"1\" [label = \"Variable\", style = \"filled,rounded\", shape = \"box\", fontname = \"helvetica\", tooltip = \"- name: Variable\", fillcolor = \"LightGray\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Cualitativa\", style = \"filled,rounded\", shape = \"box\", fontname = \"helvetica\", tooltip = \"- name: Cualitativa\", fillcolor = \"LightGray\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Nominal\", style = \"filled,rounded\", shape = \"box\", fontname = \"helvetica\", tooltip = \"- name: Nominal\", fillcolor = \"LightGray\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Ordinal\", style = \"filled,rounded\", shape = \"box\", fontname = \"helvetica\", tooltip = \"- name: Ordinal\", fillcolor = \"LightGray\", fontcolor = \"#000000\"] \n  \"5\" [label = \"Cuantitativa\", style = \"filled,rounded\", shape = \"box\", fontname = \"helvetica\", tooltip = \"- name: Cuantitativa\", fillcolor = \"LightGray\", fontcolor = \"#000000\"] \n  \"6\" [label = \"Discreta\", style = \"filled,rounded\", shape = \"box\", fontname = \"helvetica\", tooltip = \"- name: Discreta\", fillcolor = \"LightGray\", fontcolor = \"#000000\"] \n  \"7\" [label = \"Continua\", style = \"filled,rounded\", shape = \"box\", fontname = \"helvetica\", tooltip = \"- name: Continua\", fillcolor = \"LightGray\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n  \"1\"->\"5\" \n  \"2\"->\"3\" \n  \"2\"->\"4\" \n  \"5\"->\"6\" \n  \"5\"->\"7\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<h1 id="cuantitativas">Cuantitativas</h1>
+<p>Una variable <strong>cuantitativa</strong> es aquella que refleja una noción de <strong>magnitud</strong>, es decir, cuyos valores posibles son <strong>números</strong>. Así, una variable cuantitativa representa una medida y es numérica.</p>
+<p>Las variables cuantitativas se dividen en dos tipos: <strong>discretas</strong> y <strong>continuas</strong>. La diferencia entre ambas se explicará en las siguientes dos secciones.</p>
+<h2 id="discretas">Discretas</h2>
+<p>Variables <strong>cuantitativas discretas</strong> son aquellas cuyos valores posibles pueden ser <strong>contabilizados</strong> y tienen un <strong>número finito de posibilidades</strong>. Los valores tienden a ser (aunque no siempre) enteros. Aquí hay algunos ejemplos de variables discretas:</p>
+<ul>
+<li>Número de hijas/os por familia</li>
+<li>Número de estudiantes en una clase</li>
+<li>Número de ciudadanos/as en un país</li>
+</ul>
+<p>Pese a que pueda tomar un largo tiempo el contar a las y los ciudadanas/os de un gran país, esto es técnicamente factible. Más aún, para todos los ejemplos, el número de posibilidades es <strong>finito</strong>. Cualquiera sea el número de hijas/os en una familia, este nunca será 3.58 o 7.912, de modo que el número de posibilidades es un número finito y, de esa manera, contabilizable.</p>
+<h2 id="continuas">Continuas</h2>
+<p>Por otra parte, las variables <strong>cuantitativas continuas</strong> son aquellas cuyos valores <strong>no son contabilizables</strong>, teniendo un <strong>número infinito de posibilidades</strong>. Por ejemplo:</p>
+<ul>
+<li>Edad</li>
+<li>Peso</li>
+<li>Altura</li>
+</ul>
+<p>Para simplificar, usualmente nos referimos a años, kilogramos (libras) y centímetros (o pies y pulgadas), para edad, peso y altura respectivamente. Sin embargo, una persona de 28 años puede realmenter tener 28 años, 7 meses, 16 días, 3 horas, 4 minutos, 5 segundos, 31 milisegundos, 9 nanosegundos de edad.</p>
+<p>Para todas las mediciones, usualmente nos detenemos en un nivel estándar de granularidad, pero nada (excepto nuestras herramientas medición) nos impide ir más allá, llevándonos a un <strong>número infinito de valores potenciales</strong>. El hecho de que los valores puedan tomar un número infinito de posibilidades lo hace incontabilizable.</p>
+<h1 id="cualitativas">Cualitativas</h1>
+<p>En oposición a las variables cuantitativas, las variables <strong>cualitativas</strong> (también referidas como variables categóricas o <a href="link%20p%c3%a1gina%20UDP">factores</a> en R) son variables que <strong>no son numéricas</strong> y cuyos <strong>valores encajan en categorías</strong>.</p>
+<p>En otras palabras, una variable <strong>cualitativa</strong> es aquella que toma como valores modalidades, <strong>categorías</strong> o incluso niveles, en contraste con variables <strong>cuantitativas</strong> que miden una <strong>cantidad</strong> en cada individuo.</p>
+<p>Las variables cualitativas se dividen en dos tipos: <strong>nominales</strong> y <strong>ordinales</strong>.</p>
+<h2 id="nominales">Nominales</h2>
+<p>Una variable <strong>cualitativa nominal</strong> es aquella en que <strong>ordenar</strong> no es posible ni está implicado en los niveles (levels). Por ejemplo, la variable género es nominal porque no hay orden en los niveles femenino/masculino. El color de ojos es otro ejemplo de una variable nominal, pues no hay orden entre ojos azules, cafés o verdes.</p>
+<p>Una variable nominal puede contemplar dos niveles (por ejemplo ¿eres fumador/a? Sí/No, o ¿cuál es tu género? Femenino/Masculina), o un extenso número de niveles (¿cuál es tu licenciatura universitaria? donde cada tipo de licenciatura (sociología, psicología, física, entre otras) constituye un nivel).</p>
+<h2 id="ordinales">Ordinales</h2>
+<p>Por otra parte, una variable <strong>cualitativa ordinal</strong> implica un <strong>orden asignado a los niveles</strong>. Por ejemplo, si la gravedad de accidentes de tránsito es medida en una escala como leve, moderada y fatal, esta variable es cualitativa ordinal en tanto hay un claro orden entre los niveles.</p>
+<p>Otro buen ejemplo es la salud, cuyos valores posible son pobre, razonable, buena o excelente. De nuevo, hay un claro orden en estas variables, de modo que la salud en este caso constituye una variable ordinal cualitativa.</p>
+<h1 id="transformación-de-variables">Transformación de variables</h1>
+<p>Hay dos formas principales de transformación de variables:</p>
+<ol>
+<li>De variable continua a variable discreta</li>
+<li>De variable cuantitativa a variable cualitativa</li>
+</ol>
+<h2 id="de-continua-a-discreta">De continua a discreta</h2>
+<p>Digamos que estamos interesados/as en edades de bebés. Los datos coleccionados es la edad de los bebés, siendo una variable cuantitativa continua. Sin embargo, trabajaremos sólo con el número de semanas desde el nacimiento, transformando así a la edad en una variable discreta. La variable edad sigue siendo cuantitativa, pero la variable que estamos trabajando (en este caso, el número de semanas desde el nacimiento) es una variable cuantitativa discreta.</p>
+<h2 id="de-cuantitativa-a-cualitativa">De cuantitativa a cualitativa</h2>
+<p>Digamos que estamos interesadas/os en el Índice de Masa Corporal (IMC). Para esto, las/los investigadoras/os coleccionaron datos sobre altura y peso de individuos, calculando su IMC. El IMC es una variable cuantitativa continua, pero las/los investigadoras/os desean transformarla en una variable cualitativa, categorizando a las personas bajo cierto límite en bajo peso, sobre cierto límite en sobre peso, y al resto como peso normal. El IMC inicial es una variable cuantitativa continua, pero la categorización del IMC la transforma en una variable cualitativa (ordinal), cuyos niveles son bajo peso &lt; normal &lt; sobre peso.</p>
+<p>Lo mismo sucede cuando la edad es transformada en una variable cualitativa ordinal con niveles como menores de edad, adultos y adultos mayores. También suele ser el caso (especialmente en encuestas) cuando la variable salario (cuantitativa continua) es transformada n una variable cualitativa ordinal que contempla diferentes rangos de salarios (por ejemplo, $0 - $100.000, $100.001 - $200.000, etc.)</p>
+<h1 id="notas-adicionales">Notas adicionales</h1>
+<h2 id="diferentes-tipos-de-variables-para-diferentes-tipos-de-análisis-estadísticos">Diferentes tipos de variables para diferentes tipos de análisis estadísticos</h2>
+<p>La razón por la cual usualmente clasificamos variables en diferentes tipos es que no todos los análisis estadísticos pueden realizar para todos los tipos de variables. Por ejemplo, es imposible calcular una <em>media</em> de la variable “color de cabello,” al no poder sumar cabello castaño y cabello rubio.</p>
+<p>Por otra parte, hallar la <em>moda</em> de una variable continua no hace mucho sentido, pues la mayor parte del tiempo no habrá dos valores exactamente iguales, de modo que no existirá moda. Por ejemplo, intentar encontrar la moda de la altura de las y los estudiantes de un curso. Si se tiene suerte, un par de estudiantes medirán lo mismo. No obstante, la mayor parte del tiempo, cada estudiante tendrá un tamaño diferente (especialmente si las alturas han sido medidas en milímetros), de modo que no habrá moda. Para ver que tipo de análisis es posible en cada variable, pueden hacer una revisión más detallada en los artículos “<a href="/blog/descriptive-statistics-by-hand/">Descriptive statistics by hand</a>” y “<a href="/blog/descriptive-statistics-in-r/">Descriptive statistics in R</a>.”</p>
+<p>De forma semejante, algunos tests estadísticos sólo pueden realizarse en cierto tipo de variables, Por ejemplo, una <em>correlación</em> sólo puede calcularse para variables cuantitativas, mientras que un <em>test Chi-cuadrado de independencia</em> se realiza con variables cualitativas, y un test <em>T-Student</em> o <em>ANOVA</em> requiere una combinación de variables cuantitativas y cualitativas.</p>
+<h2 id="codificación-engañosa-de-datos">Codificación engañosa de datos</h2>
+<p>Por último, pero no menos importante, es usual que en algunos set de datos se empleen números para variables cualitativas. Por ejemplo, un/a investigador/a puede asignar el número “1” a mujer y el número “2” a hombre (o “0” a la respuesta “No” y “1” a la respuesta “Sí). Pese a la clasificación numérica, la variable género sigue siendo una variable cualitativa, y no una discreta, como pareciera. La clasficación numérica sólo es utilizada para facilitar la recolección y tratamiento de datos. Es, de hecho, más sencillo escribir”1&quot; o “2” en lugar de “mujer” y “hombre,” disminuyendo la posibilidad de errores de codificación.</p>
+<p>Si te enfrentas a este tipo de configuración, no olvides <strong>transformar</strong> la variable en el tipo correcto antes de realizar análisis estadísticos. Usualmente, un <strong>análisis descriptivo</strong> básico (y el conocimiento sobre las variable que han sido medidas) previo a los análisis estadísticos principales basta para identificar si el tipo de las variables es correcto.</p>
+<p>Gracias por leer. Esperamos que este artículo les ayude a comprender los diferentes tipos de variables. Si desean aprender más sobre los distintos tipos de datos en R, lean la entrada <a href="https://learn-r-udp.netlify.app/resource/r-datatypes/" target="_blank" rel="noopener">Tipos de datos en R</a>.</p>
+<p>Como siempre, si tienen alguna pregunta o sugerencia relacionada con el tópico cubierto en este artículo, por favor coméntenlo por los canales de comunicación del curso, para que otras/os lectoras/es puedan beneficiarse de la discusión.</p>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/resource/r-datatypes/" rel="next">Tipos de datos en R</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/resource/unzipping/" rel="prev">Descomprimir archivos</a>
+  </div>
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on January 1, 0001</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis avanzado de datos 2 (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,716 @@
+---
+title: "Análisis de datos estadísticos en R"
+author: "Valentina Andrade"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    includes:
+      after_body: "html/insert-logo.html"
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      beforeInit: "libs/macros.js"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r packages-data, include=FALSE}
+pacman::p_load(tidyverse, sjPlot, ggsci, wordcloud2)
+theme_set(theme_sjplot2())
+
+```
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "share_again", "scribble", "frezeeframe", "editable", "progress_bar"))
+
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+```
+
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\">Copiar código</i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\">¡Listo!</i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, eval = F, 
+                      fig.retina = 3, fig.align = "center")
+```
+
+class: center middle main-title section-title-1 top-logo
+
+.small[
+# Tipos de datos
+]
+
+.class-info[
+<br>
+**Sesión N° 3**<br>
+**Análisis de datos estadísticos en R**
+<br>
+
+.pull-right.small[
+**Profesora** Valentina Andrade de la Horra <br>
+**Ayudantes** Dafne Jaime y Nicolás Godoy
+.tiny[Universidad Alberto Hurtado<br>
+]
+]
+
+]
+
+---
+class: title title-inv-1
+
+# Contenidos Sesión 3
+
+--
+
+.box-2.medium.sp-after-half[**Tipos de datos en R**]
+
+.small.box-2[**Relación con los tipos de variables**]
+
+--
+
+.box-3.medium.sp-after-half[**Estructura de datos en R**]
+
+--
+
+.box-4.medium.sp-after-half[**Manipulación de las estructuras de datos**]
+
+???
+
+
+---
+class: center middle main-title section-title-1 top-logo
+name: basics
+
+# 1. Tipos de datos en R
+
+---
+class: title title-inv-1
+
+# ¿Que son los tipos de datos?
+
+- Nos referimos a los tipos de datos a la clasificación que un valor puede tener en R y junto con ello al tipo de operaciones que se podrán hacer con cada uno.
+
+--
+
+- Existen al menos 6 tipos de datos que encontraremos en R
+
+--
+
+- Cada tipo de dato en R, tiene su relación con el nivel de medición de las variables
+
+---
+
+layout: true
+class: title title-1
+---
+class: title title-inv-1
+
+# Tipos de datos en R
+
+.pull-left[
+- character
+- factor
+- numeric
+- integer 
+- dbl-lbl
+- logical
+]
+
+.pull-right[
+![:scale 90%](https://github.com/learn-R/slides/raw/main/img/05/img.jpg)
+]
+
+---
+class: title title-inv-1
+# character
+
+- Los datos tipo character tienen relación con las variables categóricas
+
+```{r}
+nombres <- c("Valentina", "Nicolás", "Dafne")
+```
+
+- Para saber cuál es el tipo de una variable en específico, utilizaremos la función `class()` del paquete base de R
+
+```{r echo=TRUE}
+class(nombres)
+```
+
+---
+class: title title-inv-1
+# factor
+
+- Los datos de tipo factor se relacionan directamente con las variables nominales u ordinales.
+
+```{r factor, echo = T}
+sexo <- factor(c("Mujer", "Hombre", "Mujer"))
+```
+
+- las variables factor se utilizan en caso de que exista un número limitado de strings.
+
+```{r class_factor, echo=TRUE}
+class(sexo)
+```
+
+---
+class: title title-inv-1
+# numeric
+
+- Los datos de tipo factor se relacionan directamente con las variables continuas, ya que estas se componen de números decimales y enteros.
+
+```{r numeric, echo = T}
+edad <- c(26, 23, 24)
+```
+
+```{r echo=TRUE}
+class(edad)
+```
+
+---
+class: title title-inv-1
+# integer
+
+- Los datos integer tienen relación con las variables discretas, ya que no pueden asumir valores decimales
+
+```{r integer, echo = T}
+folio <- 1:3
+```
+
+```{r echo=TRUE}
+class(folio)
+```
+
+Existe otro tipo de dato, los **dbl-lbl** son un tipo de datos numéricos con una etiqueta asociada
+---
+class: title title-inv-1
+# logical
+
+- Este tipo de dato asume sólo tres tipos de valores `TRUE`, `FALSE`y `NA`
+
+```{r}
+asistencia <- c(T,T,F)
+```
+
+```{r}
+class(asistencia)
+```
+
+---
+class: title title-inv-1
+# logical
+
+- Estos tipos de datos pueden transformarse a variables numéricas con la función `as.numeric`, pero asumirá valores 0 y 1
+
+```{r}
+asistencia_n <- as.numeric(asistencia)
+```
+
+```{r}
+class(asistencia_n)
+```
+
+---
+class: title title-inv-1
+# Transformación de datos
+
+Si bien cada dato creado tiene su propia clase, existen funciones que pueden transformarlos, veamos algunos 
+
+```{r}
+as.logical() #transformación a datos lógicos
+as.numeric() #transformación a datos numericos
+as.factor() #transformación a datos tipo factor
+as.character() #transformación a datos tipo caracter 
+```
+
+
+---
+layout: false
+class: center middle section-title section-title-2 animated fadeIn
+
+# 2. Tipos de estructuras en R
+
+---
+class: title title-inv-2
+# ¿Qué son las estructuras de datos en R?
+
+--
+
+- Objetos agrupados y organizados
+
+--
+
+- Clasificados por **dimensión** y **composición**
+
+--
+
+- Nos especifican qué operaciones podemos realizar con cada estructura
+
+--
+
+- Veamos que tipos de estructuras podemos encontrar 🕵
+
+???
+Las estructuras en R son objetos agrupados y organizados, ya sea por su dimensión y/o su composición. Esta clasificación de objetos nos específica la composición de los datos y qué operaciones se pueden realizar con cada una. La forma más sencilla de saber el tipo de estructura que es con la función `str()` la cual devuelve un resumen de la estructura de un objeto.
+
+---
+class: title title-inv-2
+# ¿Qué estructuras podemos encontrar?  
+
+.pull-left[
+Existen al menos cinco estructuras de datos en R: 
+
+- Vectors
+- List
+- Matrix
+- Arrays
+- Data frames
+]
+
+.pull-right[
+![:scale 80%](https://github.com/learn-R/slides/raw/main/img/05/datatypes.jpg)
+]
+
+---
+class: title title-inv-2
+# ¡No olvidar!
+
+Previo al detalle de los tipos de estructuras de datos en R, es necesario recordar que cada una se distinguira por su **dimensión** y **composición**, para ello es muy importante no olvidar los tipos de datos en R.
+
+.pull.center.middle[
+![:scale 50%](https://github.com/learn-R/slides/raw/main/img/05/estructura.png)
+]
+
+---
+class: center middle main-title section-title-2 top-logo
+name: basics
+
+# Vectores
+
+---
+class: title title-inv-2
+# Vectores
+
+.pull-left[
+Un vector es la estructura de datos más común y básica en R, estos se pueden clasificar en cinco tipos: `character`, `logic`, `interger`, `complex`, o `numeric`. 
+
+¿Les suena familiar?
+
+]
+.pull-right[
+![:scale 90%](https://github.com/learn-R/slides/raw/main/img/05/vectors.png)
+]
+---
+class: title title-inv-2
+# Vectores
+
+Estos son una combinación de elementos **unidimensionales** y **homogéneos** (no admite combinaciones de tipos de datos), se puede verificar si un objeto es un vector con la función `is.vector()`. 
+
+¡Veamos si los objetos creados anteriormente son vectores!🧐
+
+Pero antes debemos repasar algunos códigos 💻 🤔
+
+---
+class: title title-inv-2
+# ¿Cómo explorar los datos?
+
+Para explorar los datos tenemos las siguientes funciones (todas ellas del paquete base)
+
+```{r}
+sort() #devuelve los valores seleccionados
+table() #arroja una frecuencia absoluta de los valores
+unique() # devuelve los valores sin repetirlos
+str() #nos entrega la estructura de los datos
+typeof() # como class, nos dice el tipo de vector que es
+length() # nos informa la longitud que tienen los vectores
+```
+
+¡Ahora sí! continuemos 🤯💻
+---
+class: title title-inv-2
+# Vectores: `numeric`
+
+El tipo de vector `numeric` es aquel unico objeto de tipo numerico, como ejemplo uniremos el conjunto de valores (en este caso las edades), en un vector llamado edad
+
+```{r}
+edad <- c(26, 23, 24)
+
+is.vector(edad)
+
+class(edad)
+```
+
+---
+class: title title-inv-2
+# Vectores: `character`
+
+Asimismo, el vector `character` es el que contiene sólo un elemento de tipo carácter
+
+```{r}
+nombres <- c("Valentina", "Nicolás", "Dafne")
+
+is.vector(nombres)
+
+class(nombres)
+
+```
+---
+class: title title-inv-2
+# Vectores: `logic`
+
+Los vectores `logic` corresponden a los objetos que tiene valores `TRUE`o `FALSE`, en este caso crearemos un vector lógico llamado asistencia.
+
+```{r}
+asistencia <- c(T,T,F)
+
+is.vector(asistencia)
+
+class(asistencia)
+
+```
+---
+class: title title-inv-2
+# Vectores: `integer`
+
+Recuerden que los tipos de datos `integer` son los que sólo contienen números enteros, por ello un vector integer solo tendrá números enteros.
+
+```{r}
+folio <- c(1:3)
+
+is.vector(folio)
+
+class(folio)
+```
+---
+class: title title-inv-2
+# Vectores y datos perdidos 
+
+
+R reconoce los casos perdidos en los vectores, en R los casos perdidos pueden representarse como NA o NULL y son válidos para todo tipo de vectores
+
+
+```{r}
+edad <- c(26, 23, 24, NA)
+nombres <- c("Valentina", "Nicolás", "Dafne", NA)
+asistencia <- c(T,T,F, NA)
+folio <- c(1:3, NA)
+```
+
+---
+class: title title-inv-2
+# ¿Cómo exploramos valores perdidos?
+
+Para ello tenemos las siguientes funciones
+
+
+```{r}
+is.na(folio) #Indica los elementos de los vectores que representan datos faltantes
+is.null(folio) # indica elementos que representan valores faltantes
+anyNA(edad) # devuelve TRUE si el vector contiene algún valor faltante
+```
+
+---
+class: title title-inv-2
+# Recordemos
+
+Entonces, los vectores son objetos unidimensionales y homogéneos ¿podremos mezclarlos? 🤷
+
+--
+
+¡No podemos! ya que sólo puede albergar un tipo de dato, veamos que pasa si los combinamos 🕵
+
+```{r}
+xx <- c(26, "Nicolás")
+class(xx)
+```
+
+R creará un vector que pueda acomodar sus elementos. Esta conversión  se denomina *“coerción”*.
+---
+class: title title-inv-2
+# Selección de vectores
+
+Los elementos de los vectores pueden seleccionarse: por posición 
+
+```{r}
+nombres[4] # el cuarto elemento de names
+nombres[-4] #todos los elementos de names, a excepción del 4
+nombres[1:3] #los elementos desde 1 hasta 3
+nombres[-(2:4)] #todos los elementos menos los de 2 hasta 4
+nombres[c(1,3)] #el conjunto de elementos 1 y 3
+```
+---
+class: title title-inv-2
+# Selección de vectores
+
+Los elementos de los vectores pueden seleccionarse, por su valor
+
+```{r}
+edad[edad==26] #valores que sean igual a 26
+
+edad[edad<24] #valores menores a 26, acá puede cambiar ya sea a <=, > o >=
+
+edad[edad%in%c(23, 26)] # valores que pertenezcan al conjunto 23 y 26 años
+```
+
+Para la selección por valor es muy util que conozcamos ciertas condiciones 
+---
+class: title title-inv-2
+# Condiciones y operadores 
+
+En esta ocasión sólo veremos operadores relacionales, pero detallaremos esto en la siguiente clase
+
+--
+
+Los operadores son símbolos que no son de uso exclusivo en R. Pero no todos tienen el mismo significado que en otros softwares.
+
+---
+class: title title-inv-2
+
+# Operadores relacionales 
+
+Se usan para hacer comparaciones. Cuando en la *Tabla 1* nos referimos a `un valor`, esto refiere también a `variables`
+
+| Símbolo  | Función |
+|---------:|:--------|
+| `<`      |  Un valor es menor que otro |
+| `>`      |  Un valor es mayor que otro |
+| `==`     |  Un valor es igual que otro [^1] |
+| `<=`     |  Un valor es menor o igual que otro |
+| `>=`     |  Un valor es mayor o igual que otro |
+| `!=`     |  Un valor es distinto o diferente que otro|
+| `%in%`   |  Un valor pertenece al conjunto designado [^2] |
+
+
+---
+class: title title-inv-2
+# Tips
+
+- ¡Atención! Fíjate bien que `==` y `=` son distintos. En R `==` es indicar *"igual a"*, mientras que  `=` es *asignar* (sinónimo de `<-`)
+
+- El operador `%in%` es **muy utilizado**, sirve para indicar que algo está dentro de una cadena de valores. 
+
+---
+class: title title-inv-2
+# Condicones y operadores
+
+Un pequeño adelanto de lo que veremos el próximo lunes
+.pull.center[
+![:scale 60%](https://github.com/learn-R/slides/raw/main/img/02/01operad.png)
+]
+Figura 1: Resumen de operadores
+
+---
+class: center middle main-title section-title-3 top-logo
+
+# list
+
+---
+class: title title-inv-3
+
+# list
+
+Los list o listas son elementos de distinta composición, estos son **heterogéneros**  (admiten más de un tipo y combinación de dato, inclusive una lista puede almacenar otra lista) y **unidimensionales**
+
+--
+
+Estas propiedades los hace fundamentalmente diferentes de los vectores.
+
+--
+
+Para crear listas puede usar la función `list()`. 
+
+```{r}
+lista <- list(folio, nombres, edad, asistencia)
+str(lista)
+```
+
+---
+class: title title-inv-3
+# Selección de elementos 
+
+El contenido de los elementos de una lista se puede recuperar utilizando corchetes dobles.
+
+```{r}
+lista[[1]] #para ver elementos del primer vector (folio)
+lista$nombres # para seleccionar elementos
+lista[2] #para crear una nueva lista sólo con el segundo elemento
+```
+
+---
+class: center middle main-title section-title-4 top-logo
+name: basics
+
+# Matrix y Array
+---
+class:  title title-4
+# Matrix
+
+En R las matrices son una extensión de los vectores numéricos o de caracteres. No son un tipo de objeto separado sino que son vectores de **dos dimensiones** ( compuesto por filas y columnas) y  **homogéneas** ya que al igual que con los vectores, los elementos de una matriz deben ser del mismo tipo de datos.
+
+--
+
+Para crear una matriz, usaremos la función `matrix()`
+
+```{r}
+matriz <- matrix(edad, folio)
+matriz
+dim(matriz)
+View(matriz)
+```
+
+---
+class: title title-4
+# Matrix
+
+Puede verificar que las matrices son vectores con un atributo tipo matrix usando `class()` y `typeof()`.
+
+```{r}
+class(matriz)
+typeof(matriz)
+```
+
+---
+class: title title-4
+# Selección de elementos
+
+Existen funciones que nos ayudaran a seleccionar elementos de una matriz
+
+```{r}
+matriz[2, ] #para seleccionar una fila
+matriz[ ,4] #para seleccionar una columna
+matriz[2,4] #para seleccionar una celda
+```
+
+---
+class: title title-4
+# Array
+
+La diferencia entre una matriz y una estructura tipo array, es que el primero sólo abarca dos dimensiones, mientras que los array abarcan tres dimensiones o más, sin embargo son **homogéneas**, ya que debe ser el mismo tipo de dato. Para ello utilizaremos la función `array()`
+
+```{r}
+array <- array(1:3, c(2, 4, 6))
+array
+View(array)
+class(array)
+typeof(array)
+```
+
+---
+class: center middle main-title section-title-5 top-logo
+
+# Data frame
+---
+class: title title-5
+# Data frame
+
+Un marco de datos es un tipo de datos **bi dimensional** (con filas y columnas) y **heterogéneo** (con combinaciones de tipos de datos) es la estructura de datos que solemos usar en estadística. Este es un tipo especial de lista, ya que en este cada elemento **debe tener la misma longitud** 
+
+Se puede crear un nuevo marco de datos con la función `data.frame()`
+
+```{r}
+datos <- data.frame(id = folio, nombres, edad, asistencia)
+datos
+```
+---
+class: title title-5
+# Selección de elementos
+
+Para seleccionar elementos en un data frame
+```{r}
+datos[2, ] #para seleccionar una fila
+datos[ ,4] #para seleccionar una columna
+datos[2,4] #para seleccionar una celda
+```
+
+Para unir elementos
+
+```{r}
+cbind() # une columnas (formato ancho)
+rbind() #une filas (formato largo)
+```
+
+---
+class: title title-5
+# Data frame
+
+Funciones adicionales sobre marcos de datos:
+
+```{r}
+nrow(datos) # nos dice el número de filas
+ncol(datos) #nos dice el número de columnas
+head() # muestra las primeras 6 filas
+tail() # muestra las últimas 6 filas
+dim() # devuelve las dimensiones del marco de datos
+str() # nos muestra la estructura (nombre, tipo y vista previa de datos)
+names()
+colnames() # ambos muestran los nombres de un marco de datos
+sapply() # muestra la clase de cada columna en el marco de datos
+View() #para visualizar el data frame
+```
+
+---
+class: title title-5
+# Data frame
+
+La siguiente tabla resume las estructuras de datos unidimensionales y bidimensionales en R en relación con la diversidad de tipos de datos que pueden contener.
+
+.pull.center[
+![:scale 60%](https://github.com/learn-R/slides/raw/main/img/05/table.png)
+]
+
+---
+layout: false
+
+.box-5[¿Y eso era?]
+
+--
+
+.box-inv-5[¡Ahora si que si! Nos vemos el próximo lunes]
+
+.center[
+![](https://github.com/learn-R/slides/raw/main/img/01/monster-inc-2.gif)]
+---
+layout: false
+class: center middle main-title section-title-1 top-logo
+
+.small[
+# Tipos de datos en R
+]
+
+.class-info[
+<br>
+**Sesión N° 3**<br>
+**Análisis de datos estadísticos en R**
+<br>
+
+.pull-right.small[
+**Profesora** Valentina Andrade de la Horra <br>
+**Ayudantes** Dafne Jaime y Nicolás Godoy
+.tiny[Universidad Alberto Hurtado<br>
+]
+]
+
+]
+
+???
+https://c.tenor.com/7mxJp29REVkAAAAC/scaryfeet-monstersinc.gif

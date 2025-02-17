@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="0. Objetivo del prácticoEl presente práctico constituye la continuación del práctico 7, por lo cual profundizaremos la presentación de tablas y gráficos descriptivos bivariados. Para esto ya debemos contar con datos previamente procesados del práctico N°6." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/example/08-practico/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/example/08-practico/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis avanzado de datos 2" />
+  <meta property="og:url" content="/example/08-practico/" />
+  <meta property="og:title" content="Análisis descriptivo bivariado | Análisis avanzado de datos 2" />
+  <meta property="og:description" content="0. Objetivo del prácticoEl presente práctico constituye la continuación del práctico 7, por lo cual profundizaremos la presentación de tablas y gráficos descriptivos bivariados. Para esto ya debemos contar con datos previamente procesados del práctico N°6." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-09-13T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-09-13T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis avanzado de datos 2" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Análisis descriptivo bivariado | Análisis avanzado de datos 2</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/">Información general</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/">Prácticos (códigos de ejemplo)</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" >Datos</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/01-practico/">Ejemplos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/01-practico/">1: R, RStudio y Github</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/02-practico/">2: RMarkdown</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/03-practico/">3: Tipos de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/04-practico/">4: Importar, explorar y exportar datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/05-practico/">5: Limpieza de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/06-practico/">6: Transformar variables</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/07-practico/">7: Análisis descriptivo univariado</a>
+      </li>
+
+      
+      <li class="active">
+        <a href="/example/08-practico/">8: Análisis descriptivo bivariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/09-practico/">9: Muestras complejas y precisión de inferencia estadística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.1-practico/">10.1: Regresiones lineales</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.2-practico/">10.2: Regresión logística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/11-practico/">11 (BONUS): Calidad de modelos y otras técnicas de estimación</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Análisis descriptivo bivariado</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="objetivo-del-práctico" class="section level1">
+<h1>0. Objetivo del práctico</h1>
+<p>El presente práctico constituye la continuación del práctico 7, por lo cual profundizaremos la presentación de <strong>tablas y gráficos descriptivos <em>bivariados</em></strong>. Para esto ya debemos contar con datos previamente <a href="https://learn-r-uah.netlify.app/example/06-practico/">procesados del práctico N°6</a>. Previo a eso, <strong>siempre es importante</strong> que recordemos en qué parte del proceso estamos</p>
+<p><img src="https://github.com/learn-R/slides/raw/main/img/01/flow-rproject.png" /></p>
+<div id="recursos-del-práctico" class="section level2">
+<h2>Recursos del práctico</h2>
+<p>Tal como en el práctico anterior, utilizaremos los <strong>datos</strong> procesados <em>CASEN 2020</em>, que proviene de los datos originales de <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-en-pandemia-2020"><strong>Encuesta de Caracterización Socioeconómica (CASEN)</strong></a>.Recuerden <em><strong>siempre</strong></em> consultar el <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2020/Libro_de_codigos_Base_de_Datos_Casen_en_Pandemia_2020.pdf"><strong>libro códigos</strong></a> antes de trabajar datos.</p>
+<p>Recuerden que los archivos asociados a este práctico se pueden descargar aquí:</p>
+<ul>
+<li><a href="https://github.com/learn-R/08-class/raw/main/08-clase.zip"><i class="fas fa-file-archive"></i> <code>08-clase.zip</code></a></li>
+</ul>
+</div>
+</div>
+<div id="paquetes-a-utilizar" class="section level1">
+<h1>1. Paquetes a utilizar</h1>
+<p>Para este práctico utilizaremos principalmente, las librerías <code>sjmisc</code> y <code>sjPlot</code>.</p>
+<p><code>sjmisc</code>: esta paquete tiene múltiples funciones, desde la transformación de datos y variables. Este paquete suele complementar a <code>dplyr</code> de <code>tidyverse</code> en sus funciones.</p>
+<p><code>sjPlot</code>: su principal función es la visualización de datos para estadística en ciencias sociales mediante tablas y gráficos.</p>
+<p>Cargaremos los paquetes con <code>pacman</code>, si aún tienes dudas sobre cómo trabajar con <code>pacman</code> puedes <a href="https://learn-r-uah.netlify.app/example/02-practico/#paso-1-instalaci%C3%B3n-de-paquetes">revisar el práctico 2</a></p>
+<pre class="r"><code>pacman::p_load(sjmisc,
+               sjPlot,
+               tidyverse,
+               magrittr)</code></pre>
+</div>
+<div id="importar-datos" class="section level1">
+<h1>2. Importar datos</h1>
+<p>Una vez cargado los paquetes a utilizar, debemos pasar al segundo paso: cargar los datos. Como indicamos al inicio, seguiremos utilizando los datos <strong>CASEN</strong> que fue procesada en el práctico anterior, pero le añadimos una variable.</p>
+<pre class="r"><code>load(&quot;output/data/datos_proc.RData&quot;)</code></pre>
+</div>
+<div id="explorar-datos" class="section level1">
+<h1>3. Explorar datos</h1>
+<p>¡Recordemos las variables con las que trabajaremos!</p>
+<pre class="r"><code>sjPlot::view_df(datos_proc,
+                encoding = &quot;UTF-8&quot;)</code></pre>
+<table style="border-collapse:collapse; border:none;">
+<caption>
+Data frame: datos_proc
+</caption>
+<tr>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+ID
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Name
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Label
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Values
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Value Labels
+</th>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+1
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+folio
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+IdentificaciÃ³n hogar (comuna area seg viv hogar)
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2">
+<em>range: NA-NA</em>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+2
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+sexo
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Masculino<br>Femenino
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+3
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+edad
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Edad
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2">
+<em>range: 15-110</em>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+4
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+ocupacion
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+o1. La semana pasada, Â¿trabajÃ³ al menos una hora?
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+SÃ­<br>No
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+5
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+ytoth
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Ingreso total del hogar
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2">
+<em>range: 0-92666667</em>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+6
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+tot_per
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Total de personas en el hogar
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2">
+<em>range: 1-6</em>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+7
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+ife
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+y26d_hog. Ãšltimos 12 meses, Â¿alguien recibiÃ³<br>Ingreso Familiar de Emergencia?
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+SÃ­<br>No<br>No sabe
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+8
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+o2
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+o2. Aunque no trabajÃ³ la semana pasada, Â¿realizÃ³<br>alguna actividad?
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+SÃ­<br>No
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+9
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+o3
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+o3. Aunque no trabajÃ³, Â¿tenÃ­a algÃºn empleo del<br>cual estuvo ausente temporalmente
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+SÃ­<br>No
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+10
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+o4
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+o4. Â¿Ha trabajado alguna vez?
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+SÃ­<br>No
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+11
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+o6
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+o6. Â¿BuscÃ³ trabajo remunerado o cuenta propia en<br>las Ãºltimas cuatro semanas?
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+SÃ­<br>No
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+12
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+ife_d
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2">
+<em>range: 0-0</em>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+13
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+sexo_edad_tramo
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+&lt;output omitted&gt;
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+14
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+ing_pc
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2">
+<em>range: 0.0-18533333.4</em>
+</td>
+</tr>
+</table>
+</div>
+<div id="descripción-de-variables" class="section level1">
+<h1>4. Descripción de variables</h1>
+<p>Muchas veces, nuestras preguntas de investigación van más allá de la descripción de una única variable (por ejemplo ¿cómo se distribuyen los ingresos per cápita en la población analizada?). Es por ello que volveremos a hacer uso de las funciones de <code>sjPlot</code> ¡esta vez para descripciones que incluyen <strong>dos variables</strong>! (¡o más!).</p>
+<div id="gráficos-de-dispersión" class="section level2">
+<h2>4.1 Gráficos de dispersión</h2>
+<p>Podemos graficar la distribución en dos variables cuantitativas a la vez con la función <code>plot_scatter</code>, que muestra el diagrama de dispersión de tales variables, lo cual nos puede permitir explorar la existencia de relaciones entre ambas.</p>
+<pre class="r"><code>datos_proc %&gt;%  filter(ing_pc &lt;= 2000000) %&gt;%
+  plot_scatter(., tot_per, ing_pc)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20scatter-1.png" width="672" /></p>
+<p>¡También es posible agregar una tercera variable categórica al diagrama de dispersión! probemos con <code>sexo</code></p>
+<pre class="r"><code>datos_proc %&gt;%  filter(ing_pc &lt;= 2000000) %&gt;%
+  plot_scatter(., tot_per, ing_pc, sexo)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20scatter%203%20var%20sexo-1.png" width="672" /></p>
+<p>Incorporemos la línea de mínimos cuadrados ordinarios, y separemos un gráfico para cada categoría de sexo con el argumento <code>grid =</code></p>
+<pre class="r"><code>datos_proc %&gt;%  filter(ing_pc &lt;= 2000000) %&gt;%
+  plot_scatter(., tot_per, ing_pc, sexo,
+               fit.grps = &quot;lm&quot;, grid = TRUE)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20scatter%20sep-1.png" width="672" /></p>
+</div>
+<div id="frecuencias-agrupadas-para-variables-categóricas" class="section level2">
+<h2>4.2 Frecuencias agrupadas para variables categóricas</h2>
+<p>Ahora que ya hemos graficado las frecuencias de las variables, vamos a graficar frecuencias agrupadas, para ello usaremos la función <code>plot_grpfrq</code> de <code>sjPlot</code>, que se estructura de la presente forma</p>
+<pre class="r"><code>plot_grpfrq(
+  var.cnt,
+  var.grp,
+  type = c(&quot;bar&quot;, &quot;dot&quot;, &quot;line&quot;, &quot;boxplot&quot;, &quot;violin&quot;)</code></pre>
+<ol style="list-style-type: decimal">
+<li>Gráfico de barras</li>
+</ol>
+<p>La primera opción que nos entrega este código son los gráficos de barra. Si queremos saber cuántos hombres y mujeres trabajaron al menos una hora la semana pasada, graficaremos las variables <code>sexo</code> y <code>o4</code></p>
+<pre class="r"><code>plot_grpfrq(datos_proc$sexo, datos_proc$o4,
+            type = &quot;bar&quot;, title = &quot;Gráfico de barras&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20frec%20agrup%20barr-1.png" width="672" /></p>
+<p>Podemos ver que no solo nos muestra la frecuencia absoluta, sino que también la <em>frecuencia relativa en porcentaje</em></p>
+<p>Además, podemos incorporar una tercera barra que presenta el total de ambas categorías. Así, sabremos cuántas/os adultas/os, adultas/os mayores y jóvenes (mujeres y hombres) han trabajado al menos una vez o no, y qué proporción del total de informantes representa cada una de las categorías de edad y sexo</p>
+<p>Para este ejercicio usaremos la función <code>plot_xtab()</code>, de la misma librería</p>
+<pre class="r"><code>plot_xtab(datos_proc$sexo_edad_tramo, datos_proc$o4, title = &quot;Gráfico de barras&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20frec%20agrup%20barr%202-1.png" width="672" /></p>
+<p>1.1 Gráfico de barras horizontales</p>
+<p>Con la misma función podemos graficar mediante barras horizontales con el argumento <code>coord.flip =</code>. Además <code>show.summary =</code> nos muestra estadísticos de la relación entre las variables</p>
+<pre class="r"><code>plot_xtab(datos_proc$o4, datos_proc$sexo_edad_tramo, margin = &quot;row&quot;, 
+          bar.pos = &quot;stack&quot;,
+          title = &quot;Gráfico de barras horizontales&quot;,
+          show.summary = TRUE, coord.flip = TRUE)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20frec%20agrup%20barr%20hor-1.png" width="672" /></p>
+<p>También es posible graficar diversas variables que presentan las mismas categorías de respuesta (en este caso, <code>Sí</code>, <code>No</code> y <code>NA</code>) para ver diferencias en las distribuciones para cada una. Utilicemos la función <code>plot_stackfrq</code> de <code>sjPlot</code></p>
+<pre class="r"><code>datos_proc %&gt;% select(ocupacion, o2, o3, o4, o6) %&gt;% 
+  plot_stackfrq(., title = &quot;Gráfico de barras proporcional&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>1.2 Escalas Likert</p>
+<p>También podemos graficar escalas Likert, lo cual es una gran herramienta para quienes trabajamos en ciencias sociales. En esta ocasión CASEN no tiene variables con más categorias de respuesta para generar una escala Likert, por lo que utilizaremos las nuevas variables de la base procesada. Generemos el gráfico con la función <code>plot_likert()</code></p>
+<pre class="r"><code>datos_proc %&gt;% select(&quot;ocupacion&quot;,&quot;o2&quot;, &quot;o3&quot;, &quot;o4&quot;, &quot;o6&quot;) %&gt;% 
+  sjPlot::plot_likert(., title = &quot;Gráfico de escalas Likert&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen_likert-1.png" width="672" /></p>
+<p>1.3 Tablas de proporción cruzadas</p>
+<p>Con <code>plot_gpt()</code>, se puede graficar tablas cruzadas proporcionales agrupadas. Este código traza la proporción de cada nivel de <strong>x</strong> (<code>o4</code>) para la categoría más alta en <strong>y</strong> (<code>o6</code>), para cada subgrupo de <strong>grp</strong> (<code>sexo</code>).</p>
+<pre class="r"><code>plot_gpt(datos_proc, o4, o6, sexo,
+         shapes = c(15, 21), 
+         title = &quot;Gráfico de proporción agrupada&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen_prop_Agrup-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Gráfico de puntos</li>
+</ol>
+<p>Ahora continuaremos con los gráficos de puntos, ya que quiero presentar la relación entre <code>sexo</code> y <code>o4</code> mediante otro gráfico:</p>
+<pre class="r"><code>plot_grpfrq(datos_proc$sexo, datos_proc$o4,
+            title = &quot;Gráfico de puntos&quot;,
+            type = &quot;dot&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20graf%20pun%20agrup-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Gráfico de líneas</li>
+</ol>
+<p>Otra opción que tiene esta función es la creación de gráficos de líneas. Para ello conoceremos la relación entre el tramo sexo-edad y el haber trabajado alguna vez</p>
+<pre class="r"><code>plot_grpfrq(datos_proc$sexo_edad_tramo, datos_proc$o4,
+            title = &quot;Gráfico de línea&quot;,
+            type = &quot;line&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20graf%20lin%20agrup-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Gráfico de cajas</li>
+</ol>
+<p>Ahora, si queremos conocer cómo interactúan el total de personas habitantes del hogar con el tramo sexo-etario, podemos visualizarlo mediante un gráfico de cajas</p>
+<pre class="r"><code>plot_grpfrq(datos_proc$tot_per, datos_proc$sexo_edad_tramo,
+            title = &quot;Gráfico de caja&quot;,
+            type = &quot;boxplot&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20graf%20caj-1.png" width="672" /></p>
+<p>Además, se puede incorporar una tercera variable, en este caso lo haremos con la variable <code>o4</code> y el argumento <code>intr.var =</code></p>
+<pre class="r"><code>plot_grpfrq(datos_proc$tot_per, datos_proc$sexo_edad_tramo, intr.var = datos_proc$o4, 
+            title = &quot;Gráfico de cajas&quot;,
+            type = &quot;box&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20box%203%20var-1.png" width="672" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Gráfico de violín</li>
+</ol>
+<p>Finalmente, para generar un gráfico de violín, añadiremos el argumento <code>type = "violin"</code></p>
+<pre class="r"><code>plot_grpfrq(datos_proc$tot_per, datos_proc$sexo_edad_tramo,
+            title = &quot;Gráfico de violín&quot;,
+            type = &quot;violin&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen%20graf%20violin%20agrup-1.png" width="672" /></p>
+<p>Nuevamente, la función nos permite la creación de múltiples gráficos ¡sólo se debe cambiar el argumento <code>type =</code>!</p>
+</div>
+<div id="tablas-de-contingencia" class="section level2">
+<h2>4.3 Tablas de contingencia</h2>
+<p>¡No podemos terminar sin saber cómo hacer tablas de frecuencias cruzadas!</p>
+<p>Por suerte <code>sjPlot</code> tiene la función <code>sjt.xtab</code>, que nos entrega tablas de frecuencias cruzadas</p>
+<pre class="r"><code>sjt.xtab(datos_proc$sexo, datos_proc$o4,
+         show.col.prc=TRUE,
+         show.summary=FALSE, 
+         title = &quot;Tabla de contingencia&quot;)</code></pre>
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">
+Tabla de contingencia
+</caption>
+<tr>
+<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
+sexo
+</th>
+<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2">
+o4. Â¿Ha trabajado<br>alguna vez?
+</th>
+<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">
+Total
+</th>
+</tr>
+<tr>
+<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
+SÃ­
+</td>
+<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
+No
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
+Masculino
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">18822</span><br><span style="color:#339933;">37.5 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">9594</span><br><span style="color:#339933;">35.9 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;  ">
+<span style="color:black;">28416</span><br><span style="color:#339933;">36.9 %</span>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
+Femenino
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">31375</span><br><span style="color:#339933;">62.5 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">17144</span><br><span style="color:#339933;">64.1 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;  ">
+<span style="color:black;">48519</span><br><span style="color:#339933;">63.1 %</span>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;">
+Total
+</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
+<span style="color:black;">50197</span><br><span style="color:#339933;">100 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
+<span style="color:black;">26738</span><br><span style="color:#339933;">100 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
+<span style="color:black;">76935</span><br><span style="color:#339933;">100 %</span>
+</td>
+</tr>
+</table>
+<p>¿Qué pasó? ¿por qué salen esos símbolos raros en la tabla?</p>
+<p>¡Es por la codificación!, para ello le agregamos el argumento <code>encoding = "UTF-8"</code> y ya tenemos nuestra tabla de frecuencias cruzadas</p>
+<pre class="r"><code>sjt.xtab(datos_proc$sexo, datos_proc$o4,
+         show.col.prc=TRUE,
+         show.summary=FALSE, 
+         encoding = &quot;UTF-8&quot;,
+         title = &quot;Tabla de contingencia&quot;)</code></pre>
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">
+Tabla de contingencia
+</caption>
+<tr>
+<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; border-bottom:1px solid;" rowspan="2">
+sexo
+</th>
+<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal;" colspan="2">
+o4. Â¿Ha trabajado<br>alguna vez?
+</th>
+<th style="border-top:double; text-align:center; font-style:italic; font-weight:normal; font-weight:bolder; font-style:italic; border-bottom:1px solid; " rowspan="2">
+Total
+</th>
+</tr>
+<tr>
+<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
+SÃ­
+</td>
+<td style="border-bottom:1px solid; text-align:center; padding:0.2cm;">
+No
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
+Masculino
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">18822</span><br><span style="color:#339933;">37.5 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">9594</span><br><span style="color:#339933;">35.9 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;  ">
+<span style="color:black;">28416</span><br><span style="color:#339933;">36.9 %</span>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm;  text-align:left; vertical-align:middle;">
+Femenino
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">31375</span><br><span style="color:#339933;">62.5 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center; ">
+<span style="color:black;">17144</span><br><span style="color:#339933;">64.1 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;  ">
+<span style="color:black;">48519</span><br><span style="color:#339933;">63.1 %</span>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm;  border-bottom:double; font-weight:bolder; font-style:italic; text-align:left; vertical-align:middle;">
+Total
+</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
+<span style="color:black;">50197</span><br><span style="color:#339933;">100 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
+<span style="color:black;">26738</span><br><span style="color:#339933;">100 %</span>
+</td>
+<td style="padding:0.2cm; text-align:center;   border-bottom:double;">
+<span style="color:black;">76935</span><br><span style="color:#339933;">100 %</span>
+</td>
+</tr>
+</table>
+<p>Si además se quieren añadir variables con las mismas categorías de respuesta, se puede utilizar la función <code>tab_stackfrq()</code>. Para ello utilizaremos las variables añadidas para este práctico: <code>o3</code>, <code>o4</code> y <code>o6</code>. Le añadiremos etiquetas con <code>value.labels</code> y le pediremos que nos entregue la frecuencia absoluta (<code>show.n = TRUE</code>) y el total (<code>show.total = T</code>)</p>
+<pre class="r"><code>tab_stackfrq(as.data.frame(datos_proc %&gt;% select(&quot;o3&quot;, &quot;o4&quot;, &quot;o6&quot;)),
+             value.labels=c(&#39;1&#39;=&#39;Si&#39;, &#39;2&#39;=&#39;No&#39;),
+             show.n = TRUE, show.total = T,
+             file = &quot;output/figures/tabla4.doc&quot;)</code></pre>
+<table style="border-collapse:collapse; border:none; border-bottom:double black;">
+<tr>
+<th style="border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+ 
+</th>
+<th style="border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+Si
+</th>
+<th style="border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+No
+</th>
+<th style="border-top:double black; border-bottom:1px solid black; padding:0.2cm;  ">
+N
+</th>
+</tr>
+<tr>
+<td style="font-style:italic;">
+o3. Aunque no<br>trabajÃ³, Â¿tenÃ­a<br>algÃºn empleo del<br>cual estuvo ausente<br>temporalmente
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0<br>(0.00 %)
+</td>
+<td style="padding:0.2cm; text-align:center;">
+76935<br>(100.00 %)
+</td>
+<td style="padding:0.2cm; text-align:center;  ">
+76935
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+o4. Â¿Ha trabajado<br>alguna vez?
+</td>
+<td style="padding:0.2cm; text-align:center;">
+50197<br>(65.25 %)
+</td>
+<td style="padding:0.2cm; text-align:center;">
+26738<br>(34.75 %)
+</td>
+<td style="padding:0.2cm; text-align:center;  ">
+76935
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+o6. Â¿BuscÃ³ trabajo<br>remunerado o cuenta<br>propia en las<br>Ãºltimas cuatro<br>semanas?
+</td>
+<td style="padding:0.2cm; text-align:center;">
+9644<br>(12.54 %)
+</td>
+<td style="padding:0.2cm; text-align:center;">
+67291<br>(87.46 %)
+</td>
+<td style="padding:0.2cm; text-align:center;  ">
+76935
+</td>
+</tr>
+</table>
+</div>
+<div id="test-de-independencia-chi2" class="section level2">
+<h2>5. Test de independencia Chi2</h2>
+<p>A la hora de graficar Chi2, debemos asegurarnos con la función <code>as_factor</code> que las variables a utilizar sean de tipo factor, luego utilizamos la función <code>sjp.chi2</code> de <code>sjPlot</code> para crear la tabla, finalmente con el argumento <code>axis.labels</code> asignamos la etiqueta de cada variable</p>
+<pre class="r"><code>data.frame(as_factor(sample(datos_proc$sexo, replace = TRUE)),
+           as_factor(sample(datos_proc$o4, replace = TRUE)),
+           as_factor(sample(datos_proc$o6, replace = TRUE))) %&gt;% 
+  sjp.chi2(., 
+           title = &quot;Gráfico de Chi2&quot;,
+           axis.labels  = c(&quot;Ha trabajado alguna vez&quot;, &quot;Busco empleo&quot;))</code></pre>
+<p><img src="/example/08-practico_files/figure-html/casen_x2-1.png" width="672" /></p>
+</div>
+<div id="correlación" class="section level2">
+<h2>6. Correlación</h2>
+<p>Ahora veremos estadísticos bivariados, como la correlación, en esta ocasión generaremos una tabla de correlación entre las variables <code>tot_per</code> y <code>ing_pc</code>, para eso usaremos la función <code>tab_corr</code> de <code>sjPlot</code></p>
+<p>Previamente debemos seleccionar las variables a utilizar, ya que no tiene sentido incluir en el análisis variables nominales</p>
+<pre class="r"><code>datos_proc %&gt;%
+  select(ing_pc, tot_per) %&gt;% 
+  tab_corr(.,
+           triangle = &quot;lower&quot;,   
+           title = &quot;Tabla de correlación&quot;,
+           encoding = &quot;UTF-8&quot;)</code></pre>
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">
+Tabla de correlación
+</caption>
+<tr>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+ 
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+ing_pc
+</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">
+Total de personas en el hogar
+</th>
+</tr>
+<tr>
+<td style="font-style:italic;">
+ing_pc
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td style="font-style:italic;">
+Total de personas en el hogar
+</td>
+<td style="padding:0.2cm; text-align:center;">
+-0.125<span style="vertical-align:super;font-size:0.8em;">***</span>
+</td>
+<td style="padding:0.2cm; text-align:center;">
+ 
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;">
+Computed correlation used pearson-method with listwise-deletion.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="anova" class="section level1">
+<h1>7. Anova</h1>
+<p>Finalmente, si queremos reportar un análisis de Anova, no podemos dejar de lado este gráfico que nos otorga la función <code>sjp.aov1</code> del paquete <code>sjPlot</code></p>
+<pre class="r"><code>sjp.aov1(datos_proc$ing_pc, datos_proc$sexo, title = &quot;Anova&quot;)</code></pre>
+<p><img src="/example/08-practico_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="resumen-del-práctico" class="section level1">
+<h1>8. Resumen del práctico</h1>
+<p>¡Eso es todo por este práctico! Hoy aprendimos a:</p>
+<ul>
+<li>Manejar datos descriptivos en RStudio</li>
+<li>A obtener tablas descriptivas bivariadas</li>
+<li>A visualizar los descriptivos bivariados</li>
+<li>A obtener tablas de contingencia</li>
+<li>A obtener tablas de correlación y chi2</li>
+<li>A obtener gráficos de Anova</li>
+</ul>
+</div>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/example/07-practico/" rel="next">Análisis descriptivo univariado</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/example/06-practico/" rel="prev">Transformar variables</a>
+  </div>
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on September 13, 2021</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis avanzado de datos 2 (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

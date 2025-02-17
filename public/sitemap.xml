@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/resource/</loc>
+    <lastmod>2021-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/</loc>
+    <lastmod>2022-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/</loc>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/assignment/</loc>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/resource/install/</loc>
+    <lastmod>2021-08-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/resource/r-datatypes/</loc>
+  </url>
+  
+  <url>
+    <loc>/resource/r-datatypes-example/</loc>
+  </url>
+  
+  <url>
+    <loc>/resource/unzipping/</loc>
+    <lastmod>2021-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/resource/install-zotero/</loc>
+    <lastmod>2021-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/resource/zotero-rmd/</loc>
+    <lastmod>2021-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/03-content/</loc>
+    <lastmod>2022-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2022-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/11-practico/</loc>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/11-content/</loc>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/assignment/examen/</loc>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/10-content/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/assignment/04-tarea/</loc>
+    <lastmod>2021-10-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/assignment/03-tarea/</loc>
+    <lastmod>2021-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/09-content/</loc>
+    <lastmod>2021-09-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/09-practico/</loc>
+    <lastmod>2021-09-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/07-content/</loc>
+    <lastmod>2021-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/07-practico/</loc>
+    <lastmod>2021-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/08-content/</loc>
+    <lastmod>2021-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/08-practico/</loc>
+    <lastmod>2021-09-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/assignment/01-tarea/</loc>
+    <lastmod>2021-09-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/assignment/02-tarea/</loc>
+    <lastmod>2021-09-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/05-content/</loc>
+    <lastmod>2021-08-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/06-content/</loc>
+    <lastmod>2021-08-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/06-practico/</loc>
+    <lastmod>2021-08-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/10.2-practico/</loc>
+    <lastmod>2021-08-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/04-content/</loc>
+    <lastmod>2021-08-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/04-practico/</loc>
+    <lastmod>2021-08-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/assignment/00-tarea/</loc>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/02-practico/</loc>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/03-practico/</loc>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/10.1-practico/</loc>
+    <lastmod>2021-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/resource/markdown/</loc>
+    <lastmod>2021-08-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/01-practico/</loc>
+    <lastmod>2021-08-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/02-content/</loc>
+    <lastmod>2021-08-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/example/05-practico/</loc>
+    <lastmod>2021-03-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/content/01-content/</loc>
+  </url>
+  
+  <url>
+    <loc>/schedule/</loc>
+  </url>
+  
+  <url>
+    <loc>/syllabus/</loc>
+  </url>
+  
+  <url>
+    <loc>/assignment/05-tarea/05-tarea-instrucciones/</loc>
+  </url>
+  
+</urlset>

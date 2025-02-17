@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="0. Objetivo Esta práctica tiene por objetivo introducir a la valuación de la calidad de nuestros modelos de regresión. Si bien en la estimación tenemos información sobre el ajuste genera según el R2, existen una serie de aspectos que podrían estar afectando nuestra estimación y haciendo que nuestro modelo no represente de buena manera las asociaciones entre las variables." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/example/10-practico/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/example/10-practico/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis Estadístico en R" />
+  <meta property="og:url" content="/example/10-practico/" />
+  <meta property="og:title" content="Calidad de modelos y otras técnicas de estimación | Análisis Estadístico en R" />
+  <meta property="og:description" content="0. Objetivo Esta práctica tiene por objetivo introducir a la valuación de la calidad de nuestros modelos de regresión. Si bien en la estimación tenemos información sobre el ajuste genera según el R2, existen una serie de aspectos que podrían estar afectando nuestra estimación y haciendo que nuestro modelo no represente de buena manera las asociaciones entre las variables." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-11-08T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-11-08T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis Estadístico en R" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Calidad de modelos y otras técnicas de estimación | Análisis Estadístico en R</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis Estadístico en R"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis Estadístico en R"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/">Información general</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/">Prácticos (códigos de ejemplo)</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" >Datos</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/01-practico/">Ejemplos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/01-practico/">1: R, RStudio y Github</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/02-practico/">2: RMarkdown</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/03-practico/">3: Importar, explorar y limpiar datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/04-practico/">4: Transformar y seleccionar variables</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/05-practico/">5: Tidydata y manipulación de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/06-practico/">6: Análisis descriptivo</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/07-practico/">7: Muestras complejas y precisión de inferencia estadística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/08-practico/">8: Regresiones lineales, predictores categóricos y representación gráfica</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/09-practico/">9: Regresión logística</a>
+      </li>
+
+      
+      <li class="active">
+        <a href="/example/10-practico/">10: Calidad de modelos y otras técnicas de estimación</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/03-practicodatatypes/">3: Tipos de datos</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+        <div class="d-none d-xl-block col-xl-2 docs-toc">
+            <ul class="nav toc-top">
+                <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+            </ul>
+
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-procesamiento-previo">2.1. Procesamiento previo</a></li>
+    <li><a href="#22-explorar-datos">2.2 Explorar datos</a></li>
+    <li><a href="#5---63--51-----------i">fatiga\                                Me siento cada vez mÃ¡s desmotivado para   Media (d-s) : 2.8 (1.1)\             1 :  84 ( 6.8%)\          I \             <br>
+[haven_labelled, vctrs_vctr, double]   seguir las medidas de protecciÃ³n&hellip;       min &lt; mediana &lt; max:\                2 : 588 (47.3%)\          IIIIIIIII \     <br>
+1 &lt; 2 &lt; 5\                           3 :  76 ( 6.1%)\          I \             <br>
+RI (CV) : 2 (0.4)                    4 : 432 (34.8%)\          IIIIII \        <br>
+5 :  63 ( 5.1%)           I</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#supuestos">4.1. Robustez y supuestos</a>
+      <ul>
+        <li><a href="#linealidad">4.1.1 Linealidad</a></li>
+        <li><a href="#homocedasticidad">4.1.2 Homocedasticidad</a></li>
+        <li><a href="#normalidad">4.1.3 Normalidad de residuos</a></li>
+        <li><a href="#independencia">4.1.4 Independencia</a></li>
+        <li><a href="#multicolinealidad">4.1.5 Multicolinealidad</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#outliers">4.1.6 Casos influyentes</a></li>
+      </ul>
+    </li>
+    <li><a href="#fit">4.2 Ajuste del modelo</a>
+      <ul>
+        <li><a href="#421-transformar-predictor-al-cuadrado-o-cubo">4.2.1 Transformar predictor al cuadrado o cubo</a></li>
+        <li><a href="#422-logaritmizar-variable-dependiente">4.2.2 Logaritmizar variable dependiente</a>
+          <ul>
+            <li><a href="#4221-recuperar-casos-perdidos">4.2.2.1 Recuperar casos perdidos</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#10-no-responde---------------------0--00">tingreso\   Tramo de ingreso total de su hogar el   1. Menos de $200 mil pesos\         47 (22.5%)\               IIII \     209\      1052\  <br>
+[factor]    mes de noviembre de 2020                2. Entre $200 y 350 mil peso\       57 (27.3%)\               IIIII \    (16.6%)   (83.4%)<br>
+3. Entre $351 y 500 mil peso\       38 (18.2%)\               III \                       <br>
+4. Entre 501 y 800 mil pesos\       35 (16.7%)\               III \                       <br>
+5. Entre 801 mil y 1 millón \       9 ( 4.3%)\                \                           <br>
+6. Entre 1 millón 201 mil y \       15 ( 7.2%)\               I \                         <br>
+7. Entre 2 millones y 5 mill\       8 ( 3.8%)\                \                           <br>
+8. Más de 5 millones de peso\       0 ( 0.0%)\                \                           <br>
+9. No sabe\                         0 ( 0.0%)\                \                           <br>
+10. No responde                     0 ( 0.0%)</a></li>
+    <li><a href="#3500000---8--38">tingreso\   Media (d-s) : 598198.6 (688242.3)\   200000 : 47 (22.5%)\      IIII \     209\      1052\  <br>
+[numeric]   min &lt; mediana &lt; max:\                275000 : 57 (27.3%)\      IIIII \    (16.6%)   (83.4%)<br>
+2e+05 &lt; 425500 &lt; 3500000\            425500 : 38 (18.2%)\      III \                       <br>
+RI (CV) : 375500 (1.2)               650500 : 35 (16.7%)\      III \                       <br>
+1000500 :  9 ( 4.3%)\     \                           <br>
+1600500 : 15 ( 7.2%)\     I \                         <br>
+3500000 :  8 ( 3.8%)</a>
+      <ul>
+        <li><a href="#423-dicotomizar-variable-dependiente">4.2.3 Dicotomizar variable dependiente</a></li>
+        <li><a href="#424-errores-estándares-robustos">4.2.4 Errores estándares robustos</a></li>
+        <li><a href="#425-creación-de-índices">4.2.5 Creación de índices</a></li>
+        <li><a href="#426-eliminar-casos-influyentes">4.2.6 Eliminar casos influyentes</a></li>
+      </ul>
+    </li>
+    <li><a href="#43-comparación">4.3. Comparación</a></li>
+  </ul>
+</nav>
+
+ 
+        </div>
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Calidad de modelos y otras técnicas de estimación</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+<h1 id="0-objetivo">0. Objetivo</h1>
+<p>Esta práctica tiene por objetivo introducir a la valuación de la calidad de nuestros modelos de regresión. Si bien en la estimación tenemos información sobre el ajuste genera según el R2, existen una serie de aspectos que podrían estar afectando nuestra estimación y haciendo que nuestro modelo no represente de buena manera las asociaciones entre las variables.</p>
+<p>La siguiente práctica tiene el objetivo de introducir en los <strong>supuestos y robustez del modelo de regresión</strong>, así como también las posibles alternativas de transformación de variables para corregir las estimaciones cuando los supuestos no se cumplen. Para ello, utilizaremos los datos de la encuesta <a href="https://movid-impact.netlify.app/" target="_blank" rel="noopener">MOVID-IMPACT</a> con el objetivo de analizar los determinantes de la <strong>Fatiga pandémica</strong></p>
+<h1 id="1-paquetes-a-utilizar">1. Paquetes a utilizar</h1>
+<p>En esta ocasión utilizaremos el universo de paquetes <code>tidyverse</code>, dentro de los cuales se encuentra <code>magrittr</code>, además utilizaremos <code>sjPlot</code> para la visualización, mientras que <a href="https://easystats.github.io/performance/" target="_blank" rel="noopener"><code>performance</code></a> se utilizará para evaluar la calidad de los modelos y <code>summarytools</code> que nos permitirá visualizar los datos procesados.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pacman<span style="color:#f92672">::</span><span style="color:#a6e22e">p_load</span>(tidyverse, magrittr, <span style="color:#75715e"># procesamiento</span>
+               summarytools, <span style="color:#75715e">#decriptivos</span>
+               sjPlot, <span style="color:#75715e">#visualización</span>
+               performance, <span style="color:#75715e">#evaluación de modelos</span>
+               see) <span style="color:#75715e"># herramientas para la visualización</span>
+</code></pre></div><h1 id="2-recursos-del-práctico">2. Recursos del práctico</h1>
+<p>Para este práctico utilizaremos los datos que nos ofrece <a href="https://movid-impact.netlify.app/" target="_blank" rel="noopener">MOVID-IMPACT</a>, una encuesta transversal telefónica realizada por el equipo <a href="https://movid19.cl/" target="_blank" rel="noopener">CoV-IMPACT-C</a> del proyecto <a href="https://movid19.cl/somos/cov-impact" target="_blank" rel="noopener">ANID N°960</a>. El objetivo de la encuesta es conocer el impacto en la salud y socioeconómico que ha tenido la pandemia sobre la población chilena.</p>
+<p>Se cargan los datos directamente desde el sitio de la encuesta</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid <span style="color:#f92672">&lt;-</span> haven<span style="color:#f92672">::</span><span style="color:#a6e22e">read_dta</span>(<span style="color:#a6e22e">url</span>(<span style="color:#e6db74">&#34;https://movid-impact.netlify.app/input/data/MOVID-IMPACT.dta&#34;</span>))
+</code></pre></div><h2 id="21-procesamiento-previo">2.1. Procesamiento previo</h2>
+<p>Filtraremos los datos solo con la información de los encuestados, seleccionaremos las variables de interés para el práctico y recodificaremos los casos perdidos.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid_proc <span style="color:#f92672">&lt;-</span> movid <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(id_encuesta) <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e">#Para calcular tamano de hogar</span>
+  <span style="color:#a6e22e">mutate</span>(tamanohogar <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>()) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ungroup</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(entrevistado <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Filtrar solo a entrevistados</span>
+  <span style="color:#a6e22e">select</span>(sexo, edad, trabaja <span style="color:#f92672">=</span> g1,ingreso <span style="color:#f92672">=</span> g47_monto, tingreso<span style="color:#f92672">=</span> g48, tamanohogar, <span style="color:#a6e22e">starts_with</span>(<span style="color:#e6db74">&#34;c2&#34;</span>), fatiga <span style="color:#f92672">=</span> f5_3) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Seleccionar variabes</span>
+  <span style="color:#a6e22e">mutate_at</span>(<span style="color:#a6e22e">vars</span>(<span style="color:#f92672">-</span>tingreso), <span style="color:#f92672">~</span>car<span style="color:#f92672">::</span><span style="color:#a6e22e">recode</span>(.,<span style="color:#e6db74">&#34;c(8,9) = NA&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(tingreso <span style="color:#f92672">=</span> car<span style="color:#f92672">::</span><span style="color:#a6e22e">recode</span>(tingreso,<span style="color:#e6db74">&#34;c(98,99) = NA&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate_at</span>(<span style="color:#a6e22e">vars</span>(sexo, trabaja, <span style="color:#a6e22e">starts_with</span>(<span style="color:#e6db74">&#34;c2&#34;</span>), tingreso, <span style="color:#f92672">-</span>fatiga), <span style="color:#f92672">~</span> <span style="color:#a6e22e">as_factor</span>(.))
+</code></pre></div><h2 id="22-explorar-datos">2.2 Explorar datos</h2>
+<p>Los datos utilizados tienen 1261 observaciones y 11 variables, las cuales serán descritas en la siguiente tabla</p>
+<p><strong>Tabla N°1</strong> Estadísticos descriptivos de base de datos procesadas de MOVID-IMPACT</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">view</span>(<span style="color:#a6e22e">dfSummary</span>(movid_proc, headings <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;render&#34;</span>))
+</code></pre></div><p>Fuente: Elaboración propia en base a MOVID-IMPACT (n=909 casos)</p>
+<hr>
+<p>Variable                               Etiqueta                                   Estadísticas / Valores               Frec. (% sobre válidos)   Gráfico</p>
+<hr>
+<p>sexo\                                  Sexo                                       1. Hombre\                          481 (38.1%)\              IIIIIII \       <br>
+[factor]                                                                          2. Mujer                            780 (61.9%)               IIIIIIIIIIII</p>
+<p>edad\                                  Edad                                       Media (d-s) : 48.8 (18.2)\           75 valores distintos      \               <br>
+[numeric]                                                                         min &lt; mediana &lt; max:\                                          \ \ : .\        <br>
+18 &lt; 48 &lt; 96\                                                  \ \ : : : : . .\<br>
+RI (CV) : 30 (0.4)                                             : : : : : : : .\<br>
+: : : : : : : :\<br>
+: : : : : : : : :</p>
+<p>trabaja\                               Durante la semana pasada, Â¿trabajÃ³ al    1. Sí\                              612 (48.5%)\              IIIIIIIII \     <br>
+[factor]                               menos una hora, sin considerar los         2. No                               649 (51.5%)               IIIIIIIIII      <br>
+quehace</p>
+<p>ingreso\                               Monto de ingreso total de su hogar el      Media (d-s) : 679414.7 (836325.7)\   151 valores distintos     \               <br>
+[numeric]                              mes de noviembre de 2020                   min &lt; mediana &lt; max:\                                          :\              <br>
+0 &lt; 4e+05 &lt; 1.2e+07\                                           :\              <br>
+RI (CV) : 450000 (1.2)                                         :\              <br>
+:\              <br>
+: .</p>
+<p>tingreso\                              Tramo de ingreso total de su hogar el      1. Menos de $200 mil pesos\         47 (22.5%)\               IIII \          <br>
+[factor]                               mes de noviembre de 2020                   2. Entre $200 y 350 mil peso\       57 (27.3%)\               IIIII \         <br>
+3. Entre $351 y 500 mil peso\       38 (18.2%)\               III \           <br>
+4. Entre 501 y 800 mil pesos\       35 (16.7%)\               III \           <br>
+5. Entre 801 mil y 1 millón \       9 ( 4.3%)\                \               <br>
+6. Entre 1 millón 201 mil y \       15 ( 7.2%)\               I \             <br>
+7. Entre 2 millones y 5 mill\       8 ( 3.8%)\                \               <br>
+8. Más de 5 millones de peso\       0 ( 0.0%)\                \               <br>
+9. No sabe\                         0 ( 0.0%)\                \               <br>
+10. No responde                     0 ( 0.0%)</p>
+<p>tamanohogar\                                                                      Media (d-s) : 2.8 (1.5)\             1 : 287 (23.0%)\          IIII \          <br>
+[integer]                                                                         min &lt; mediana &lt; max:\                2 : 321 (25.7%)\          IIIII \         <br>
+1 &lt; 3 &lt; 14\                          3 : 265 (21.2%)\          IIII \          <br>
+RI (CV) : 2 (0.5)                    4 : 222 (17.8%)\          III \           <br>
+5 :  98 ( 7.8%)\          I \             <br>
+6 :  38 ( 3.0%)\          \               <br>
+7 :  16 ( 1.3%)\          \               <br>
+10 :   1 ( 0.1%)\         \               <br>
+12 :   1 ( 0.1%)\         \               <br>
+14 :   1 ( 0.1%)</p>
+<p>c2_1\                                  Ãšltimas 2 semanas: se ha sentido          1. Nunca\                           573 (45.7%)\              IIIIIIIII \     <br>
+[factor]                               nervioso, ansioso o con los nervios de     2. Varios días\                     389 (31.0%)\              IIIIII \        <br>
+punta                                      3. Más de la mitad de los dí\       91 ( 7.3%)\               I \             <br>
+4. Casi todos los días\             200 (16.0%)\              III \           <br>
+5. No sabe\                         0 ( 0.0%)\                \               <br>
+6. No responde                      0 ( 0.0%)</p>
+<p>c2_2\                                  Ãšltimas 2 semanas: No ha podido dejar de  1. Nunca\                           629 (50.2%)\              IIIIIIIIII \    <br>
+[factor]                               preocuparse o no ha podido controlar su    2. Varios días\                     377 (30.1%)\              IIIIII \        <br>
+3. Más de la mitad de los dí\       101 ( 8.1%)\              I \             <br>
+4. Casi todos los días\             145 (11.6%)\              II \            <br>
+5. No sabe\                         0 ( 0.0%)\                \               <br>
+6. No responde                      0 ( 0.0%)</p>
+<p>c2_3\                                  Ãšltimas 2 semanas: Se ha sentido          1. Nunca\                           529 (42.3%)\              IIIIIIII \      <br>
+[factor]                               bajoneado, deprimido, irritable o          2. Varios días\                     454 (36.3%)\              IIIIIII \       <br>
+desesperanzad                              3. Más de la mitad de los dí\       104 ( 8.3%)\              I \             <br>
+4. Casi todos los días\             165 (13.2%)\              II \            <br>
+5. No sabe\                         0 ( 0.0%)\                \               <br>
+6. No responde                      0 ( 0.0%)</p>
+<p>c2_4\                                  Ãšltimas 2 semanas: Ha sentido poco        1. Nunca\                           679 (54.1%)\              IIIIIIIIII \    <br>
+[factor]                               interÃ©s o placer al hacer las cosas       2. Varios días\                     358 (28.5%)\              IIIII \         <br>
+3. Más de la mitad de los dí\       89 ( 7.1%)\               I \             <br>
+4. Casi todos los días\             128 (10.2%)\              II \            <br>
+5. No sabe\                         0 ( 0.0%)\                \               <br>
+6. No responde                      0 ( 0.0%)</p>
+<h2 id="5---63--51-----------i">fatiga\                                Me siento cada vez mÃ¡s desmotivado para   Media (d-s) : 2.8 (1.1)\             1 :  84 ( 6.8%)\          I \             <br>
+[haven_labelled, vctrs_vctr, double]   seguir las medidas de protecciÃ³n&hellip;       min &lt; mediana &lt; max:\                2 : 588 (47.3%)\          IIIIIIIII \     <br>
+1 &lt; 2 &lt; 5\                           3 :  76 ( 6.1%)\          I \             <br>
+RI (CV) : 2 (0.4)                    4 : 432 (34.8%)\          IIIIII \        <br>
+5 :  63 ( 5.1%)           I</h2>
+<h1 id="3-introducción">3. Introducción</h1>
+<p><strong>2. Ajuste</strong> (<em>post-hoc</em>): implica abordar qué tan bien ajustan nuestros modelos con los datos utilizados. La <em>bondad de ajuste</em> implica que si trabajamos con una</p>
+<ul>
+<li>2.1 <em>Regresión lineal múltiple</em>, analizaremos el <code>\(R^2\)</code> ajustado</li>
+<li>2.2 <em>Regresión logística</em>, analizaremos el <code>\(Pseudo\)</code> <code>\(R^2\)</code> y los <em>Criterios de Información</em> <code>\(BIC\)</code> y <code>\(AIC\)</code> (ambos nos dicen cuánta información se está &ldquo;perdiendo&rdquo; con las variables que se ocupan en cada modelo. Por ello elegiremos el modelo que tenga un BIC y AIC más bajo)</li>
+</ul>
+<p><strong>3. Comparación</strong>: luego de que hacemos <strong>transformaciones</strong> a los modelos, una etapa importante para la <strong>selección</strong> de estos es compararlos. Para ello consideraremos toda la información que tenemos de ellos en su diagnóstico de <strong>pre y post hoc.</strong></p>
+<p><strong>¿Cómo evaluar la robustez y ajuste de modelos en <code>R</code>?</strong></p>
+<p>En R existen diversas funciones para crear un diagnóstico de supuestos y de ajuste a nuestros modelos. Ahora bien, la gran parte de ello se desenvuelve en distintos paquetes, sobre todo  considerando que, como vimos, <strong>no existen criterios únicos</strong> para evaluar la calidad de nuestros modelos (más aún cuando son su variable dependiente tiene un nivel distinto de medición).</p>
+<p>La buena noticia es que el paquete <code>performace</code> reúne todas estas herramientas, y que los tres ejes de la <strong>calidad de los modelos</strong> también las distingue en una función para cada una.</p>
+<p><img src="https://github.com/easystats/performance/blob/master/paper/figure_workflow.png?raw=true" alt=""></p>
+<p><strong>Figura 2.</strong> paquete <code>performance</code> del proyecto easystats de <a href="https://easystats.github.io/performance/" target="_blank" rel="noopener">Lüdecke et al. (2021)</a></p>
+<h1 id="4-diagnóstico-de-la-calidad-de-los-modelos">4. Diagnóstico de la calidad de los modelos</h1>
+<p>Imaginemos que queremos analizar los determinantes de la <strong>Fatiga pandémica</strong>, y para ello estimaremos un modelo de regresión lineal.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(<span style="color:#a6e22e">as.numeric</span>(fatiga) <span style="color:#f92672">~</span> c2_1 <span style="color:#f92672">+</span> c2_2 <span style="color:#f92672">+</span> c2_3 <span style="color:#f92672">+</span> c2_4 <span style="color:#f92672">+</span>
+               trabaja <span style="color:#f92672">+</span> sexo <span style="color:#f92672">+</span> edad <span style="color:#f92672">+</span> ingreso,
+             data <span style="color:#f92672">=</span> movid_proc)
+</code></pre></div><p><strong>Tabla 1</strong>. Modelo de regresión que predice la fatiga a la pandemia</p>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Modelo 1</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">(Intercept)</td>
+<td style="padding-left: 5px;padding-right: 5px;">2.60<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.14)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_1Varios días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.17</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.10)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_1Más de la mitad de los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.23</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.16)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_1Casi todos los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.08</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.14)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_2Varios días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.02</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.10)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_2Más de la mitad de los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.07</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.17)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_2Casi todos los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.10</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.15)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_3Varios días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.19</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.10)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_3Más de la mitad de los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.23</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.17)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_3Casi todos los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.29</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.16)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_4Varios días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.16</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.10)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_4Más de la mitad de los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.24</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.17)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_4Casi todos los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.32<sup>&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.16)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">trabajaNo</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.06</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.08)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">sexoMujer</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.02</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.08)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">edad</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.00</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">ingreso</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.00</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">R<sup>2</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.04</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Adj. R<sup>2</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.02</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">917</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+<h2 id="supuestos">4.1. Robustez y supuestos</h2>
+<p>Los modelos de regresión tienen una serie de <strong>supuestos</strong> que se deben cumplir para que las estimaciones sean <strong>fidedignas</strong>.En esa sesión consideraremos los supuestos más esenciales: linealidad, normalidad de residuos, homogeneidad de la varianza,  independencia de variables, multicolinealidad y casos influyentes (<em>los primeros tres aplican solo para regresiones lineales</em>).</p>
+<p><img src="https://docs.google.com/drawings/d/e/2PACX-1vQbb26p4E5LLFdGLr7t_3fvNHEn38d9E4D8uAdLMYk58GMp98uBpfsDqtEoMY4AdvBYftihC_Bst1G1/pub?w=480&amp;h=360" alt=""></p>
+<p><strong>Figura 3</strong>. Diferentes funciones de <code>performance</code> para evaluar robustez del modelo</p>
+<h3 id="linealidad">4.1.1 Linealidad</h3>
+<p>Para la regresión lineal múltiple, un supuesto importante es que existe una <strong>relación lineal entre la variable dependiente e independiente</strong>.</p>
+<p>Podemos saber si se cumple este supuesto a partir de un <em>gráfico de dispersión de datos</em>, que relacione la variable dependiente y la independiente, y verificar de manera &ldquo;intuitiva&rdquo; si la <strong>tendencia</strong> de esta relación se puede describir por una <strong>línea recta</strong>. El paquete <code>performace</code> nos permite hacer esto con su función <code>check_model</code> indicando en el argumento <code>check = &quot;ncv</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">check_model</span>(model1, check <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;ncv&#34;</span>, <span style="color:#e6db74">&#34;linearity&#34;</span>))
+</code></pre></div><p><img src="/example/10-practico_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>En este caso podemos notar claramente que no hay una relación lineal. En caso de que no sea claro, una forma numérica para chequear este supuesto es que el valor promedio de los residuos sea cero. Si esto no es así los residuos están sesgados sistemáticamente, entonces probable que el modelo no sea realmente lineal, y esta desviación de los residuos deba corregirse re-especificando (medir de otra manera la variable) algún término de la ecuación de regresión al cuadrado o al cubo. Un modo que se ocupa para testear la necesidad de esta re-especificación es el test RESET de Ramsey que indica que:</p>
+<p><code>\(H_o\)</code> cuando el modelo tiene algún término al cuadrado o cubo, la media de los residuos es cero. Es decir, que si no podemos rechazar <code>\(H_0\)</code>, nuestro modelo está bien especificado (es decir, es lineal). Como en este caso es claro que se necesita respecificar el predictor elevamos edad al cuadrado. Imaginemos que es el caso</p>
+<p>✔️ La línea de referencia es plana y horizontal</p>
+<h3 id="homocedasticidad">4.1.2 Homocedasticidad</h3>
+<p>Homoce ¿qué? Sí, <em>homocedasticidad</em>. Este concepto indica que <strong>los residuos</strong> se distribuyen de forma <strong>homogénea</strong> (por eso el sufijo <em>homo</em>). Como ya podrás haber notado este supuesto se vincula con el de <a href="#linealidad">linealidad</a></p>
+<p>Al igual que la linealidad también puede comprobarse con un gráfico de dispersión entre la variable dependiente ($Y$) e independiente ($X$),  donde podamos ver de manera clara la recta de regresión estimada y la distribución de los residuos. Aceptaremos el supuesto de <strong>homocedasticidad</strong> si la variación de los residuos es homogénea, es decir, no veremos un patrón claro y más bien se <em>distribuirán de forma aleatoria</em>. De manera gráfica veremos una nube de puntos que tiene una <em>forma similar</em> en todo el rango de las observaciones de la variable independiente.</p>
+<p>Para comprobar el supuesto de homocedasticidad de manera más certera utilizaremos la prueba Breusch-Pagan Godfrey cuya hipótesis nula indica que</p>
+<p><code>\(H_0\)</code>: La varianza de los residuos del modelo de regresión no es constante (<strong>heterocedasticidad</strong>)</p>
+<p>En este caso, buscaremos que rechazar la <code>\(H_0\)</code>. Esto implicaría que <em>&ldquo;en suma y resta&rdquo;</em> si bien hay residuos, estos tienen una variación <strong>homogénea</strong> en todos los tramos de la relación de la variable dependiente con la independiente.</p>
+<p>A partir de la función <code>check_heteroscedasticity</code> verificaremos qué ocurre con la hipótesis nula</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">check_heteroscedasticity</span>(model1)
+</code></pre></div><p>OK: Error variance appears to be homoscedastic (p = 0.494).</p>
+<p>✔️ La varianza es homocedástica</p>
+<h3 id="normalidad">4.1.3 Normalidad de residuos</h3>
+<p>Además de la linealidad (media 0), la homocedasticidad (varianza mínima y constante), el método de estimación de la regresión lineal (<em>OLS</em> o <em>MCO</em> en español) requiere asegurar una <strong>distribución normal</strong> de los residuos pues en caso contrario el modelo no es consistente a través de las variables y observaciones (esto significa que los errores no son aleteatorios).</p>
+<p>Al igual que con los otros supuestos, la <strong>normalidad</strong> de los residuos se puede evaluar con métodos numéricos con pruebas que ya conocemos de otros cursos como la prueba de <em>Shapiro-Wilk</em> y Kolmogorov-Smirnov</p>
+<p>A partir de la función <code>check_normality</code> utilizaremos la prueba <em>Shapiro-Wilk</em> para ver qué ocurre con la hipótesis nula a</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">check_normality</span>(model1)
+</code></pre></div><p>Warning: Non-normality of residuals detected (p &lt; .001).</p>
+<p>⚠️ Los residuos no son normales</p>
+<h3 id="independencia">4.1.4 Independencia</h3>
+<p>Evidentemente si los residuos no siguen una distribución normal, es probable que estos no sean independientes entre sí. Esto significa que buscaremos que los errores asociados a nuestro modelo de regresión sean <strong>independientes</strong>. Para saber si se cumple ese criterio se utiliza la prueba de <em>Durbin-Watson</em>, donde la <code>\(H_0\)</code> supone que <strong>los residuos son independientes</strong></p>
+<p>A partir de la función <code>check_autocorrelation</code> utilizaremos la prueba <em>Durbin-Watson</em> para ver qué ocurre con la hipótesis nula a</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">check_autocorrelation</span>(model1)
+</code></pre></div><p>Warning: Autocorrelated residuals detected (p = 0.022).</p>
+<p>⚠️ Hay correlación entre los residuos</p>
+<p>En síntesis sabemos la regresión lineal requiere de una relación lineal entre sus variables independientes y dependiente. Para ello no solo es importante chequear la distribución de los residuos, sino
+dos posibilidades que pueden <em>tendenciar</em> esa relación lineal: como casos influyentes en la muestra y predictores que están altamente relacionados. Revisaremos la última de estas</p>
+<h3 id="multicolinealidad">4.1.5 Multicolinealidad</h3>
+<p>La multicolinealidad es la relación de <strong>dependencia lineal fuerte</strong> entre más de dos <strong>predictores</strong> de un modelo.</p>
+<p>El problema que produce es que será <em>difícil cuantificar con exactitud el efecto de cada predictor sobre la variable dependiente</em>, precisamente pues puede ocurrir que el efecto que una variable predictora tenga sobre el fenómeno que se busca estudiar dependa del valor de otra variable del modelo.</p>
+<p>Para la regresión múltiple esto implica un problema pues suponemos que podemos <em>&ldquo;controlar&rdquo;</em> por el otro valor de la variable.</p>
+<p>Esta relación <strong>endógena</strong> entre predictores la podemos examinar ante la existencia de altas correlaciones (<em>lineales</em>) entre variables. La aproximación numérica más utilizada es el <strong>VIF</strong> (factor de inflación de varianza) que indica hasta que punto la varianza de los coeficientes de regresión se debe a la colinealidad (o dependencia) entre otras variables del modelo.</p>
+<p>Para evaluar esto ocuparemos el comando <code>check_collinearity()</code>. Como podemos ver en el gráfico, todos los valores son menores a 5 (<em>como recomienda el paquete</em>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(<span style="color:#a6e22e">check_collinearity</span>(model1))
+</code></pre></div><p><img src="/example/10-practico_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Ahora bien, dado que sabemos que las correlaciones en ciencias sociales nunca son tan altas, un criterio que se ocupa en nuestras disciplinas para evaluar <em>multicolinealidad</em> es es evitar valores del VIF mayores a 2.5.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">check_collinearity</span>(model1)
+</code></pre></div><h1 id="check-for-multicollinearity">Check for Multicollinearity</h1>
+<p>Low Correlation</p>
+<pre><code>Term  VIF Increased SE Tolerance
+c2_1 2.85         1.69      0.35
+c2_2 2.51         1.59      0.40
+c2_3 3.66         1.91      0.27
+c2_4 2.51         1.58      0.40
+</code></pre>
+<p>trabaja 1.13         1.06      0.88
+sexo 1.06         1.03      0.94
+edad 1.13         1.06      0.89
+ingreso 1.00         1.00      1.00</p>
+<p>⚠️ Como podemos ver los ítems del módulo de salud mental tienen todos valores sobre 2.5. Como veremos en el segundo apartado de esta sesión, las recomendaciones son o eliminar alguno de los predictores o <em>evaluar si es que estas variables más bien son parte de un mismo constructo</em> (y para ello las correlacionaremos)</p>
+<h3 id="outliers">4.1.6 Casos influyentes</h3>
+<p>Un último supuesto que revisaremos, y es el que probablemente parte del que más nos enfrentamos en las ciencias sociales, son los <strong>casos influyentes</strong> (también llamados en inglés, <em>outliers</em>). Un ejemplo claro de esto son las variables como ingresos, donde muchas veces tenemos casos extremos con muy bajos salarios y otros muy altos, y que pueden tendenciar nuestras rectas de regresión pese a que no es evidente una relación lineal(o algún tipo de relación) entre la variable independiente y dependiente.</p>
+<p>Para verificar si un &ldquo;caso es <em>influyente</em>&rdquo; examinaremos si la ausencia o presencia de ese caso genera un cambio importante en la estimación del modelo de regresión. Este enfoque se aborda a partir del cálculo de la <strong>Distancia de Cook</strong> (Cook,1977)</p>
+<p>Primero podemos graficar la influencia de los casos con <code>check_outliers()</code> dentro de un <code>plot()</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(<span style="color:#a6e22e">check_outliers</span>(model1))
+</code></pre></div><p><img src="/example/10-practico_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Luego para verificar si la ausencia o presencia de eliminar algunos de estos casos que presentan mayor distancia producen una <strong>diferencia</strong> significativa en la estimación del modelo, realizamos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">check_outliers</span>(model1)
+</code></pre></div><p>OK: No outliers detected.</p>
+<p>✔️ No hay outliers</p>
+<h2 id="fit">4.2 Ajuste del modelo</h2>
+<p>Podemos evaluar qué tan bien ajustan nuestros modelos con los datos utilizados. Sabemos que:</p>
+<p>2.1 Si trabajamos una regresión lineal: el <code>\(R^2\)</code> ajustado</p>
+<p>2.2 Si trabajamos una regresión logística: Pseudo <code>\(R^2\)</code> y los <em>Criterios de Información</em> BIC y AIC (ambos nos dicen cuánta información se está &ldquo;perdiendo&rdquo; con las variables que se ocupan en cada modelo. Por ello elegiremos el modelo que tenga un BIC y AIC más bajo).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">performance<span style="color:#f92672">::</span><span style="color:#a6e22e">model_performance</span>(model1) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">print_md</span>() <span style="color:#75715e">#print_md() nos permite hacer tablas en buen formato</span>
+</code></pre></div><p>Table: Indices of model performance</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">AIC</th>
+<th style="text-align:center">BIC</th>
+<th style="text-align:center">R2</th>
+<th style="text-align:center">R2 (adj.)</th>
+<th style="text-align:center">RMSE</th>
+<th style="text-align:center">Sigma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2817.44</td>
+<td style="text-align:center">2904.22</td>
+<td style="text-align:center">0.04</td>
+<td style="text-align:center">0.02</td>
+<td style="text-align:center">1.10</td>
+<td style="text-align:center">1.11</td>
+</tr>
+</tbody>
+</table>
+<p>Es probable que estos ajustes coincidan mejor con el fenómeno que queremos analizar una vez que hicimos el chequeo de supuestos. Esto no implica necesariamente que el ajuste mejore, sino que seremos más <em>fieles</em> a la información que realmente nos están otorgando las variables.</p>
+<p>Ya hemos dado una serie de  recomendaciones de transformaciones a las variables para manejar el problema de supuestos. En la siguiente tabla sistematizamos algunas de ellas.</p>
+<table class="table table-striped table-bordered table-condensed table-responsive" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Problema </th>
+   <th style="text-align:left;"> Soluciones posibles </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;vertical-align: middle !important;" rowspan="3"> No linealidad de variable dependiente e independiente </td>
+   <td style="text-align:left;"> Transformar predictor al cuadrado o cubo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Logaritmizar variable dependiente </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dicotomizar variable dependiente </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;vertical-align: middle !important;" rowspan="3"> No normalidad de residuos </td>
+   <td style="text-align:left;"> Transformar predictor al cuadrado o cubo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Logaritmizar variable dependiente </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dicotomizar variable dependiente </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Heterocedasticidad de residuos </td>
+   <td style="text-align:left;"> Calcular errores estándares robustos </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;vertical-align: middle !important;" rowspan="2"> Dependencia entre predictores </td>
+   <td style="text-align:left;"> Interacción entre variables </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Variables no observadas </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;vertical-align: middle !important;" rowspan="3"> Multicolinealidad </td>
+   <td style="text-align:left;"> Creación de índices </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Interacción entre variables </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Eliminar variables </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Casos influyentes </td>
+   <td style="text-align:left;"> Eliminar casos influyentes </td>
+  </tr>
+</tbody>
+</table>
+<p>Ahora mostraremos de manera operativa como ejecutarlas.</p>
+<h3 id="421-transformar-predictor-al-cuadrado-o-cubo">4.2.1 Transformar predictor al cuadrado o cubo</h3>
+<p>Si estamos ante problemas de linealidad, indicamos que el término cuadrático o al cubo de algún predictor produce que la media de los residuos sea 0. Por lo general, por su distribución, esta variable es edad.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid_proc <span style="color:#f92672">&lt;-</span> movid_proc <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">mutate</span>(edad2 <span style="color:#f92672">=</span> (edad)^2)
+</code></pre></div><h3 id="422-logaritmizar-variable-dependiente">4.2.2 Logaritmizar variable dependiente</h3>
+<p>Otro caso similar ocurre con <em>ingresos</em>, donde lo que se hace frecuentemente es transformar ingresos en un logaritmo de ingresos (<em>log(ingresos)</em>).</p>
+<h4 id="4221-recuperar-casos-perdidos">4.2.2.1 Recuperar casos perdidos</h4>
+<p>¡Pero antes! Es común que en las encuestas sociales cierta variables posean una alta proporción de datos perdidos. Un ejemplo común es en el reporte de los ingresos de los hogares o individuos. Esto generalmente puede generarse por características de la persona (eg. desempleado, estudiante) o por deseabilidad social (eg. personas de altos ingresos desisten de reportar). Por lo general, existen dos estrategias para solicitar que las personas reporten sus ingresos: (1) reporte directo del monto y (2) si la persona no reporta los ingresos, se le presenta la posibilidad de ubicar los ingresos del hogar en tramos.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid_proc <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(ingreso, tingreso) <span style="color:#f92672">%$%</span>
+<span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">dfSummary</span>(., headings <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;render&#34;</span>, varnumbers <span style="color:#f92672">=</span> F, lang <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;es&#34;</span>))
+</code></pre></div><hr>
+<p>Variable    Etiqueta                                Estadísticas / Valores               Frec. (% sobre válidos)   Gráfico    Válido    Perdidos</p>
+<hr>
+<p>ingreso\    Monto de ingreso total de su hogar el   Media (d-s) : 679414.7 (836325.7)\   151 valores distintos     \          942\      319\   <br>
+[numeric]   mes de noviembre de 2020                min &lt; mediana &lt; max:\                                          :\         (74.7%)   (25.3%)<br>
+0 &lt; 4e+05 &lt; 1.2e+07\                                           :\                          <br>
+RI (CV) : 450000 (1.2)                                         :\                          <br>
+:\                          <br>
+: .</p>
+<h2 id="10-no-responde---------------------0--00">tingreso\   Tramo de ingreso total de su hogar el   1. Menos de $200 mil pesos\         47 (22.5%)\               IIII \     209\      1052\  <br>
+[factor]    mes de noviembre de 2020                2. Entre $200 y 350 mil peso\       57 (27.3%)\               IIIII \    (16.6%)   (83.4%)<br>
+3. Entre $351 y 500 mil peso\       38 (18.2%)\               III \                       <br>
+4. Entre 501 y 800 mil pesos\       35 (16.7%)\               III \                       <br>
+5. Entre 801 mil y 1 millón \       9 ( 4.3%)\                \                           <br>
+6. Entre 1 millón 201 mil y \       15 ( 7.2%)\               I \                         <br>
+7. Entre 2 millones y 5 mill\       8 ( 3.8%)\                \                           <br>
+8. Más de 5 millones de peso\       0 ( 0.0%)\                \                           <br>
+9. No sabe\                         0 ( 0.0%)\                \                           <br>
+10. No responde                     0 ( 0.0%)</h2>
+<p>Si observamos la tabla de descriptivos para la variable ingreso del hogar (<code>ingreso</code>), tenemos un porcentaje 25,3% de datos perdidos. Por esta razón, emplearemos los datos disponibles en <code>tingreso</code> para recuperar información en los ingresos del hogar.</p>
+<p>La estrategia posee los siguientes pasos:</p>
+<ul>
+<li><strong>Paso 1:</strong> Calcular la media por cada tramo</li>
+<li><strong>Paso 2:</strong> En el caso de no tener información, remplazar por la media del tramo</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid_proc <span style="color:#f92672">&lt;-</span> movid_proc <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(tingreso <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>(tingreso <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Menos de $200 mil pesos&#34;</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">200000</span>,
+                              tingreso <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Entre $200 y 350 mil pesos&#34;</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">275000</span>,
+                              tingreso <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Entre $351 y 500 mil pesos&#34;</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">425500</span>,
+                              tingreso <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Entre 501 y 800 mil pesos&#34;</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">650500</span>,
+                              tingreso <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Entre 801 mil y 1 millón 200 mil pesos&#34;</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">1000500</span>,
+                              tingreso <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Entre 1 millón 201 mil y 2 millones de pesos&#34;</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">1600500</span>,
+                              tingreso <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Entre 2 millones y 5 millones de pesos&#34;</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">3500000</span>,
+                              tingreso <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Más de 5 millones de pesos&#34;</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">5000000</span>), <span style="color:#75715e">#Paso 1</span>
+         ingreso <span style="color:#f92672">=</span> <span style="color:#a6e22e">if_else</span>(<span style="color:#a6e22e">is.na</span>(ingreso), tingreso, ingreso))
+</code></pre></div><ul>
+<li><strong>Paso 3:</strong> Comparar el resultado de los tramos</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid_proc <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(ingreso, tingreso) <span style="color:#f92672">%$%</span>
+<span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">dfSummary</span>(., headings <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;render&#34;</span>, varnumbers <span style="color:#f92672">=</span> F, lang <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;es&#34;</span>)) <span style="color:#75715e">#Paso 3</span>
+</code></pre></div><hr>
+<p>Variable    Estadísticas / Valores               Frec. (% sobre válidos)   Gráfico    Válido    Perdidos</p>
+<hr>
+<p>ingreso\    Media (d-s) : 664667.4 (811775.8)\   155 valores distintos     \          1151\     110\   <br>
+[numeric]   min &lt; mediana &lt; max:\                                          :\         (91.3%)   (8.7%) <br>
+0 &lt; 4e+05 &lt; 1.2e+07\                                           :\                          <br>
+RI (CV) : 450000 (1.2)                                         :\                          <br>
+:\                          <br>
+: .</p>
+<h2 id="3500000---8--38">tingreso\   Media (d-s) : 598198.6 (688242.3)\   200000 : 47 (22.5%)\      IIII \     209\      1052\  <br>
+[numeric]   min &lt; mediana &lt; max:\                275000 : 57 (27.3%)\      IIIII \    (16.6%)   (83.4%)<br>
+2e+05 &lt; 425500 &lt; 3500000\            425500 : 38 (18.2%)\      III \                       <br>
+RI (CV) : 375500 (1.2)               650500 : 35 (16.7%)\      III \                       <br>
+1000500 :  9 ( 4.3%)\     \                           <br>
+1600500 : 15 ( 7.2%)\     I \                         <br>
+3500000 :  8 ( 3.8%)</h2>
+<p>Vemos que pasamos de tener 25,3% de datos perdidos en ingresos a un 8,72% (es decir, recuperamos un 16,58% de los casos). A ingresos se le pueden hacer tres transformaciones más</p>
+<p><strong>1. Logaritmizar</strong>: en caso de que queramos seguir trabajando ingresos como una variable continua es una buena opción.</p>
+<p><strong>2. Calcular el ingreso per cápita</strong>: si dividimos el ingreso por el tamaño del hogar (n° de habitantes en este), obtendremos el ingreso por persona.</p>
+<p><strong>3. Cálculo de medidas de posición acumulada</strong>: con los ingresos per cápita se puede calcular la media o mediana de medidas de posición acumulada como quitiles</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid_proc <span style="color:#f92672">&lt;-</span> movid_proc <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(log_ing <span style="color:#f92672">=</span> <span style="color:#a6e22e">log</span>(ingreso), <span style="color:#75715e">#Log ingresos</span>
+         ing_per <span style="color:#f92672">=</span> ingreso<span style="color:#f92672">/</span>tamanohogar, <span style="color:#75715e">#Ingreso percapita</span>
+    quintiles <span style="color:#f92672">=</span> dplyr<span style="color:#f92672">::</span><span style="color:#a6e22e">ntile</span>(ing_per,
+                              n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)) <span style="color:#75715e"># n de categorias, para quintiles usamos 5</span>
+</code></pre></div><h3 id="423-dicotomizar-variable-dependiente">4.2.3 Dicotomizar variable dependiente</h3>
+<p>Es recurrente que en las encuestas sociales nos encontremos con preguntas con <em>Escala Likert</em>. Sin embargo, muchas veces estas no tienen una distribución normal, y más bien las respuestas están concentradas en algunas categorías de referencia.</p>
+<p>Si bien no hay criterios canónicos para trabajar esas variables, tiene sentido indicar que más bien no representan un constructo con 5 o más niveles, sino que probablemente de 2. Re-especificar la variable como dicotómica no solo ayudará a trabajar de manera más <em>realista</em> el constructo, sino que <strong>facilitará</strong> las interpretaciones que queramos hacer de nuestro modelo.</p>
+<p>Ocuparemos dos criterios para la <strong>dicotomización</strong>:</p>
+<ol>
+<li>
+<p><strong>Medias</strong>: se ocupará como criterio discriminante la media de la variable (donde 1 puede ser los valores mayores a la media, y 0 los inferiores).</p>
+</li>
+<li>
+<p><strong>Mediana</strong>: la más frecuente en medidas ordinales como las <em>escalas Likert</em> es cuando el 50% de los casos se concentra en unas pocas categoría de respuesta (eg, &ldquo;Muy de acuerdo&rdquo; y &ldquo;De acuerdo&rdquo; serán 1 y el resto 0).</p>
+</li>
+</ol>
+<p>En el caso de la variable <code>fatiga</code> que indica <em>&ldquo;A medida que ha avanzado la crisis sanitaria, me siento cada vez más desmotivado para seguir las medidas de protección recomendadas&rdquo;</em>, recodificaremos a aquellos como <em>1</em> a quiénes asienten a esta frase (<em>&ldquo;Muy de acuerdo&rdquo; y &ldquo;De acuerdo&rdquo;</em>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid_proc <span style="color:#f92672">&lt;-</span> movid_proc <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(fatigadummy <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>(fatiga <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">4</span>) <span style="color:#f92672">~</span> <span style="color:#ae81ff">1</span>,
+                                 fatiga <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">~</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#66d9ef">NA_real_</span>))
+</code></pre></div><h3 id="424-errores-estándares-robustos">4.2.4 Errores estándares robustos</h3>
+<p>En caso de que estemos ante problemas de heterocedasticidad debemos re-estimar nuestro modelo considerando errores estándares robustos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model_robust<span style="color:#f92672">&lt;-</span> lmtest<span style="color:#f92672">::</span><span style="color:#a6e22e">coeftest</span>(model1, vcov<span style="color:#f92672">=</span>sandwich<span style="color:#f92672">::</span><span style="color:#a6e22e">vcovHC</span>(model1))
+</code></pre></div><h3 id="425-creación-de-índices">4.2.5 Creación de índices</h3>
+<p>Se debe cacular para aquellos ítems que mostraron posibilidad de ser colineales. Los pasos son</p>
+<ol>
+<li><strong>Correlacionar</strong> para verificar que estamos ante la presencia de ítems que podrían estar midiendo un constructo común. Como vemos en la siguiente tabla, las correlaciones son altas</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid_proc <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">starts_with</span>(<span style="color:#e6db74">&#34;c2&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate_all</span>(<span style="color:#f92672">~</span><span style="color:#a6e22e">as.numeric</span>(.)) <span style="color:#f92672">%&gt;%</span>
+sjPlot<span style="color:#f92672">::</span><span style="color:#a6e22e">tab_corr</span>(., triangle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lower&#34;</span>)
+</code></pre></div><table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">&nbsp;</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">c2_1</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">c2_2</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">c2_3</th>
+<th style="font-style:italic; font-weight:normal; border-top:double black; border-bottom:1px solid black; padding:0.2cm;">c2_4</th>
+</tr>
+<tr>
+<td style="font-style:italic;">c2_1</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+</tr>
+<tr>
+<td style="font-style:italic;">c2_2</td>
+<td style="padding:0.2cm; text-align:center;">0.608<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+</tr>
+<tr>
+<td style="font-style:italic;">c2_3</td>
+<td style="padding:0.2cm; text-align:center;">0.599<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.569<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+</tr>
+<tr>
+<td style="font-style:italic;">c2_4</td>
+<td style="padding:0.2cm; text-align:center;">0.483<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.465<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">0.586<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="padding:0.2cm; text-align:center;">&nbsp;</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom:double black; border-top:1px solid black; font-style:italic; font-size:0.9em; text-align:right;">Computed correlation used pearson-method with listwise-deletion.</td>
+</tr>
+</table>
+<ol start="2">
+<li><strong>Construcción de índice</strong>: este puede ser sumativo o promedio. Esto dependerá de la escala de los ítems y del sentido del constructo final que queremos utilizar. En nuestro caso crearemos una índice sumativa de <code>salud mental</code></li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">movid_proc <span style="color:#f92672">&lt;-</span> movid_proc <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate_at</span>(<span style="color:#a6e22e">vars</span>(<span style="color:#a6e22e">starts_with</span>(<span style="color:#e6db74">&#34;c2&#34;</span>)),<span style="color:#f92672">~</span><span style="color:#a6e22e">as.numeric</span>(.)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">rowwise</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(salud_mental <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(c2_1,c2_2,c2_3,c2_4, na.rm <span style="color:#f92672">=</span> T))
+</code></pre></div><h3 id="426-eliminar-casos-influyentes">4.2.6 Eliminar casos influyentes</h3>
+<p>En caso de que estemos ante la presencia de casos influyentes debemos seguir los siguientes pasos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">n<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">nobs</span>(model1) <span style="color:#75715e">#n de observaciones</span>
+k<span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">length</span>(<span style="color:#a6e22e">coef</span>(model1)) <span style="color:#75715e"># n de parametros</span>
+dcook<span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">/</span>(n<span style="color:#f92672">-</span>k<span style="color:#ae81ff">-1</span>) <span style="color:#75715e">#Punto de corte</span>
+<span style="color:#75715e"># Datos donde se filtran los valores sobre el punto de corte</span>
+movid_proc_so <span style="color:#f92672">&lt;-</span> broom<span style="color:#f92672">::</span><span style="color:#a6e22e">augment_columns</span>(model1,data <span style="color:#f92672">=</span> movid_proc) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(.cooksd<span style="color:#f92672">&lt;</span>dcook)
+</code></pre></div><p>Una vez finalizada las transformaciones calcular
+dos nuevos modelos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">model1_fit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(<span style="color:#a6e22e">as.numeric</span>(fatiga) <span style="color:#f92672">~</span> salud_mental <span style="color:#f92672">+</span>
+               trabaja <span style="color:#f92672">+</span> sexo <span style="color:#f92672">+</span> edad <span style="color:#f92672">+</span> ing_per,
+             data <span style="color:#f92672">=</span> movid_proc)
+model2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(<span style="color:#a6e22e">as.numeric</span>(fatiga) <span style="color:#f92672">~</span> salud_mental <span style="color:#f92672">+</span>
+               trabaja <span style="color:#f92672">+</span> sexo <span style="color:#f92672">+</span> edad2 <span style="color:#f92672">+</span> ing_per,
+             data <span style="color:#f92672">=</span> movid_proc)
+model3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">glm</span>(fatigadummy <span style="color:#f92672">~</span> salud_mental <span style="color:#f92672">+</span>
+               trabaja <span style="color:#f92672">+</span> sexo <span style="color:#f92672">+</span> edad2 <span style="color:#f92672">+</span> ing_per, family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;binomial&#34;</span>,
+             data <span style="color:#f92672">=</span> movid_proc)
+</code></pre></div><p>Luego, podemos hacer un chequeo general de diagnósticos de robustez con <code>check_model</code>, pero ahora indicando que queremos evaluar todos los indicadores posibles</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">check_model</span>(model1_fit, check <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;vif&#34;</span>,<span style="color:#e6db74">&#34;normality&#34;</span>, <span style="color:#e6db74">&#34;linearity&#34;</span>, <span style="color:#e6db74">&#34;ncv&#34;</span>, <span style="color:#e6db74">&#34;homogeneity&#34;</span>))
+</code></pre></div><p><img src="/example/10-practico_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">check_model</span>(model2, check <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;vif&#34;</span>,  <span style="color:#e6db74">&#34;normality&#34;</span>, <span style="color:#e6db74">&#34;linearity&#34;</span>, <span style="color:#e6db74">&#34;ncv&#34;</span>, <span style="color:#e6db74">&#34;homogeneity&#34;</span>))
+</code></pre></div><p><img src="/example/10-practico_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">check_model</span>(model3, check <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;vif&#34;</span>,  <span style="color:#e6db74">&#34;homogeneity&#34;</span>))
+</code></pre></div><p><img src="/example/10-practico_files/figure-html/unnamed-chunk-29-3.png" width="672" /></p>
+<p>Existen otros diagnósticos posibles para abordar en nuestros modelos, todo con el propósito de mejorar la calidad de estos. Uno de ellos, y que no abordaremos por su extensión, es la ausencia de
+posibles <strong>interacciones</strong> entre las variables que no han sido modeladas (Fox &amp; Weisberg 2018). En caso de su interés pueden revisar esto y ver su <a href="https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html" target="_blank" rel="noopener">aplicación simple en R en el siguiente link.</a></p>
+<h2 id="43-comparación">4.3. Comparación</h2>
+<p><strong>Tabla 3</strong>. Modelos de regresión que predice la fatiga a la pandemia</p>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Modelo 1</th>
+<th style="padding-left: 5px;padding-right: 5px;">Modelo 2</th>
+<th style="padding-left: 5px;padding-right: 5px;">Modelo 3</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">(Intercept)</td>
+<td style="padding-left: 5px;padding-right: 5px;">2.60<sup>&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">2.40<sup>&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.09<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.14)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.11)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.20)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_1Varios días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.17</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.10)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_1Más de la mitad de los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.23</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_1Casi todos los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.08</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.14)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_2Varios días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.02</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.10)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_2Más de la mitad de los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.07</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.17)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_2Casi todos los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.10</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.15)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_3Varios días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.19</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.10)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_3Más de la mitad de los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.23</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.17)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_3Casi todos los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.29</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_4Varios días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.16</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.10)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_4Más de la mitad de los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.24</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.17)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">c2_4Casi todos los días</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.32<sup>&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.16)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">trabajaNo</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.06</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.12</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.28<sup>&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.08)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.07)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.14)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">sexoMujer</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.02</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.02</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.06</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.08)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.07)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.13)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">edad</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.00</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">ingreso</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.00</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">salud_mental</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.04<sup>&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.06<sup>&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.01)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.02)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">edad2</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.00</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.00</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">ing_per</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.00</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.00</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">R<sup>2</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.04</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.02</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Adj. R<sup>2</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.02</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.01</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">917</td>
+<td style="padding-left: 5px;padding-right: 5px;">1128</td>
+<td style="padding-left: 5px;padding-right: 5px;">1128</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">AIC</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">1510.51</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">BIC</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">1540.67</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Log Likelihood</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">-749.25</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Deviance</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">1498.51</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="4"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+<p>Si bien en con la tabla N°3  podemos tener un panorama, es <strong>imprescindible</strong> recordar que para comparar modelos (en su robustez y ajuste) es necesario que estos tengan <em>(1) la misma variable de respuesta y (2) el mismo número de observaciones.</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">compare_performance</span>(model1_fit, model2) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">print_md</span>()
+</code></pre></div><p>Table: Comparison of Model Performance Indices</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:center">Model</th>
+<th style="text-align:center">AIC</th>
+<th style="text-align:center">BIC</th>
+<th style="text-align:center">R2</th>
+<th style="text-align:center">R2 (adj.)</th>
+<th style="text-align:center">RMSE</th>
+<th style="text-align:center">Sigma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">model1_fit</td>
+<td style="text-align:center">lm</td>
+<td style="text-align:center">3452.28</td>
+<td style="text-align:center">3487.48</td>
+<td style="text-align:center">0.02</td>
+<td style="text-align:center">0.01</td>
+<td style="text-align:center">1.11</td>
+<td style="text-align:center">1.11</td>
+</tr>
+<tr>
+<td style="text-align:left">model2</td>
+<td style="text-align:center">lm</td>
+<td style="text-align:center">3452.24</td>
+<td style="text-align:center">3487.44</td>
+<td style="text-align:center">0.02</td>
+<td style="text-align:center">0.01</td>
+<td style="text-align:center">1.11</td>
+<td style="text-align:center">1.11</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(<span style="color:#a6e22e">compare_performance</span>(model1_fit, model2))
+</code></pre></div><p><img src="/example/10-practico_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>Ahora bien, esto no quita que, considerando que el ajuste entre el <code>model1_fit</code> y el <code>modelo2</code> no cambia sustantivamente, consideremos en seleccionar el <code>modelo3</code> por criterios más sustantivos. Podemos asegurarnos de esta comparación entre el modelo1 y modelo2 con un test que permite facilitar la decisión sobre la significancia de los índices que estamos viendo</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">test_performance</span>(model1_fit, model2) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">print_md</span>()
+</code></pre></div><table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:right">Model</th>
+<th style="text-align:right">BF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">model1_fit</td>
+<td style="text-align:right">lm</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left">model2</td>
+<td style="text-align:right">lm</td>
+<td style="text-align:right">1.02</td>
+</tr>
+<tr>
+<td style="text-align:left">Each model is compared to model1_fit.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="5-recursos">5. Recursos</h1>
+<p>Lüdecke, Makowski, Waggoner &amp; Patil (2020). Assessment of Regression   Models Performance. CRAN. Available from   <a href="https://easystats.github.io/performance/">https://easystats.github.io/performance/</a></p>
+<p>Lüdecke, Makowski, Waggoner &amp; Patil (2021). performance: Assessment of Regression   Models Performance. Journal of Open Source Software. 60(6). pp.3139. doi: 10.21105/joss.03139</p>
+<p>Fox J, Weisberg S. Visualizing Fit and Lack of Fit in Complex Regression Models with Predictor Effect Plots and Partial Residuals. Journal of Statistical Software 2018;87. <a href="https://www.jstatsoft.org/article/view/v087i09">https://www.jstatsoft.org/article/view/v087i09</a></p>
+<h1 id="6-reporte-de-progreso">6. Reporte de progreso</h1>
+<p>¡Recuerda rellenar tu <a href="">reporte de progreso</a>. En tu correo electrónico está disponible el código mediante al cuál debes acceder para actualizar tu estado de avance del curso.</p>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/example/07-practico/" rel="prev">Muestras complejas y precisión de inferencia estadística</a>
+  </div>
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on November 8, 2021</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis Estadístico en R (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+---
+title: "Análisis Factorial Confirmatorio"
+linktitle: "8: Análisis Factorial Confirmatorio"
+date: "2023-05-26"
+menu:
+  example:
+    parent: Ejemplos
+    weight: 8
+type: docs
+toc: true
+editor_options: 
+  chunk_output_type: console
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Este análisis se lleva a cabo con el objetivo de verificar la estructura factorial sugerida por una teoría o un modelo en particular.
+
+Primero, debemos asegurarnos de tener todos los paquetes necesarios instalados y cargados. Utilizaremos haven para importar datos, lavaan para estimar el Modelo de Ecuaciones Estructurales (SEM), semPlot para crear gráficos de SEM y semTable para producir tablas de SEM.
+
+```{r}
+# Carga paquetes
+library(haven) # importar SPSS, Stata, etc.
+library(lavaan) # estimar SEM
+library(semPlot) # graficar SEM
+library(semTable) # tablas SEM
+```
+
+Posteriormente, importamos los datos que vamos a analizar. En este caso, los datos están almacenados en un archivo .sav de SPSS llamado "base_ideologia_afc.sav". Lo importamos utilizando la función read_spss() del paquete haven.
+
+```{r}
+# Importar datos
+#datos <- read_spss("base_ideologia_afc.sav")
+
+datos <- read_sav(url("https://github.com/Clases-GabrielSotomayor/pruebapagina/raw/master/content/example/input/data/base_ideologia_afc.sav"))
+
+```
+
+A continuación, definimos el modelo de medición para nuestro Análisis Factorial Confirmatorio (AFC). Estamos definiendo dos factores latentes ("autoritarismo" y "dominancia") y tres ítems observables para cada factor. El operador =~ se utiliza para indicar las relaciones entre los factores y los ítems.
+
+```{r}
+# Definir modelo de medición
+mod_conf <- 'autoritarismo =~ aut1 + aut2 + aut3
+             dominancia    =~ dom1 + dom2 + dom3'
+```
+Una vez definido el modelo, lo ajustamos utilizando la función cfa() del paquete lavaan. Como argumentos, le pasamos el modelo y los datos.
+```{r}
+# Ajustar modelo CFA
+mod_conf_afc <- cfa(mod_conf, data = datos)
+```
+Para ver un resumen de los resultados del modelo, utilizamos la función summary(). Hemos establecido standardized = TRUE para obtener las cargas factoriales estandarizadas, que son independientes de la escala de las variables observables. Además, fit.measures = TRUE se utiliza para mostrar los índices de ajuste del modelo, que nos indican cuán bien nuestro modelo especificado se ajusta a los datos.
+```{r}
+# Resultados
+## Salida general
+summary(mod_conf_afc,
+        standardized = TRUE, # mostrar cargas estandarizadas
+        fit.measures = TRUE) # mostrar índices de ajuste extendidos
+
+```
+Además, podemos utilizar la función fitmeasures() para ver solo los índices de ajuste específicos que nos interesan.
+```{r}
+# Ver solo índices de ajuste
+fitmeasures(mod_conf_afc,
+            fit.measures = c("chisq", "df", "pvalue",
+                             "cfi", "rmsea"))
+```
+Después, creamos un diagrama de nuestro modelo con la función semPaths() del paquete semPlot.
+```{r}
+# Diagrama modelo
+semPaths(mod_conf_afc, # modelo ajustado
+         what = "std",  # mostrar cargas estandarizadas
+         label.cex = 1, edge.label.cex = 1, # tamaño flechas y caracteres
+         residuals = FALSE, # no mostrar residuos
+         edge.color = "black") # color flechas
+```
+En el gráfico anterior, las flechas representan las relaciones causales sugeridas por el modelo y las cargas factoriales estandarizadas se muestran a lo largo de las flechas.
+
+A continuación, estandarizamos las variables observadas utilizando la función scale(), lo que permite hacer comparaciones más justas entre las variables.
+```{r}
+# Estandarizar variables observadas
+datos.std <- scale(datos)
+```
+Luego ajustamos nuevamente el modelo CFA, pero esta vez utilizando los datos estandarizados.
+```{r}
+## Crear objeto con mismo modelo pero estandarizado
+mod_conf_afc_std <- cfa(mod_conf,
+                        std.lv = TRUE,
+                        meanstructure = TRUE,
+                        data = datos.std)
+```
+Después, creamos y guardamos una tabla de los resultados en formato HTML utilizando la función semTable().
+```{r,results = 'asis'}
+## Crear y guardar tabla en formato html
+semTable(mod_conf_afc_std, type = "html", 
+         file = "resultados_cfa_ideologia",
+         paramSets = c("loadings", 
+                       "latentcovariances", 
+                       "fits"))
+```
+
+Primero, examinamos las cargas factoriales (o "Factor Loadings"), que representan las correlaciones entre cada ítem y el factor correspondiente. Los valores varían entre -1 y +1, donde los valores más cercanos a +1 o -1 indican una relación más fuerte entre el ítem y el factor.
+
+Para "autoritarismo", todos los ítems (aut1, aut2, aut3) tienen cargas factoriales altas, entre 0.80 y 0.90, lo que indica que están fuertemente relacionados con el factor "autoritarismo". Todos estos resultados son estadísticamente significativos (p < .000).
+
+Para "dominancia", los ítems (dom1, dom2, dom3) también muestran cargas factoriales relativamente altas, variando de 0.68 a 0.92, sugiriendo una fuerte relación con el factor "dominancia". De nuevo, todos los resultados son estadísticamente significativos (p < .001).
+
+En segundo lugar, examinamos la covarianza entre los factores latentes (o "Latent Covariances"). Aquí, la covarianza entre "autoritarismo" y "dominancia" es de 0.34. Esto sugiere una relación positiva moderada entre los dos factores, y este resultado es estadísticamente significativo (p < .001).
+
+Finalmente, examinamos los índices de ajuste del modelo (o "Fit Indices"). Estos índices evalúan qué tan bien nuestro modelo se ajusta a los datos observados. Los índices incluyen el chi cuadrado (χ2), el Índice de Ajuste Comparativo (CFI), el Índice de Ajuste no Normado (TLI) y el Error Cuadrático Medio de Aproximación (RMSEA).
+
+El valor de χ2 es de 12.33 con 8 grados de libertad y un p-valor de 0.137. Un p-valor superior a 0.05 sugiere que el modelo se ajusta bien a los datos.
+
+El CFI y el TLI son ambos 0.99. Estos índices varían de 0 a 1, y los valores superiores a 0.95 generalmente indican un buen ajuste del modelo a los datos.
+
+El RMSEA es de 0.06. Los valores de RMSEA menores a 0.08 suelen considerarse como una indicación de un buen ajuste del modelo.
+
+En resumen, los resultados sugieren que el modelo propuesto se ajusta bien a los datos, y las cargas factoriales indican que cada ítem se relaciona fuertemente con el factor correspondiente. 
+
+Desde la consola de R puedes ver la tabla abriendo el archivo HTML generado o utilizando la función browseURL().
+```{r eval=FALSE}
+browseURL("resultados_afc_ideologia.html") 
+```
+El siguiente paso es calcular las comunalidades, que representan la proporción de la varianza de cada variable observable explicada por los factores. Para esto, utilizamos la función inspect() con el argumento what = "rsquare".
+```{r}
+# Comunalidades
+inspect(mod_conf_afc, what = "rsquare")
+```
+Por último, revisamos los índices de modificación, que nos dan sugerencias sobre cómo mejorar el ajuste del modelo. Mostramos los índices en orden decreciente para identificar primero los cambios potencialmente más impactantes.
+```{r}
+# Índices de modificación
+## Mostrar 'mi' en orden decreciente
+modificationindices(mod_conf_afc, sort. = T)
+```

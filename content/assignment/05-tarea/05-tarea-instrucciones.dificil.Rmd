@@ -1,0 +1,227 @@
+---
+title: "Tarea N°5"
+subtitle: "Análisis de Regresión Múltiple en R"
+author: "2021"
+header-includes:
+   - \usepackage{booktabs}
+output:
+  pdf_document
+#  word_document:
+#    reference_docx: mystyle.docx
+params:
+  base: bases/procesadas/Latrille.sav
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+options(OutDec= ",", digits = 3)
+```
+
+```{r packages-data, message=F}
+pacman::p_load(tidyverse, haven, sjPlot, sjmisc, survey, srvyr)
+datos <- haven::read_sav(file ="bases/procesadas/Latrille.sav")
+movid_design <- as_survey_design(datos, ids = 1, weights = factor_expansion)
+```
+
+## Descripción de tarea N°5
+
+El objetivo de esta tarea consiste en realizar un análisis de regresión lineal y logística utilizando R. Para ello debe utilizar los datos según según sus apellidos [(eg. 'Andrade.sav') los cuales podrán encontrar en el siguiente repositorio](https://github.com/learn-R/www-learn-R-uah/tree/master/content/assignment/05-tarea/bases/originales). Estas bases contienen una muestra aleatoria de 1000 casos de la encuesta MOVID-IMPACT (2020) del módulo “Orientaciones del Trabajo”. <br><br>
+
+La pregunta de investigación que buscamos contestar en esta tarea es **“¿Qué factores inciden el cumplimiento de la distancia física para cuidarse del COVID-19?”** a partir de contestar la frecuencia con que se *“Evitar reunirse con más de 10 personas en un espacio cerrado”.*
+
+Para responder a esta pregunta, nos basamos en la investigación de *Gerber et al (2021)* que indica que tanto factores psicosociales como sociodemográficos son relevantes para predecir la adherencia a las medidas de cuidado contra el COVID-19.  Desde esta investigación, planteamos las siguientes dos hipótesis:
+
+- $H_1$: A mayor percepción de riesgo contra el COVID-19, mayor frecuencia de cumplimiento de la distancia física
+
+- $H_2$: Las personas que trabajan presentan menor posibilidad de mantener distancia física. 
+
+
+- $H_3$: Las mujeres presentarán mayor frecuencia de mantener distancia física que los hombres
+
+- $H_4$: Los adultos mayores presentarán mayor frecuencia de mantener distancia física para cuidarse del COVID-19 que los jóvenes.
+
+Considera las siguientes variables:
+
+- **Mantener distancia física**: Frecuencia semanal a la frase “Evitar reunirse con más de 10 personas en un espacio cerrado” (1= Casi nunca hasta 5= Siempre), nombre a la variable: ‘cuidarse’.
+
+  - A partir de esa variable, cree una nueva variable llamada `dummy_cuidarse` donde quiénes contesten "Frecuentemente", "Casi siempre" y "Siempre" presentarán la categoría 1, y el resto 0. 
+
+- **Percepción de riesgo al COVID-19**: Nivel de acuerdo con la frase “¿Qué tan peligroso cree que es el coronavirus para usted y sus cercanos?” (1=Nada peligroso hasta 5=Muy peligroso), nombre de variable: ‘riesgo’
+
+- **Trabajar**: Con la pregunta “Durante la semana pasada, ¿trabajó al menos una hora, sin considerar los quehaceres domésticos?”. (1=Si 2=No), nombre de variable: ‘trabaja’
+
+- **Edad**: Con la pregunta “¿Cuál es su edad?” se clasificó a “Jóvenes”, “Adultos” y “Adultos mayores” (1=Jóvenes, 2=Adultos, 3= Adultos mayores), nombre de variable: ‘edad’
+
+```{r proc, eval = F }
+datos <- datos %>% filter(entrevistado == 1) %>% 
+    select(cuidarse = f7_3,riesgo =f6, trabaja = g1, edad, factor_expansion) %>% 
+    mutate(trabaja = as_factor(trabaja),
+           cuidarse = car::recode(cuidarse, c("c(8,9)=NA")),
+           cuidarse_dummy = car::recode(cuidarse, c("c(1,2)=0;c(3,4,5)=1;c(8,9)=NA"), as.factor =  T,
+                                        levels = c(0, 1)),
+           riesgo  = car::recode(riesgo, c("c(8,9)=NA")),
+           riesgo_fct = riesgo,
+           edad = as_factor(car::recode(edad, c("18:39='Joven';40:60='Adulto'; 61:hi='Adulto mayor'"),
+                                        as.factor = T, levels = c("Joven", "Adulto", "Adulto mayor")))) %>%
+    mutate_at(vars(edad, trabaja, riesgo_fct, cuidarse_dummy), funs(forcats::as_factor(.)))
+
+```
+
+
+## I. Análisis de Correlación
+
+*Interpretación del output*: ¿Existen asociaciones significativas entre el *cumplimiento de las medidas de cuidado* y la percepción de riesgo?
+
+a.	Lleva a cabo un análisis de correlación entre  ambas variables [4 puntos]
+
+b.	Describe la dirección, fuerza  y significancia de la asociación [1 puntos]
+
+*Formato*: Para este punto puede presentar una tabla de correlaciones o gráfico. 
+
+```{r corr}
+datos %>% select(where(is.numeric), -factor_expansion) %>% 
+sjPlot::tab_corr(., corr.method =  "pearson", title = "Tabla N°1. Matriz de Correlaciones")
+```
+
+
+##	II. Regresión Lineal Múltiple
+
+*Interpretación del output*: ¿Predicen la percepción de riesgo, el trabajar y la edad, el *cumplimiento de las medidas de cuidado*? Lleva a cabo los siguientes pasos:
+
+a.	Lleva a cabo un análisis de regresión lineal múltiple definiendo  el *cumplimiento de las medidas de cuidado* como la variable dependiente (Y). Define la percepción de riesgo, el trabajar y la edad (Xs) [1 punto c/u]
+
+  - Modelo 1 con percepción de riesgo como continua
+  - Modelo 2 con percepción de riesgo como ordinal donde "Nada peligroso" sea la categoría de referencia
+
+```{r linear-models}
+# Modelo lineal-lineal
+model1 <- lm(cuidarse ~ riesgo + trabaja + edad, weights = factor_expansion, data = datos)
+
+# Modelo lineal-transformado
+model2 <- lm(cuidarse ~ riesgo_fct + trabaja + edad, weights = factor_expansion, data = datos)
+
+# Comprar con diseño muestral
+model1surveylm <- svyglm(cuidarse ~ riesgo + trabaja + edad, family = gaussian, design = movid_design,
+              data = datos)
+## Lo mismo que con modelo1
+```
+
+b.	Representa los modelos en una tabla única con título y columnas en español [6 puntos]
+
+- Los modelos deben ser nombrados como "Modelo 1" y "Modelo 2"
+
+- El nivel de significancia debe estar representado por asteriscos. El intervalo de confianza no debe aparecer
+
+- La tabla debe contener 3 dígitos
+
+```{r tab-model}
+sjPlot::tab_model(list(model1,model2),
+  string.intercept = "(Intercepto)",
+  string.pred = "Predictores",
+  string.est = "Estimación",
+  p.style = "stars",
+  collapse.ci = T,
+  digits = 3,
+  dv.labels = c("Modelo 1", "Modelo 2"),
+  show.reflvl = TRUE,
+  encoding = "UTF-8",
+  lang = "es")
+```
+
+c.	Escribe la ecuación de la recta de regresión estimada del *modelo 1* en formato LateX-Markdown [6 puntos]
+
+$$`cuidarse` = `r model1$coefficients[1]` + `r model1$coefficients[2]`\cdot riesgo `r model1$coefficients[3]`\cdot trabajo (No) `r model1$coefficients[4]`\cdot edad (Adulto) `r model1$coefficients[5]`\cdot edad (Adulto mayor)$$
+
+d.	Interpreta los coeficientes de regresión para el modelo 2 con todas las variables independientes en términos de la dirección y fuerza de la asociación. Describe los efectos aún si los efectos no sean significativos. [3 puntos]
+
+
+e.	Para cada una de las hipótesis planteadas, argumenta si observas evidencia a favor o no en los resultados de tus análisis. Para este punto es necesario que muestres un *forest plot* del modelo 2 [9 puntos]
+
+- Muestre el intercepto, tamaño efecto y valores p, con 3 dígitos
+- Título en debido formato
+
+```{r forest-plot}
+plot_model(model2, type = c("est"),
+  show.intercept = T,
+  show.values = T,
+  show.p = T,
+  digits = 3,
+  title = "Figura 1. Modelo de regresión lineal para estimar la frecuencia de cuidarse (modelo 2")
+```
+
+
+
+f.	¿Qué porcentaje de la varianza en la actitud hacia los sindicatos es explicada por el modelo 1 y 2? Reporte, además, el estadístico F[3 puntos]
+
+
+Para el *modelo 1* el $R^2$ es de `r round(summary(model1)$r.squared,3)`, lo que implica un porcentaje de `r paste0(round((summary(model1)$r.squared)*100,3), "%")` explicado. El estadístico F es de  `r round(summary(model1)$fstatistic[1],3)` con `r round(summary(model1)$fstatistic[3],3)` grados de libertad. 
+
+Para el *modelo 2* el $R^2$ es de `r round(summary(model2)$r.squared,3)`, lo que implica un porcentaje de `r paste0(round((summary(model2)$r.squared)*100,3), "%")` explicado. El estadístico F es de  `r round(summary(model2)$fstatistic[1],3)` con `r round(summary(model2)$fstatistic[3],3)` grados de libertad. 
+
+
+*Formato*: puede ir escribiendo los $R^2$ y $F$ con `inline code de R` o hacer una tabla.
+
+g.	Utiliza la ecuación estimada para calcular el cumplimiento de las medidas de cuidado *esperada* para quiénes trabajan y para quienes no lo hacen. Puedes presentar los resultados en una tabla o en un gráfico. [9 puntos]
+
+```{r pred-table}
+get_model_data(model2, type = c("pred"))$trabaja
+```
+*Formato*: en el punto N°1 debe presentar una tabla, una ecuación en formato Markdown y un forest plot.
+
+### III. Modelo logístico
+
+*Interpretación del output*: ¿Predicen la percepción de salarios, la discriminación y el sexo una actitud **favorable** hacia los sindicatos? Lleva a cabo los siguientes pasos:
+
+a.	Construye múltiples modelos logísticos con la variable *dummy* actitud hacia los sindicatos [1 punto c/u]
+
+  - Modelo nulo
+  - Modelo 3 con edad
+  - Modelo 4 con trabajo
+  - Modelo 5 con edad y trabajo
+  - Modelo 6 con todos los predictores (riesgo en factor)
+  
+```{r}
+
+model0 <- svyglm(cuidarse_dummy ~ 1, family = binomial(link = "logit"), design = movid_design, data = datos)
+
+model3 <- svyglm(cuidarse_dummy ~ edad, family = binomial(link = "logit"), design = movid_design, data = datos)
+
+model4 <- svyglm(cuidarse_dummy ~ trabaja, family = binomial(link = "logit"), design = movid_design, data = datos)
+
+model5 <- svyglm(cuidarse_dummy ~ edad + trabaja, family = binomial(link = "logit"), design = movid_design, data = datos)
+
+model6 <- svyglm(cuidarse_dummy ~riesgo_fct + edad +  trabaja, family = binomial(link = "logit"), design = movid_design, data = datos)
+
+```
+
+
+b.	Representa los modelos en una tabla única con coeficientes exponenciados [6 puntos]
+
+```{r tab-log}
+summ(model0, exp = T)
+summ(model3, exp = T)
+summ(model4, exp = T)
+summ(model5, exp = T)
+summ(model6, exp = T)
+```
+
+
+c.	Interpreta los coeficientes de regresión para el modelo con todas las variables independientes en términos de la dirección y fuerza de la asociación. Describe los efectos aún si los efectos no sean significativos. [6 puntos]
+
+d. Realiza un gráfico de valores predichos de la actitud hacia los sindicatos según sexo [9 puntos]
+
+```{r, eval = F}
+```
+
+
+*Formato*: en este punto debe presentar una tabla y un margin plot. 
+
+
+
+## Formato
+
+- Todos los reportes deben estar con 3 dígitos (*ojo* eso no implica que los cálculos estén hechos a tres dígitos)
+
+- Todo el informe debe reemplazar los puntos decimales por comas, de modo de estar *ad hoc* a la escritura en español.
+
+- No deben mostrar explícitamente ningún chunk en el informe generado. Noten que algunos temas en html permiten "esconder" el código, pero mostrarlo si el usuario quiere verlo. Quiénes logren hacer esta modificación en su texto tendrán un bonus de 0,2 décimas. 

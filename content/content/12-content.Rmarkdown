@@ -1,0 +1,40 @@
+---
+title: "Análisis de Ecuaciones Estructurales"
+linktitle: "12: Análisis de Ecuaciones Estructurales"
+date: "2023-06-22"
+start_date: "2023-06-22"
+end_date: "2023-06-22"
+menu:
+  content:
+    parent: Contenido
+    weight: 12
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
+slides: "Clase-SEM"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+slide_details <- tibble::tribble(
+  ~title, ~slide, ~active,
+  "Repaso", "1", TRUE,
+   "Calidad de modelos", "10", FALSE,
+)
+```
+
+# Slides
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/Clase-SEM.html")
+```
+
+{{% div fyi %}}
+**¿Cómo ocupar**: Si presionas <kbd>?</kbd> (o <kbd>shift</kbd> + <kbd>/</kbd>) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+{{% /div %}}
+
+

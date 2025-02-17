@@ -1,0 +1,536 @@
+---
+title: Syllabus
+slug: syllabus
+citeproc: true
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    toc: true
+    fig_caption: false
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+library(tibble)
+library(pander)
+```
+
+`r blogdown::shortcode("courseinfo")`
+
+# I. Identificación
+
+Código: SOC9035
+
+Créditos: 5
+
+Período Académico: 1º semestre 2024
+
+Requisito: Análisis Avanzado de Datos
+
+Horario: Lunes módulos 2 y 3 10.00 a 11.20 y 11.30 a 12.50
+
+Sala: Laboratorio de computación 2° piso FCSH
+
+Docente: Profesor: Gabriel
+[gabriel.sotomayor\@mail.udp.cl](gabriel.sotomayor@mail.udp.cl)
+
+Ayudante: Patricio Alarcón
+[anais.herrera\@mail.udp.cl](patricio.alarcon@mail.udp.cl)
+
+Fernanda Hurtado
+[nicolas.hernandez_f\@mail.udp.cl](fernanda.hurtado@mail.udp.cl)
+
+# II. Presentación
+
+El curso profundiza las principales técnicas multivariantes, que
+permiten analizar en forma conjunta la interacción de múltiples
+factores, lo cual da la posibilidad de estudiar de forma más compleja
+los problemas sociales.
+
+Se enfatizan la comprensión de procedimientos e interpretación de
+resultados, así como el uso de herramientas computacionales,
+principalmente en R y RStudio. Se trabajará en la aplicación de los
+métodos sin necesidad de estudiar en profundidad los fundamentos
+matemáticos de todos ellos.
+
+Al final del curso el alumno deberá ser capaz de realizar análisis
+descriptivo de los datos tanto primarios como secundarios y poder
+seleccionar la técnica estadística adecuada a utilizar cuando se tienen
+datos multivariables.
+
+# III. Resultados de Aprendizaje
+
+## Resultado general
+
+Entregar herramientas al alumno para que pueda abordar el análisis de
+datos desde la estadística multivariante descriptiva e inferencial,
+elaborando y probando hipótesis y desarrollando modelos explicativos de
+determinados fenómenos de estudio.
+
+## Resultados específicos
+
+1.  Manejar bases de datos complejas.
+2.  Plantear y estructurar adecuadamente un problema de análisis
+    multivariante.
+3.  Identificar el tipo de técnica adecuada, o combinación de ellas, a
+    aplicar en cada situación concreta.
+4.  Comprender las herramientas utilizada en cada una de las técnicas
+    estudiadas.
+5.  Aprender a utilizar los programas computacionales necesarios para
+    aplicar los distintos modelos estudiados, particularmente R.
+6.  Interpretar los resultados del análisis.
+7.  Redactar correctamente un informe con los resultados del análisis.
+
+# IV. Contenidos.
+
+## 1. Gestión de datos con R
+
+• Introducción a R y Rstudio\
+• Gestión de datos con tidyverse.\
+• Cálculo de estadísticos descriptivos.\
+• Visualización de datos con ggplot.
+
+## 2. Introducción a los modelos multivariados
+
+• Uso de modelos en ciencias sociales\
+• Modelos exploratorios y modelos confirmatorios\
+• Repaso de conceptos estadísticos: covarianza, correlación e
+inferencia.\
+• Supuestos de análisis.
+
+## 3. Formas funcionales de los Modelos de Regresión
+
+• Introducción\
+• Modelo Logarítmico bivariado\
+• Modelo Logarítmico Multivariado\
+• Interpretación de los coeficientes\
+• Ejemplos de aplicación en R.
+
+## 4. Análisis Factorial Exploratorio
+
+• Análisis factorial exploratorio y su aplicación en la investigación
+sociológica. El concepto de varianza y covarianza.\
+• Diferencias entre el análisis de componente principal y de factor
+común. Supuestos de la técnica.\
+• La extracción de factores comunes. Métodos de extracción de factores,
+criterios de selección del número de factores y rotación.\
+• La matriz factorial y su interpretación. Evaluación del modelo
+factorial y cálculo de puntuaciones factoriales.
+
+## 5. Análisis Factorial Confirmatorio
+
+• Análisis factorial confirmatorio y su aplicación en la investigación
+sociológica. El análisis confirmatorio frente al análisis exploratorio.
+Supuestos de la técnica.\
+• Especificación e identificación del modelo. Estimación de parámetros,
+evaluación del ajuste y reespecificación.\
+• Fiabilidad y validez de los modelos de medida. Validez convergente y
+validez discriminante. Evaluación de la capacidad confirmatoria del
+modelo.\
+• Ejemplo de análisis factorial confirmatorio.
+
+## 6. Análisis de Sendero
+
+• Análisis de sendero y su aplicación en la investigación sociológica.
+Supuestos de la técnica.\
+• Especificación del modelo.\
+• Evaluación del modelo de medición y de la capacidad confirmatoria del
+modelo. • Ejemplo de análisis de sendero.
+
+## 7. Modelos de Ecuaciones estructurales
+
+• Análisis de ecuaciones estructurales y su aplicación en la
+investigación sociológica.\
+• La obtención de un modelo de ecuaciones estructurales: la estructura
+del modelo. Supuestos de la técnica.\
+• Estimación del modelo empírico.\
+• Evaluación del modelo.\
+• Introducción de modificaciones y/o conclusión del análisis. Evaluación
+de la capacidad confirmatoria del modelo.\
+• Ejemplos sobre modelamiento de ecuaciones estructurales.
+
+# V. Metodología del curso
+
+Este curso se desarrolla sobre la base de clases expositivas y talleres
+de aplicación con uso intensivo de software computacionales a partir del
+sitio web del curso, lo cual permite trabajar cada uno de los distintos
+tópicos detallados en el contenido.
+
+Se realizarán 2 sesiones semanales, 1 de clases y otra en forma de
+taller. Durante el curso cada alumno desarrollará trabajos de
+aplicación.
+
+Adicionalmente se realizarán ayudantías cada 2 semanas aproximadamente,
+centradas especialmente en la aplicación en R de lo aprendido en la
+cátedra.
+
+# VI. Evaluación
+
+Se utilizarán distintas formas de evaluación: Tareas, pruebas y trabajos
+de investigación
+
+• Tareas de uso de R
+
+• 1 prueba solemne (35 %) (Formas funcionales de los Modelos de
+Regresión y AFE).
+
+• Trabajo final (AFC, Senderos o SEM).
+
++----------------+----------------+-------------------+
+|                | *              | **Fecha           |
+|                | *Ponderación** | (semana)**        |
++----------------+----------------+-------------------+
+| Tareas uso de  | 30%            | 25 de marzo       |
+| R              |                |                   |
+|                |                | 29 de abril       |
+|                |                |                   |
+|                |                | 3 de junio        |
+|                |                |                   |
+|                |                | 1 de julio        |
++----------------+----------------+-------------------+
+| Prueba         | 35%            | 20 de mayo        |
++----------------+----------------+-------------------+
+| Trabajo final  | 35%            | 1 de julio        |
++----------------+----------------+-------------------+
+
+La nota de eximición es 5,5 siempre y cuando no se tengan notas bajo 4,0
+en la prueba. La nota mínima en el examen para aprobar el curso es un
+3,5.
+
+Notas:
+
+1.  Si un estudiante falta a una evaluación, puede presentar ante la
+    Secretaría de Estudios un certificado médico dentro de los cinco
+    días hábiles posteriores a dicha evaluación, para tener derecho a
+    rendir una prueba recuperativa. Las evaluaciones no rendidas tendrán
+    nota 1.0. Los estudiantes tendrán derecho a un máximo de una prueba
+    recuperativa, dicha prueba se realizará la última semana de clases e
+    incluirá toda la materia del semestre
+
+## Recorrección
+
+Según reglamento, los estudiantes tienen derecho a conocer las notas y
+la pauta de corrección de todas las evaluaciones en un plazo que no
+podrá exceder de 10 días hábiles contados desde la fecha desde que éstas
+fueran rendidas, como también a conocer el resultado de sus evaluaciones
+solemnes o principales, antes de rendir las siguientes de igual
+categoría en una misma asignatura.
+
+Los estudiantes pueden imputar la corrección de cualquier evaluación
+escrita, en un plazo no superior a 5 días hábiles desde la entrega de la
+nota. Ello, a través de una carta dirigida al secretario de estudios,
+que debe ir acompañada por la prueba, trabajo o informe evaluado y
+además, por las correcciones y comentarios que eventualmente haya
+entregado el/la docente. El académico deberá comunicar al estudiante el
+resultado de la recorrección, fundamentando por escrito sus argumentos,
+en un plazo no superior a los 5 días hábiles
+
+# VII. Bibliografía
+
+## VII.1 Bibliografía Obligatoria
+
++---------+---------+---------+---------+---------+---------+
+| N°      | TÍTULO  | AUTOR   | ED. Y   | E       | ISBN    |
+|         |         |         | AÑO     | D       |         |
+|         |         |         |         | ITORIAL |         |
++=========+=========+=========+=========+=========+=========+
+| 1       | A       | DE LA   | 2013    | McG     | 978     |
+|         | NALISIS | GARZA   |         | r       | -       |
+|         | ES      |         |         | aw-Hill | 607-15- |
+|         | TA      | GARCIA, |         |         |         |
+|         | DISTICO | JORGE   |         |         | 0817-1  |
+|         | MULTIV  |         |         |         |         |
+|         | AR      |         |         |         |         |
+|         | IANTE - |         |         |         |         |
+|         | UN      |         |         |         |         |
+|         | ENFOQUE |         |         |         |         |
+|         | TEORICO |         |         |         |         |
+|         | Y       |         |         |         |         |
+|         | P       |         |         |         |         |
+|         | RACTICO |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+| 2       | A       | Peña,   | 2002    | McG     | 84      |
+|         | nálisis | Daniel  |         | r       | 4       |
+|         | de      |         |         | aw-Hill | 8136101 |
+|         | datos   |         |         |         |         |
+|         | multiv  |         |         |         |         |
+|         | ar      |         |         |         |         |
+|         | iantes. |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+| 3       | A       | URIEL Y | 2005,   | E       | 84      |
+|         | nálisis | ALDAS   | 1ª      | d       | 4       |
+|         | Mul     |         | Edición | itorial | 8136101 |
+|         | ti      |         |         |         |         |
+|         | variado |         |         | Thomson |         |
+|         | Ap      |         |         |         |         |
+|         | licado. |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+| 4       | A       | LEVI    | 2001    | P       | 84-20   |
+|         | nálisis | J.P. y  |         | rentice | 5       |
+|         | Mult    |         |         | Hall.   | -3727-6 |
+|         | iv      | VARELA  |         |         |         |
+|         | ariante | J.;     |         |         |         |
+|         | para    |         |         |         |         |
+|         | las     |         |         |         |         |
+|         | C       |         |         |         |         |
+|         | iencias |         |         |         |         |
+|         | mS      |         |         |         |         |
+|         | ociales |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+| 5       | Modelos | B at    | 2012,   | La      |         |
+|         | de E    | is      | 2º ed.  | Muralla |         |
+|         | cu      | ta,J.M. |         |         |         |
+|         | aciones | y       |         |         |         |
+|         | Estr    |         |         |         |         |
+|         | uc      | C       |         |         |         |
+|         | turales | oenders |         |         |         |
+|         | Cu      | G.,     |         |         |         |
+|         | adernos |         |         |         |         |
+|         | de es   |         |         |         |         |
+|         | ta      |         |         |         |         |
+|         | dística |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+| 6       | Int     | Mo      | 2006,   | Con     | 970-2   |
+|         | ro      | nt      | 3º      | t       | 4       |
+|         | ducción | gomery, | e       | inental | -0327-8 |
+|         | al      |         | dición. |         |         |
+|         | A       | Peck y  |         |         |         |
+|         | nálisis | Vining  |         |         |         |
+|         | de      |         |         |         |         |
+|         | Re      |         |         |         |         |
+|         | gresión |         |         |         |         |
+|         | Lineal  |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+| 7       | El      | Fe      | 2010    | Papeles |         |
+|         | a       | rrando, |         | del Ps  |         |
+|         | nálisis | P. J.,  |         | i       |         |
+|         | fa      | &       |         | cólogo, |         |
+|         | ctorial | Anguian |         | 31,     |         |
+|         | como    | o-      |         | 18-33   |         |
+|         | técnica | Ca      |         |         |         |
+|         | de inve | rrasco, |         |         |         |
+|         | st      | C.      |         |         |         |
+|         | igación |         |         |         |         |
+|         | en P    |         |         |         |         |
+|         | si      |         |         |         |         |
+|         | cología |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+| 8       | A       | . Bati  | 2004    | M       |         |
+|         | nálisis | st      |         | edicina |         |
+|         | fa      | a-      |         | C       |         |
+|         | ctorial | Foguet, |         | línica, |         |
+|         | confi   | J.M.,   |         |         |         |
+|         | rm      | Co      |         | 122(    |         |
+|         | atorio. | enders, |         | S       |         |
+|         | Su      | G., &   |         | upl.1). |         |
+|         | u       | Alonso, |         |         |         |
+|         | tilidad | J.      |         |         |         |
+|         | en la v |         |         |         |         |
+|         | al      |         |         |         |         |
+|         | idación |         |         |         |         |
+|         | de cues |         |         |         |         |
+|         | ti      |         |         |         |         |
+|         | onarios |         |         |         |         |
+|         | rel     |         |         |         |         |
+|         | ac      |         |         |         |         |
+|         | ionados |         |         |         |         |
+|         | con la  |         |         |         |         |
+|         | salud.  |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+| 9       | Modelos | Ruiz,   | 2010    | Papeles |         |
+|         | de e    | M.A.,   |         | del     |         |
+|         | cu      | Pardo,  |         |         |         |
+|         | aciones | A., &   |         | Ps      |         |
+|         | estr    | San     |         | i       |         |
+|         | uc      | Martín, |         | cólogo, |         |
+|         | turales | R.      |         | Vol.    |         |
+|         |         |         |         | 31,     |         |
+|         |         |         |         | Núm.    |         |
+|         |         |         |         |         |         |
+|         |         |         |         | 1, pp.  |         |
+|         |         |         |         | 34-45   |         |
++---------+---------+---------+---------+---------+---------+
+| 10      | RStudio | Bo      | 2019    | Depa    |         |
+|         | para Es | ccardo, |         | r       |         |
+|         | ta      | G. y    |         | tamento |         |
+|         | dística | Ruiz,   |         | de Soc  |         |
+|         | De      | F.      |         | i       |         |
+|         | sc      |         |         | ología, |         |
+|         | riptiva |         |         | F       |         |
+|         | en      |         |         | acultad |         |
+|         | C       |         |         | de      |         |
+|         | iencias |         |         |         |         |
+|         | So      |         |         | C       |         |
+|         | ciales. |         |         | iencias |         |
+|         | Manual  |         |         | S       |         |
+|         | de      |         |         | o       |         |
+|         | apoyo   |         |         | ciales, |         |
+|         | docente |         |         | Uni     |         |
+|         | para la |         |         | v       |         |
+|         | as      |         |         | ersidad |         |
+|         | i       |         |         | de      |         |
+|         | gnatura |         |         | Chile   |         |
+|         | Es      |         |         |         |         |
+|         | ta      |         |         |         |         |
+|         | dística |         |         |         |         |
+|         | De      |         |         |         |         |
+|         | sc      |         |         |         |         |
+|         | riptiva |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+| 11      | R para  | W       | 2019    |         |         |
+|         | Ciencia | ickham, |         |         |         |
+|         | de      | H       |         |         |         |
+|         | Datos   |         |         |         |         |
+|         | [link]  |         |         |         |         |
+|         | (h%20%2 |         |         |         |         |
+|         | 0ttps:/ |         |         |         |         |
+|         | %20%20% |         |         |         |         |
+|         | 20%20%2 |         |         |         |         |
+|         | 0/es.r4 |         |         |         |         |
+|         | %20%20% |         |         |         |         |
+|         | 20ds.ha |         |         |         |         |
+|         | d%20%20 |         |         |         |         |
+|         | ley%20% |         |         |         |         |
+|         | 20%20%2 |         |         |         |         |
+|         | 0.nz%20 |         |         |         |         |
+|         | /in%20% |         |         |         |         |
+|         | 20%20de |         |         |         |         |
+|         | x.html) |         |         |         |         |
++---------+---------+---------+---------+---------+---------+
+
+## VII.2 Bibliografía complementaria
+
++--------+----------------------+--------+--------+--------+--------+
+| N °    | TÍTULO               | AUTOR  | ED. Y  | EDI    | ISBN   |
+|        |                      |        | AÑO    | TORIAL |        |
++--------+----------------------+--------+--------+--------+--------+
+| 1      | Técnicas de Análisis | Díaz   | 2002   | Ra-Ma  | 8478   |
+|        | Mult ivariante para  | de     |        |        | 975152 |
+|        | la Inve stigación    | Rada   |        |        |        |
+|        | Social y Comercial   | Iguz   |        |        |        |
+|        |                      | quiza, |        |        |        |
+|        |                      | Vidal  |        |        |        |
++--------+----------------------+--------+--------+--------+--------+
+| 2      | APPLIED LOGISTIC R   | H      | 2º     | WILEY  | 0-     |
+|        | EGRESSION            | OSMER, | e      |        | 471-3  |
+|        |                      | D      | dición |        | 5632-8 |
+|        |                      | AVID - |        |        |        |
+|        |                      | LEM    |        |        |        |
+|        |                      | ESHOW, |        |        |        |
++--------+----------------------+--------+--------+--------+--------+
+| 3      | Métodos Mult         | D.E.   | 2000   | In     | 9687   |
+|        | ivariados Aplicados  | J      |        | terna  | 529903 |
+|        | al análisis de Datos | ohnson |        | tional |        |
+|        |                      |        |        | T      |        |
+|        |                      |        |        | homson |        |
+|        |                      |        |        | Ed     |        |
+|        |                      |        |        | itores |        |
++--------+----------------------+--------+--------+--------+--------+
+| 5      | Análisis fa          | B.     | 1994   | Se     | 8475   |
+|        | ctoriales simples y  | Es     |        | rvicio | 853838 |
+|        | m últiples. O        | cofier |        | Edit   |        |
+|        | bjetivos, métodos e  | y J.   |        | orial, |        |
+|        | inter pretación      | Pagès  |        | Unive  |        |
+|        |                      |        |        | rsidad |        |
+|        |                      |        |        | del    |        |
+|        |                      |        |        | País   |        |
++--------+----------------------+--------+--------+--------+--------+
+| 6      | Análisis es          | Ato,   | 1996   | Si     | 8477   |
+|        | tadístico para datos | M. y   |        | ntesis | 383928 |
+|        | ca tegóricos         | López, |        |        |        |
+|        |                      | J. J.  |        |        |        |
++--------+----------------------+--------+--------+--------+--------+
+
+# VIII. Cláusula Ética
+
+La Escuela establece severas sanciones para las faltas graves que los
+estudiantes realicen, tales como plagio o falsificación de documentos,
+señalados en el Reglamento del Estudiante de Pre-grado en el Título XIII
+de las Conductas Contrarias a los Principios Universitarios.
+
+El Comité de Ética es la instancia responsable de revisar y resolver las
+situaciones que sean contrarias a los principios universitarios, en
+relación al desarrollo de conductas ilícitas que vicien los procesos de
+evaluación. Son definidas como conductas que vician una evaluación,
+todos aquellos actos que implican un rompimiento de los estándares
+éticos que un estudiante debe resguardar en una evaluación,
+distorsionando la apreciación de los conocimientos y habilidades reales
+que el estudiante posee (por ejemplo, copia y uso indebido de documento
+y/o medios electrónicos, modificación o falsificación de documentos,
+plagio en trabajos escritos).
+
+Se consideran como fuentes de información que se deben citar, los textos
+e imágenes en formato electrónico o en papel, en todas sus modalidades:
+libros, diarios, documentos de trabajo, artículos académicos, etc.
+
+# IX. Cronograma de trabajo
+
++--------------+--------------------------------------------------+
+| 11 de marzo  | Análisis de datos y uso de R                     |
++--------------+--------------------------------------------------+
+| 18 de marzo  | Análisis de datos y uso de R                     |
++--------------+--------------------------------------------------+
+| 25 de marzo  | Introducción a los modelos multivariados         |
++--------------+--------------------------------------------------+
+| 1 de abril   | Formas funcionales de los Modelos de Regresión   |
++--------------+--------------------------------------------------+
+| 8 de abril   | Formas funcionales de los Modelos de Regresión   |
++--------------+--------------------------------------------------+
+| 15 de abril  | Análisis Factorial Exploratorio                  |
++--------------+--------------------------------------------------+
+| 22 de abril  | Análisis Factorial Exploratorio                  |
++--------------+--------------------------------------------------+
+| 29 de abril  | Prueba 1                                         |
++--------------+--------------------------------------------------+
+| 6 de mayo    | Receso                                           |
++--------------+--------------------------------------------------+
+| 13 de mayo   | Análisis Factorial Confirmatorio                 |
++--------------+--------------------------------------------------+
+| 20 de mayo   | Análisis Factorial Confirmatorio                 |
++--------------+--------------------------------------------------+
+| 27 de mayo   | Análisis de sendero                              |
++--------------+--------------------------------------------------+
+| 3 de junio   | Análisis de sendero                              |
++--------------+--------------------------------------------------+
+| 10 de junio  | Modelos de ecuaciones estructurales              |
++--------------+--------------------------------------------------+
+| 17 de junio  | Modelos de ecuaciones estructurales              |
++--------------+--------------------------------------------------+
+| 24 de junio  | Modelos de ecuaciones estructurales              |
++--------------+--------------------------------------------------+
+| 1 de julio   | Repaso                                           |
++--------------+--------------------------------------------------+
+
+# X. NORMATIVA DE PREVEVENCIÓN Y SANCIÓN DE ACCIONES DE DISCRIMINACIÓN, VIOLENCIA SEXUAL Y DE GÉNERO DE LA UNIVERSIDAD DIEGO PORTALES.
+
+Tal como señala esta normativa:
+
+"La Universidad Diego Portales (UDP) promueve el pluralismo y la
+independencia crítica de quienes la integran y tienen como uno de sus
+principales objetivos el desarrollo integral de las personas que forman
+parte de ella y de la sociedad. En ese marco, la UDP promueve una
+convivencia reflexiva basada en el reconocimiento a la dignidad de las
+personas, la libertad de expresión, la libertad sexual, la identidad y
+expresión de género, y la autonomía."
+
+Por lo tanto:
+
+"Quienes integren la Universidad tienen la obligación de conocer esta
+normativa y los protocolos, sitios web y programas que de ella se
+deriven. Particularmente responsables de su implementación serán las
+autoridades de la Universidad, quienes tendrán la primera obligación de
+hacer frente a situaciones que deñen a sus integrantes. Para lograr
+estos objetivos, se debe realizar la correcta difusión y socialización
+de la normativa."
+
+Los detalles de la normativa pueden ser consultados en el siguiente
+enlace: [Normativa de prevención y sanción de acciones de violencia
+sexual](https://www.udp.cl/cms/wp-content/uploads/2021/06/RESOLUCIO%CC%81N-DE-RECTORI%CC%81A-No-43-NORMATIVA-PREVENCION-Y-SANCION-ACCIONES-DE-VIOLENCIA-SEXUAL-DIC-2018.pdf)
+
+# [Descargar programa en pdf](../files/Programa%20Analisis%20de%20datos%20II%20-%202024.pdf/)
+
+<a Puedes descargar el programa apretando el siguiente botón class="btn btn-primary" href="../files/Programa Analisis de datos II - 2024.pdf/" role="button"><i class="far fa-file-pdf"></i></a>

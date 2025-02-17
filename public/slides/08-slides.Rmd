@@ -1,0 +1,399 @@
+---
+title: "Análisis de datos estadísticos en R"
+author: "Valentina Andrade"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    includes:
+      after_body: "html/insert-logo.html"
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      beforeInit: "libs/macros.js"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r packages-data, include=FALSE}
+pacman::p_load(tidyverse, sjPlot, ggsci, wordcloud2)
+theme_set(theme_sjplot2())
+
+```
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "share_again", "scribble", "frezeeframe", "editable", "progress_bar"))
+
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+```
+
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\">Copiar código</i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\">¡Listo!</i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, eval = F, 
+                      fig.retina = 3, fig.align = "center")
+```
+
+class: center middle main-title section-title-8 top-logo
+
+.small[
+# Análisis descriptivo
+]
+
+.class-info[
+<br>
+**Análisis de datos estadísticos en R**
+<br>
+
+.pull-right.small[
+**Profesora** Valentina Andrade de la Horra <br>
+**Ayudantes** Dafne Jaime y Nicolás Godoy
+.tiny[Universidad Alberto Hurtado<br>
+]
+]
+
+]
+
+---
+class: title title-inv-8
+
+# Contenidos Sesión 8
+
+--
+
+.box-7.medium.sp-after-half[**Tendencia central**]
+.box-7.small.sp-after-half[**Dispersión**]
+
+--
+
+.box-6.medium.sp-after-half[**Proporciones**]
+
+--
+
+.box-5.medium.sp-after-half[**Visualización**]
+
+???
+
+- mean
+- frq
+- plot
+
+---
+class: center middle main-title section-title-8 top-logo
+name: basics
+
+# 1: Flujo del Rproject
+
+---
+class: title title-inv-8
+
+# Etapas del flujo
+
+.center[
+![:scale 70%](https://github.com/learn-R/slides/raw/main/img/01/flow-rproject.png)]
+
+--
+
+- *Hoy* partimos con análisis descriptivo
+
+---
+class: title title-inv-8
+
+# Orden de un script de análisis
+
+
+```{r}
+# 1. Cargar paquetes
+
+# 2. Cargar datos
+
+# 3. Explorar datos
+
+# 4. Analisis descriptivo
+
+# 5. Output para reporte
+
+```
+
+
+---
+.center[
+![](https://media2.giphy.com/media/ule4vhcY1xEKQ/giphy.gif)]
+
+Figura 1: Estudiantes de Análisis de datos en R haciendo el **paso 1 y 2.**
+---
+class: center middle main-title section-title-1 top-logo
+
+# Paso 1: Cargar paquetes
+
+---
+layout: true
+class: title title-8
+---
+# Paso 1: Cargar paquetes
+
+```{r}
+pacman::p_load(tidyverse, 
+               magrittr,
+               sjPlot, #<<
+               sjmisc) #<<
+```
+
+# Paso 2: Importar datos
+```{r, eval = F}
+load("output/datos/misdatos.RData")
+```
+
+---
+layout: false
+class: center middle section-title section-title-8 animated fadeIn
+
+# Paso 3: Explorar datos
+
+¿Por qué creen que sería relevante este paso?
+
+.can-edit.key-likes[
+1. 
+2.
+3.
+]
+
+---
+# Explorar datos para análisis
+
+```{r eval=FALSE, include=TRUE}
+# 1. Base
+
+dim(datos) # Nos entrega las dimensiones, es decir el numero de observaciones y el número de variables
+View(datos) # Visualizar objetos
+names(datos) # entrega los nombres de las variables que componen el dataset
+head(datos) # muestra las primeras filas presentes en el marco de datos
+
+# 2. sjPlot
+
+sjPlot::view_df(datos) # Encontrar variables
+
+```
+---
+layout: false
+class: center middle main-title section-title-8 top-logo
+
+# Paso 4: ¡Análisis descriptivo!
+---
+
+# ¿Dónde?
+
+.box-inv-1[[Descargar el zip del sesión 8 el sitio del curso](https://learn-r-uah.netlify.app/content/06-content/)]
+
+---
+class: title title-8
+
+# 1. Recursos de la práctica
+
+- Datos: *Encuesta de Caracterización Socioeconómica (CASEN)* (2020).
+
+- Para ello, deben dirigirse al [siguiente enlace](https://drive.google.com/drive/folders/1Orgb3Qb9LcjTfjYMdIdy7SWd3xDMrTbG?usp=sharing) y descargar los zip.
+
+
+- [**Libro de códigos**](http://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2020/Libro_de_codigos_Base_de_Datos_Casen_en_Pandemia_2020.pdf) antes de trabajar una base de datos.
+
+---
+layout: false
+class: center middle main-title section-title-7 top-logo
+
+# Algunas recomendaciones para el análisis
+
+---
+class: title title-7
+
+# Plan de análisis
+
+- 1. **Objetivo de la investigación o reporte**
+
+--
+
+- En general, *siempre* deben tener "bajo la manga" un análisis descriptivo de sus datos
+
+--
+
+- Recomendación: tener un script propio para hacer esos análisis. También sirve un **.Rmd** (mejor, pues tendrán un pre-informe listo)
+
+
+---
+class: title title-7
+
+
+# Plan de análisis
+
+- **2. Preguntas claves**
+
+  - ¿Cuál es el nivel de medición de mis variables?
+  - ¿Qué variables quiero relacionar? ¿De qué forma?
+  - ¿Qué es lo *relevante* en mi análisis? 
+
+
+---
+class: center middle main-title section-title-7 top-logo
+
+# Trade off: los datos y las funciones
+
+---
+layout: true
+class: title title-7
+
+---
+# Tipos de variables
+
+--
+
+- Las que principalmente nos interesarán son los "vectores"
+
+--
+
+- En nuestro "idioma", son las **variables**.
+--
+
+- En general, una combinación de vectores da origen a una matriz (o **data frame** o "base de datos")
+
+---
+# Tipos de datos: columnas
+
+Relación entre clase y nivel de medición de la variable
+
+- `numeric`
+
+- `character`
+
+- `factor`
+
+- hay varios más...
+
+
+---
+# Las funciones
+
+- Existen **muchas funciones** para analizar datos
+
+--
+
+- Lo más importante es que ustedes se decidan por una que esté ad hoc a sus datos y no produzca conflictos con otros paquetes
+
+--
+
+- Eviten el "shopping" de paquetes: eso distingue entre buenos usuarios de R y aquellos que no
+
+---
+```{r eval=FALSE, include=TRUE}
+pacman::p_load(todos,
+               los,
+               paquetes,
+               quepillé,
+               en,
+               internet,
+               profenomepongaun1
+               )
+```
+
+
+```{r, results='asis'}
+# Error "su código no es eficiente"
+```
+
+---
+
+# Las funciones: sjPlot y sjmisc
+- Una solución buena y eficiente es **sjPlot** y **sjmisc**.
+
+--
+
+- Ya sabemos que son "buenos" amigos con otras funciones de tidyverse. 
+
+--
+
+- Además, como verán (y se asombrarán), no solo permiten hacer análisis descriptivo sino que modelamiento. 
+
+
+---
+layout: false
+class: center section-title section-title-8 animated fadeIn
+
+# En síntesis
+
+.box-7.medium.sp-after-half[**Tendencia central**]
+.box-7.small.sp-after-half[**Dispersión**]
+
+--
+
+.box-6.medium.sp-after-half[**Proporciones**]
+
+--
+
+.box-5.medium.sp-after-half[**Visualización**]
+
+---
+layout: false
+
+.box-1[¿Y eso era?]
+
+--
+
+.box-1[¡Un segundo! <br>
+- Aprovecha estas semanas para repasar los prácticos
+- La sesión N°9 requiere de un manejo avanzado de los prácticos]
+
+. box-2[- Una buena forma de saber "cómo están" para esta segunda parte del curso es tomar nota de **cuánto** les cuesta la tarea]
+
+---
+.box-inv-8[¡Ahora si que si! Nos vemos después del receso]
+
+.center[
+![](https://github.com/learn-R/slides/raw/main/img/01/monster-inc-2.gif)]
+
+---
+
+---
+layout: false
+class: center middle main-title section-title-8 top-logo
+
+.small[
+# Análisis descriptivo
+]
+
+.class-info[
+<br>
+**Sesión N° 8**<br>
+**Análisis de datos estadísticos en R**
+<br>
+
+.pull-right.small[
+**Profesora** Valentina Andrade de la Horra <br>
+**Ayudantes** Dafne Jaime y Nicolás Godoy
+.tiny[Universidad Alberto Hurtado<br>
+]
+]
+
+]
+
+???
+https://c.tenor.com/7mxJp29REVkAAAAC/scaryfeet-monstersinc.gif

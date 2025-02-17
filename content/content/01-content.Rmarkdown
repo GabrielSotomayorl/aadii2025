@@ -1,0 +1,49 @@
+---
+title: "Introducción al curso Análisis avanzado de datos II"
+linktitle: "1: Introducción al curso Análisis avanzado de datos II"
+date: "2022-03-14"
+start_date: "2022-03-14"
+end_date: "2022-03-18"
+menu:
+  content:
+    parent: Contenido
+    weight: 1
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
+slides: "01-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+slide_details <- tibble::tribble(
+  ~title, ~slide, ~active,
+  "Introducción al curso Análisis avanzado de datos II", "1", TRUE
+)
+```
+
+# Slides
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/01-slides.html")
+```
+
+{{% div fyi %}}
+**¿Cómo ocupar**: Si presionas <kbd>?</kbd> (o <kbd>shift</kbd> + <kbd>/</kbd>) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+{{% /div %}}
+
+# Materiales de la clase
+
+- [<i class="fas fa-laptop-code"></i> Práctico](https://aadii2023.netlify.app/example/01-practico/)
+
+
+# Recomendaciones 
+
+- <i class="fas fa-book"></i> Hadley Wickham, ["Data Science: How is it Different To Statistics?"](http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/) 
+
+
+

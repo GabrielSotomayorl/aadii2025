@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="0. Objetivo del práctico Este práctico tiene por objetivo introducir el trabajo estadístico con muestras complejas en R, es decir, cuando se trabaja con muestras que busquen ser representativas de la población a estudiar, bajo determinados parámetros." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/example/09-practico/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/example/09-practico/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis avanzado de datos 2" />
+  <meta property="og:url" content="/example/09-practico/" />
+  <meta property="og:title" content="Muestras complejas y precisión de inferencia estadística | Análisis avanzado de datos 2" />
+  <meta property="og:description" content="0. Objetivo del práctico Este práctico tiene por objetivo introducir el trabajo estadístico con muestras complejas en R, es decir, cuando se trabaja con muestras que busquen ser representativas de la población a estudiar, bajo determinados parámetros." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-09-16T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-09-16T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis avanzado de datos 2" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Muestras complejas y precisión de inferencia estadística | Análisis avanzado de datos 2</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/">Información general</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/">Prácticos (códigos de ejemplo)</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" >Datos</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/01-practico/">Ejemplos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/01-practico/">1: R, RStudio y Github</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/02-practico/">2: RMarkdown</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/03-practico/">3: Tipos de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/04-practico/">4: Importar, explorar y exportar datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/05-practico/">5: Limpieza de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/06-practico/">6: Transformar variables</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/07-practico/">7: Análisis descriptivo univariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/08-practico/">8: Análisis descriptivo bivariado</a>
+      </li>
+
+      
+      <li class="active">
+        <a href="/example/09-practico/">9: Muestras complejas y precisión de inferencia estadística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.1-practico/">10.1: Regresiones lineales</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.2-practico/">10.2: Regresión logística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/11-practico/">11 (BONUS): Calidad de modelos y otras técnicas de estimación</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Muestras complejas y precisión de inferencia estadística</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        <h2 id="0-objetivo-del-práctico">0. Objetivo del práctico</h2>
+<p>Este práctico tiene por objetivo introducir el trabajo estadístico con <strong>muestras complejas en R</strong>, es decir, cuando se trabaja con muestras que busquen ser representativas de la población a estudiar, bajo determinados parámetros. Buscaremos calcular estimadores puntuales e intervalos de confianza, que nos permiten reportar el error asociado a la inferencia.</p>
+<h2 id="1-recursos-del-práctico">1. Recursos del práctico</h2>
+<p>El presente práctico será realizado con datos de la <em>Encuesta de Caracterización Socioeconómica (CASEN)</em> en su versión 2020. Estos datos ya han sido previamente procesados para su correcta realización, recodificando y eliminando casos perdidos, y renombrando y seleccionando variables. Esto es <strong>muy importante</strong>: para trabajar correctamente con muestreos complejos, <strong>deben</strong> asegurarse de que los datos estén bien preparados para ello.</p>
+<p>Recuerden siempre consultar el <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2020/Libro_de_codigos_Base_de_Datos_Casen_en_Pandemia_2020.pdf" target="_blank" rel="noopener"><strong>manual/libro de códigos</strong></a> antes de trabajar una base de datos.</p>
+<h3 id="material-del-práctico">Material del práctico</h3>
+<ul>
+<li><a href="https://github.com/learn-R/07-class/raw/main/07-clase.zip" target="_blank" rel="noopener"><i class="fas fa-file-archive"></i> <code>07-clase.zip</code></a></li>
+</ul>
+<h2 id="2-librerías-a-utilizar">2. Librerías a utilizar</h2>
+<p>Utilizaremos las siguientes librerías:</p>
+<ol>
+<li>
+<p><code>pacman</code>: para facilitar y agilizar la lectura de los paquetes a utilizar en R</p>
+</li>
+<li>
+<p><code>sjmisc</code>: para explorar datos y hacer cálculos agrupados</p>
+</li>
+<li>
+<p><code>srvyr</code>: para trabajar con objetos encuesta</p>
+</li>
+<li>
+<p><code>survey</code>: para realizar estimaciones a nivel poblacional en diálogo con <code>dplyr</code></p>
+</li>
+<li>
+<p><code>dplyr</code>: para manipular datos</p>
+</li>
+</ol>
+<h1 id="pasos-del-procesamiento">Pasos del procesamiento</h1>
+<h2 id="1-cargar-librerías">1. Cargar librerías</h2>
+<p>Cargamos los paquetes anteriormente señalados:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pacman<span style="color:#f92672">::</span><span style="color:#a6e22e">p_load</span>(tidyverse,
+               sjmisc,
+               srvyr,
+               survey,
+               dplyr)
+</code></pre></div><h2 id="2-cargar-datos">2. Cargar datos</h2>
+<p>Como se señaló anteriormente, trabajaremos con datos de CASEN 2020, ya procesados con anterioridad</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">dim</span>(data)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## [1] 185339      7
+</code></pre></div><p>Como podemos ver, estos datos tienen 185.339 filas (observaciones), así como 7 columnas. Inspeccionemos:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(data)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 6 x 7
+##     exp varunit varstrat region   pobreza   ing_tot_hog sexo  
+##   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;    &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt; 
+## 1    67       3        1 Tarapacá No pobres      390833 Mujer 
+## 2    67       3        1 Tarapacá No pobres      390833 Mujer 
+## 3    67       3        1 Tarapacá No pobres      947583 Mujer 
+## 4    67       3        1 Tarapacá No pobres      947583 Hombre
+## 5    67       3        1 Tarapacá No pobres      947583 Mujer 
+## 6    67       3        1 Tarapacá No pobres     3004167 Hombre
+</code></pre></div><p>Tenemos tanto variables numéricas (exp, varunit, varstrat e ing_tot_hog) como factores (region, pobreza y sexo). ¡Explorémoslas!</p>
+<h2 id="3-explorar-datos">3. Explorar datos</h2>
+<p>Con <code>frq()</code> de <code>sjmisc</code>, exploraremos las categorías de las variables factor:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">frq</span>(data<span style="color:#f92672">$</span>region)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## x &lt;categorical&gt;
+## # total N=185339  valid N=185339  mean=8.79  sd=4.23
+## 
+## Value              |     N | Raw % | Valid % | Cum. %
+## -----------------------------------------------------
+## Tarapacá           |  8386 |  4.52 |    4.52 |   4.52
+## Antofagasta        |  7597 |  4.10 |    4.10 |   8.62
+## Atacama            |  7393 |  3.99 |    3.99 |  12.61
+## Coquimbo           |  8159 |  4.40 |    4.40 |  17.01
+## Valparaíso         | 18501 |  9.98 |    9.98 |  27.00
+## OHiggins           | 12346 |  6.66 |    6.66 |  33.66
+## Maule              | 12423 |  6.70 |    6.70 |  40.36
+## Biobío             | 17669 |  9.53 |    9.53 |  49.89
+## La Araucanía       | 11858 |  6.40 |    6.40 |  56.29
+## Los Lagos          | 10511 |  5.67 |    5.67 |  61.96
+## Aysén              |  4579 |  2.47 |    2.47 |  64.43
+## Magallanes         |  5087 |  2.74 |    2.74 |  67.18
+## Metropolitana      | 39266 | 21.19 |   21.19 |  88.37
+## Los Ríos           |  7992 |  4.31 |    4.31 |  92.68
+## Arica y Parinacota |  7224 |  3.90 |    3.90 |  96.57
+## Ñuble              |  6348 |  3.43 |    3.43 | 100.00
+## &lt;NA&gt;               |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">frq</span>(data<span style="color:#f92672">$</span>pobreza)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## x &lt;categorical&gt;
+## # total N=185339  valid N=185339  mean=2.84  sd=0.48
+## 
+## Value              |      N | Raw % | Valid % | Cum. %
+## ------------------------------------------------------
+## Pobres extremos    |   8439 |  4.55 |    4.55 |   4.55
+## Pobres no extremos |  12891 |  6.96 |    6.96 |  11.51
+## No pobres          | 164009 | 88.49 |   88.49 | 100.00
+## &lt;NA&gt;               |      0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">frq</span>(data<span style="color:#f92672">$</span>sexo)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## Sexo (x) &lt;categorical&gt;
+## # total N=185339  valid N=185339  mean=1.54  sd=0.50
+## 
+## Value  |     N | Raw % | Valid % | Cum. %
+## -----------------------------------------
+## Hombre | 86091 | 46.45 |   46.45 |  46.45
+## Mujer  | 99248 | 53.55 |   53.55 | 100.00
+## &lt;NA&gt;   |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+</code></pre></div><p>Como podemos ver, <em>region</em> provee información sobre la región a la que pertenecen los hogares; <em>pobreza</em> nos provee información respecto de la situación de pobreza por ingresos (o no) de los hogares; y <em>sexo</em>, información sobre el sexo de la persona que responde el cuestionario.</p>
+<p>Ahora vamos con <code>descr()</code> de <code>sjmisc</code> para las variables numéricas</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">descr</span>(data<span style="color:#f92672">$</span>exp) <span style="color:#75715e">#Ponderador regional</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## ## Basic descriptive statistics
+## 
+##  var    type label      n NA.prc   mean     sd   se md trimmed           range
+##   dd numeric    dd 185339      0 105.39 157.05 0.36 79   88.54 19042 (4-19046)
+##  iqr  skew
+##   78 70.57
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">sum</span>(data<span style="color:#f92672">$</span>exp) <span style="color:#75715e">#Total de la población</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## [1] 19532480
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">descr</span>(data<span style="color:#f92672">$</span>varstrat) <span style="color:#75715e">#Estrato de varianza</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## ## Basic descriptive statistics
+## 
+##  var    type label      n NA.prc   mean     sd   se  md trimmed       range iqr
+##   dd numeric    dd 185339      0 294.34 185.06 0.43 319  298.56 587 (1-588) 346
+##   skew
+##  -0.22
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">descr</span>(data<span style="color:#f92672">$</span>varunit) <span style="color:#75715e">#Conglomerado de varianza</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## ## Basic descriptive statistics
+## 
+##  var    type label      n NA.prc   mean     sd   se  md trimmed         range
+##   dd numeric    dd 185339      0 739.42 439.72 1.02 744  739.27 1493 (1-1494)
+##  iqr  skew
+##  778 -0.01
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">descr</span>(data<span style="color:#f92672">$</span>ing_tot_hog)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## ## Basic descriptive statistics
+## 
+##  var    type label      n NA.prc    mean      sd      se     md trimmed
+##   dd numeric    dd 185339      0 1085076 1574919 3658.26 731009  835756
+##                    range    iqr  skew
+##  225200000 (0-225200000) 785357 27.45
+</code></pre></div><p><em>ing_tot_hog</em> presenta información respecto de los ingresos totales de los hogares; <em>exp</em> es el ponderador regional, cuya suma es el número total de habitantes de la población objetivo; <em>varstrat</em> provee información sobre el estrato de varianza; y <em>varunit</em> sobre el conglomerado de varianza, es decir, la unidad mínima de observación que, en este caso, son los hogares. Estas últimas tres variables serán <strong>sumamente relevantes</strong> para este práctico.</p>
+<h2 id="4-cálculo-con-muestras-complejas">4. Cálculo con muestras complejas</h2>
+<p>Una vez explorados nuestros datos, es hora de empezar a realizar nuestros cálculos con muestras complejas. Para ello, lo primero es crear un <strong>objeto encuesta</strong> de modo que, posteriormente, podamos calcular promedios con nuestras variables cuantitativas, y proporciones para nuestras variables categóricas (entre muchos otros estimadores).</p>
+<h3 id="la-función-group_by">La función <code>group_by()</code></h3>
+<p>Antes de empezar a trabajar con objetos encuesta, es fundamental conocer otra de las funciones de <code>dplyr</code> que hace posible manipular los datos: <code>group_by()</code>. Esta nos permitirá trabajar agrupando los valores a partir de determinadas <strong>columnas</strong>. Calculemos ahora la media de <code>ing_tot_hog</code> con la función <code>mean()</code>, agrupando por <code>sexo</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">group_by</span>(sexo) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Espeficicamos que agruparemos por sexo</span>
+  <span style="color:#a6e22e">summarise</span>(media <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(ing_tot_hog)) <span style="color:#75715e">#Creamos una columna llamada media, calculando la media ingresos con la función `mean`</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 2 x 2
+##   sexo      media
+##   &lt;fct&gt;     &lt;dbl&gt;
+## 1 Hombre 1125264.
+## 2 Mujer  1050215.
+</code></pre></div><p>Es importante destacar que la función <code>summarise()</code> (o <code>summarize()</code>) de <code>dplyr</code> nos permite crear un nuevo data frame con una o más filas para cada combinación y agrupación de variables. En este caso, tenemos dos filas: una para Hombre y otra para Mujer. En caso de no agrupar variables, sólo tendremos una columna que <strong>resuma</strong> las observaciones especificadas.</p>
+<p>Algo interesante es que podemos combinar <code>group_by()</code> con algunas funciones de <code>sjmisc</code>. Probemos calculando la frecuencia de las diferentes categorías de pobreza, agrupando por sexo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">group_by</span>(sexo) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">frq</span>(pobreza)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## pobreza &lt;categorical&gt;
+## # grouped by: Hombre
+## # total N=86091  valid N=86091  mean=2.84  sd=0.47
+## 
+## Value              |     N | Raw % | Valid % | Cum. %
+## -----------------------------------------------------
+## Pobres extremos    |  3805 |  4.42 |    4.42 |   4.42
+## Pobres no extremos |  5807 |  6.75 |    6.75 |  11.16
+## No pobres          | 76479 | 88.84 |   88.84 | 100.00
+## &lt;NA&gt;               |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+## 
+## 
+## pobreza &lt;categorical&gt;
+## # grouped by: Mujer
+## # total N=99248  valid N=99248  mean=2.84  sd=0.48
+## 
+## Value              |     N | Raw % | Valid % | Cum. %
+## -----------------------------------------------------
+## Pobres extremos    |  4634 |  4.67 |    4.67 |   4.67
+## Pobres no extremos |  7084 |  7.14 |    7.14 |  11.81
+## No pobres          | 87530 | 88.19 |   88.19 | 100.00
+## &lt;NA&gt;               |     0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;
+</code></pre></div><p>Obtendremos una tabla por cada una de las categorías de la variable por la cual agrupamos (en este caso, una por cada sexp), que señala las frecuencias absolutas y relativas de cada nivel de pobreza. Por supuesto, también podemos hacer el mismo ejercicio con <code>descr()</code>. Probemos haciendo un análisis descriptivos de ingresos para cada sexo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">group_by</span>(sexo) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">descr</span>(ing_tot_hog)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## ## Basic descriptive statistics
+## 
+## 
+## Grouped by: Hombre
+## 
+##          var    type       label     n NA.prc    mean      sd      se     md
+##  ing_tot_hog numeric ing_tot_hog 86091      0 1125264 1718674 5857.53 755156
+##   trimmed                   range      iqr  skew
+##  864763.9 225200000 (0-225200000) 817406.5 35.86
+## 
+## 
+## Grouped by: Mujer
+## 
+##          var    type       label     n NA.prc    mean      sd      se     md
+##  ing_tot_hog numeric ing_tot_hog 99248      0 1050215 1437734 4563.71 710153
+##  trimmed                 range    iqr skew
+##   811101 92666667 (0-92666667) 762500 14.2
+</code></pre></div><p>En este caso, obtenemos dos tablas: una por cada <code>sexo</code>, cada una indicando las estadísticas de resumen para la variable <code>ing_tot</code></p>
+<h3 id="a-creación-de-objeto-encuesta-srvyr">a) Creación de objeto encuesta (srvyr)</h3>
+<p>Como ya se señaló, lo primero es crear un <strong>objeto encuesta (survey)</strong>. Este corresponde a una lista (<em>List</em>) que nos permitirá realizar los cálculos que deseemos, considerando las varables de diseño (en este caso, varunit, varstrat y exp). Para ello, utilizaremos la función <code>as_survey_design()</code> de la librería <code>srvyr</code>. Sin embargo, primero crearemos la variable <em>stratn</em>, para obtener la cantidad de personas por estrato a nivel poblacional</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">&lt;-</span> data <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">group_by</span>(varstrat) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupando por varstrat</span>
+  <span style="color:#a6e22e">mutate</span>(stratn <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(exp)) <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e">#Calculamos el total de personas por estrato</span>
+  <span style="color:#a6e22e">ungroup</span>() <span style="color:#75715e">#desagrupamos</span>
+</code></pre></div><p><strong>¡Precaución!</strong> no siempre tendremos la posibilidad de corregir por población finita, por lo cual este paso no es obligatorio. Es fundamental que, antes de trabajar con objetos encuesta, <strong>revisen exhaustivamente la documentación metodológica asociada a sus datos</strong>.</p>
+<p>Construimos el objeto encuesta:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">&lt;-</span> data <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Creamos un nuevo objeto llamado casen_regional con la información de data</span>
+  <span style="color:#a6e22e">as_survey_design</span>(ids <span style="color:#f92672">=</span> varunit, <span style="color:#75715e">#Aplicamos diseño muestral, especificando los ids a partir de varunit,</span>
+                   strata <span style="color:#f92672">=</span> varstrat,<span style="color:#75715e">#los estratos a partir de varstrat,</span>
+                   fpc <span style="color:#f92672">=</span> stratn, <span style="color:#75715e">#especificando que la estimación es con una población finita</span>
+                   weights <span style="color:#f92672">=</span> exp) <span style="color:#75715e">#y los ponderadores con exp</span>
+</code></pre></div><p>Fijándonos en nuestro entorno, nos daremos cuenta de que se creó una lista con 9 elementos llamada <strong>casen_regional</strong>. Si bien la información que nos entrega por sí sólo nos resulta algo críptica, este objeto nos permitirá realizar cálculos aplicando las variables de diseño muestral complejo. Algo interesante de los objetos encuesta creados con <code>srvyr</code>, es que podemos interactuar con las funciones de <code>dplyr</code>, como <code>group_by()</code> o <code>summarise()</code>. Es decir, <strong>nos permite trabajar con listas como si fueran un data frame</strong> (datos tabulados) incluyendo, por ejemplo, el uso de <em>metadata</em>.</p>
+<p><img src="https://github.com/learn-R/07-class/raw/main/input/img/img-list.png" alt=""></p>
+<p><em>cluster</em> nos presenta información sobre los conglomerados de varianza, o la unidad mínima de inferencia. <em>strata</em>, sobre los estratos de varianza, unidades que integran a los conglomerados de varianza. <em>prob</em> y <em>allprob</em> proveen información sobre la probabilidad de cada sujeto de ser seleccionado en una muestra al azar. <em>variables</em> nos presenta todas las variables incluidas en la lista. Por último, <em>fpc</em> provee información sobre los tamaños de la población y la muestra.</p>
+<h3 id="b-cálculo-de-medias-para-variables-numéricas">b) Cálculo de medias para variables numéricas</h3>
+<p>Una vez creado nuestro objeto encuesta, podemos realizar diversos tipos de cálculos. Calculemos, por ejemplo, la media de ingresos a nivel poblacional, con la función <code>survey_mean()</code> de <code>srvyr</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">summarise</span>(ing_medio <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_mean</span>(ing_tot_hog, na.rm<span style="color:#f92672">=</span>T)) <span style="color:#75715e">#Calculamos el ingreso medio poblacional</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 1 x 2
+##   ing_medio ing_medio_se
+##       &lt;dbl&gt;        &lt;dbl&gt;
+## 1  1156457.       17960.
+</code></pre></div><p>Comparemos con la media calculada a nivel muestral:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con data</span>
+  <span style="color:#a6e22e">summarise</span>(ing_medio <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(ing_tot_hog, na.rm<span style="color:#f92672">=</span>T)) <span style="color:#75715e">#Calculamos el ingreso medio poblacional</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 1 x 1
+##   ing_medio
+##       &lt;dbl&gt;
+## 1  1085076.
+</code></pre></div><p>Efectivamente, la estimación a nivel poblacional (o parámetro) es superior a la estimación muestral. Sin embargo, trabajar con muestras complejas siempre significará considerar un posible <strong>error de medición</strong>. El trabajar con muestras representativas (aunque no sean aleatorias) nos permitirá realizar nuestros cálculos, conociendo la probabilidad de equivocarnos en nuestra estimación. Es decir, podemos conocer el <strong>nivel de confianza</strong> (o el <strong>nivel de error</strong>) de nuestras estimaciones, a partir de ciertas características de la muestra.</p>
+<p>En virtud de ello, <code>survey_mean()</code> también nos permite incorporar los intervalos de confianza, especificando <code>vartype = &quot;ci&quot;</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span><span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">summarise</span>(ing_medio <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_mean</span>(ing_tot_hog, vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm<span style="color:#f92672">=</span>T)) <span style="color:#75715e">#Calculamos el </span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 1 x 3
+##   ing_medio ing_medio_low ing_medio_upp
+##       &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+## 1  1156457.      1121220.      1191694.
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">                                                                           <span style="color:#75715e">#ingreso medio poblacional, </span>
+                                                                           <span style="color:#75715e">#y sus intervalos de confianza</span>
+</code></pre></div><p>El argumento <code>level = </code> nos permite especificar el nivel de confianza que estamos dispuestas/os a aceptar. Comparemos el cálculo de la media de ingresos a un 95% y a un 99% de confianza</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">summarise</span>(ing_medio95 <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_mean</span>(ing_tot_hog, vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, level <span style="color:#f92672">=</span> <span style="color:#ae81ff">.95</span>, na.rm<span style="color:#f92672">=</span>T), <span style="color:#75715e">#Al 95%</span>
+            ing_medio99 <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_mean</span>(ing_tot_hog, vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, level <span style="color:#f92672">=</span> <span style="color:#ae81ff">.99</span>, na.rm<span style="color:#f92672">=</span>T)) <span style="color:#75715e">#Al 99%</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 1 x 6
+##   ing_medio95 ing_medio95_low ing_medio95_upp ing_medio99 ing_medio99_low
+##         &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+## 1    1156457.        1121220.        1191694.    1156457.        1110121.
+## # ... with 1 more variable: ing_medio99_upp &lt;dbl&gt;
+</code></pre></div><p>Trabajar con un mayor nivel de confianza nos permitirá estar más seguras/os de que nuestra estimación incluirá al parámetro poblacional. Sin embargo, esto no es gratis: un mayor nivel de confianza implica una <strong>pérdida de precisión</strong> en nuestros cálculos; y viceversa. Es decir, un mayor nivel de confianza ampliará los límites inferior y superior de nuestros intervalos de confianza, lo cual hace la estimación menos precisa, mientras que un menor nivel de confianza estrechará tales límites, haciendo la estimación más precisa. Sin embargo, en el primer caso, la probabilidad de contener al parámetro poblacional es mayor que en el segundo. La decisión del nivel de confianza con el cual trabajaremos dependerá de qué es lo que queramos calcular, y no es objeto de este curso.</p>
+<p>También es posible utilizar <code>group_by()</code> para calcular la media de ingresos (y sus intervalos de confianza) según sexo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(sexo) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por sexo</span>
+  <span style="color:#a6e22e">summarise</span>(ing_medio <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_mean</span>(ing_tot_hog, vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm<span style="color:#f92672">=</span>T)) <span style="color:#75715e">#Calculamos el ingreso medio </span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 2 x 4
+##   sexo   ing_medio ing_medio_low ing_medio_upp
+##   &lt;fct&gt;      &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Hombre  1199636.      1165434.      1233837.
+## 2 Mujer   1119514.      1081919.      1157110.
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">                                                                           <span style="color:#75715e">#poblacional, y sus intervalos de </span>
+                                                                           <span style="color:#75715e">#confianza</span>
+</code></pre></div><p>Asimismo, es posible calcular la media de ingresos agrupando por región:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(region) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por region</span>
+  <span style="color:#a6e22e">summarise</span>(ing_medio <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_mean</span>(ing_tot_hog, vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm<span style="color:#f92672">=</span>T)) <span style="color:#75715e">#Calculamos el ingreso medio </span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 16 x 4
+##    region             ing_medio ing_medio_low ing_medio_upp
+##    &lt;fct&gt;                  &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Tarapacá            1141383.      1035448.      1247318.
+##  2 Antofagasta         1307063.      1187223.      1426903.
+##  3 Atacama             1077501.       995455.      1159547.
+##  4 Coquimbo             921887.       858537.       985238.
+##  5 Valparaíso          1014265.       952490.      1076040.
+##  6 OHiggins             951390.       882157.      1020624.
+##  7 Maule                863768.       801938.       925598.
+##  8 Biobío               945557.       892262.       998852.
+##  9 La Araucanía         836515.       782771.       890260.
+## 10 Los Lagos            967411.       902996.      1031826.
+## 11 Aysén               1252366.      1152001.      1352732.
+## 12 Magallanes          1458963.      1317465.      1600461.
+## 13 Metropolitana       1408060.      1330071.      1486049.
+## 14 Los Ríos             926921.       841025.      1012816.
+## 15 Arica y Parinacota   952832.       897814.      1007851.
+## 16 Ñuble                788551.       716981.       860122.
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">                                                                           <span style="color:#75715e">#poblacional, y sus intervalos de </span>
+                                                                           <span style="color:#75715e">#confianza</span>
+</code></pre></div><p>¿Y si quisiéramos crear una tabla con una columna por nivel de pobreza, cuyas observaciones nos indiquen la media de ingreso para cada una de ellas? Probemos con el siguiente código</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ing_pobreza <span style="color:#f92672">&lt;-</span> casen_regional <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">group_by</span>(pobreza) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">summarise</span>(ing_medio <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_mean</span>(ing_tot_hog, vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm <span style="color:#f92672">=</span> T)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">ungroup</span>()  
+
+ing_pobreza_p <span style="color:#f92672">&lt;-</span> ing_pobreza <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(<span style="color:#e6db74">&#39;Pobres extremos&#39;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(.$ing_medio[1], .$ing_medio_low[1], .$ing_medio_upp[1]), <span style="color:#75715e"># Extraemos los valores correspondientes a la primera fila en cada una de nuestras variables</span>
+         <span style="color:#e6db74">&#39;Pobres no extremos&#39;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(.$ing_medio[2], .$ing_medio_low[2], .$ing_medio_upp[2]), <span style="color:#75715e"># Extraemos los valores correspondientes a la segunda fila en cada una de nuestras variables</span>
+         <span style="color:#e6db74">&#39;No pobres&#39;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(.$ing_medio[3], .$ing_medio_low[3], .$ing_medio_upp[3])) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># Extraemos los valores correspondientes a la tercera fila en cada una de nuestras variables</span>
+  <span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#39;Pobres extremos&#39;</span>, <span style="color:#e6db74">&#39;Pobres no extremos&#39;</span>, <span style="color:#e6db74">&#39;No pobres&#39;</span>)
+
+<span style="color:#a6e22e">head</span>(ing_pobreza_p) <span style="color:#75715e">#Visualizamos</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 3 x 3
+##   `Pobres extremos` `Pobres no extremos` `No pobres`
+##               &lt;dbl&gt;                &lt;dbl&gt;       &lt;dbl&gt;
+## 1           163743.              344812.    1263508.
+## 2           155589.              337494.    1224884.
+## 3           171896.              352130.    1302132.
+</code></pre></div><h3 id="c-cálculo-de-proporciones-para-variables-categóricas">c) Cálculo de proporciones para variables categóricas</h3>
+<p>También podemos utilizar la función <code>survey_prop()</code> de <code>srvyr</code> para calcular proporciones. Sin embargo, el código para calcular proporciones de variables categóricas <strong>no se construye de la misma manera</strong> que el código para calcular medias de variables continuas:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_prop</span>(pobreza, na.rm <span style="color:#f92672">=</span> T)) <span style="color:#75715e">#Y calculamos las proporciones</span>
+</code></pre></div><p>Debemos recurrir a <code>group_by()</code> para especificar nuestra variable categórica, y luego realizar el cálculo en <code>summarise()</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(pobreza) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por pobreza</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_prop</span>(na.rm <span style="color:#f92672">=</span> T)) <span style="color:#75715e">#Y calculamos las proporciones</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 3 x 3
+##   pobreza              prop prop_se
+##   &lt;fct&gt;               &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Pobres extremos    0.0426 0.00125
+## 2 Pobres no extremos 0.0656 0.00162
+## 3 No pobres          0.892  0.00215
+</code></pre></div><p>De todos modos, hay que considerar que <code>survey_prop()</code> y <code>survey_mean()</code> son (hasta cierto punto) intercambiables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(pobreza) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por pobreza</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_mean</span>(na.rm <span style="color:#f92672">=</span> T)) <span style="color:#75715e">#Y calculamos las proporciones</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 3 x 3
+##   pobreza              prop prop_se
+##   &lt;fct&gt;               &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Pobres extremos    0.0426 0.00125
+## 2 Pobres no extremos 0.0656 0.00162
+## 3 No pobres          0.892  0.00215
+</code></pre></div><p>Muchas veces nos interesa más trabajar con porcentajes que con proporciones. Con <code>mutate()</code> podemos multiplicar por 100 nuestras proporciones, y así obtener los porcentajes deseados</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(pobreza) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por pobreza</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_prop</span>(na.rm <span style="color:#f92672">=</span> T))<span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Calculamos las proporciones</span>
+  <span style="color:#a6e22e">mutate</span>(per <span style="color:#f92672">=</span> prop<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>) <span style="color:#75715e">#Creamos una nueva columna multiplicando las proporciones *100 para obtener porcentajes</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 3 x 4
+##   pobreza              prop prop_se   per
+##   &lt;fct&gt;               &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 Pobres extremos    0.0426 0.00125  4.26
+## 2 Pobres no extremos 0.0656 0.00162  6.56
+## 3 No pobres          0.892  0.00215 89.2
+</code></pre></div><p>La función <code>survey_total()</code> de <code>srvyr</code> nos permite calcular el total de personas en cada categoría a <strong>nivel poblacional</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(pobreza) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por pobreza</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_prop</span>(na.rm <span style="color:#f92672">=</span> T), <span style="color:#75715e">#Calculamos las proporciones</span>
+            total <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_total</span>(na.rm<span style="color:#f92672">=</span>T))<span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Y el total por categorías</span>
+  <span style="color:#a6e22e">mutate</span>(per <span style="color:#f92672">=</span> prop<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>) <span style="color:#75715e">#Creamos una nueva columna multiplicando las proporciones *100 para obtener porcentajes</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 3 x 6
+##   pobreza              prop prop_se    total total_se   per
+##   &lt;fct&gt;               &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1 Pobres extremos    0.0426 0.00125   831232   24534.  4.26
+## 2 Pobres no extremos 0.0656 0.00162  1280953   31988.  6.56
+## 3 No pobres          0.892  0.00215 17420295  231034. 89.2
+</code></pre></div><p>Por supuesto, también es posible incorporar intervalos de confianza, tal como cuando calculamos medias</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(pobreza) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por pobreza</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_prop</span>(vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm <span style="color:#f92672">=</span> T)) <span style="color:#75715e">#Incorporamos intervalos de confianza</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 3 x 4
+##   pobreza              prop prop_low prop_upp
+##   &lt;fct&gt;               &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Pobres extremos    0.0426   0.0401   0.0450
+## 2 Pobres no extremos 0.0656   0.0624   0.0688
+## 3 No pobres          0.892    0.888    0.896
+</code></pre></div><p>Y, además, podemos convertir en porcentajes nuestros intervalos de confianza, tal como lo hicimos con la estimación puntual</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(pobreza) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por pobreza</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_prop</span>(vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm <span style="color:#f92672">=</span> T)) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Incorporamos intervalos de confianza</span>
+  <span style="color:#a6e22e">mutate</span>(prop <span style="color:#f92672">=</span> prop<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, <span style="color:#75715e">#Multiplicamos las proporciones *100,</span>
+         prop_low <span style="color:#f92672">=</span> prop_low<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, <span style="color:#75715e">#así como el límite inferior </span>
+         prop_upp <span style="color:#f92672">=</span> prop_upp<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>) <span style="color:#75715e">#y superior, para obtener porcentajes</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 3 x 4
+##   pobreza             prop prop_low prop_upp
+##   &lt;fct&gt;              &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Pobres extremos     4.26     4.01     4.50
+## 2 Pobres no extremos  6.56     6.24     6.88
+## 3 No pobres          89.2     88.8     89.6
+</code></pre></div><p>Incluimos el total</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Con casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(pobreza) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por pobreza</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_prop</span>(vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm <span style="color:#f92672">=</span> T), <span style="color:#75715e">#Calculamos las proporciones con intervalos de confianza</span>
+            total <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_total</span>(vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm<span style="color:#f92672">=</span>T)) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Así como el total por categoría</span>
+  <span style="color:#a6e22e">mutate</span>(prop <span style="color:#f92672">=</span> prop<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, <span style="color:#75715e">#Multiplicamos las proporciones *100,</span>
+         prop_low <span style="color:#f92672">=</span> prop_low<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, <span style="color:#75715e">#así como el límite inferior </span>
+         prop_upp <span style="color:#f92672">=</span> prop_upp<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>) <span style="color:#75715e">#y superior, para obtener porcentajes</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 3 x 7
+##   pobreza             prop prop_low prop_upp    total total_low total_upp
+##   &lt;fct&gt;              &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Pobres extremos     4.26     4.01     4.50   831232   783097.   879367.
+## 2 Pobres no extremos  6.56     6.24     6.88  1280953  1218194.  1343712.
+## 3 No pobres          89.2     88.8     89.6  17420295 16967009. 17873581.
+</code></pre></div><p>También podemos cruzar dos variables. Veamos, por ejemplo, cómo se distribuye la pobreza según sexo</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Creamos un objeto llamado pobreza_reg con datos de casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(pobreza, sexo) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por pobreza y sexo</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_prop</span>(vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm <span style="color:#f92672">=</span> T), <span style="color:#75715e">#Calculamos las proporciones con intervalos de confianza</span>
+            total <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_total</span>(vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm<span style="color:#f92672">=</span>T)) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Así como el total por categoría</span>
+  <span style="color:#a6e22e">mutate</span>(prop <span style="color:#f92672">=</span> prop<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 6 x 8
+## # Groups:   pobreza [3]
+##   pobreza            sexo    prop prop_low prop_upp   total total_low total_upp
+##   &lt;fct&gt;              &lt;fct&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Pobres extremos    Hombre  45.4    0.442    0.466  377149   353131.   401167.
+## 2 Pobres extremos    Mujer   54.6    0.534    0.558  454083   425853.   482313.
+## 3 Pobres no extremos Hombre  44.7    0.438    0.457  573200   543298.   603102.
+## 4 Pobres no extremos Mujer   55.3    0.543    0.562  707753   670391.   745115.
+## 5 No pobres          Hombre  46.2    0.459    0.466 8055786  7856474.  8255098.
+## 6 No pobres          Mujer   53.8    0.534    0.541 9364509  9094186.  9634832.
+</code></pre></div><p>¡Presentemos sólo lo que nos interesa! Las frecuencias de cada categoría de pobreza agrupando por sexo</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pobreza_sexo <span style="color:#f92672">&lt;-</span> casen_regional <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Creamos un objeto llamado pobreza_reg con datos de casen_regional</span>
+  <span style="color:#a6e22e">group_by</span>(sexo, pobreza) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Agrupamos por region y pobreza</span>
+  <span style="color:#a6e22e">summarise</span>(prop <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_prop</span>(vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm <span style="color:#f92672">=</span> T), <span style="color:#75715e">#Calculamos las proporciones con intervalos de confianza</span>
+            total <span style="color:#f92672">=</span> <span style="color:#a6e22e">survey_total</span>(vartype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ci&#34;</span>, na.rm<span style="color:#f92672">=</span>T)) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Así como el total por categoría</span>
+  <span style="color:#a6e22e">mutate</span>(per <span style="color:#f92672">=</span> prop<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>) <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e">#Multiplicamos las proporciones *100 para obtener porcentajes</span>
+  <span style="color:#a6e22e">ungroup</span>() <span style="color:#75715e">#desagrupamos</span>
+
+<span style="color:#75715e"># ¡Extraigamos los valores que nos interesan!</span>
+
+pobreza_sexo_p <span style="color:#f92672">&lt;-</span> pobreza_sexo <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(sexo <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;Hombre&#39;</span>, <span style="color:#e6db74">&#39;Mujer&#39;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), <span style="color:#75715e">#Dejamos en el orden deseado y rellenamos con 0 </span>
+         <span style="color:#e6db74">&#39;Pobres extremos&#39;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(.$per[1], .$per[4], <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), <span style="color:#75715e"># Seleccionamos los valores que nos interesan y rellenamos con 0 </span>
+         <span style="color:#e6db74">&#39;Pobres no extremos&#39;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(.$per[2], .$per[5], <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), <span style="color:#75715e"># Seleccionamos los valores que nos interesan y rellenamos con 0 </span>
+         <span style="color:#e6db74">&#39;No pobres&#39;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(.$per[3], .$per[6], <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e"># Seleccionamos los valores que nos interesan y rellenamos con 0 </span>
+  <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(pobreza, <span style="color:#a6e22e">starts_with</span>(<span style="color:#e6db74">&#39;prop&#39;</span>), <span style="color:#a6e22e">starts_with</span>(<span style="color:#e6db74">&#39;total&#39;</span>), per)) <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e">#Seleccionamos sólo las variables que nos interesan</span>
+  <span style="color:#a6e22e">filter</span>(sexo <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#75715e"># Filtramos todas las filas con 0 de relleno</span>
+
+<span style="color:#a6e22e">head</span>(pobreza_sexo_p)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 2 x 4
+##   sexo   `Pobres extremos` `Pobres no extremos` `No pobres`
+##   &lt;chr&gt;              &lt;dbl&gt;                &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Hombre              4.19                 6.36        89.4
+## 2 Mujer               4.31                 6.72        89.0
+</code></pre></div><h2 id="5-resumen">5. Resumen</h2>
+<p>¡Y eso es todo! En este práctico aprendimos a:</p>
+<ol>
+<li>Crear un objeto encuesta</li>
+<li>Realizar cálculos de medias a nivel poblacional para variables continuas</li>
+<li>Realizar cálculos de proporciones y cantidades a nivel poblacional para variables categóricas</li>
+<li>Crear una tabla ancha (wide) para presentar nuestros cálculos.</li>
+</ol>
+<h2 id="6-reporte-de-progreso">6. Reporte de progreso</h2>
+<p>¡Recuerda rellenar tu <a href="https://learn-r.formr.org/" target="_blank" rel="noopener">reporte de progreso</a>. En tu correo electrónico está disponible el código mediante al cuál debes acceder para actualizar tu estado de avance del curso.</p>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/example/11-practico/" rel="next">Calidad de modelos y otras técnicas de estimación</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/example/07-practico/" rel="prev">Análisis descriptivo univariado</a>
+  </div>
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on September 16, 2021</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis avanzado de datos 2 (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

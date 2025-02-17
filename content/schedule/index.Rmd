@@ -1,0 +1,19 @@
+---
+title: "Calendario"
+slug: schedule
+---
+
+- [**Clases**](/content/) (<i class="fas fa-book-reader"></i>): Esta página contiene las presentaciones, sesiones grabadas y lecturas correspondientes al tema.
+
+- [**Prácticos**](/example/) (<i class="fas fa-laptop-code"></i>): Esta página contiene los ejercicios prácticos asociados a cada sesión de clase. Podrás encontrar tanto el código de R cómo, en algunos casos, los videos grabados del *live coding*. Esta página será **muy importante** para la entrega de las tareas. 
+
+- [**Tareas**](/assignment/) (<i class="fas fa-pencil-ruler"></i>): Esta página contiene las instrucciones para cada tarea. **Las tareas pueden ser entregadas hasta el día viernes a las 23.59 de la semana correspondiente**. 
+
+<div class="ical">
+Puedes suscribir la **planificación** del curso con la URL del calendario en Outlook, Google Calendar o Apple Calendar:<br><a class="btn btn-primary" href="https://bit.ly/3AYfLhR" role="button"><i class="far fa-calendar-alt"></i></a> <input id="ics_url" type="text" value="https://bit.ly/3AYfLhR" onclick="this.select()" readonly="readonly" size="60" />
+</div>
+
+`r blogdown::shortcode("schedule")`
+
+<p>Puedes descargar el programa apretando el siguiente botón:
+<a Puedes descargar el programa apretando el siguiente botón class="btn btn-primary" href="../files/Programa Analisis de datos II - 2024.pdf/" role="button"><i class="far fa-file-pdf"></i></a></p>

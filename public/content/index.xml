@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clases, prácticos y materiales | Análisis avanzado de datos 2</title>
+    <link>/content/</link>
+      <atom:link href="/content/index.xml" rel="self" type="application/rss+xml" />
+    <description>Clases, prácticos y materiales</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><lastBuildDate>Mon, 28 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png</url>
+      <title>Clases, prácticos y materiales</title>
+      <link>/content/</link>
+    </image>
+    
+    <item>
+      <title>Tipos de datos en R</title>
+      <link>/content/03-content/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>/content/03-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/03-slides-22.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/03-slides-22.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;data-types-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#data-types&#34; role=&#34;tab&#34; aria-controls=&#34;data-types&#34; aria-selected=&#34;true&#34;&gt;Data types&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;data-structures-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#data-structures&#34; role=&#34;tab&#34; aria-controls=&#34;data-structures&#34; aria-selected=&#34;false&#34;&gt;Data structures&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;data-frames-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#data-frames&#34; role=&#34;tab&#34; aria-controls=&#34;data-frames&#34; aria-selected=&#34;false&#34;&gt;Data frames&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;ejercicios-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#ejercicios&#34; role=&#34;tab&#34; aria-controls=&#34;ejercicios&#34; aria-selected=&#34;false&#34;&gt;Ejercicios&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;data-types&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;data-types-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/03-slides-22.html#data-t&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-structures&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;data-structures-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/03-slides-22.html#data-s&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-frames&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;data-frames-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/03-slides-22.html#df&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ejercicios&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;ejercicios-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/03-slides-22.html#ej&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;material-de-la-clase&#34;&gt;Material de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/03-class/raw/main/03-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;03-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;/example/03-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;materiales-adicionales&#34;&gt;Materiales adicionales&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;i class=&#34;fab fa-youtube&#34;&gt;&lt;/i&gt; Tutoriales, &lt;a href=&#34;https://www.youtube.com/watch?v=UOoMzaWOQJA&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Learn-R”&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/unzipping&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Descomprimir archivos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types-example&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de datos en R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de variables&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fas fa-book&#34;&gt;&lt;/i&gt; Hadley Wickham, &lt;a href=&#34;http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Data Science: How is it Different To Statistics?”&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Calidad de modelos y otras técnicas</title>
+      <link>/content/11-content/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>/content/11-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/11-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/11-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;repaso-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#repaso&#34; role=&#34;tab&#34; aria-controls=&#34;repaso&#34; aria-selected=&#34;true&#34;&gt;Repaso&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;calidad-de-modelos-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#calidad-de-modelos&#34; role=&#34;tab&#34; aria-controls=&#34;calidad-de-modelos&#34; aria-selected=&#34;false&#34;&gt;Calidad de modelos&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;repaso&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;repaso-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/11-slides.html#1&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;calidad-de-modelos&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;calidad-de-modelos-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/11-slides.html#10&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;material-de-la-clase&#34;&gt;Material de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/11-class/raw/main/11-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;11-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;/example/11-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;examen&#34;&gt;Examen&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://learn-r-uah.netlify.app/assignment/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Instrucciones&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;22 de noviembre 23.59 horas&lt;/li&gt;
+&lt;li&gt;Individual y obligatorio&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Regresiones logísticas</title>
+      <link>/content/10-content/</link>
+      <pubDate>Mon, 25 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>/content/10-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/10-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/10-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;repaso-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#repaso&#34; role=&#34;tab&#34; aria-controls=&#34;repaso&#34; aria-selected=&#34;true&#34;&gt;Repaso&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;glm-y-svyglm-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#glm-y-svyglm&#34; role=&#34;tab&#34; aria-controls=&#34;glm-y-svyglm&#34; aria-selected=&#34;false&#34;&gt;glm() y svyglm()&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;extraer-elementos-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#extraer-elementos&#34; role=&#34;tab&#34; aria-controls=&#34;extraer-elementos&#34; aria-selected=&#34;false&#34;&gt;Extraer elementos&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;exponenciación-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#exponenciación&#34; role=&#34;tab&#34; aria-controls=&#34;exponenciación&#34; aria-selected=&#34;false&#34;&gt;Exponenciación&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;repaso&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;repaso-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/10-slides.html#1&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;glm-y-svyglm&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;glm-y-svyglm-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/10-slides.html#10&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;extraer-elementos&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;extraer-elementos-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/10-slides.html#26&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exponenciación&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;exponenciación-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/10-slides.html#26&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://zoom.us/rec/share/H6L3mr-CE-sMeJRQ4CLua3IT95mPl9ougKki3ndIca2s9JpkNQnCmnoYVVbaIKB4.UrcbRJYeE8F3JVM4?startTime=1635190195000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zoom.us/rec/share/83hcyjS5wOZ57QhBGiyCsb8wzakRyw6pAcyW0ZzjuKWCpIsHdU6ZsNp56obYnCgW.GI1qpKtgu7_HnDHo?startTime=1635195951000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video del práctico&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;material-de-la-clase&#34;&gt;Material de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/10.1-class/raw/main/10.1-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;10.1-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/10.2-class/raw/main/10.2-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;10.2-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;/example/10.1-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;/example/10.2-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;tareas&#34;&gt;Tareas&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tarea N°5 (entrega viernes a las 23.59)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bonus (entrega miércoles a las 20.00 horas)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Muestras complejas</title>
+      <link>/content/09-content/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>/content/09-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/09-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/09-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;muestreo-complejo-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#muestreo-complejo&#34; role=&#34;tab&#34; aria-controls=&#34;muestreo-complejo&#34; aria-selected=&#34;true&#34;&gt;Muestreo complejo&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#&#34; role=&#34;tab&#34; aria-controls=&#34;&#34; aria-selected=&#34;false&#34;&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#&#34; role=&#34;tab&#34; aria-controls=&#34;&#34; aria-selected=&#34;false&#34;&gt;&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;muestreo-complejo&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;muestreo-complejo-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/09-slides.html#1&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/09-slides.html#14&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/09-slides.html#29&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://zoom.us/rec/share/JV-ZEsTOB-jU3s3dTEM57WVBqIuveCIm2S2ud3MqNim1pVgiPcijb-sj5UwGUiPg.UjmlJMrkaJaTODNb?startTime=1633375758000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zoom.us/rec/share/qzVDXwHjWaxFNoQ3mRhXQ027sFrpZK3d-LrxC00sHJDmDa2bYohief-RfS-5yRUb.5oAyDL6HfntGFRhe?startTime=1633380893000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video del práctico&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;material-de-la-clase&#34;&gt;Material de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/09-class/raw/main/09-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;09-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/taller_descriptivos/raw/main/taller_descriptivos.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;taller_descriptivos.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;/example/09-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Análisis descriptivo univariado</title>
+      <link>/content/07-content/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>/content/07-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/07-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/07-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;tendencia-central-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tendencia-central&#34; role=&#34;tab&#34; aria-controls=&#34;tendencia-central&#34; aria-selected=&#34;true&#34;&gt;Tendencia central&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;frecuencias-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#frecuencias&#34; role=&#34;tab&#34; aria-controls=&#34;frecuencias&#34; aria-selected=&#34;false&#34;&gt;Frecuencias&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;visualización-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#visualización&#34; role=&#34;tab&#34; aria-controls=&#34;visualización&#34; aria-selected=&#34;false&#34;&gt;Visualización&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;tendencia-central&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;tendencia-central-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/07-slides.html#1&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;frecuencias&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;frecuencias-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/07-slides.html#14&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualización&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;visualización-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/07-slides.html#29&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://zoom.us/rec/share/02wHR4FqFLAKDLVW1M81nhb34IyFL0zcsz46f0QHO4_fo6s7UrZmuozfcz5ZCaV9.J33m_B7mBbvZ3JAy?startTime=1632771055000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://zoom.us/rec/share/02wHR4FqFLAKDLVW1M81nhb34IyFL0zcsz46f0QHO4_fo6s7UrZmuozfcz5ZCaV9.J33m_B7mBbvZ3JAy?startTime=1632771055000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video del práctico - mismo que el de la clase&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;material-de-la-clase&#34;&gt;Material de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/07-class/raw/main/07-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;07-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;/example/07-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/taller_descriptivos/raw/main/taller_descriptivos.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;taller_descriptivos.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;materiales-adicionales&#34;&gt;Materiales adicionales&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tidyr.tidyverse.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tidy Messy data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fab fa-youtube&#34;&gt;&lt;/i&gt; Tutoriales, &lt;a href=&#34;https://www.youtube.com/watch?v=UOoMzaWOQJA&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Learn-R”&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/unzipping&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Descomprimir archivos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types-example&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de datos en R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de variables&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fas fa-book&#34;&gt;&lt;/i&gt; Hadley Wickham, &lt;a href=&#34;https://r4ds.had.co.nz/tidy-data.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Tidy data”&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Análisis descriptivo bivariado</title>
+      <link>/content/08-content/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>/content/08-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/07-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/07-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;tendencia-central-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#tendencia-central&#34; role=&#34;tab&#34; aria-controls=&#34;tendencia-central&#34; aria-selected=&#34;true&#34;&gt;Tendencia central&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;frecuencias-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#frecuencias&#34; role=&#34;tab&#34; aria-controls=&#34;frecuencias&#34; aria-selected=&#34;false&#34;&gt;Frecuencias&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;visualización-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#visualización&#34; role=&#34;tab&#34; aria-controls=&#34;visualización&#34; aria-selected=&#34;false&#34;&gt;Visualización&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;tendencia-central&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;tendencia-central-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/07-slides.html#1&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;frecuencias&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;frecuencias-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/07-slides.html#14&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualización&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;visualización-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/07-slides.html#29&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://zoom.us/rec/share/02wHR4FqFLAKDLVW1M81nhb34IyFL0zcsz46f0QHO4_fo6s7UrZmuozfcz5ZCaV9.J33m_B7mBbvZ3JAy?startTime=1632771055000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://zoom.us/rec/share/02wHR4FqFLAKDLVW1M81nhb34IyFL0zcsz46f0QHO4_fo6s7UrZmuozfcz5ZCaV9.J33m_B7mBbvZ3JAy?startTime=1632771055000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video del práctico - mismo que el de la clase&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;material-de-la-clase&#34;&gt;Material de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/08-class/raw/main/08-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;08-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;/example/08-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/taller_descriptivos/raw/main/taller_descriptivos.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;taller_descriptivos.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;materiales-adicionales&#34;&gt;Materiales adicionales&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tidyr.tidyverse.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tidy Messy data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fab fa-youtube&#34;&gt;&lt;/i&gt; Tutoriales, &lt;a href=&#34;https://www.youtube.com/watch?v=UOoMzaWOQJA&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Learn-R”&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/unzipping&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Descomprimir archivos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types-example&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de datos en R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de variables&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fas fa-book&#34;&gt;&lt;/i&gt; Hadley Wickham, &lt;a href=&#34;https://r4ds.had.co.nz/tidy-data.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Tidy data”&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Limpieza de datos</title>
+      <link>/content/05-content/</link>
+      <pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/content/05-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/05-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/05-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;básicos-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#básicos&#34; role=&#34;tab&#34; aria-controls=&#34;básicos&#34; aria-selected=&#34;true&#34;&gt;Básicos&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;procesar-datos-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#procesar-datos&#34; role=&#34;tab&#34; aria-controls=&#34;procesar-datos&#34; aria-selected=&#34;false&#34;&gt;Procesar datos&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;operadores-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#operadores&#34; role=&#34;tab&#34; aria-controls=&#34;operadores&#34; aria-selected=&#34;false&#34;&gt;Operadores&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;seleccionar-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#seleccionar&#34; role=&#34;tab&#34; aria-controls=&#34;seleccionar&#34; aria-selected=&#34;false&#34;&gt;Seleccionar&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;filtrar-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#filtrar&#34; role=&#34;tab&#34; aria-controls=&#34;filtrar&#34; aria-selected=&#34;false&#34;&gt;Filtrar&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;crear-variables-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#crear-variables&#34; role=&#34;tab&#34; aria-controls=&#34;crear-variables&#34; aria-selected=&#34;false&#34;&gt;Crear variables&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;pipe-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#pipe&#34; role=&#34;tab&#34; aria-controls=&#34;pipe&#34; aria-selected=&#34;false&#34;&gt;Pipe&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;básicos&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;básicos-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/05-slides.html#11&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;procesar-datos&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;procesar-datos-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/05-slides.html#14&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;operadores&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;operadores-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/05-slides.html#29&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;seleccionar&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;seleccionar-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/05-slides.html#35&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;filtrar&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;filtrar-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/05-slides.html#45&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;crear-variables&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;crear-variables-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/05-slides.html#52&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pipe&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;pipe-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/05-slides.html#55&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zoom.us/rec/share/aOFcfYCGklH3cO41xd-WeFzC5oLS72a61wec84SYdTdDTiP-aGjV4rRWWWOj3mcj.1tjrSMe4RddJNO9i?startTime=1630364611000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;material-de-la-clase&#34;&gt;Material de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/learn-R/05-class/raw/main/05-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;05-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;-&lt;a href=&#34;https://drive.google.com/drive/folders/1Orgb3Qb9LcjTfjYMdIdy7SWd3xDMrTbG?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-&lt;Datos para la clase&#34;&gt;&lt;/i&gt; &lt;code&gt;datos&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/example/05-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;materiales-adicionales&#34;&gt;Materiales adicionales&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;i class=&#34;fab fa-youtube&#34;&gt;&lt;/i&gt; Tutoriales, &lt;a href=&#34;https://www.youtube.com/watch?v=UOoMzaWOQJA&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Learn-R”&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/unzipping&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Descomprimir archivos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types-example&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de datos en R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de variables&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fas fa-book&#34;&gt;&lt;/i&gt; Hadley Wickham, &lt;a href=&#34;http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Data Science: How is it Different To Statistics?”&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Transformación de variales</title>
+      <link>/content/06-content/</link>
+      <pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/content/06-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/06-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/06-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;básicos-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#básicos&#34; role=&#34;tab&#34; aria-controls=&#34;básicos&#34; aria-selected=&#34;true&#34;&gt;Básicos&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;procesar-datos-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#procesar-datos&#34; role=&#34;tab&#34; aria-controls=&#34;procesar-datos&#34; aria-selected=&#34;false&#34;&gt;Procesar datos&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;operadores-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#operadores&#34; role=&#34;tab&#34; aria-controls=&#34;operadores&#34; aria-selected=&#34;false&#34;&gt;Operadores&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;seleccionar-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#seleccionar&#34; role=&#34;tab&#34; aria-controls=&#34;seleccionar&#34; aria-selected=&#34;false&#34;&gt;Seleccionar&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;filtrar-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#filtrar&#34; role=&#34;tab&#34; aria-controls=&#34;filtrar&#34; aria-selected=&#34;false&#34;&gt;Filtrar&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;crear-variables-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#crear-variables&#34; role=&#34;tab&#34; aria-controls=&#34;crear-variables&#34; aria-selected=&#34;false&#34;&gt;Crear variables&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;pipe-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#pipe&#34; role=&#34;tab&#34; aria-controls=&#34;pipe&#34; aria-selected=&#34;false&#34;&gt;Pipe&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;básicos&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;básicos-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/06-slides.html#11&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;procesar-datos&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;procesar-datos-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/06-slides.html#14&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;operadores&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;operadores-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/06-slides.html#29&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;seleccionar&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;seleccionar-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/06-slides.html#35&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;filtrar&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;filtrar-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/06-slides.html#45&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;crear-variables&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;crear-variables-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/06-slides.html#52&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pipe&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;pipe-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/06-slides.html#55&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zoom.us/rec/share/aOFcfYCGklH3cO41xd-WeFzC5oLS72a61wec84SYdTdDTiP-aGjV4rRWWWOj3mcj.1tjrSMe4RddJNO9i?startTime=1630364611000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;material-de-la-clase&#34;&gt;Material de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/06-class/raw/main/06-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;06-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;/example/06-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;materiales-adicionales&#34;&gt;Materiales adicionales&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;i class=&#34;fab fa-youtube&#34;&gt;&lt;/i&gt; Tutoriales, &lt;a href=&#34;https://www.youtube.com/watch?v=UOoMzaWOQJA&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Learn-R”&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/unzipping&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Descomprimir archivos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types-example&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de datos en R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de variables&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fas fa-book&#34;&gt;&lt;/i&gt; Hadley Wickham, &lt;a href=&#34;http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Data Science: How is it Different To Statistics?”&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Importar y explorar datos</title>
+      <link>/content/04-content/</link>
+      <pubDate>Mon, 23 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/content/04-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/03-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/03-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;importar-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#importar&#34; role=&#34;tab&#34; aria-controls=&#34;importar&#34; aria-selected=&#34;true&#34;&gt;Importar&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;validar-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#validar&#34; role=&#34;tab&#34; aria-controls=&#34;validar&#34; aria-selected=&#34;false&#34;&gt;Validar&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;seleccionar-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#seleccionar&#34; role=&#34;tab&#34; aria-controls=&#34;seleccionar&#34; aria-selected=&#34;false&#34;&gt;Seleccionar&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;exportar-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#exportar&#34; role=&#34;tab&#34; aria-controls=&#34;exportar&#34; aria-selected=&#34;false&#34;&gt;Exportar&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;importar&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;importar-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/04-slides.html#import&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;validar&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;validar-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/04-slides.html#renv&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;seleccionar&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;seleccionar-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/04-slides.html#rcom&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exportar&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;exportar-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/04-slides.html#exp&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zoom.us/rec/share/aKaz3bmSVg5iE7Sn8qeDVTrj3zoK_7HBkvMB46hhuH5C0trYK_V6YXqxbRwdpEMu.Y17bJ5f4XEiDn2qT?startTime=1629756672000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;material-de-la-clase&#34;&gt;Material de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/learn-R/04-class/raw/main/04-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;04-clase.zip&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;-&lt;a href=&#34;https://drive.google.com/drive/folders/1Orgb3Qb9LcjTfjYMdIdy7SWd3xDMrTbG?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-&lt;Datos para la clase&#34;&gt;&lt;/i&gt; &lt;code&gt;datos&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/example/04-practico/&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;materiales-adicionales&#34;&gt;Materiales adicionales&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class=&#34;fab fa-youtube&#34;&gt;&lt;/i&gt; Tutoriales, &lt;a href=&#34;https://www.youtube.com/watch?v=UOoMzaWOQJA&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Learn-R”&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/unzipping&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Descomprimir archivos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types-example&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de datos en R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/r-data-types&#34;&gt;&lt;i class=&#34;fas fa-file-o&#34;&gt;&lt;/i&gt; Tipos de variables&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class=&#34;fas fa-book&#34;&gt;&lt;/i&gt; Hadley Wickham, &lt;a href=&#34;http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Data Science: How is it Different To Statistics?”&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Actividad con décimas&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Herramientas para el uso de R</title>
+      <link>/content/02-content/</link>
+      <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/content/02-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/02-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/02-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;introducción-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#introducción&#34; role=&#34;tab&#34; aria-controls=&#34;introducción&#34; aria-selected=&#34;true&#34;&gt;Introducción&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;rstudio-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#rstudio&#34; role=&#34;tab&#34; aria-controls=&#34;rstudio&#34; aria-selected=&#34;false&#34;&gt;RStudio&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;rscript-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#rscript&#34; role=&#34;tab&#34; aria-controls=&#34;rscript&#34; aria-selected=&#34;false&#34;&gt;RScript&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;paso-1-cargar-paquetes-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#paso-1-cargar-paquetes&#34; role=&#34;tab&#34; aria-controls=&#34;paso-1-cargar-paquetes&#34; aria-selected=&#34;false&#34;&gt;Paso 1: Cargar paquetes&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;rmarkdown-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#rmarkdown&#34; role=&#34;tab&#34; aria-controls=&#34;rmarkdown&#34; aria-selected=&#34;false&#34;&gt;RMarkdown&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;introducción&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;introducción-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/02-slides.html#1&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rstudio&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;rstudio-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/02-slides.html#4&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rscript&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;rscript-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/02-slides.html#21&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;paso-1-cargar-paquetes&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;paso-1-cargar-paquetes-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/02-slides.html#29&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rmarkdown&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;rmarkdown-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/02-slides.html#44&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zoom.us/rec/share/ng-5McE6dA8_cjBGouCZcEArBoP4IYUKuO3LYOdQqKmUoYuICw_cT4ENUCEEPaOZ.i-kqnRNBvpqj-U_I?startTime=1629145685000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;materiales-de-la-clase&#34;&gt;Materiales de la clase&lt;/h1&gt;
+&lt;h2 id=&#34;rprojects&#34;&gt;Rprojects&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/02-class/raw/main/02-clase.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;02-class.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://learn-r-uah.netlify.app/example/02-practico/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico N°2&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;recomendaciones&#34;&gt;Recomendaciones&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class=&#34;fas fa-book&#34;&gt;&lt;/i&gt; Hadley Wickham, &lt;a href=&#34;http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Data Science: How is it Different To Statistics?”&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class=&#34;fab fa-youtube&#34;&gt;&lt;/i&gt; Tutoriales, &lt;a href=&#34;https://www.youtube.com/watch?v=UOoMzaWOQJA&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Learn-R”&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;small&gt;Ver Tutorial N°1 Instalación de softwares&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;small&gt;Ver Tutorial N°2 GitHub y GitHub Class Room&lt;/small&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class=&#34;fas fa-external-link-square-alt&#34;&gt;&lt;/i&gt; &lt;a href=&#34;https://learn-r.formr.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Contestar reporte de registro&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;de-rmarkdown&#34;&gt;De RMarkdown&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://es.r4ds.hadley.nz/r-markdown.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RMarkdown en Ciencia de Datos - Hadley Whickham&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://rmarkdown.rstudio.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R Markdown&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://rmarkdown.rstudio.com/lesson-1.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tutoriales Markdown&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;cheatsheets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Para practicar ir a &lt;a href=&#34;https://www.markdowntutorial.com/es/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tutorial de Markdown&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Herramientas para el uso de R</title>
+      <link>/content/01-content/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/content/01-content/</guid>
+      <description>&lt;h1 id=&#34;slides&#34;&gt;Slides&lt;/h1&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/01-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; Ver las slides en una nueva ventana&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/01-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Descargar las slides en PDF&lt;/a&gt;&lt;/p&gt;
+&lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link active&#34; id=&#34;introducción-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#introducción&#34; role=&#34;tab&#34; aria-controls=&#34;introducción&#34; aria-selected=&#34;true&#34;&gt;Introducción&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;r-enviroment-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#r-enviroment&#34; role=&#34;tab&#34; aria-controls=&#34;r-enviroment&#34; aria-selected=&#34;false&#34;&gt;R enviroment&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;r-consulta-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#r-consulta&#34; role=&#34;tab&#34; aria-controls=&#34;r-consulta&#34; aria-selected=&#34;false&#34;&gt;R consulta&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;r-comunicación-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#r-comunicación&#34; role=&#34;tab&#34; aria-controls=&#34;r-comunicación&#34; aria-selected=&#34;false&#34;&gt;R comunicación&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&#34;nav-item&#34;&gt;
+&lt;a class=&#34;nav-link&#34; id=&#34;detalles-del-curso-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#detalles-del-curso&#34; role=&#34;tab&#34; aria-controls=&#34;detalles-del-curso&#34; aria-selected=&#34;false&#34;&gt;Detalles del curso&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
+&lt;div id=&#34;introducción&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;introducción-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#1&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r-enviroment&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;r-enviroment-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#15&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r-consulta&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;r-consulta-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#27&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r-comunicación&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;r-comunicación-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#37&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;detalles-del-curso&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;detalles-del-curso-tab&#34;&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#54&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;fyi&#34;&gt;
+&lt;strong&gt;¿Cómo ocupar&lt;/strong&gt;: Si presionas &lt;kbd&gt;?&lt;/kbd&gt; (o &lt;kbd&gt;shift&lt;/kbd&gt; + &lt;kbd&gt;/&lt;/kbd&gt;) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+&lt;/div&gt;
+&lt;h1 id=&#34;video-de-la-clase&#34;&gt;Video de la clase&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zoom.us/rec/share/PdLPOrIHkpBVdTkgvXMiOg3qFFleQyGS69Oyw7NscfOm7sp22MOPAuEOzjxr_K95.1FlRHivevPxpmUBc?startTime=1628539312000&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-video&#34;&gt;&lt;/i&gt; &lt;code&gt;Video de la clase&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;materiales-de-la-clase&#34;&gt;Materiales de la clase&lt;/h1&gt;
+&lt;h2 id=&#34;rprojects&#34;&gt;Rprojects&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/learn-R/01-class/raw/main/01-class.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;01-class.zip&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://learn-r-uah.netlify.app/example/01-practico/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt; Práctico&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;recomendaciones&#34;&gt;Recomendaciones&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class=&#34;fas fa-book&#34;&gt;&lt;/i&gt; Hadley Wickham, &lt;a href=&#34;http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Data Science: How is it Different To Statistics?”&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class=&#34;fab fa-youtube&#34;&gt;&lt;/i&gt; Tutoriales, &lt;a href=&#34;https://www.youtube.com/watch?v=UOoMzaWOQJA&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Learn-R”&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;small&gt;Ver Tutorial N°1 Instalación de softwares&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;small&gt;Ver Tutorial N°2 GitHub y GitHub Class Room&lt;/small&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class=&#34;fas fa-external-link-square-alt&#34;&gt;&lt;/i&gt; &lt;a href=&#34;https://learn-r.formr.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Contestar reporte de registro&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

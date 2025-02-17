@@ -1,0 +1,146 @@
+---
+title: "Análisis Factorial Exploratorio II"
+linktitle: "7: Análisis Factorial Exploratorio II"
+date: "2021-08-30"
+menu:
+  example:
+    parent: Ejemplos
+    weight: 7
+type: docs
+toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## 0. Objetivo del práctico
+
+El objetivo de este práctico revisar como realizar un Análisis factorial Exploratorio en R considerando la selección del número de factores, la extracción de factores, la rotación, la selección del modelo final y su interpretación, y el cálculo de puntuaciones factoriales. Este en una continuación del práctico anterior, donde realziamos la gestión de datos y la comprobación de los supuestos del análisis.
+
+
+## 1. Carga y gestión de datos y librerias
+
+Cargamos nuevamente la base de datos de PNUD 2015, que incluye los siguientes ítem. Con estos esperamos revisar si existen estructuras latentes en como las personas evalúan las oportunidades que entrega Chile. Además eliminamos los casos perdidos y atípicos. Para los detalles estas decisiones, revisar el práctico anterior. 
+
+![](https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/05/Practico.png)
+
+Cargamos el paquete "psych" que nos permitirá realizar en análisis factorial exporatorio (AFE), "GPArotation" para poder hacer rotación promax, y "dplyr()" para gestión de datos.
+
+```{r, warning=FALSE,message=FALSE}
+library(psych)
+library(GPArotation)
+library(dplyr)
+```
+
+```{r}
+datosog <- read.csv("https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/data/EDH_2013_csv.csv")
+
+datoslw <- datosog %>%
+  select(cor, salud = P25a,ingr = P25b, trab = P25c,  educ = P25d, vivi = P25e,  segur = P25f, medio = P25g, liber = P25h, proye = P25i) %>%
+  mutate(across(everything(), ~na_if(.x, 9))) %>%
+  mutate(across(everything(), ~na_if(.x, 8))) %>%
+  na.omit()
+
+
+# Tratamiento de casos atípicos
+mean <- colMeans(datoslw[, 2:10], na.rm = TRUE)
+Sx <- cov(datoslw[, 2:10], use = "complete.obs") # matriz de varianza-covarianza
+D2 <- mahalanobis(datoslw[, 2:10], center = mean, cov = Sx)
+datoslw$sigmahala <- (1 - pchisq(D2, df = 9))  # Usando 9 grados de libertad
+
+# Filtrar casos atípicos
+datoslw <- datoslw %>%
+  filter(sigmahala > 0.001) %>%
+  select(-sigmahala)
+
+# Guardar ID para hacer el merge luego con otras variables
+id <- datoslw$cor
+datoslw$cor <- NULL
+```
+
+
+
+## 2. Análisis factorial exploratorio
+
+
+### Gráfico de sedimentación
+El gráfico de sedimentación (scree plot) nos ayuda a decidir cuántos factores mantener en el análisis. Para ello, utilizaremos la función scree() de la librería psych.
+
+El gráfico de sedimentación muestra la proporción de varianza explicada por cada factor en el eje Y y el número de factores en el eje X. Se busca identificar un punto de inflexión en la gráfica, donde la pendiente de la curva se aplana. Este punto indica la cantidad de factores que se deben retener.
+
+```{r}
+scree(datoslw)
+```
+
+### Selección del número de factores
+Para decidir cuántos factores incluir en el análisis factorial, utilizaremos la función fa.parallel() de la librería psych. Esta función utiliza análisis paralelos para determinar cuántos factores se deben retener.
+
+
+```{r}
+set.seed(231) #fijamos semilla para tener resutlados replicables
+nofactor <- fa.parallel(datoslw, fa="fa")
+nofactor$fa.values
+```
+
+En este caso, el análisis paralelo sugiere retener 4 factores.
+
+### Análisis factorial exploratorio con diferentes configuraciones
+Ahora realizaremos el análisis factorial exploratorio utilizando diferentes configuraciones, como el número de factores, rotaciones y correlaciones. Esto nos permitirá comparar y seleccionar el mejor modelo.  
+
+Cuando se trabaja con variables ordinales o categóricas en un análisis factorial exploratorio, es más apropiado utilizar correlaciones policóricas, ya que tienen en cuenta la naturaleza no lineal y discreta de los datos. Dado que nuestras variables tienen 7 categorías probamos ambos tipos de correlaciones para ver el nivel de ajuste. El análisis con correlaciones policóricas explica una mayor proporción de la varianza por lo que se seguirá con estas.
+
+
+```{r}
+# Prueba de Modelos segun parallel 
+fa(datoslw,nfactors=4, fm="minres",rotate="none")
+
+# Prueba con 4 factores y correlación polychoric
+fa(datoslw, nfactors=4, rotate="none", cor = "poly")
+```
+
+La rotación de factores es un paso importante en el AFE, ya que facilita la interpretación de los resultados. La rotación puede ser ortogonal o oblicua. La rotación ortogonal (e.g. varimax) asume que los factores no están correlacionados, mientras que la rotación oblicua (e.g. promax) permite que los factores estén correlacionados.
+
+Para decidir qué rotación utilizar, es útil explorar la correlación entre los factores. Si las correlaciones son bajas (menores a 0.3), la rotación ortogonal es apropiada. Si las correlaciones son altas, se recomienda utilizar la rotación oblicua.
+
+```{r}
+# Prueba con 4 factores y rotación varimax y promax
+fa(datoslw, nfactors=4, rotate="varimax", cor = "poly")
+fa(datoslw, nfactors=4, rotate="promax", cor = "poly")
+
+# Modelo final
+modelofinal <- fa(datoslw, nfactors=4, rotate="promax", cor = "poly")
+```
+
+Después de comparar los resultados, decidimos utilizar un modelo con 4 factores y rotación promax.
+
+# Visualización de resultados
+
+Podemos observar los resultados del análisis con el comando fa.diagram(), que nos muestra las cargas factoriales de los ítems del modelo con cada uno de los factores latentes. 
+
+```{r}
+fa.diagram(modelofinal)
+```
+
+# Cálculo de puntuaciones factoriales
+
+Finalmente, podemos calcular las puntuaciones factoriales para cada individuo en nuestra muestra utilizando la función factor.scores(). Estas puntuaciones pueden ser utilizadas en análisis posteriores o como variables en otros modelos
+
+```{r}
+#Extracción de puntuaciones factoriales
+
+#Extraemos las puntuaciones facotriales del objeto del modelo final
+summary(modelofinal$scores)
+
+#Guardamos los puntajes en la base
+basefinal<-cbind(datoslw,modelofinal$scores )
+
+#Pegamos la variable GSE de la base de datos original
+datosog<- datosog |> filter(datosog$cor%in% id) 
+basefinal<-cbind(basefinal,datosog$GSEo)
+basefinal$gse<-factor(basefinal$`datosog$GSEo`,1:4,labels = c("ABC1"  , "C2" ,  "C3"  ,  "D"))
+
+#Comparamos el
+aggregate(basefinal$MR1,list(basefinal$gse),mean) #Derechos sociales
+aggregate(basefinal$MR2,list(basefinal$gse),mean) #Derechos individuales
+aggregate(basefinal$MR3,list(basefinal$gse),mean) #Jubilación
+aggregate(basefinal$MR4,list(basefinal$gse),mean) #Seguridad
+```

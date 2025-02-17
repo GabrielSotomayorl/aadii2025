@@ -1,0 +1,43 @@
+---
+title: "Análisis Factorial Confirmatorio II"
+linktitle: "9: Análisis Factorial Confirmatorio II"
+date: "2024-08-03"
+start_date: "2024-08-03"
+end_date: "2024-08-03"
+menu:
+  content:
+    parent: Contenido
+    weight: 9
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
+slides: "09-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+slide_details <- tibble::tribble(
+  ~title, ~slide, ~active,
+  "Análisis Factorial Confirmatorio II", "1", TRUE,
+   "", "14", FALSE,
+   "", "29", FALSE
+)
+```
+
+# Slides
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/09-slides.html")
+```
+
+
+
+
+
+
+
+

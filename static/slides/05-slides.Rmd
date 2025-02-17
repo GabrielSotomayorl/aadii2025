@@ -1,0 +1,553 @@
+---
+title: "Análisis de regresión logística"
+author: "Gabriel Sotomayor"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    includes:
+      after_body: "html/insert-logo.html"
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      beforeInit: "libs/macros.js"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+                      fig.retina = 3, fig.align = "center")
+```
+
+```{r packages-data, include=FALSE}
+pacman::p_load(tidyverse, sjPlot, ggsci, wordcloud2)
+theme_set(theme_sjplot2())
+```
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "share_again", "scribble", "frezeeframe", "editable"))
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\">Copiar código</i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\">¡Listo!</i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+
+class: center middle main-title section-title-1 top-logo
+
+
+# Análisis de regresión logística
+
+.class-info[
+<br>
+**Sesión N° 5**<br>
+**Análisis Avanzado de Datos II**
+<br>
+
+.pull-right.small[
+**Profesor** Gabriel Sotomayor López <br>
+
+]
+]
+
+
+
+
+---
+class: title title-inv-1
+
+# Contenidos Sesión N°5
+
+
+.box-2.medium.sp-after-half[**Modelos de probabilidad lineal**]
+
+.box-4.medium.sp-after-half[**Modelo de regresión logística binaria**]
+
+.box-1.medium.sp-after-half[**Odds y odds ratio**]
+
+---
+class: title title-inv-1
+
+# Contenidos Sesión N°5
+
+.box-1.medium.sp-after-half[**Cálculo de modelos e interpretación de coeficientes**]
+
+.box-2.medium.sp-after-half[**Estadísticos de ajuste y selección de modelos**]
+
+
+
+
+---
+
+class: center middle main-title section-title-2 top-logo
+
+# Modelos de probabilidad lineal
+
+---
+
+class: title title-2
+
+# Regresiones para variables dicotómicas
+
+La semana pasada revisamos los modelos de regresión lineal múltiple, que nos permiten analizar la relación de una variable dependiente continua y variables independientes de cualquier nivel de medida. Ahora cabe la pregunta:
+
+
+.box-2.medium.sp-after-half[¿cómo podemos modelar variables dicotómicas?]
+
+---
+class: title title-2
+
+#Modelos de probabilidad lineal
+
+
+<style>
+.left {
+  float: left;
+  width: 50%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.right {
+  float: right;
+  width: 50%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+</style>
+
+<div class="left">
+Una opción son los modelos de probabilidad lineal, los cuales consisten en usar una regresión estimada mediante mínimos cuadrados ordinarios para una variable dicotómica (valores 0 y 1). En estos los valores beta pueden interpretarse como cambios promedio en la probabilidad.
+</div>
+
+<div class="right">
+
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>Statistical models</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Pobreza según sexo JH</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Intercepto</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.08<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Mujer (ref.hombre)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.04<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.00)</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">R<sup>2</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.00</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Adj. R<sup>2</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">0.00</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">62911</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+
+  </ul>
+</div>
+
+---
+
+class: title title-2
+
+# Modelos de probabilidad lineal
+
+A pesar de la simpleza de su interpretación, los modelos de probabilidad lineal cuentan con dos problemas:
+
+.box-2.sma.sp-after-half[1) Pueden entregar variables predichos más allá del rango 0-1 lo cual no tiene sentido en el caso de una probabilidad]
+
+.box-2.sma.sp-after-half[2) No entregan un buen ajuste en términos de cumplimiento de los supuestos del modelo y ajuste a los datos]
+
+
+
+---
+
+class: center middle main-title section-title-4 top-logo
+
+# Modelo de regresión logística binaria
+
+---
+
+class: title title-4
+
+# Regresión logística
+
+Una solución a los problemas anteriormente revisado es utilizar otro tipo de modelo: un modelo de regresión logística binaria. En lugar de modelar la probabilidad directamente, hacemos una transformación la variable dependiente: modelamos el logaritmo de los odds (chances).
+
+.center[![:scale 50%](https://quantifyinghealth.com/wp-content/uploads/2021/05/Logistic-regression-equation.png)]
+
+---
+
+class: title title-4
+
+# Regresión logistica
+
+![:scale 100%](https://www.statdeveloper.com/wp-content/uploads/2020/02/regresion-lineal-vs-regresion-logistica.png)
+
+---
+
+class: center middle main-title section-title-1 top-logo
+
+# Odds y odds ratio
+
+---
+
+class: title title-1
+
+# Concepto de Odds
+
+Los odds (chances) corresponden a la razón entre la probabilidad de que algo ocurra dividio por la probabildiad de que algo no ocurra.
+
+$$Odds = {p\over1-p}$$ 
+Ejemplo en CASEN 2020, odds de ser pobre
+
+Odds pobreza = 0.095/0.905 = 0.105
+
+Es decir, de acuerdo a la CASEN 2020, las chances de ser pobre son de 0.105
+---
+class: title title-1
+
+# Concepto de Odds
+
+Odds de **1** significa que existen chances iguales de la correncia o no ocurrencia de cierto hecho.
+
+Odds **menores de 1** dan cuenta de chances negativas (es más probable que no ocurra a que ocurra)
+
+Odds **mayores a 1** dan cuenta de chances positivas (es más probable que ocurra a que no ocurra)
+
+
+---
+class: title title-1
+
+# Odds de dos grupos
+
+En nuestro ejemplo original queremos ver como cambia la probabilidad de que un hogar este en la pobreza según sexo del jefe de hogar.
+
+$$Odds_{JH- Hombre} = 0.076/0.924=0.08225 $$
+
+$$Odds_{JH- Mujer} = 0.114/0.886=0.1286 $$
+Es decir, existen 8,22 hogares con jefatura masculina en situación de pobreza por cada 100 que no lo están, mientras que 12,86 hogares con jefatura femenina en situación de pobreza por cada 100 que no lo están.
+
+---
+class: title title-1
+
+# Concepto de Odds ratio
+
+Los odds ratio resultan útiles para comparar la asociación entre las chances de dos variables dicotómicas.
+
+OR de pobreza de un hogar con jefatura masculina / OR de pobreza de un hogar con jefatura masculina
+
+$$Odds\: ratio = {{p_{m}(1-p_{m})}\over p_{h}(1-p_{h})}$$ 
+$$= {0.114/0.886 \over 0.076/0.924} = {0.1286\over 0.08225}= 1.564 $$ 
+---
+class: title title-1
+
+# Concepto de Odds ratio
+
+Las chances de un hogar con jefatura femenina de encontrarse esn situación de pobreza son 1,564 veces mayores a las chanches de un hogar con jefatura masculina.
+
+.box-1.sma.sp-after-half[Los odds ratio nos permiten resumir en un número la relación entre dos variables categóricas]
+
+Ahora con estos conceptos en mente pasemos a ver como se ajusta un modelo de regresión logística.
+---
+class: center middle main-title section-title-1 top-logo
+
+# Cálculo de modelos e interpretación de coeficientes
+---
+class: title title-1
+
+# Cálculo de modelo en R: función GLM
+
+Para estimar un modelo de regresión logística binaria en R debemos usar la función glm, incluida en r base
+
+
+```{r, eval=FALSE}
+glm(pobre~as_factor(sexo), 
+    data=base[base$pco1==1,], # filtro por JH
+    family="binomial")
+```
+
+Especificamos la formula igual que en una regresión lineal (la variable dependiente debe estar en formato 0-1). Debemos especificar la familia de modelos (ya que la función glm sirve para calcular distintos tipos de modelos lineales generalizados). 
+---
+
+
+<style>
+.left {
+  float: left;
+  width: 50%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.right {
+  float: right;
+  width: 50%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+</style>
+
+<div class="left">
+Los beta de un modelo de regresión logística están puestos en términos del logaritmo de los odds.   
+
+Es decir, el beta de mujer nos indica que los log-odds de encontrarse en situación de pobreza aumentan en 0.41 en las mujeres en relación a los hombres. 
+</div>
+
+<div class="right">
+
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>Statistical models</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Pobreza según sexo JH</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Intercepto</td>
+<td style="padding-left: 5px;padding-right: 5px;">-2.40<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.02)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Mujer (ref.hombre)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.41<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.03)</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">AIC</td>
+<td style="padding-left: 5px;padding-right: 5px;">41074.58</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">BIC</td>
+<td style="padding-left: 5px;padding-right: 5px;">41092.68</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Log Likelihood</td>
+<td style="padding-left: 5px;padding-right: 5px;">-20535.29</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Deviance</td>
+<td style="padding-left: 5px;padding-right: 5px;">41070.58</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">62911</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+
+  </ul>
+</div>
+---
+class: title title-1
+
+# Interpretación de coeficientes
+
+Para poder realizar una interpretación con sentido de los coeficientes del modelo debemos realizar una transformación, de forma que el beta quede expresado como odds. Para esto debemos hacer una **exponenciación** de los coeficientes.
+
+
+```{r, eval=FALSE}
+exp(0.41)=1.506818
+```
+
+Es decir, los odds (chances) de ser pobre para un hogar con jefatura femenina son 1,506818 veces más que las de uno con jefatura masculina.
+
+---
+class: title title-1
+
+# .small[Modelos con múltiples variables independientes]
+
+
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>Statistical models</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Pobreza según sexo JH</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Intercepto</td>
+<td style="padding-left: 5px;padding-right: 5px;">-1.07 (0.05)<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Mujer (ref.hombre)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.39 (0.03)<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Edad</td>
+<td style="padding-left: 5px;padding-right: 5px;">-0.03 (0.00)<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">AIC</td>
+<td style="padding-left: 5px;padding-right: 5px;">40182.30</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">BIC</td>
+<td style="padding-left: 5px;padding-right: 5px;">40209.45</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Log Likelihood</td>
+<td style="padding-left: 5px;padding-right: 5px;">-20088.15</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Deviance</td>
+<td style="padding-left: 5px;padding-right: 5px;">40176.30</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">62911</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+
+---
+class: title title-1
+
+# .small[Modelos con múltiples variables independientes]
+
+En el caso de un modelo de regresión logística con múltiples predictores o variables independientes la interpretación es similar, pero integrando el concepto de control estadístico.
+
+En este caso podemos decir que los log-odds predichos de encontrarse en situación de pobreza aumentan en 0,39 en los hogares con jefatura femenina respecto aquellos con jefatura masculina **controlando por edad**
+
+En el mismo sentido, los log-odds predichos de ser encontrarse en situación de pobreza disminuyen en 0.03 por cada año más de edad del jefe de hogar, **controlando por sexo**.
+
+---
+class: center middle main-title section-title-2 top-logo
+
+# Estadísticos de ajuste y selección de modelos
+
+---
+
+class: title title-2
+
+# Estadísticos de ajuste
+
+En el caso de los modelos de regresión logística no contamos con una sola medida de ajuste de los modelos y esta suele interpretarse principalmente en términos comparativos.
+
+4 principales aproximaciones
+
+- Devianza
+- Test de Razón de Verosimilitud
+- Pseudo R2s
+- Cirterios de Información (AIC y BIC)
+---
+
+class: title title-2
+
+# Devianza
+
+- La devianza es una medida de ajuste que se utiliza para evaluar la calidad de un modelo de regresión logística binaria. Es la diferencia entre la log-verosimilitud del modelo ajustado y la log-verosimilitud del modelo nulo, multiplicada por -2. Por eso también se conoce como devianza residual.
+
+
+- Formula: **.red[Devianza =-2*log likelihood]**
+
+---
+class: title title-2
+
+# Test de razón de verosimilitud
+
+**Test de razón de verosimilitud:** es un test estadístico utilizado para comparar dos modelos, uno más simple (modelo nulo) y otro más complejo (modelo ajustado). El test de LR se basa en la comparación de la devianza de ambos modelos, y se utiliza para determinar si el modelo ajustado mejora significativamente la predicción en comparación con el modelo nulo.
+
+---
+class: title title-2
+
+# Criterios de información (AIC y BIC)
+
+Criterios de información: son medidas utilizadas para comparar diferentes modelos y seleccionar el modelo más adecuado. Los dos criterios de información más comunes son el Akaike Information Criterion (AIC) y el **Bayesian Information Criterion (BIC)**. Estos criterios toman en cuenta tanto la bondad de ajuste del modelo como la complejidad del modelo. Un modelo con un valor de AIC o BIC más bajo se considera mejor ajustado que un modelo con un valor más alto.  
+
+---
+class: title title-2
+
+# Pseudo R2s
+
+.small[Son medidas de la variabilidad explicada por el modelo. No pueden interpretarse como proporción de la varianza explicada, como en le caso de los modelos con variable dependientes continuas.
+
+Existen varios tipos de PseudoR2, cada uno con una interpretación diferente. Uno de los PseudoR2 más comunes es el McFadden's PseudoR2. Se define como: $1−[LL(LM)/LL(L0)]$, donde
+.small[
+- LL es el log likelihood del modelo
+- LM es el modelo posterior (con más predictores)
+- L0 es el modelo nulo]
+
+Un valor cercano a 1 indica que el modelo explica una gran cantidad de la variabilidad en los datos, mientras que un valor cercano a 0 indica que el modelo no explica mucha variabilidad.]
+
+
+---
+layout: false
+class: center middle main-title section-title-1 top-logo
+
+
+# Análisis de regresión logística
+
+.class-info[
+<br>
+**Sesión N° 5**<br>
+**Análisis Avanzado de Datos II**
+<br>
+
+.pull-right.small[
+**Profesor** Gabriel Sotomayor López <br>
+
+]
+]
+
+

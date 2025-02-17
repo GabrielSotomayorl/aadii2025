@@ -1,0 +1,622 @@
+---
+title: "Análisis avanzado de datos II"
+author: "Gabriel Sotomayor López"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    includes:
+      after_body: "html/insert-logo.html"
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      beforeInit: "libs/macros.js"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+                      fig.retina = 3, fig.align = "center")
+```
+
+```{r packages-data, include=FALSE}
+pacman::p_load(tidyverse, sjPlot, ggsci, wordcloud2)
+theme_set(theme_sjplot2())
+```
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "share_again", "scribble", "frezeeframe"))
+```
+
+layout: false
+class: center middle main-title section-title-inv-2 top-logo
+
+.small[
+# Introducción al curso 
+]
+
+.class-info[
+<br>
+**Sesión N° 1**<br>
+**Análisis avanzado de datos II**
+<br>
+
+.pull-right.small[
+**Profesor** Gabriel Sotomayor López <br>
+**Ayudantes** Anaís Herrera y Nicolás Hernández
+.tiny[Universidad Diego Portales<br>
+]
+]
+
+]
+
+---
+
+name: outline
+class: title title-inv-2
+
+# Contenidos
+
+
+.box-inv-2.medium.sp-after-half[Presentación, resultados de aprendizaje y específicos]
+
+
+
+.box-3.medium.sp-after-half[Contenidos, bibliografía y evaluaciones]
+
+
+
+.box-inv-1.medium.sp-after-half[Ayudantías]
+
+---
+
+name: outline
+class: title title-inv-1
+
+# Contenidos
+
+.box-1.medium.sp-after-half[Página y delegado del curso]
+
+--
+
+.box-inv-1.medium.sp-after-half[Objetivos de la sesión]
+
+--
+
+.box-1.medium.sp-after-half[¿Dónde se sitúa la estadística y el uso de software en el proceso de investigación?]
+
+---
+name: outline
+class: title title-inv-1
+
+# Contenidos
+
+.box-4.medium.sp-after-half[Uso de software en ciencias sociales]
+
+--
+
+.box-5.medium.sp-after-half[¿Qué es R? y Rstudio]
+
+--
+
+.box-inv-1.medium.sp-after-half[Bibliografía y otros recursos para profundizar]
+
+---
+
+name: outline
+class: title title-inv-8
+
+# Introducción
+
+.box-8.small.sp-after-half[
+El curso profundiza las principales técnicas multivariantes, que permiten analizar en forma conjunta la interacción de múltiples factores, lo cual da la posibilidad de estudiar de forma más compleja los problemas sociales. ]
+
+--
+
+.box-inv-4.small.sp-after-half[
+Se enfatiza la comprensión de procedimientos e interpretación de resultados, así como el uso de herramientas computacionales, principalmente en R y RStudio. Se trabajará en la aplicación de los métodos sin necesidad de estudiar en profundidad los fundamentos matemáticos de todos ellos.]
+
+--
+.box-inv-5.small.sp-after-half[
+Al final del curso podrán realizar análisis descriptivo de los datos tanto primarios como secundarios y seleccionar la técnica estadística adecuada a utilizar cuando se tienen datos multivariables.
+]
+
+---
+name: outline
+class: title title-inv-8
+
+# Resultados de aprendizaje
+
+.box-8.small.sp-after-half[Resultado general:]
+
+.box-inv-8.small.sp-after-half[
+- Entregar herramientas al alumno para que pueda abordar el análisis de datos desde la estadística multivariante descriptiva e inferencial, elaborando y probando hipótesis y desarrollando modelos explicativos de determinados fenómenos de estudio. 
+]
+
+---
+name: outline
+class: title title-inv-8
+
+# Resultados de aprendizaje
+
+.box-5.small.sp-after-half[Resultados espedíficos:]
+
+.box-5.small.sp-after-half[
+
+Manejar bases de datos complejas. 
+
+1. Plantear y estructurar adecuadamente un problema de análisis multivariante. 
+2. Identificar el tipo de técnica adecuada, o combinación de ellas, a aplicar en cada situación concreta. 3. Comprender las herramientas utilizada en cada una de las técnicas estudiadas. 
+4. Aprender a utilizar los programas computacionales necesarios para aplicar los distintos modelos estudiados, particularmente R. 
+5. Interpretar los resultados del análisis. 
+6. Redactar correctamente un informe con los resultados del análisis. 
+]
+
+---
+name: outline
+class: title title-inv-8
+
+# Contenidos
+
+| Unidades   | Descripción      
+| ------------- |:-------------:|
+| U1: Análisis de datos | Análisis Univariado y gestión de los datos en R
+|         |Calculo y análisis de deciles de ingreso: Caso Chile – Encuesta CASEN    | 
+| U2: Formas funcionales de los Modelos de Regresión|  Introducción
+|  |Modelo Logarítmico bivariado|
+| | Modelo Logarítmico Multivariado |
+
+---
+name: outline
+class: title title-inv-8
+
+# Contenidos
+
+| Unidades   | Descripción      
+| ---------- |:-------------:|
+| U3: Análisis Factorial Exploratorio | Análisis factorial exploratorio y su aplicación en la investigación sociológica.|
+| |El concepto de varianza y covarianza.|
+| | Diferencias entre el análisis de componente principal y de factor común.|
+| | Supuestos de la técnica.|
+| | La extracción de factores comunes.
+
+---
+name: outline
+class: title title-inv-8
+
+# Contenidos
+
+| Unidades   | Descripción      
+| ---------- |:-------------:|
+| U3: Análisis Factorial Exploratorio | Métodos de extracción de factores, criterios de selección del número de factores y rotación.|
+| | La matriz factorial y su interpretación. Evaluación del modelo factorial y cálculo de puntuaciones factoriales.
+| U4: Análisis Factorial Confirmatorio | Análisis factorial confirmatorio y su aplicación en la investigación sociológica.
+
+---
+name: outline
+class: title title-inv-8
+
+# Contenidos
+
+| Unidades   | Descripción      
+| ---------- |:-------------:|
+| U4: Análisis Factorial Confirmatorio | El análisis confirmatorio frente al análisis exploratorio.|
+| | Supuestos de la técnica.|
+| | Especificación e identificación del modelo. Estimación de parámetros, evaluación del ajuste y reespecificación.|
+| | Fiabilidad y validez de los modelos de medida. Validez convergente y validez discriminante. 
+
+---
+name: outline
+class: title title-inv-8
+
+# Contenidos
+
+| Unidades   | Descripción      
+| ---------- |:-------------:|
+| U4: Análisis Factorial Confirmatorio | Evaluación de la capacidad confirmatoria del modelo.|
+| | Ejemplo de análisis factorial confirmatorio.|
+| U5: Análisis de Sendero| Análisis de sendero y su aplicación en la investigación sociológica. Supuestos de la técnica.|
+| | Especificación del modelo.|
+| | Evaluación del modelo de medición y de la capacidad confirmatoria del modelo. |
+
+---
+name: outline
+class: title title-inv-8
+
+# Contenidos
+
+| Unidades   | Descripción      
+| ---------- |:-------------:|
+| U5: Análisis de Sendero| Ejemplo de análisis de sendero.|
+| U6: Modelos de Ecuaciones estructurales|Análisis de ecuaciones estructurales y su aplicación en la investigación sociológica.
+| | La obtención de un modelo de ecuaciones estructurales: la estructura del modelo. |
+| | Supuestos de la técnica. |
+| | Estimación del modelo empírico. |
+
+---
+name: outline
+class: title title-inv-8
+
+# Contenidos
+
+| Unidades   | Descripción      
+| ---------- |:-------------:|
+| U6: Modelos de Ecuaciones estructurales|Evaluación del modelo.|
+| | Introducción de modificaciones y/o conclusión del análisis. Evaluación de la capacidad confirmatoria del modelo.|
+| | Ejemplos sobre modelamiento de ecuaciones estructurales.|
+
+
+---
+name: outline
+class: title title-inv-8
+
+# Bibliografía
+
+![](https://github.com/Clases-GabrielSotomayor/pruebapagina/raw/master/static/slides/img/01/Imagen1.png)
+
+
+
+---
+name: outline
+class: center middle section-title section-title-8 animated fadeIn
+
+# Evaluaciones
+
+---
+
+name: outline
+class: title title-inv-8
+
+# Evaluaciones
+
+Queda pendiente insertar imagen
+
+---
+name: outline
+class: title title-inv-8
+
+# Ayudantías
+
+.small[
+
+El curso tiene dos ayudantes:
+- Anais Herrera anais.herrera@mail.udp.cl   
+- Nicolás Hernández  nicolas.hernandez_f@mail.udp.cl 
+
+Están disponibles para responder las dudas que puedan tener a lo largo del curso, tanto estadísticas como de uso de software.
+
+Habrá sesiones de ayudantía cada 2 semanas, centradas en la aplicación de las técnicas que revisaremos en R. 
+
+También les acompañarán en la realización de tareas y trabajos de investigación.
+
+]
+
+---
+name: outline
+class: title title-inv-8
+
+# Página del curso
+
+Insertar imagen e hipervínculo
+
+---
+name: outline
+class: title title-inv-8
+
+# Delegado de curso
+
+.box-8.small.sp-after-half[
+Las comunicaciones del curso con el equipo docente para temas colectivos deberán gestionarse de manera centralizada mediante un delegado, especialmente considerando que hay alumnos de distintas generaciones. 
+Esto es particularmente relevante para solicitudes respecto a evaluaciones. 
+]
+---
+name: outline
+class: title title-inv-8
+
+# Objetivos de la sesión
+
+.box-8.medium.sp-after-half[
+- Reflexionar sobre el uso de software estadístico en ciencias sociales.
+
+- Introducir el uso de R y Rstudio para ciencias sociales. 
+
+]
+
+---
+layout: false
+name: ds-ps
+class: center middle section-title section-title-1 animated fadeIn
+
+# ¿Donde se sitúa la estadística y el uso de software en el proceso de investigación?
+
+---
+name: outline
+class: title title-inv-1
+
+Queda pendiente insertar imagen
+
+---
+name: outline
+class: title title-inv-1
+
+# Uso de Software en Ciencias Sociales
+
+.box-inv-2.small.sp-after-half[Progresivamente se ha generalizado el uso de software estadístico en ciencias sociales, abriendo grandes posibilidades de realizar análisis más complejos y facilitando su uso.
+Riesgo de falta de formación estadística y reflexividad (calidad del análisis)
+
+Dos niveles de manejo del software:
+1. Ejecución básica y correcta interpretación de las salidas estadísticas (necesario mínimo para utilizar la herramienta e interpretar otras investigaciones).
+2. Manejo avanzado de software y procedimientos estadísticos. Nivel deseable para un uso reflexivo de las herramientas y lectura crítica de otras investigaciones.
+]
+
+---
+name: ds-ps
+class: title title-1
+
+# ¿Qué software existen y cuál utilizar?
+
+Pendiente img de insertar x2
+
+---
+class: title title-1
+
+# ¿Qué es R?
+
+.box-1[R enviroment características:]
+
+--
+
+.box-inv-1[ R es un software y un lenguaje de programación, ambos de carácter libre, enfocado principalmente en el análisis y visualización de datos. Es desarrollado por The R Foundation for Statistical Computing.]
+
+.box-1[
+Funciona con una lógica de objetos, sobre los que podemos trabajar con operadores y funciones.
+El hecho de que sea un lenguaje de programación nos permite programar funciones, por lo que es posible pasar de ser usuarios a programadores.
+]
+
+---
+class: title title-1
+
+# ¿Qué es R?
+.box-1[
+Instalamos una versión básica y podemos agregar paquetes con nuevas funciones.
+Su interfaz es poco amigable, la solución: R Studio.
+]
+
+imagenes pendientes
+
+---
+name: ds-ps
+class: center middle section-title section-title-1 animated fadeIn
+
+# ¿Porqué aprender y usar R y RSTUDIO?
+
+
+---
+
+class: title title-1
+# ¿Porqué aprender y usar R y RSTUDIO?
+
+.box-1-inv.large[imágenes pendientes]
+
+---
+name: ds-ps
+class: center middle section-title section-title-1 animated fadeIn
+
+# ¿Por qué usar R?
+
+---
+
+class: title title-1
+
+# ¿Por qué usar R?
+
+1. Es libre y gratis.
+2. Por lo anterior ofrece grandes posibilidades de personalización de los análisis y amplitud de herramientas (en actualización).
+3. Amplia y creciente comunidad de usuarios desarrollando funciones y resolviendo problemas en internet (la mayoría en inglés).
+4. Su sintaxis es simple e intuitiva.
+
+
+---
+class: title title-1
+
+# ¿Porqué trabajar con sintaxis?
+
+1. **Replicabilidad**:  Permite a otros entender como construimos nuestros resultados y replicarlos, cada vez más importante en la ciencia.
+2. **Eficiencia**:  En condiciones “reales” de trabajo resulta más eficiente que trabajar con botones (aunque ahora pueda parecer contraintuitivo)
+3. **Control**: Permite tener claridad de todas las etapas de nuestros análisis, cuestión que en otros software son realizadas por defecto.
+(Elousa, 2009 en Boccardo y Ruiz, 2018: 8-9)
+
+---
+class: title title-1
+
+# RStudio
+
+.pull-left.medium[
+Es una interfaz gráfica para R que nos permite tener mejor visualización y control de los procesos que realizamos.]
+
+---
+class: title title-inv-1
+
+# RStudio
+.pull-left.medium[
+Tiene 4 partes principales:
+**Editor de Sintaxis:** formato de block de notas donde podemos construir nuestra sintaxis.]
+
+---
+class: title title-inv-1
+
+# RStudio
+
+.pull-left.medium[
+**Ambiente de trabajo (Environment):**  muestra los objetos que hemos creado (memoria temporal – RAM)]
+
+---
+class: title title-inv-1
+
+# RStudio
+
+.pull-left.medium[
+**Consola de R:** Aquí es donde podemos ver los resultados de nuestros análisis, las operaciones ejecutadas y mensajes de error.]
+
+---
+class: title title-inv-1
+
+# RStudio
+
+.pull-left.medium[
+Panel de visualización: Aquí aparecen los gráficos que ejecutemos, además de tener la pestaña help y nuestro directorio de trabajo.
+]
+
+img pendiente para todas
+---
+class: title title-1
+
+# Instalar R y Rstudio
+
+.pull-middle.small[
+**Instalar R**
+- Podemos encontrar R para Windows, Linux y Mac en https://cloud.r-project.org/ 
+- Debemos descargar el paquete base, luego ejecutar el instalador, e instalarlo según las opciones predeterminadas
+- Podemos encontrar R Studio en su sitio web, y bajar la versión gratis, que contiene todas las funciones [link](https://www.rstudio.com/products/rstudio/download/) 
+- Debemos fijarnos en elegir el sistema operativo correcto.
+- Igualmente lo ejecutamos e instalamos según las opciones predeterminadas
+
+]
+---
+class: title title-inv-1
+
+# El problema de Java x64
+
+
+Para algunos análisis R se basa en Java, el problema es que nuestros computadores suelen instalar de manera automática la versión de 32 bits, porque los navegadores de internet funcionan (o funcionaban) en esta arquitectura, pero nuestro computadores y R funcionan a 64 bits.
+Para resolverlo debemos descargar e instalar la versión offline de 64 bits de Java https://www.java.com/es/download/manual.jsp 
+
+
+imagen pendiente 
+
+---
+class: title title-inv-3
+
+# Programación por objetos y funciones
+
+Tipos de estructuras de datos en R
+Vector (vector): columna o fila de datos de un mismo tipo (una variable individual)
+Listas (list): Nos permiten agrupar objetos de distinto tipo.
+Matrices (matrix): arreglo de dos dimensiones de datos de un mismo tipo (conjunto de variables)
+Data.frame (base de datos): Matriz de datos en el que las columnas tienen asignado nombres, y que permite usar todo tipo de datos.
+
+
+Tipos de variables en R
+Numérico (numeric; números con decimales)
+Números enteros (integer)
+Lógicos: Verdadero o Falso
+Variables cadena o texto (string / character)
+Factores (factor): para variables cualitativas (nominales)
+
+Estructura básica de la sintaxis de R
+
+
+---
+class: title title-inv-3
+
+# ¿Cómo continuar?
+
+
+Dominar R es un camino de mediano plazo y es importante desarrollar habilidad de “hacking”, es decir: estar dispuesto a buscar respuestas de manera autónoma saber donde buscar la información
+utilizar nuevos datos y paquetes por su cuenta
+
+Donde buscar:
+- GOOGLE! (preferentemente en inglés) y youtube
+- Pedir ayuda a otros usuarios
+- Pestaña “help”
+- [RDocumentation](https://www.rdocumentation.org/)
+
+---
+
+class: title title-inv-3
+
+# ¿Cómo continuar?
+
+Donde buscar:
+
+- [Stackoverflow](https://stackoverflow.com/)
+- [Stackexchange](https://stats.stackexchange.com/ ) dudas específicas de análisis de datos
+
+Además hay múltiples recursos web para aprender R de manera profunda y guiada.
+
+Cuestiones importantes que no revisamos: visualización de datos con ggplot2, el tidyverse (paquete dplyr), y profundizar en programación en R (loops y funciones), programación literada (Rmarkdown).
+
+---
+
+layout: true
+class: title title-3
+
+# Bibliografía y otros recursos 
+
+- Boccardo, Giorgio y Ruiz, Felipe. Uso de RStudio para Estadística Univariada en Ciencias Sociales. 
+- Manual de apoyo docente para la asignatura Estadística Descriptiva. Santiago: Departamento de Sociología, Facultad de Ciencias Sociales, Universidad de Chile. 
+- Grolemund, Garrett y Wickham Hadley. R para Ciencia de Datos. https://es.r4ds.hadley.nz/ 
+- Paradis, E. (2003). R para Principiantes. Francia: Institut des Sciences de l’Évolution. Disponible en: https://cran.r-project.org/doc/contrib/rdebuts_es.pdf 
+
+---
+
+layout: true
+class: title title-3
+
+# Bibliografía y otros recursos 
+
+**Sitios web útiles**
+- [Sthda](http://www.sthda.com)
+- Cursos online (inglés)
+- [Especialización en Ciencia de Datos Universidad John Hopkins](https://www.coursera.org/specializations/jhu-data-science) 
+- [Data Camp](https://www.datacamp.com/courses/tech:r)
+
+---
+
+layout: true
+class: title title-3
+
+# Evaluaciones
+
+
+
+| Evaluación    |  Fecha |  Ponderación Nota Final   |
+| ------------- | -----:| -------------------:|
+| Tareas uso de R |   | 30% |
+| Prueba      |   |   35% |
+| Trabajo final       |   | 35% |
+
+
+---
+
+layout: false
+class: center middle main-title section-title-1 top-logo
+
+.small[
+# Introducción al curso 
+]
+
+.class-info[
+<br>
+**Sesión N° 1**<br>
+**Análisis avanzado de datos II**
+<br>
+
+.pull-right.small[
+**Profesor** Gabriel Sotomayor López <br>
+**Ayudantes** Anaís Herrera y Nicolás Hernández
+.tiny[Universidad Diego Portales<br>
+]
+]
+
+]

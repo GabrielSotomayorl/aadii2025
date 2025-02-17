@@ -1,0 +1,114 @@
+---
+title: "Tarea N°5"
+subtitle: "Análisis de Regresión Múltiple en R"
+author: "2021"
+header-includes:
+   - \usepackage{booktabs}
+output:
+  pdf_document
+#  word_document:
+#    reference_docx: mystyle.docx
+params:
+  base: bases/procesadas/Latrille.sav
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="descripción-de-tarea-n5" class="section level2">
+<h2>Descripción de tarea N°5</h2>
+<p>El objetivo de esta tarea consiste en realizar un análisis de regresión lineal y logística utilizando R. Para ello debe utilizar los datos según según sus apellidos <a href="https://github.com/learn-R/www-learn-R-uah/tree/master/content/assignment/05-tarea/bases/originales">(eg. ‘Andrade.sav’) los cuales podrán encontrar en el siguiente repositorio</a>. Estas bases contienen una muestra aleatoria de 1000 casos de la encuesta MOVID-IMPACT (2020) del módulo “Orientaciones del Trabajo”. <br><br></p>
+<p>La pregunta de investigación que buscamos contestar en esta tarea es <strong>“¿Qué factores inciden el cumplimiento de la distancia física para cuidarse del COVID-19?”</strong> a partir de contestar la frecuencia con que se <em>“Evitar reunirse con más de 10 personas en un espacio cerrado”.</em></p>
+<p>Para responder a esta pregunta, nos basamos en la investigación de <em>Gerber et al (2021)</em> que indica que tanto factores psicosociales como sociodemográficos son relevantes para predecir la adherencia a las medidas de cuidado contra el COVID-19. Desde esta investigación, planteamos las siguientes dos hipótesis:</p>
+<ul>
+<li><p><span class="math inline">\(H_1\)</span>: A mayor percepción de riesgo contra el COVID-19, mayor frecuencia de cumplimiento de la distancia física</p></li>
+<li><p><span class="math inline">\(H_2\)</span>: Las personas que trabajan presentan menor posibilidad de mantener distancia física.</p></li>
+<li><p><span class="math inline">\(H_3\)</span>: Las mujeres presentarán mayor frecuencia de mantener distancia física que los hombres</p></li>
+<li><p><span class="math inline">\(H_4\)</span>: Los adultos mayores presentarán mayor frecuencia de mantener distancia física para cuidarse del COVID-19 que los jóvenes.</p></li>
+</ul>
+<p>Considera las siguientes variables:</p>
+<ul>
+<li><p><strong>Mantener distancia física</strong>: Frecuencia semanal a la frase “Evitar reunirse con más de 10 personas en un espacio cerrado” (1= Casi nunca hasta 5= Siempre), nombre a la variable: ‘cuidarse’.</p>
+<ul>
+<li>A partir de esa variable, cree una nueva variable llamada <code>dummy_cuidarse</code> donde quiénes contesten “Frecuentemente”, “Casi siempre” y “Siempre” presentarán la categoría 1, y el resto 0.</li>
+</ul></li>
+<li><p><strong>Percepción de riesgo al COVID-19</strong>: Nivel de acuerdo con la frase “¿Qué tan peligroso cree que es el coronavirus para usted y sus cercanos?” (1=Nada peligroso hasta 5=Muy peligroso), nombre de variable: ‘riesgo’</p></li>
+<li><p><strong>Trabajar</strong>: Con la pregunta “Durante la semana pasada, ¿trabajó al menos una hora, sin considerar los quehaceres domésticos?”. (1=Si 2=No), nombre de variable: ‘trabaja’</p></li>
+<li><p><strong>Edad</strong>: Con la pregunta “¿Cuál es su edad?” se clasificó a “Jóvenes”, “Adultos” y “Adultos mayores” (1=Jóvenes, 2=Adultos, 3= Adultos mayores), nombre de variable: ‘edad’</p></li>
+</ul>
+</div>
+<div id="i.-análisis-de-correlación" class="section level2">
+<h2>I. Análisis de Correlación</h2>
+<p><em>Interpretación del output</em>: ¿Existen asociaciones significativas entre el <em>cumplimiento de las medidas de cuidado</em> y la percepción de riesgo?</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Lleva a cabo un análisis de correlación entre ambas variables [4 puntos]</p></li>
+<li><p>Describe la dirección, fuerza y significancia de la asociación [1 puntos]</p></li>
+</ol>
+<p><em>Formato</em>: Para este punto puede presentar una tabla de correlaciones o gráfico.</p>
+</div>
+<div id="ii.-regresión-lineal-múltiple" class="section level2">
+<h2>II. Regresión Lineal Múltiple</h2>
+<p><em>Interpretación del output</em>: ¿Predicen la percepción de riesgo, el trabajar y la edad, el <em>cumplimiento de las medidas de cuidado</em>? Lleva a cabo los siguientes pasos:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Lleva a cabo un análisis de regresión lineal múltiple definiendo el <em>cumplimiento de las medidas de cuidado</em> como la variable dependiente (Y). Define la percepción de riesgo, el trabajar y la edad (Xs) [1 punto c/u]</li>
+</ol>
+<ul>
+<li>Modelo 1 con percepción de riesgo como continua</li>
+<li>Modelo 2 con percepción de riesgo como ordinal donde “Nada peligroso” sea la categoría de referencia</li>
+</ul>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Representa los modelos en una tabla única con título y columnas en español [6 puntos]</li>
+</ol>
+<ul>
+<li><p>Los modelos deben ser nombrados como “Modelo 1” y “Modelo 2”</p></li>
+<li><p>El nivel de significancia debe estar representado por asteriscos. El intervalo de confianza no debe aparecer</p></li>
+<li><p>La tabla debe contener 3 dígitos</p></li>
+</ul>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><p>Escribe la ecuación de la recta de regresión estimada del <em>modelo 1</em> en formato LateX-Markdown [6 puntos]</p></li>
+<li><p>Interpreta los coeficientes de regresión para el modelo 2 con todas las variables independientes en términos de la dirección y fuerza de la asociación. Describe los efectos aún si los efectos no sean significativos. [3 puntos]</p></li>
+<li><p>Para cada una de las hipótesis planteadas, argumenta si observas evidencia a favor o no en los resultados de tus análisis. Para este punto es necesario que muestres un <em>forest plot</em> del modelo 2 [9 puntos]</p></li>
+</ol>
+<ul>
+<li>Muestre el intercepto, tamaño efecto y valores p, con 3 dígitos</li>
+<li>Título en debido formato</li>
+</ul>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>¿Qué porcentaje de la varianza en la actitud hacia los sindicatos es explicada por el modelo 1 y 2? Reporte, además, el estadístico F[3 puntos]</li>
+</ol>
+<p><em>Formato</em>: puede ir escribiendo los <span class="math inline">\(R^2\)</span> y <span class="math inline">\(F\)</span> con <code>inline code de R</code> o hacer una tabla.</p>
+<ol start="7" style="list-style-type: lower-alpha">
+<li>Utiliza la ecuación estimada para calcular el cumplimiento de las medidas de cuidado <em>esperada</em> para quiénes trabajan y para quienes no lo hacen. Puedes presentar los resultados en una tabla o en un gráfico. [9 puntos]</li>
+</ol>
+<p><em>Formato</em>: en el punto N°1 debe presentar una tabla, una ecuación en formato Markdown y un forest plot.</p>
+<div id="iii.-modelo-logístico" class="section level3">
+<h3>III. Modelo logístico</h3>
+<p><em>Interpretación del output</em>: ¿Predicen la percepción de salarios, la discriminación y el sexo una actitud <strong>favorable</strong> hacia los sindicatos? Lleva a cabo los siguientes pasos:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Construye múltiples modelos logísticos con la variable <em>dummy</em> actitud hacia los sindicatos [1 punto c/u]</li>
+</ol>
+<ul>
+<li>Modelo nulo</li>
+<li>Modelo 3 con edad</li>
+<li>Modelo 4 con trabajo</li>
+<li>Modelo 5 con edad y trabajo</li>
+<li>Modelo 6 con todos los predictores (riesgo en factor)</li>
+<li>Modelo 6 con todos los predictores para nivel polacional</li>
+</ul>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Representa los modelos en una tabla única con coeficientes exponenciados [6 puntos]</p></li>
+<li><p>Interpreta los coeficientes de regresión para el modelo con todas las variables independientes en términos de la dirección y fuerza de la asociación. Describe los efectos aún si los efectos no sean significativos. [6 puntos]</p></li>
+<li><p>Realiza un gráfico de valores predichos con el modelo 6 para el cumplimiento de las medidas de cuidado según edad[9 puntos]</p></li>
+<li><p>Compare la estimación del modelo 6 con R base y modelo 6 utilizando diseño complejo de encuestas. Reporte ambos modelo y reflexione sobre la importancia del uso de ciertos paquetes y argumentos para la estimación de modelos [9 puntos]</p></li>
+</ol>
+<p><em>Formato</em>: en este punto debe presentar una tabla y un margin plot.</p>
+</div>
+</div>
+<div id="formato" class="section level2">
+<h2>Formato</h2>
+<ul>
+<li><p>Todos los reportes deben estar con 3 dígitos (<em>ojo</em> eso no implica que los cálculos estén hechos a tres dígitos)</p></li>
+<li><p>Todo el informe debe reemplazar los puntos decimales por comas, de modo de estar <em>ad hoc</em> a la escritura en español.</p></li>
+<li><p>No deben mostrar explícitamente ningún chunk en el informe generado. Noten que algunos temas en html permiten “esconder” el código, pero mostrarlo si el usuario quiere verlo. Quiénes logren hacer esta modificación en su texto tendrán un bonus de 0,2 décimas.</p></li>
+</ul>
+</div>

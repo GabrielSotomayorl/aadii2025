@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="0. Objetivo del práctico El objetivo del práctico es avanzar en el análisis de los datos a través del uso de estadísticos descriptivos. Para esto ya debemos contar con datos previamente procesados del práctico N°6." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/example/07-practico/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/example/07-practico/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis avanzado de datos 2" />
+  <meta property="og:url" content="/example/07-practico/" />
+  <meta property="og:title" content="Análisis descriptivo univariado | Análisis avanzado de datos 2" />
+  <meta property="og:description" content="0. Objetivo del práctico El objetivo del práctico es avanzar en el análisis de los datos a través del uso de estadísticos descriptivos. Para esto ya debemos contar con datos previamente procesados del práctico N°6." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-09-13T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-09-13T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis avanzado de datos 2" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Análisis descriptivo univariado | Análisis avanzado de datos 2</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/">Información general</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/">Prácticos (códigos de ejemplo)</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" >Datos</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/01-practico/">Ejemplos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/01-practico/">1: R, RStudio y Github</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/02-practico/">2: RMarkdown</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/03-practico/">3: Tipos de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/04-practico/">4: Importar, explorar y exportar datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/05-practico/">5: Limpieza de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/06-practico/">6: Transformar variables</a>
+      </li>
+
+      
+      <li class="active">
+        <a href="/example/07-practico/">7: Análisis descriptivo univariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/08-practico/">8: Análisis descriptivo bivariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/09-practico/">9: Muestras complejas y precisión de inferencia estadística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.1-practico/">10.1: Regresiones lineales</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.2-practico/">10.2: Regresión logística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/11-practico/">11 (BONUS): Calidad de modelos y otras técnicas de estimación</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+        <div class="d-none d-xl-block col-xl-2 docs-toc">
+            <ul class="nav toc-top">
+                <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+            </ul>
+
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#recursos-del-práctico">Recursos del práctico</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-medidas-de-tendencia-central">4.1. Medidas de tendencia central</a>
+      <ul>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#media-recortada">Media recortada</a></li>
+        <li><a href="#mediana">Mediana</a></li>
+      </ul>
+    </li>
+    <li><a href="#un-resumen">Un resumen</a></li>
+    <li><a href="#43-frecuencias">4.3. Frecuencias</a>
+      <ul>
+        <li><a href="#frecuencias-absolutas">Frecuencias absolutas</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+        </div>
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Análisis descriptivo univariado</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        <h1 id="0-objetivo-del-práctico">0. Objetivo del práctico</h1>
+<p>El objetivo del práctico es avanzar en el análisis de los datos a través del uso de <strong>estadísticos descriptivos</strong>. Para esto ya debemos contar con datos previamente <a href="https://learn-r-uah.netlify.app/example/06-practico/" target="_blank" rel="noopener">procesados del práctico N°6</a>. Previo a eso, <strong>siempre es importante</strong> que recordemos en qué parte del proceso estamos</p>
+<p><img src="https://github.com/learn-R/slides/raw/main/img/01/flow-rproject.png" alt=""></p>
+<p>En este práctico veremos tanto la <em>estimación puntual</em> de estadísticos descriptivos, como su <em>visualización</em> para reportes, ya sea a través de tablas o de gráficos.</p>
+<h2 id="recursos-del-práctico">Recursos del práctico</h2>
+<p>En este práctico utilizamos los <strong>datos</strong> procesados <em>CASEN 2020</em>, que proviene de los datos originales de la <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-en-pandemia-2020" target="_blank" rel="noopener"><strong>Encuesta de Caracterización Socioeconómica (CASEN)</strong></a>. Recuerden <em><strong>siempre</strong></em> consultar el <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2020/Libro_de_codigos_Base_de_Datos_Casen_en_Pandemia_2020.pdf" target="_blank" rel="noopener"><strong>libro códigos</strong></a> antes de trabajar datos.</p>
+<h1 id="1-paquetes-a-utilizar">1. Paquetes a utilizar</h1>
+<p>Para este práctico utilizaremos, principalmente, las librerías <code>sjmisc</code> y <code>sjPlot</code>.</p>
+<p><code>sjmisc</code>: esta paquete tiene múltiples funciones, desde la transformación de datos y variables. Este paquete suele complementar a <code>dplyr</code> de <code>tidyverse</code> en sus funciones.</p>
+<p><code>sjPlot</code>: su principal función es la visualización de datos para estadística en ciencias sociales mediante tablas y gráficos.</p>
+<p>Cargaremos los paquetes con <code>pacman</code>, si aún tienes dudas sobre cómo trabajar con <code>pacman</code> puedes <a href="https://learn-r-uah.netlify.app/example/02-practico/#paso-1-instalaci%C3%B3n-de-paquetes" target="_blank" rel="noopener">revisar el práctico 2</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pacman<span style="color:#f92672">::</span><span style="color:#a6e22e">p_load</span>(sjmisc,
+               sjPlot,
+               tidyverse,
+               magrittr)
+</code></pre></div><h1 id="2-importar-datos">2. Importar datos</h1>
+<p>Una vez cargados los paquetes a utilizar, debemos continuar cargar los datos. Como indicamos al inicio, seguiremos utilizando los datos <strong>CASEN</strong> que fueron procesados en el práctico anterior, pero incorporando una nueva variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos_proc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">readRDS</span>(<span style="color:#e6db74">&#34;input/data/datos_proc.rds&#34;</span>)
+</code></pre></div><h1 id="3-explorar-datos">3. Explorar datos</h1>
+<p>Pero ¿cómo sabremos cuales son las nuevas variables que componen la base de datos procesada?, ¡Simple! usaremos dos códigos que vimos en el <a href="https://learn-r-uah.netlify.app/example/04-practico/#2-cargar-base-de-datos" target="_blank" rel="noopener">práctico 4</a> para conocer los <strong>datos procesados</strong> que usaremos en esta ocasión:</p>
+<p>Primero, usaremos el código <code>names</code>, que nos entrega los nombres de las variables que componen los datos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">names</span>(datos_proc)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">##  [1] &#34;folio&#34;           &#34;sexo&#34;            &#34;edad&#34;            &#34;ocupacion&#34;      
+##  [5] &#34;ytoth&#34;           &#34;tot_per&#34;         &#34;ife&#34;             &#34;o2&#34;             
+##  [9] &#34;o3&#34;              &#34;o4&#34;              &#34;o6&#34;              &#34;ife_d&#34;          
+## [13] &#34;sexo_edad_tramo&#34; &#34;ing_pc&#34;
+</code></pre></div><p>Mientras que la función <code>head</code> nos entrega el nombre y las primeras 10 filas que lo componen.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(datos_proc)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 6 x 14
+##         folio sexo   edad ocupacion  ytoth tot_per ife   o2    o3    o4    o6   
+##         &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
+## 1     1.10e11 Masc~    20 No        3.00e6       3 No    No    No    No    No   
+## 2     1.10e11 Feme~    56 No        3.00e6       3 No    No    No    Sí    No   
+## 3     1.10e11 Masc~    77 No        6.10e5       2 No    No    No    Sí    No   
+## 4     1.10e11 Feme~    60 No        6.10e5       2 No    No    No    Sí    No   
+## 5     1.10e11 Masc~    18 No        1.32e6       4 Sí    No    No    No    No   
+## 6     1.10e11 Masc~    82 No        1.11e6       4 No    No    No    Sí    No   
+## # ... with 3 more variables: ife_d &lt;dbl&gt;, sexo_edad_tramo &lt;chr&gt;, ing_pc &lt;dbl&gt;
+</code></pre></div><p>Estos códigos nos permiten establecer una aproximación a los datos con los cuales trabajaremos, como los posibles valores que pueden adoptar, el tipo de dato para cada variable, entre otros. No obstante, por prácticos anteriores sabemos que podemos explorar nuestros datos con <code>sjPlot::view_df()</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sjPlot<span style="color:#f92672">::</span><span style="color:#a6e22e">view_df</span>(datos_proc,
+                encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UTF-8&#34;</span>)
+</code></pre></div><table style="border-collapse:collapse; border:none;">
+<caption>Data frame: datos_proc</caption>
+<tr>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">ID</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Name</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Label</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Values</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Value Labels</th>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">1</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">folio</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">IdentificaciÃ³n hogar (comuna area seg viv hogar)</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: NA-NA</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">sexo</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">Masculino<br>Femenino</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">3</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">edad</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">Edad</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: 15-110</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">4</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">ocupacion</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o1. La semana pasada, Â¿trabajÃ³ al menos una hora?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">SÃ­<br>No</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">5</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">ytoth</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">Ingreso total del hogar</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: 0-92666667</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">6</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">tot_per</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">Total de personas en el hogar</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2"><em>range: 1-6</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">7</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">ife</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">y26d_hog. Ãšltimos 12 meses, Â¿alguien recibiÃ³<br>Ingreso Familiar de Emergencia?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">SÃ­<br>No<br>No sabe</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">8</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o2. Aunque no trabajÃ³ la semana pasada, Â¿realizÃ³<br>alguna actividad?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">SÃ­<br>No</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">9</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">o3</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">o3. Aunque no trabajÃ³, Â¿tenÃ­a algÃºn empleo del<br>cual estuvo ausente temporalmente</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">SÃ­<br>No</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">10</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o4</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o4. Â¿Ha trabajado alguna vez?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">SÃ­<br>No</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">11</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">o6</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">o6. Â¿BuscÃ³ trabajo remunerado o cuenta propia en<br>las Ãºltimas cuatro semanas?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">SÃ­<br>No</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">12</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">ife_d</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2"><em>range: 0-0</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">13</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">sexo_edad_tramo</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">&lt;output omitted&gt;</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">14</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">ing_pc</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2"><em>range: 0.0-18533333.4</em></td>
+</tr>
+</table>
+<h1 id="4-descripción-de-variables">4. Descripción de variables</h1>
+<p>Una vez conocidas las variables que incluye nuestros datos procesados ¿cómo podemos realizar un análisis descriptivo univariado para algún informe o reporte? Veamos algunas de las más comunes</p>
+<h2 id="41-medidas-de-tendencia-central">4.1. Medidas de tendencia central</h2>
+<p>Para conocer las medidas de tendencia central de las variables hay dos opciones. Por una parte, podemos calcular un estadístico directamente a través de código, obteniendo el valor directamente en la consola (o en nuestro .Rmd, si hemos configurado adecuadamente el chunk respectivo). Por otra, podemos generar un código que presente directamente una tabla resumen de los datos.</p>
+<h3 id="media">Media</h3>
+<p>Para conocer la media de una variable se utiliza la función <code>mean()</code>, cuya estructura es:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">mean</span>(datos<span style="color:#f92672">$</span>variable, na.rm<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+</code></pre></div><p>El argumento <code>na.rm=TRUE</code> excluye del cálculo a los casos perdidos. Si deséaramos estimar la media de <code>ing_pc</code>, debemos codificar lo siguiente</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">mean</span>(datos_proc<span style="color:#f92672">$</span>ing_pc, na.rm<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## [1] 270487.2
+</code></pre></div><h3 id="media-recortada">Media recortada</h3>
+<p>Pero, ¿qué pasa si, dada la distribución de los valores de la variable <code>ing_pc</code>, su media se ve fuertemente afectadas por casos atípicos o fuera de rango (por ejemplo, que esta adopte un valor más alto producto de una alta concentración de ingresos)? En tal caso, una buena manera de evitar el efecto de casos influyentes en la estimación pasa por calcular la media recortada, incorporando el argumento <code>trim</code> para excluir al 5% de la muestra en la estimación (es decir, el 2.5% de cada extremo)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">mean</span>(datos_proc<span style="color:#f92672">$</span>ing_pc, na.rm<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>, trim <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.025</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## [1] 240518
+</code></pre></div><p>¿Ven cómo se modifica el valor que obtenemos a partir de esta estimación? La diferencia entre la media y la media recortada al 5% de los ingresos per cápita es de 2.9969194\times 10^{4}.</p>
+<p>Una vez conocemos el valor medio de la variable <code>ing_pc</code>, podemos tener una idea más clara de cómo se caracterizan los ingresos per cápita del país a nivel general entre quienes fueron encuestada/os en CASEN. Sin embargo, hay otros estadísticos que nos permitirán generar una representación más clara de los ingresos de los hogares chilenos ¡vamos a estimar la mediana!</p>
+<h3 id="mediana">Mediana</h3>
+<p>¿Cuál es el ingreso per cápita máximo al que puede acceder el 50% de los hogares chilenos en el momento en que se recolectaron los datos de CASEN 2020? Para el cálculo de la mediana se utiliza la función <code>median()</code>, que presenta una estructura similar a la de <code>mean()</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">median</span>(datos<span style="color:#f92672">$</span>variable, na.rm <span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">median</span>(datos_proc<span style="color:#f92672">$</span>ing_pc, na.rm <span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## [1] 197508
+</code></pre></div><p>Ahora ya sabemos que un 50% de los hogares en Chile tiene un ingreso per cápita de 1.97508\times 10^{5} o menos.</p>
+<p>Ya tenemos los estadísticos principales, pero ¿cómo los reportamos? ¿debemos estimar la media y la mediana de cada todas nuestras variables <em>una por una</em>? <strong>¡No!</strong>, para ello <code>sjmisc</code> tiene diferentes funciones que nos permitirán estimar y presentar gráficamente tales estimaciones, y las conoceremos a continuación:</p>
+<h2 id="un-resumen">Un resumen</h2>
+<p>Por ello ocuparemos la función <code>descr()</code> de <code>sjmisc</code>, que nos presenta un resumen de los estadísticos básicos, incluyendo las etiquetas de cada variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sjmisc<span style="color:#f92672">::</span><span style="color:#a6e22e">descr</span>(datos_proc<span style="color:#f92672">$</span>ing_pc,
+        show <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;all&#34;</span>,
+        out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;viewer&#34;</span>,
+        encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UTF-8&#34;</span>,
+        file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;output/figures/tabla-ingreso.doc&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## ## Basic descriptive statistics
+## 
+##  var    type label     n NA.prc     mean       sd      se     md  trimmed
+##   dd numeric    dd 76935      0 270487.2 339959.2 1225.65 197508 218746.6
+##                      range      iqr  skew
+##  18533333.4 (0-18533333.4) 194679.3 13.49
+</code></pre></div><p><strong>¡Atención!</strong> utilizaremos la función <code>descr()</code> <strong>sólo para variables de clase <code>numeric</code></strong> ¿Qué sentido tiene calcular el promedio de equipos de futbol, o de religiones que existen?</p>
+<p>Como ya adelantamos anteriorme, <code>sjmisc</code> dialoga con el universo <code>tidyverse</code>, por lo cual es posible complementar con funciones como <code>select()</code> de <code>dplyr</code>, seleccionando más de una variable a la vez para nuestras estimaciones de estadísticos de resumen. Además, el argumento <code>file =</code> nos permite <strong>exportar</strong> la tabla de estadísticos que acabamos de generar en formato .doc (¡y otros!).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos_proc <span style="color:#f92672">%&gt;%</span>
+<span style="color:#a6e22e">select</span>(ing_pc, ytoth, tot_per) <span style="color:#f92672">%&gt;%</span> 
+sjmisc<span style="color:#f92672">::</span><span style="color:#a6e22e">descr</span>(
+  show <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;all&#34;</span>,
+  out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;viewer&#34;</span>,
+  encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UTF-8&#34;</span>,
+  file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;output/figures/tabla1.doc&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## ## Basic descriptive statistics
+## 
+##      var    type                         label     n NA.prc      mean
+##   ing_pc numeric                        ing_pc 76935      0 270487.24
+##    ytoth numeric       Ingreso total del hogar 76935      0 841208.14
+##  tot_per numeric Total de personas en el hogar 76935      0      3.32
+##          sd      se     md   trimmed                     range      iqr  skew
+##   339959.20 1225.65 197508 218746.62 18533333.4 (0-18533333.4) 194679.3 13.49
+##  1205921.22 4347.67 600000 664578.15     92666667 (0-92666667) 606322.0 23.32
+##        1.33    0.00      3      3.28                   5 (1-6)      2.0  0.21
+</code></pre></div><p>Como podemos ver, <code>descr()</code> nos presenta diversa información, como el nombre de la variable en <code>var</code>; su tipo en <code>type</code>; su etiqueta en <code>label</code>; los casos válidos en <code>n</code>; el porcentaje de casos perdidos en <code>NA.prc</code>; y las diversas medidas de tendencia central, posición de dispersión para cada una de nuestra variables, como la media y la mediana, los cuartiles, la desviación estándar, y muchas otras.</p>
+<h2 id="43-frecuencias">4.3. Frecuencias</h2>
+<h3 id="frecuencias-absolutas">Frecuencias absolutas</h3>
+<p>Podemos utilizar la función <code>table()</code> del paquete <code>base</code> de R, que presenta la frecuencia absoluta de cada un de los valores que puede alcanzar alguna de nuestras variables categóricas.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">table</span>(datos_proc<span style="color:#f92672">$</span>sexo) 
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## 
+## Masculino  Femenino 
+##     28416     48519
+</code></pre></div><p>También podemos emplear la función <code>flat_table()</code>, que permite agrupar la frecuencia absoluta de las categorías de dos o más de nuestras variables categóricas.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">flat_table</span>(datos_proc, sexo, ocupacion, ife)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">##                     ife    Sí    No No sabe
+## sexo      ocupacion                        
+## Masculino Sí                0     0       0
+##           No            10323 17640     453
+## Femenino  Sí                0     0       0
+##           No            18702 29032     785
+</code></pre></div><p>No obstante, el output de ambas funciones <strong>no se resulta visualmente atractivo</strong> ¿cómo podríamos reportar las frecuencias absolutas (y relativas) en nuestros informes? Si queremos una tabla general usaremos la función <code>frq()</code> de <code>sjmisc</code>, cuyo output es una tabla de frecuencia que presenta. Esta función devuelve una tabla de frecuencias absolutas y relativas para nuestras variables categóricas (<strong>¡genial!</strong>). Además, si nuestros datos son números etiquetados (<code>dbl + lbl</code>), presenta tanto los valores numéricos como las etiquetas asociadas a cada uno de ellos (¡<code>table()</code> sólo presenta los valores numéricos! no incluye metadata en su output)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sjmisc<span style="color:#f92672">::</span><span style="color:#a6e22e">frq</span>(datos_proc<span style="color:#f92672">$</span>sexo,
+        out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;viewer&#34;</span>,
+        title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Frecuencias&#34;</span>,
+        encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UTF-8&#34;</span>,
+        file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;output/figures/tabla2.doc&#34;</span>) 
+</code></pre></div><h1 id="5-visualización">5. Visualización</h1>
+<p>Ahora que ya sabemos cómo obtener todos los estadísticos necesarios para escribir nuestros reportes, viene el segundo paso: <em>visualizar tales estadísticos</em>. ¡Siempre es mejor presentar un buen gráfico, antes de mostrar un número y ya! Para ello, emplearemos la librería <code>sjPlot</code></p>
+<p>Para visualizar las frecuencias usaremos la función <code>plot_frq</code>, que se estructura de la siguiente manera</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_frq</span>(datos,  <span style="color:#75715e">#base</span>
+  <span style="color:#66d9ef">...</span>,          <span style="color:#75715e">#variable</span>
+  title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>,   <span style="color:#75715e"># título</span>
+  type <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;bar&#34;</span>, <span style="color:#e6db74">&#34;dot&#34;</span>, <span style="color:#e6db74">&#34;histogram&#34;</span>, <span style="color:#e6db74">&#34;line&#34;</span>, <span style="color:#e6db74">&#34;density&#34;</span>, <span style="color:#e6db74">&#34;boxplot&#34;</span>, <span style="color:#e6db74">&#34;violin&#34;</span>) <span style="color:#75715e">#tipo de gráfico a especificar </span>
+</code></pre></div><p>Para los gráficos, tenemos los siguientes códigos</p>
+<ol>
+<li>Gráfico de barras de frecuencias simple</li>
+</ol>
+<p>Si quisiéramos presentar gráficos que entreguen la frecuencia de cada categoría de respuesta, podemos presentarla de la siguiente forma:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_frq</span>(datos_proc, sexo,
+          title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gráfico de frecuencias, barras&#34;</span>,
+          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bar&#34;</span>)
+</code></pre></div><p><img src="/example/07-practico_files/figure-html/casen_barras_simple-1.png" width="672" /></p>
+<div class="note">
+<p>Además de la visualización es importante el guardar los datos que se producen y <code>sjPlot</code> tiene su propio código para hacerlo a través de la función <code>save_plot()</code>, su estructura es esta:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">save_plot</span>(<span style="color:#e6db74">&#34;ruta/imagen.jpg&#34;</span>, fig <span style="color:#f92672">=</span> <span style="color:#a6e22e">last_plot</span>())  <span style="color:#75715e">#se deja el formato del archivo (.png, .jpg, .svg o .tif) y la ruta de la carpeta</span>
+</code></pre></div><p>Así guardaríamos el gráfico anterior</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">save_plot</span>(<span style="color:#e6db74">&#34;output/figures/tab.png&#34;</span>, fig <span style="color:#f92672">=</span> <span style="color:#a6e22e">last_plot</span>())
+</code></pre></div>
+</div>
+
+<ol start="2">
+<li>Gráfico de puntos</li>
+</ol>
+<p>¡Podemos presentar un gráfico de puntos!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_frq</span>(datos_proc, sexo,
+          title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gráfico de frecuencias, puntos&#34;</span>,
+          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dot&#34;</span>)
+</code></pre></div><p><img src="/example/07-practico_files/figure-html/casen_puntos_simple-1.png" width="672" /></p>
+<p>También podemos cambiar el orden de los ejes <em>x</em> e <em>y</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_frq</span>(datos_proc<span style="color:#f92672">$</span>sexo_edad_tramo, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dot&#34;</span>, show.ci <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sort.frq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;desc&#34;</span>,
+  coord.flip <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, expand.grid <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, vjust <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bottom&#34;</span>, hjust <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;left&#34;</span>, title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gráfico de frecuencias, puntos cambiado&#34;</span>
+)
+</code></pre></div><p><img src="/example/07-practico_files/figure-html/casen_puntos cambiados-1.png" width="672" /></p>
+<p>Pero, ¿cuál es el argumento que hace esto?</p>
+<p>A la hora de trabajar en R, siempre debemos conocer los argumentos que utilizamos en nuestros códigos, puede que un argumento sea innecesario o esté generando un error, para eso debemos consultar en la sección <strong>Help</strong>. Los pasos son los siguientes:</p>
+<p>a. Escribe en la consola anteponiendo un <code>?</code> en la función que quieres conocer, en este caso será <code>plot_frq?</code>, quedando así:</p>
+<p><img src="https://github.com/learn-R/07-class/raw/main/input/img/image.png" alt=""></p>
+<p>b. Una vez le des a <em>Enter</em>, en la sección <strong>Help</strong> aparecerá información sobre la función, cómo se usa y qué se puede hacer con ella. En <strong>Arguments</strong> explicará la función de cada argumento</p>
+<p><img src="https://github.com/learn-R/07-class/raw/main/input/img/image2.png" alt=""></p>
+<p>¡Ahora podrán definir, con completo conocimiento, cómo están personalizando sus gráficos!</p>
+<ol start="3">
+<li>Histogramas</li>
+</ol>
+<p>Otra función que podemos hacer es graficar histogramas. Sin embargo, como ya hemos visto, la variable <code>ing_pc</code> tiene casos fuera de rango que distorsionan la imagen que nos podemos hacer de la distribución de la variable en la muestra. Para solucionar esto, ocuparemos lo aprendido en <a href="https://learn-r-udp.netlify.app/example/03-practico/" target="_blank" rel="noopener">el práctico anterior</a> y filtraremos la variable, eliminando de la presentación los ingresos mayores a <code>$2.000.000</code>, con la función <code>filter</code> de <code>dplyr</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos_proc <span style="color:#f92672">%&gt;%</span>  <span style="color:#a6e22e">filter</span>(ing_pc <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2000000</span>) <span style="color:#f92672">%&gt;%</span> 
+<span style="color:#a6e22e">plot_frq</span>(., ing_pc,
+          title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Histograma&#34;</span>,
+          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;histogram&#34;</span>)
+</code></pre></div><p><img src="/example/07-practico_files/figure-html/casen_histograma-1.png" width="672" /></p>
+<ol start="4">
+<li>Densidad</li>
+</ol>
+<p>Ahora que vemos la distribución del histograma ¿cómo podemos graficar su densidad? es muy simple: podemos generar un gráfico de densidad con el siguiente código</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos_proc <span style="color:#f92672">%&gt;%</span>  <span style="color:#a6e22e">filter</span>(ing_pc <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2000000</span>) <span style="color:#f92672">%&gt;%</span>
+<span style="color:#a6e22e">plot_frq</span>(., ing_pc,
+          title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gráfico de densidad&#34;</span>,
+          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;density&#34;</span>)
+</code></pre></div><p><img src="/example/07-practico_files/figure-html/casen_densidad-1.png" width="672" /></p>
+<ol start="5">
+<li>Gráfico de líneas</li>
+</ol>
+<p>¿Que pasa si me piden un gráfico de lineas?, también hay una función para eso. En esta ocasión queremos graficar la variable <code>ife</code>, para lo que usaremos este código:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot_frq</span>(datos_proc, tot_per,
+          title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gráfico de líneas&#34;</span>,
+          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;line&#34;</span>)
+</code></pre></div><p><img src="/example/07-practico_files/figure-html/casen_lineas-1.png" width="672" /></p>
+<ol start="6">
+<li>Gráfico de cajas</li>
+</ol>
+<p>Para graficar algunas medidas de posición de una variable y, en específico, los cuartiles de esta, podemos elaborar un gráfico de cajas, para lo cual usaremos este código:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos_proc <span style="color:#f92672">%&gt;%</span>  <span style="color:#a6e22e">filter</span>(ing_pc <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2000000</span>) <span style="color:#f92672">%&gt;%</span>
+<span style="color:#a6e22e">plot_frq</span>(., ing_pc,
+          title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gráfico de caja&#34;</span>,
+          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;boxplot&#34;</span>)
+</code></pre></div><p><img src="/example/07-practico_files/figure-html/casen box-1.png" width="672" /></p>
+<ol start="7">
+<li>Gráfico de violín</li>
+</ol>
+<p>Finalmente, si queremos presentar gráficos de violín, usamos este código</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos_proc <span style="color:#f92672">%&gt;%</span>  <span style="color:#a6e22e">filter</span>(ing_pc <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2000000</span>) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">plot_frq</span>(., ing_pc,
+          title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gráfico de violín&#34;</span>,
+          type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;violin&#34;</span>)
+</code></pre></div><p><img src="/example/07-practico_files/figure-html/casen violin-1.png" width="672" /></p>
+<p>Como pueden ver, el único argumento que se modificaba era <code>type = </code>: es decir, para hacer diversos gráficos, sólo se debe especificar el tipo de gráfico que queremos, y luego personalizarlo según nuestro requerimientos, especificando el resto de argumentos.</p>
+<h1 id="6-resumen-del-práctico">6. Resumen del práctico</h1>
+<p>¡Eso es todo por este práctico! Hoy aprendimos a:</p>
+<ul>
+<li>Estimar estadísticos de medidas de tendencia central, posición y dispersión para variables cuantitativas</li>
+<li>Calcular las frecuencias absolutas y relativas para cada una de las categorías de respuesta con variables cualitativas</li>
+<li>Presentar ambas estimaciones</li>
+<li>Generar y personalizar gráficos descriptivos univariados para variables categóricas y continuas</li>
+</ul>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/example/09-practico/" rel="next">Muestras complejas y precisión de inferencia estadística</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/example/08-practico/" rel="prev">Análisis descriptivo bivariado</a>
+  </div>
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on September 13, 2021</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis avanzado de datos 2 (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

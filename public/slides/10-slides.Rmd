@@ -1,0 +1,636 @@
+---
+title: "Análisis de datos estadísticos en R"
+author: "Valentina Andrade"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    includes:
+      after_body: "html/insert-logo.html"
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      beforeInit: "libs/macros.js"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r packages-data, include=FALSE}
+pacman::p_load(tidyverse, sjPlot, ggsci, wordcloud2)
+theme_set(theme_sjplot2())
+
+```
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "share_again", "scribble", "frezeeframe", "editable", "progress_bar"))
+
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+```
+
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\">Copiar código</i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\">¡Listo!</i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, eval = F, 
+                      fig.retina = 3, fig.align = "center")
+```
+
+class: center middle main-title section-title-5 top-logo
+
+.small[
+# Regresión Lineal y Logística
+]
+
+.class-info[
+<br>
+**Sesión N° 10**<br>
+**Análisis de datos estadísticos en R**
+<br>
+
+.pull-right.small[
+**Profesora** Valentina Andrade de la Horra <br>
+**Ayudantes** Dafne Jaime y Nicolás Godoy
+.tiny[Universidad Alberto Hurtado<br>
+]
+]
+
+]
+
+---
+class: title title-inv-5
+
+# Contenidos Sesión 10
+
+--
+
+.box-1.small.sp-after-half[**Construcción modelo regresión lineal con lm**]
+
+--
+
+.box-2.small.sp-after-half[**Modelamiento con srvyr y glm**]
+
+--
+
+.box-3.small.sp-after-half[**Predictores categóricos**]
+
+.box-3.small.sp-after-half[**Transformaciones funcionales**]
+
+--
+
+.box-4.small.sp-after-half[**Modelamiento con srvyr y glm**]
+
+.box-4.mediumsp-after-half[**Modelos logísticos**]
+
+
+---
+class: title title-inv-5
+
+# En el práctico...
+
+
+.box-7.small.sp-after-half[**Representación gráfica**]
+
+--
+.box-7.tiny.sp-after-half[*Tablas*]
+
+.box-7.tiny.sp-after-half[*Gráficos*]
+
+---
+class: center middle main-title section-title-1 top-logo
+name: basics
+
+# Modelo de regresión lineal
+---
+class: title title-1
+
+# Modelo de regresión lineal
+
+- Herramienta de análisis poderosa en ciencias sociales
+
+--
+
+- Permite generalizar relaciones entre variables 
+
+-- 
+
+|  | $Y$ | $X$ |
+|---|---|---|
+|  | Explicada | Explicativa |
+|  | Dependiente | Independiente |
+|  | Respuesta | Control |
+|  | Predicha | Predictora |
+|  | Regresando | Regresor |
+
+---
+class: title title-1
+
+# Modelo de regresión lineal
+
+**Algunas propiedades básicas y clave**
+
+1. $Y$ de carácter continuo
+
+2. $X_i$ relación lineal con $Y$ (*Supuesto N°2 Teorema Gauss Markow*)
+
+3. Muestreo aleatorio para recolección de datos
+
+- Otros: *colinealidad imperfecta, homocedasticidad, esperanza condicional de residuos cero, i.i.d*. 
+
+---
+class: title title-1
+
+# RLM en R con lm()
+
+- `lm()` es del paquete base
+.can-edit[
+```{r, eval = FALSE}
+
+lm(formula = , #<<
+   data = ,
+   weights = )
+
+```
+]
+
+- Por lo general, **crearemos objetos** para luego manipularlos
+
+```{r, eval = FALSE}
+
+modelo1 <- lm(formula = , #<<
+   data = ,
+   weights = )
+
+```
+
+---
+class: title title-1
+
+# RLM en R con lm()
+
+**Modelo sin predictores**
+```{r, eval = F}
+modelo1 <- lm(y ~ 1, #<<
+   data = datos,
+   weights = ponderador)
+```
+
+--
+**Modelo simple**
+```{r, eval = F}
+modelo1 <- lm(y ~ x1, #<<
+   data = datos,
+   weights = ponderador)
+```
+
+--
+
+**Modelo multiple**
+```{r, eval = F}
+modelo1 <- lm(y ~ x1 + x2, #<<
+   data = datos,
+   weights = ponderador)
+```
+
+---
+class: title title-1
+
+# RLM en R con lm()
+
+**Paso a paso**
+
+1. Un buen procesamiento de datos
+
+2. Identificar variable *dependiente* e *independientes*
+
+3. Seguir la formula *y ~ x1 + x2 + ...xk*
+
+4. No olvidar otros objetos *básicos* para construir modelo: base y pesos muestrales (veremos los problemas asociados a no considerarlos)
+
+5. Crear objeto
+
+6. Explorar resultado con `summary(modelo1)`
+
+---
+class: center middle main-title section-title-2 top-logo
+name: basics
+
+# Modelamiento con glm y svyglm
+
+---
+class: center middle main-title section-title-2 top-logo
+
+# ¿ Y no bastaba con eso?
+
+--
+
+No, y ya entenderás la razón
+
+---
+class: title title-2
+
+# RLM en R con glm()
+
+- Muchas veces encontrarás tutoriales donde **no se incorporan los pesos muestrales en los modelos**
+
+- Como sabemos, eso trae errores de estimación y se pasa por alto uno de los supuestos de Gauss Markow y de la FRP (*función de regresión poblacional*)
+
+---
+class: title title-2
+
+# glm() para regresiones lineales
+
+- Un punto antes de revisar la construcción con survey es que podemos construir un modelo lineal (`lm()`) con un modelo lineal generalizado (`glm()`)
+
+- `glm()` nos permite construir distintos tipos de modelos según la distribución que siguen las variables aleatorias
+
+--
+
+- Un ejemplo son las que siguen distribuciones normales-gaussianas (como las lineales que se estiman por OLS) o las binomiales (como las logísticas que se estiman por MV).
+
+---
+class: title title-2
+
+# glm() para regresiones lineales
+
+```{r, eval = F}
+modelo_glm <- glm(y ~ x1 + x2,
+               family = gaussian(link = "identity"), #<<
+               data = datos, weights = peso)
+```
+
+- Si luego comparamos con modelo normal `lm()` notaremos que llegaremos al mismo resultado
+
+---
+class: center middle main-title section-title-2 top-logo
+
+# ¿Y qué tiene que ver todo esto con survey?
+
+--
+
+## ¡Ahora verás!
+---
+class: title title-2
+
+# regresiones lineales con survey::svyglm() 
+
+- El paquete `survey` contiene una función llamada `svyglm`que permite incorporar el diseño de muestreo.
+
+--
+
+- Los pasos adicionales solo implican:
+
+1. Crear objeto de diseño de muestra con `as_survey_design`
+2. Crear objeto de modelo incorporando el diseño de la muestra. **¡La función svyglm() es muy parecida a las que ya vimos**
+
+---
+class: title title-2
+
+# regresiones lineales con survey::svyglm() 
+
+```{r, eval = F}
+# Paso 1:
+diseno_muestra <- as_survey_design(datos, ids = 1, weights = peso)
+#Paso 2:
+modelo_survey <- svyglm(y ~ x1 + x2,
+               family = gaussian(link = "identity"), #<<
+               data = datos, 
+               design = diseno_muestra) #<<
+
+```
+
+¡Notarás que dará el mismo resultado! (*en este caso...*)
+
+---
+class: center middle main-title section-title-2 top-logo
+
+# Pero si todos dan el mismo resultado... ¿por qué no solo ocupar lm()?
+
+.can-edit[]
+
+
+---
+class: center middle main-title section-title-3 top-logo
+name: transform
+
+# Transformaciones funcionales
+
+---
+class: title title-3
+
+# 1. Predictores categóricos
+
+- En R los predictores categóricos pueden estar en clase `character` o `factor`
+
+- Para que la regresión reconozca a estos como predictores categóricos y conserve tanto etiquetas como niveles ocuparemos `forcats::as_factor()` (*es y será un muy buen amigo*)
+
+---
+
+class: title title-3
+
+# 1. Predictores categóricos
+
+- Gracias a este podremos notificar bien *cuál es la **categoría de referencia***. De manera adicional con `rlvl()` podremos re-definir esta categoría.
+
+- **Este procedimiento debe ir si o si en su código de procesamiento**
+
+---
+class: title title-3
+
+# 2. Modelos log y cuadráticos
+
+- Si queremos transformar una variable a logaritmo, al cuadrado, re-escalarla, hacerla **interactuar** etc. **lo *ideal* es que creemos esa nueva variable en el procesamiento.**
+
+--
+
+- Ahora bien, en la realidad, vamos a querer ir testeando/explorando
+
+--
+
+- Una forma "*sencilla*" es introducir esa transformación al argumento de la `formula` de `lm()`
+
+---
+class: title title-3
+
+# 2. Modelos log y cuadráticos
+
+```{r, eval = F}
+# Modelo log-lineal
+modelo_log <- lm(log(y) ~ x1 + x2 , #<<
+              data = datos, weights = fact_cal_esi)
+#Modelo log-cuadratico
+modelo_log_cuadratico <- lm(log(y) ~ x1 + (x1)^2 + x2 , #<<
+                  data = datos, weights = fact_cal_esi)
+
+#Modelo log interaccion
+modelo_log_interaccion <- lm(log(y) ~ x1  + x2 +x1*x2, #<<
+                             data = datos, weights = fact_cal_esi)
+
+```
+
+---
+class: center middle main-title section-title-2 top-logo
+name: basics
+
+# Modelamiento con glm y svyglm
+
+
+---
+class: title title-2
+
+# Regresiones con glm()
+
+- Modelo lineal generalizado (`glm()`)
+
+- `glm()` nos permite construir distintos tipos de modelos según la distribución que siguen las variables aleatorias
+
+--
+
+- Un ejemplo son las que siguen distribuciones normales-gaussianas (como las lineales que se estiman por OLS) o las binomiales (como las logísticas que se estiman por MV).
+
+---
+
+| Family |Default link function | Link options |
+|---|---|---|
+| binomial | link = "logit" | "logit", "probit", "cauchit" |
+| gaussian | link = "identity" | "identity", "log", "inverse" |
+| poisson | link = "log" | "log", "identity", "sqrt" |
+
+---
+class: title title-2
+
+# glm() para regresiones lineales
+
+```{r, eval = F}
+modelo_glm <- glm(y ~ x1 + x2,
+               family = gaussian(link = "identity"), #<<
+               data = datos, weights = peso)
+```
+
+
+# glm() para regresiones **logísticas**
+
+```{r, eval = F}
+modelo_glm <- glm(y ~ x1 + x2,
+               family = binomial(link = "logit"), #<<
+               data = datos, weights = peso)
+```
+
+---
+class: center middle main-title section-title-2 top-logo
+
+# Al igual que como vimos con survey::svyglm()
+
+--
+
+## Se puede aplicar a regresiones logísticas
+
+---
+class: title title-2
+
+# regresiones con survey::svyglm() 
+
+- El paquete `survey` contiene una función llamada `svyglm`que permite incorporar el diseño de muestreo.
+
+--
+
+- Los pasos adicionales solo implican:
+
+1. Crear objeto de diseño de muestra con `as_survey_design`
+2. Crear objeto de modelo incorporando el diseño de la muestra. **¡La función svyglm() es muy parecida a las que ya vimos**
+
+---
+class: title title-2
+
+# regresiones logísticas con survey::svyglm() 
+
+```{r, eval = F}
+# Paso 1:
+diseno_muestra <- as_survey_design(datos, ids = 1, weights = peso)
+#Paso 2:
+modelo_survey <- svyglm(y ~ x1 + x2,
+               family = binomial(link = "logit"), #<<
+               data = datos, 
+               design = diseno_muestra) #<<
+
+```
+
+
+---
+class: center middle main-title section-title-6 top-logo
+name: information
+
+# Obteniendo información sobre mi modelo
+
+---
+class: title title-6
+
+# Un breve resumen
+
+.small[
+|  | Función | Objetivo |
+|---|---|---|
+|  | `summary(modelo)` | Resumen general |
+|  | `modelo$coefficients` | Extraer elemento del objeto (coeficiente en este caso) |
+|  | `modelo5$coefficients[2]` | Extraer coeficiente N°2 de objeto |
+|  | `modelo5$coefficients["x1"]` | Extraer coeficiente "x1" del modelo |
+|  | `str(summary(modelo1))` | Estructura del resultado del modelo |
+|  | `summary(modelo5)$fstatistic` | Estadístico F (podría ser R cuadrado también) |
+|  | `modelo5$fitted.values` | Valores predichos |
+
+]
+---
+class: center middle main-title section-title-6 top-logo
+name: information
+
+# ¿Qué pasa si quiero hacer cálculos en OR?
+
+---
+class: title title-6
+
+# De *log odds* a *OR*
+
+- Debemos recordar que los coeficientes están en *log odds*
+
+- Para obtener los valores en *OR* debo hacer un par de procedimientos.
+
+- Cuando representamos las tablas con `sjPlot` esto es *mucho más fácil*
+
+---
+class: title title-6
+
+# exp() exponenciar
+
+```{r, eval = F }
+
+# OR del coeficiento N°2
+exp(modelo$coefficients[2]) 
+
+
+# Crear OR ----------------------------------------------------------------
+modelo$or <- exp(modelo$coefficients) 
+
+```
+
+- Luego se puede incorporar en tablas hechas en *texreg*
+---
+class: title title-5
+
+.small[
+# Regresiones en R con glm(): Paso a paso**
+
+1. Buen procesamiento de datos
+
+2. Identificar variable *dependiente* e *independientes*
+
+*No olvidar que los predictores categóricos estén bien trabajados*
+
+3. Seguir la formula *y ~ x1 + x2 + ...xk*
+
+4. Indicar familia, datos y pesos muestrales
+
+5. Crear objeto
+
+6. Explorar resultado con `summary(modelo1)`
+
+7. Tabla o gráfico
+]
+
+---
+class: title title-8
+
+# Recursos de la práctica
+
+- Este práctico fue trabajado con datos de [Encuesta Suplementaria de Ingresos](https://www.ine.cl/estadisticas/sociales/ingresos-y-gastos/encuesta-suplementaria-de-ingresos).
+
+- [Manual Metodológico ESI](https://www.ine.cl/docs/default-source/encuesta-suplementaria-de-ingresos/metodologia/documento-metodológico/documento-metodológico-esi-2020.pdf?sfvrsn=a60770bf_4) 
+
+---
+
+layout: false
+class: center section-title section-title-8 animated fadeIn
+
+# En síntesis
+
+.box-1.small.sp-after-half[**Construcción modelo regresión lineal con lm**]
+
+--
+
+.box-2.small.sp-after-half[**Modelamiento con srvyr y glm**]
+
+--
+
+.box-3.small.sp-after-half[**Predictores categóricos**]
+
+.box-3.small.sp-after-half[**Transformaciones funcionales**]
+
+--
+
+.box-4.small.sp-after-half[**Modelamiento con srvyr y glm**]
+
+.box-4.mediumsp-after-half[**Modelos logísticos**]
+
+---
+class: center middle main-title section-title-4 top-logo
+
+# ¡Y a no olvidar el flujo para el análisis!
+
+--
+
+## Nos permite hacernos amigas/os más rápido del programa
+---
+
+.center[
+![:scale 80%](https://github.com/learn-R/slides/raw/main/img/01/flow-rproject.png)]
+
+---
+
+.box-inv-1[¡Ahora si que si! Nos vemos el próximo lunes]
+
+.center[
+![](https://github.com/learn-R/slides/raw/main/img/01/monster-inc-2.gif)]
+---
+layout: false
+class: center middle main-title section-title-5 top-logo
+
+.small[
+# Regresión Lineal y Logística
+]
+
+.class-info[
+<br>
+**Sesión N° 10**<br>
+**Análisis de datos estadísticos en R**
+<br>
+
+.pull-right.small[
+**Profesora** Valentina Andrade de la Horra <br>
+**Ayudantes** Dafne Jaime y Nicolás Godoy
+.tiny[Universidad Alberto Hurtado<br>
+]
+]
+
+]
+
+???
+https://c.tenor.com/7mxJp29REVkAAAAC/scaryfeet-monstersinc.gif

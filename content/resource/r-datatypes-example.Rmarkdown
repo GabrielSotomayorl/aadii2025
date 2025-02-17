@@ -1,0 +1,119 @@
+---
+title: "Tipos de variables y ejemplos"
+author: "Nicolás Godoy y Dafne Jaime"
+date: "8/19/2021"
+menu:
+  resource:
+    parent: Material complementario
+type: docs
+weight: 3
+toc: true
+---
+
+La presente entrada es una traducción del artículo [**Variable types and examples**](https://statsandr.com/blog/variable-types-and-examples/) elaborado por _Antoine Soetewey_ (2019).
+
+Este artículo presenta los diferentes tipos de variables desde un punto de vista estadístico. Para aprender sobre los diferentes tipos de datos en R, revisen [Tipos de datos en R](https://learn-r-udp.netlify.app/resource/r-datatypes/).
+
+# Imágen panorámica 
+
+En estadística, las variables son clasificadas en 4 tipos diferentes: 
+
+```{r, echo = FALSE}
+pacman::p_load(data.tree, DiagrammeR)
+acme <- Node$new("Variable")
+  quali <- acme$AddChild("Cualitativa")
+    nominal <- quali$AddChild("Nominal")
+    ordinal <- quali$AddChild("Ordinal")
+  quanti <- acme$AddChild("Cuantitativa")
+    discr <- quanti$AddChild("Discreta")
+    cont <- quanti$AddChild("Continua")
+    
+SetNodeStyle(acme, style = "filled,rounded", shape = "box", fillcolor = "LightGray", 
+            fontname = "helvetica", tooltip = GetDefaultTooltip)
+plot(acme)
+```
+
+# Cuantitativas
+
+Una variable **cuantitativa** es aquella que refleja una noción de **magnitud**, es decir, cuyos valores posibles son **números**. Así, una variable cuantitativa representa una medida y es numérica. 
+
+Las variables cuantitativas se dividen en dos tipos: **discretas** y **continuas**. La diferencia entre ambas se explicará en las siguientes dos secciones. 
+
+## Discretas
+
+Variables **cuantitativas discretas** son aquellas cuyos valores posibles pueden ser **contabilizados** y tienen un **número finito de posibilidades**. Los valores tienden a ser (aunque no siempre) enteros. Aquí hay algunos ejemplos de variables discretas: 
+
+* Número de hijas/os por familia 
+* Número de estudiantes en una clase
+* Número de ciudadanos/as en un país 
+
+Pese a que pueda tomar un largo tiempo el contar a las y los ciudadanas/os de un gran país, esto es técnicamente factible. Más aún, para todos los ejemplos, el número de posibilidades es **finito**. Cualquiera sea el número de hijas/os en una familia, este nunca será 3.58 o 7.912, de modo que el número de posibilidades es un número finito y, de esa manera, contabilizable. 
+
+## Continuas
+
+Por otra parte, las variables **cuantitativas continuas** son aquellas cuyos valores **no son contabilizables**, teniendo un **número infinito de posibilidades**. Por ejemplo: 
+
+* Edad
+* Peso
+* Altura
+
+Para simplificar, usualmente nos referimos a años, kilogramos (libras) y centímetros (o pies y pulgadas), para edad, peso y altura respectivamente. Sin embargo, una persona de 28 años puede realmenter tener 28 años, 7 meses, 16 días, 3 horas, 4 minutos, 5 segundos, 31 milisegundos, 9 nanosegundos de edad. 
+
+Para todas las mediciones, usualmente nos detenemos en un nivel estándar de granularidad, pero nada (excepto nuestras herramientas medición) nos impide ir más allá, llevándonos a un **número infinito de valores potenciales**. El hecho de que los valores puedan tomar un número infinito de posibilidades lo hace incontabilizable. 
+
+# Cualitativas
+
+En oposición a las variables cuantitativas, las variables **cualitativas** (también referidas como variables categóricas o [factores](link página UDP) en R) son variables que **no son numéricas** y cuyos **valores encajan en categorías**.
+
+En otras palabras, una variable **cualitativa** es aquella que toma como valores modalidades, **categorías** o incluso niveles, en contraste con variables **cuantitativas** que miden una **cantidad** en cada individuo. 
+
+Las variables cualitativas se dividen en dos tipos: **nominales** y **ordinales**.
+
+## Nominales
+
+Una variable **cualitativa nominal** es aquella en que **ordenar** no es posible ni está implicado en los niveles (levels). Por ejemplo, la variable género es nominal porque no hay orden en los niveles femenino/masculino. El color de ojos es otro ejemplo de una variable nominal, pues no hay orden entre ojos azules, cafés o verdes. 
+
+Una variable nominal puede contemplar dos niveles (por ejemplo ¿eres fumador/a? Sí/No, o ¿cuál es tu género? Femenino/Masculina), o un extenso número de niveles (¿cuál es tu licenciatura universitaria? donde cada tipo de licenciatura (sociología, psicología, física, entre otras) constituye un nivel).
+
+## Ordinales
+
+Por otra parte, una variable **cualitativa ordinal** implica un **orden asignado a los niveles**. Por ejemplo, si la gravedad de accidentes de tránsito es medida en una escala como leve, moderada y fatal, esta variable es cualitativa ordinal en tanto hay un claro orden entre los niveles. 
+
+Otro buen ejemplo es la salud, cuyos valores posible son pobre, razonable, buena o excelente. De nuevo, hay un claro orden en estas variables, de modo que la salud en este caso constituye una variable ordinal cualitativa. 
+
+# Transformación de variables 
+
+Hay dos formas principales de transformación de variables:
+
+1. De variable continua a variable discreta 
+1. De variable cuantitativa a variable cualitativa 
+
+## De continua a discreta 
+
+Digamos que estamos interesados/as en edades de bebés. Los datos coleccionados es la edad de los bebés, siendo una variable cuantitativa continua. Sin embargo, trabajaremos sólo con el número de semanas desde el nacimiento, transformando así a la edad en una variable discreta. La variable edad sigue siendo cuantitativa, pero la variable que estamos trabajando (en este caso, el número de semanas desde el nacimiento) es una variable cuantitativa discreta. 
+
+## De cuantitativa a cualitativa 
+
+Digamos que estamos interesadas/os en el Índice de Masa Corporal (IMC). Para esto, las/los investigadoras/os coleccionaron datos sobre altura y peso de individuos, calculando su IMC. El IMC es una variable cuantitativa continua, pero las/los investigadoras/os desean transformarla en una variable cualitativa, categorizando a las personas bajo cierto límite en bajo peso, sobre cierto límite en sobre peso, y al resto como peso normal. El IMC inicial es una variable cuantitativa continua, pero la categorización del IMC la transforma en una variable cualitativa (ordinal), cuyos niveles son bajo peso < normal < sobre peso. 
+
+Lo mismo sucede cuando la edad es transformada en una variable cualitativa ordinal con niveles como menores de edad, adultos y adultos mayores. También suele ser el caso (especialmente en encuestas) cuando la variable salario (cuantitativa continua) es transformada n una variable cualitativa ordinal que contempla diferentes rangos de salarios (por ejemplo, $0 - $100.000, $100.001 - $200.000, etc.)
+
+# Notas adicionales
+
+## Diferentes tipos de variables para diferentes tipos de análisis estadísticos 
+
+La razón por la cual usualmente clasificamos variables en diferentes tipos es que no todos los análisis estadísticos pueden realizar para todos los tipos de variables. Por ejemplo, es imposible calcular una _media_ de la variable "color de cabello", al no poder sumar cabello castaño y cabello rubio. 
+
+Por otra parte, hallar la _moda_ de una variable continua no hace mucho sentido, pues la mayor parte del tiempo no habrá dos valores exactamente iguales, de modo que no existirá moda. Por ejemplo, intentar encontrar la moda de la altura de las y los estudiantes de un curso. Si se tiene suerte, un par de estudiantes medirán lo mismo. No obstante, la mayor parte del tiempo, cada estudiante tendrá un tamaño diferente (especialmente si las alturas han sido medidas en milímetros), de modo que no habrá moda. Para ver que tipo de análisis es posible en cada variable, pueden hacer una revisión más detallada en los artículos "[Descriptive statistics by hand](/blog/descriptive-statistics-by-hand/)" y "[Descriptive statistics in R](/blog/descriptive-statistics-in-r/)".
+
+De forma semejante, algunos tests estadísticos sólo pueden realizarse en cierto tipo de variables, Por ejemplo, una _correlación_ sólo puede calcularse para variables cuantitativas, mientras que un _test Chi-cuadrado de independencia_ se realiza con variables cualitativas, y un test _T-Student_ o _ANOVA_ requiere una combinación de variables cuantitativas y cualitativas. 
+
+## Codificación engañosa de datos 
+
+Por último, pero no menos importante, es usual que en algunos set de datos se empleen números para variables cualitativas. Por ejemplo, un/a investigador/a puede asignar el número "1" a mujer y el número "2" a hombre (o "0" a la respuesta "No" y "1" a la respuesta "Sí). Pese a la clasificación numérica, la variable género sigue siendo una variable cualitativa, y no una discreta, como pareciera. La clasficación numérica sólo es utilizada para facilitar la recolección y tratamiento de datos. Es, de hecho, más sencillo escribir "1" o "2" en lugar de "mujer" y "hombre", disminuyendo la posibilidad de errores de codificación. 
+
+Si te enfrentas a este tipo de configuración, no olvides **transformar** la variable en el tipo correcto antes de realizar análisis estadísticos. Usualmente, un **análisis descriptivo** básico (y el conocimiento sobre las variable que han sido medidas) previo a los análisis estadísticos principales basta para identificar si el tipo de las variables es correcto. 
+
+Gracias por leer. Esperamos que este artículo les ayude a comprender los diferentes tipos de variables. Si desean aprender más sobre los distintos tipos de datos en R, lean la entrada [Tipos de datos en R](https://learn-r-udp.netlify.app/resource/r-datatypes/).
+
+Como siempre, si tienen alguna pregunta o sugerencia relacionada con el tópico cubierto en este artículo, por favor coméntenlo por los canales de comunicación del curso, para que otras/os lectoras/es puedan beneficiarse de la discusión. 

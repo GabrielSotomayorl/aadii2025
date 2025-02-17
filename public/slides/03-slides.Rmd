@@ -1,0 +1,367 @@
+---
+title: "Análisis de datos estadísticos en R"
+author: "Valentina Andrade"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    includes:
+      after_body: "html/insert-logo.html"
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      beforeInit: "libs/macros.js"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+                      fig.retina = 3, fig.align = "center")
+```
+
+```{r packages-data, include=FALSE}
+pacman::p_load(tidyverse, sjPlot, ggsci, wordcloud2)
+theme_set(theme_sjplot2())
+```
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "share_again", "scribble", "frezeeframe", "editable"))
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\">Copiar código</i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\">¡Listo!</i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+
+class: center middle main-title section-title-1 top-logo
+
+.small[
+# Importar y explorar datos
+]
+
+.class-info[
+<br>
+**Sesión N° 4**<br>
+**Análisis de datos estadísticos en R**
+<br>
+
+.pull-right.small[
+**Profesora** Valentina Andrade de la Horra <br>
+**Ayudantes** Dafne Jaime y Nicolás Godoy
+.tiny[Universidad Diego Portales<br>
+]
+]
+
+]
+
+---
+class: title title-inv-1
+
+# Contenidos Sesión N°4
+
+--
+
+.box-2.medium.sp-after-half[**Importar y exportar datos**]
+
+--
+
+.box-3.medium.sp-after-half[**Validación y limpieza datos**]
+
+--
+
+.box-4.medium.sp-after-half[**Selección de variables**]
+
+???
+
+-import
+- valid
+- select
+
+---
+
+.center[
+![:scale 80%](https://github.com/learn-R/slides/raw/main/img/01/flow-rproject.png)]
+
+---
+class: center middle main-title section-title-1 top-logo
+
+.center[
+![](https://c.tenor.com/7mxJp29REVkAAAAC/scaryfeet-monstersinc.gif)
+]
+
+---
+# Orden de un script
+
+
+.center[
+![:scale 80%](https://github.com/learn-R/slides/raw/main/img/02/orden-sintaxis.png)]
+
+---
+class: center middle main-title section-title-2 top-logo
+
+# Paso 1: Cargar paquetes
+
+---
+class: center middle main-title section-title-2 top-logo
+
+# Cargar paquetes
+
+- Este proceso de compone de dos partes esenciales
+
+(1) Instalar paquetes (`ìnstall.packages()`)
+
+(2) Llamar paquetes (`library()`). Veamos su paso a paso
+
+---
+class: title title-2
+
+# Una forma fácil de cargar paquetes: `pacman`
+
+- `pacman` es un paquete que *literalmente* se comió procesos de R `base` y las simplificó en funciones únicas y más intuitivas. 
+
+![:scale 40%](https://github.com/learn-R/slides/raw/main/img/01/pacman.jpg)
+---
+class: title title-2
+
+# `p_load()`
+
+-  Resume las funciones `library()` e `install.packages()`
+  - optimiza esta relación entre ambas pues solo las aplica cuando son necesarias (if `requiere()`), es decir, **¡no te reinicia R si ya está instalada la librería!**
+  
+---
+# Paso 1: Cargar paquetes
+
+```{r}
+pacman::p_load(tidyverse, #<<
+               magrittr,
+               car,
+               sjmisc)
+```
+
+
+
+---
+layout: false
+name: renv
+class: center middle section-title section-title-3 animated fadeIn
+
+# Paso 2: Importar datos
+
+---
+class: title title-3
+
+# Importar datos
+
+.box-inv-3.center[Una vez que hemos decidido qué datos queremos trabajar]
+
+--
+
+.box-inv-3[Un paso evidente es cargar los datos]
+
+--
+
+.box-inv-3[¡Y en R no es la excepción! De hecho, hablamos que R facilita el **almacenaje de datos**]
+
+---
+class: title title-3
+# Consideraciones antes de importar datos 
+
+Para **importar** los datos en R debemos tener en consideración tres cosas:
+
+1. Cómo se llaman los datos (en nuestro caso Casen en Pandemia 2020 STATA)
+
+2. El formato de nuestros datos (en nuestro caso .sav)
+
+3. El lugar de donde están alojados nuestros datos. 
+
+
+---
+class: center middle main-title section-title-3 top-logo
+
+# ¡Vamos a este segundo paso en el script: Cargar datos!
+
+---
+
+# ¿Dónde?
+
+.box-inv-1[[Descargar el zip de la clase N°3 el sitio del curso](https://learn-r-uah.netlify.app/content/03-content/)]
+
+---
+class: title title-4
+
+# 1. Recursos de la clase N°3 y práctica N°3
+
+- Datos: *Encuesta de Caracterización Socioeconómica (CASEN)* (2020).
+
+- Para ello, deben dirigirse al [siguiente enlace](https://drive.google.com/drive/folders/1Orgb3Qb9LcjTfjYMdIdy7SWd3xDMrTbG?usp=sharing) y descargar los zip.
+
+
+- [**Libro de códigos**](http://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2020/Libro_de_codigos_Base_de_Datos_Casen_en_Pandemia_2020.pdf) antes de trabajar una base de datos.
+
+---
+class: title title-4
+
+# Paquetes
+
+1. `pacman`: este facilita y agiliza la lectura de los paquetes a utilizar en R
+
+2. `sjmisc`: explorar datos
+
+3. `tidyverse`: colección de paquetes, del cuál utilizaremos `dplyr` y `haven`
+
+4. `haven`: cargar y exportar bases de datos en formatos .sav y .dta
+
+5. `readxl` y `writexl`: para cargar y exportar bases de datos en formato .xlsx y .xls
+
+6. `dplyr`: nos permite seleccionar variables de un set de datos
+
+---
+class: center middle main-title section-title-3 top-logo
+
+# ¡No fue tan difícil!
+
+--
+
+# Repasemos algunos **elementos**
+
+---
+
+# Consideraciones antes de importar datos 
+
+Para **importar** los datos en R debemos tener en consideración tres cosas:
+
+.can-edit.key-likes[
+1.
+2.
+3.
+]
+
+---
+
+# Tipos de variables
+
+| Clase  | Tipo de variable |
+|---------:|:--------|
+| `numeric` | Cuantitativa |
+| `character` | Categórica |
+| `Logic` |  Lógica (TRUE, FALSE, NA) |
+| `factor` | Categórica con niveles y etiquetas |
+
+--
+
+A repasar con dos materiales complementarios: [Tipos de variables](resources/r-datatypes)  y [Tipos de variables](resources/r-datatypes-example)
+
+---
+layout: false
+class: center section-title section-title-5 animated fadeIn
+
+# En síntesis
+
+
+.box-2.medium.sp-after-half[**Importar y exportar datos**]
+
+--
+
+.box-3.medium.sp-after-half[**Validación y limpieza datos**]
+
+--
+
+.box-4.medium.sp-after-half[**Selección de variables**]
+
+
+---
+class: center middle main-title section-title-4 top-logo
+
+# ¡Y a no olvidar el flujo para el análisis!
+
+--
+
+## Nos permite hacernos amigas/os más rápido del programa
+---
+
+.center[
+![:scale 80%](https://github.com/learn-R/slides/raw/main/img/01/flow-rproject.png)]
+
+---
+layout: false
+
+.box-1[¿Y eso era?]
+
+--
+
+.box-inv-1[¡Antes! **Dos bonus track**]
+
+
+---
+class: title title-8
+
+# Dos bonus track
+
+- ¿Cómo hacer mi propio repositorio en GitHub?
+
+--
+
+- ¡Vamos a verlo!
+
+---
+class: title title-8
+
+# Dos bonus track: cargar datos en url
+
+- ¿Cómo cargar datos desde una **url**?
+  - Seguir los tres pasos para importar datos
+  - Hint: `funcion(url("ruta_web"))`
+  
+--
+
+- Quienes averiguen **como** cargar datos con url tendrán +0.5 décimas para la tarea N°2.
+  - Deben dejar en slack un ejemplo reproducible en el canal `#tareas`
+  - Pueden hacerlo **hasta antes del lunes 30**
+
+---
+
+.box-inv-1[¡Ahora si que si! Nos vemos el próximo **lunes** en la clase N°4]
+
+.box-inv-1.small[**No olvides hacer el práctico antes**]
+
+.center[
+![](https://github.com/learn-R/slides/raw/main/img/01/monster-inc-2.gif)]
+---
+layout: false
+class: center middle main-title section-title-1 top-logo
+
+.small[
+# Importar, validar y explorar datos
+]
+
+.class-info[
+<br>
+**Clase N°3**<br>
+**Análisis de datos estadísticos en R**
+<br>
+
+.pull-right.small[
+**Profesora** Valentina Andrade de la Horra <br>
+**Ayudantes** Dafne Jaime y Nicolás Godoy
+.tiny[Universidad Alberto Hurtado<br>
+]
+]
+
+]

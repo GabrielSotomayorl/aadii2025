@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Markdown es una clase especial de lenguaje que permite darle formato a texto simple. Por ejemplo, poder hacer cursivas, negritas, incorporar links, etc.
+Para que el formato que se le ha dado pueda ser visto, el archivo en Markdown (." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/resource/markdown/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/resource/markdown/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis avanzado de datos 2" />
+  <meta property="og:url" content="/resource/markdown/" />
+  <meta property="og:title" content="¿Qué es Markdown? | Análisis avanzado de datos 2" />
+  <meta property="og:description" content="Markdown es una clase especial de lenguaje que permite darle formato a texto simple. Por ejemplo, poder hacer cursivas, negritas, incorporar links, etc.
+Para que el formato que se le ha dado pueda ser visto, el archivo en Markdown (." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-08-11T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-08-11T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis avanzado de datos 2" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>¿Qué es Markdown? | Análisis avanzado de datos 2</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/resource/">Recursos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/resource/">Recursos adicionales</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/resource/install/">Tutoriales</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/resource/install/">Instalación de R, RStudio y Slack</a>
+      </li>
+
+      
+      <li >
+        <a href="/resource/install-zotero/">Instalación Zotero</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/resource/r-datatypes/">Material complementario</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/resource/r-datatypes/">Tipos de datos en R</a>
+      </li>
+
+      
+      <li class="active">
+        <a href="/resource/markdown/">¿Qué es Markdown?</a>
+      </li>
+
+      
+      <li >
+        <a href="/resource/r-datatypes-example/">Tipos de variables y ejemplos</a>
+      </li>
+
+      
+      <li >
+        <a href="/resource/unzipping/">Descomprimir archivos</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/resource/zotero-rmd/">Talleres</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/resource/zotero-rmd/">Zotero &#43; RMarkdown</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+        <div class="d-none d-xl-block col-xl-2 docs-toc">
+            <ul class="nav toc-top">
+                <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+            </ul>
+
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#formatos-básicos-de-markdown">Formatos básicos de Markdown</a></li>
+    <li><a href="#expresiones-matemáticas">Expresiones matemáticas</a></li>
+    <li><a href="#tablas">Tablas</a></li>
+    <li><a href="#pies-de-página">Pies de página</a></li>
+    <li><a href="#la-cabeza-del-markdown">La &ldquo;cabeza&rdquo; del Markdown</a></li>
+    <li><a href="#otros-recursos-que-te-recomendamos-revisar">Otros recursos que te recomendamos revisar</a></li>
+  </ul>
+</nav>
+
+ 
+        </div>
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>¿Qué es Markdown?</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        <p><a href="https://daringfireball.net/projects/markdown/" target="_blank" rel="noopener">Markdown</a> es una clase especial de lenguaje que permite darle formato a texto simple. Por ejemplo, poder hacer cursivas, negritas, incorporar links, etc.</p>
+<p>Para que el formato que se le ha dado pueda ser visto, el archivo en Markdown (<em>.md</em>) pasa por un convertidor universal llamado <a href="https://pandoc.org/" target="_blank" rel="noopener">pandoc</a>. Este, a diferencia de procesadores como los que ocupa Office no es pagado. Por ello, para no solo para editar tus archivos de texto no necesitarás un software, sino que para crear PDF, archivos .doc (Word), presentación (como las de Power Point) o HTML (para hacer sitios web) es <strong>completamente gratis</strong>. Solo debes encontrar un editor que pueda hacer esto.</p>
+<p>La buena noticia es que ya lo conoces: ¡nuestro amigo RStudio!</p>
+<h2 id="formatos-básicos-de-markdown">Formatos básicos de Markdown</h2>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="21%" />
+<col width="38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Escribe…</th>
+<th>…o…</th>
+<th>…para obtener</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><pre>Algo de texto en el párrafo.<br>
+Más texto
+espacio entre lineas.</pre></td>
+<td></td>
+<td><p>Algo de texto.</p>
+<p>Algo de texto en el párrafo. Siempre utilizando
+espacios para dividir párrafos</p></td>
+</tr>
+<tr class="even">
+<td><code>*Cursivas*</code></td>
+<td><code>_Cursivas_</code></td>
+<td><em>Cursivas</em></td>
+</tr>
+<tr class="odd">
+<td><code>**Negrita**</code></td>
+<td><code>__Negrita__</code></td>
+<td><strong>Negrita</strong></td>
+</tr>
+<tr class="even">
+<td><code># Título 1</code></td>
+<td></td>
+<td><h1 class="smaller-h1">
+Título 1
+</h1></td>
+</tr>
+<tr class="odd">
+<td><code>## Título 2</code></td>
+<td></td>
+<td><h2 class="smaller-h2">
+Título 2
+</h2></td>
+</tr>
+<tr class="even">
+<td><code>### Título 3</code></td>
+<td></td>
+<td><h3 class="smaller-h3">
+Título 3
+</h3></td>
+</tr>
+<tr class="odd">
+<td>(puedes llegar hasta un título N° 6 con <code>######</code>)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>[Link text](http://www.example.com)</code></td>
+<td></td>
+<td><a href="http://www.example.com">Link text</a></td>
+</tr>
+<tr class="odd">
+<td><code>![Image caption](/path/to/image.png)</code></td>
+<td></td>
+<td><img src="/img/mstile-144x144.png" title="fig:" alt="Class logo" /></td>
+</tr>
+<tr class="even">
+<td>`<code>Inline code` with backticks</code></td>
+<td></td>
+<td><code>Inline code</code> with backticks</td>
+</tr>
+<tr class="odd">
+<td><code>&gt; Citas</code></td>
+<td></td>
+<td><blockquote>
+<p>Citas</p>
+</blockquote></td>
+</tr>
+<tr class="even">
+<td><pre>- Cosas en
+- listas
+- desordenadas</pre></td>
+<td><pre>* Cosas en
+* listas
+* desordenadas</pre></td>
+<td><ul>
+<li>Cosas en</li>
+<li>listas</li>
+<li>desordenadas</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><pre>1. Cosas en
+2. listas
+3. ordenadas</pre></td>
+<td><pre>1) Cosas en
+2) listas
+3) ordenadas</pre></td>
+<td><ol style="list-style-type: decimal">
+<li>Cosas en</li>
+<li>listas</li>
+<li>ordenadas</li>
+</ol></td>
+</tr>
+<tr class="even">
+<td><pre>Línea horizontal
+<p>&mdash;</pre></td></p>
+<td><pre>Línea horizontal
+<p>***</pre></td></p>
+<td><p>Línea horizontal</p>
+<hr /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="expresiones-matemáticas">Expresiones matemáticas</h2>
+<p>Markdown también utiliza <em>LaTeX</em> para crear ecuaciones matemáticas (y no nos complica tanto la vida como el editor de Word). Si para tu tesis o un proyecto las utilizas te dejo esta <a href="http://www.malinc.se/math/latex/basiccodeen.php" target="_blank" rel="noopener">guía de comando básicos para crear ecuaciones matemáticas</a>.</p>
+<p>Para introducir una ecuación debes poner los símbolos de peso ($)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">La ecuación cuadratica es la siguiente
+
+$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
+</code></pre></div><p>**Con ello obtendremos: **</p>
+<blockquote>
+<p>La ecuación cuadratica es la siguiente</p>
+<p>$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$</p>
+</blockquote>
+<hr>
+<p>Evidentemente como el símbolo peso sirve para hacer ecuaciones matemáticas, no lo puedes utilizar en un archivo escrito en Markdown para hacer referencia <strong>realmente</strong> al símbolo peso. Para ello, debes escribir el símbolo antecedido con un (<code>\</code>). Así obtendrás una frase escrita como &quot; <code>Te hago la tarea de R por \$100.000.</code> En caso contrario, si pones el símbólo pesos solo y sin <code>\</code> entenderá la oración como una ecuación.</p>
+<h2 id="tablas">Tablas</h2>
+<p>Hacer tablas es muy fácil. Mira el siguiente ejemplo</p>
+<p><strong>Se escribe así</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|   12  |  12  |    12   |    12  |
+|  123  |  123 |   123   |   123  |
+|    1  |    1 |     1   |     1  |
+
+Tabla: Descripción de la tabla
+</code></pre></div><p><strong>…to get…</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Right</th>
+<th style="text-align:left">Left</th>
+<th>Default</th>
+<th style="text-align:center">Center</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">12</td>
+<td style="text-align:left">12</td>
+<td>12</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td style="text-align:right">123</td>
+<td style="text-align:left">123</td>
+<td>123</td>
+<td style="text-align:center">123</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:left">1</td>
+<td>1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Tabla: Descripción de la tabla</p>
+<h2 id="pies-de-página">Pies de página</h2>
+<p>Para hacer pies de página debes saber cuál es su (1) identificador y (2) lo que quieres escribir en el pie de página. El identificador puede ser lo que tu quieras: pueden ser números como <code>[^1]</code>, pero también pueden ser letras.</p>
+<p><strong>Debes escribir…</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Aquí escribo una referencia de mi tesis[^1] y aquí otra más [^note-sobre-marx].
+
+[^1]: Esta es una nota
+
+[^note-sobre-marx]: Marx, lo más genial. 
+
+Y bueno, aquí sigo escribiendo
+</code></pre></div><p><strong>Para obtener</strong></p>
+<blockquote>
+<p>Aquí escribo una referencia de mi tesis<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>  y aquí otra más.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Y bueno, aquí sigo escribiendo</p>
+<hr />
+<div class="footnotes">
+<ol>
+<li id="fn1"><p>Esta es una nota.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Marx, lo más genial.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+</blockquote>
+<h2 id="la-cabeza-del-markdown">La &ldquo;cabeza&rdquo; del Markdown</h2>
+<p>Al inicio del Markdown siempre debemos poner algunas informaciones sobre el documento, por ejemeplo, el título, la fecha, autor, etc. Esta parte del Markdown se llama <a href="https://learn.getgrav.org/16/advanced/yaml" target="_blank" rel="noopener">YAML</a>. Básicamente, con esto establecemos las &ldquo;configuraciones&rdquo; del texto.</p>
+<p>Por ejemplo, si queremos que nuestro archivo esté en PDF, colores, si queremos que incluya bibliografía, entre otros. La &ldquo;cabeza&rdquo; del Markdown o <strong>YAMLS</strong> está dividida del resto del cuerpo del texto al inicio y al final con tres líneas (<code>---</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<span style="color:#f92672">title</span>: <span style="color:#ae81ff">Título de mi tesis</span>
+<span style="color:#f92672">date</span>: <span style="color:#e6db74">&#34;13 de Agosto, 2021&#34;</span>
+<span style="color:#f92672">author</span>: <span style="color:#e6db74">&#34;Estudiante UAH&#34;</span>
+---
+</code></pre></div><p>Debes poner este texto entre comillas. Si quieres ocupar comillas dentro de tu título, puedes utilizar comillas simples (e.g. mi tesis se titula  <code>Mi tesis: la más &quot;genial&quot; de Chile</code>), entonces ponemos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<span style="color:#f92672">title: `Mi tesis</span>: <span style="color:#ae81ff">la más &#34;genial&#34; de Chile`</span>
+---
+</code></pre></div><h2 id="otros-recursos-que-te-recomendamos-revisar">Otros recursos que te recomendamos revisar</h2>
+<p>En estos links podrás encontrar distintos ejemplos para practicar. También si quieres conocer más sobre quién creó esta maravilla, revisa sobre <a href="https://www.youtube.com/watch?v=mT8FJcIx3HI" target="_blank" rel="noopener">Aaron Swartz</a>.</p>
+<ul>
+<li><a href="https://commonmark.org/help/tutorial/" target="_blank" rel="noopener"><strong>CommonMark&rsquo;s Markdown tutorial</strong></a>: A quick interactive Markdown tutorial.</li>
+<li><a href="https://www.markdowntutorial.com/" target="_blank" rel="noopener"><strong>Markdown tutorial</strong></a>: Another interactive tutorial to practice using Markdown.</li>
+<li><a href="http://packetlife.net/media/library/16/Markdown.pdf" target="_blank" rel="noopener"><strong>Markdown cheatsheet</strong></a>: Useful one-page reminder of Markdown syntax.</li>
+<li><a href="http://plain-text.co/" target="_blank" rel="noopener"><strong>The Plain Person’s Guide to Plain Text Social Science</strong></a>: A comprehensive explanation and tutorial about why you should write data-based reports in Markdown.</li>
+</ul>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/resource/zotero-rmd/" rel="next">Zotero &#43; RMarkdown</a>
+  </div>
+  
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on August 11, 2021</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis avanzado de datos 2 (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

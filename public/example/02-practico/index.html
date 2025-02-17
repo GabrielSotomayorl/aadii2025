@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="0. Objetivo del práctico El objetivo de este práctico es crear nuestro primer reporte en RMarkdown y contener en este el primer paso de un código en R: cargar paquetes." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/example/02-practico/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/example/02-practico/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis avanzado de datos 2" />
+  <meta property="og:url" content="/example/02-practico/" />
+  <meta property="og:title" content="RStudio, tidyverse y RMarkdown | Análisis avanzado de datos 2" />
+  <meta property="og:description" content="0. Objetivo del práctico El objetivo de este práctico es crear nuestro primer reporte en RMarkdown y contener en este el primer paso de un código en R: cargar paquetes." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-08-16T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-08-16T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis avanzado de datos 2" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>RStudio, tidyverse y RMarkdown | Análisis avanzado de datos 2</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/">Información general</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/">Prácticos (códigos de ejemplo)</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" >Datos</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/01-practico/">Ejemplos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/01-practico/">1: R, RStudio y Github</a>
+      </li>
+
+      
+      <li class="active">
+        <a href="/example/02-practico/">2: RMarkdown</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/03-practico/">3: Tipos de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/04-practico/">4: Importar, explorar y exportar datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/05-practico/">5: Limpieza de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/06-practico/">6: Transformar variables</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/07-practico/">7: Análisis descriptivo univariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/08-practico/">8: Análisis descriptivo bivariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/09-practico/">9: Muestras complejas y precisión de inferencia estadística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.1-practico/">10.1: Regresiones lineales</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.2-practico/">10.2: Regresión logística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/11-practico/">11 (BONUS): Calidad de modelos y otras técnicas de estimación</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+        <div class="d-none d-xl-block col-xl-2 docs-toc">
+            <ul class="nav toc-top">
+                <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+            </ul>
+
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#materiales-de-la-sesión">Materiales de la sesión</a></li>
+    <li><a href="#1-conceptos-clave">1. Conceptos clave</a></li>
+    <li><a href="#2-paso-a-paso-para-crear-un-rmarkdown">2. Paso a paso para crear un RMarkdown</a>
+      <ul>
+        <li><a href="#paso-1-instalación-de-paquetes">Paso 1: Instalación de paquetes</a></li>
+        <li><a href="#paso-2-crear-un-nuevo-archivo-en-rmarkdown">Paso 2: Crear un nuevo archivo en Rmarkdown</a></li>
+        <li><a href="#paso-3-crear-el-archivo-con-formato-desde-el-rmd">Paso 3: Crear el archivo con formato desde el .Rmd</a></li>
+      </ul>
+    </li>
+    <li><a href="#config">3. Configuraciones del RMarkdown</a>
+      <ul>
+        <li><a href="#31-encabezado-yaml">3.1 Encabezado (YAML)</a>
+          <ul>
+            <li><a href="#instrucciones-de-salida-en-yaml-output-formats">Instrucciones de salida en YAML (Output formats)</a></li>
+          </ul>
+        </li>
+        <li><a href="#32-texto-markdown">3.2 Texto (Markdown)</a></li>
+        <li><a href="#33-código-en-r-chunks">3.3 Código en R (Chunks)</a>
+          <ul>
+            <li><a href="#331-añadir-chunks">3.3.1 Añadir Chunks</a></li>
+            <li><a href="#332-nombrar-chunks">3.3.2 Nombrar chunks</a></li>
+            <li><a href="#333-opciones-de-chunks">3.3.3 Opciones de chunks</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4-resumen">4. Resumen</a>
+      <ul>
+        <li><a href="#41-actividad-del-práctico">4.1 Actividad del práctico</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-recursos">5. Recursos</a></li>
+  </ul>
+</nav>
+
+ 
+        </div>
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>RStudio, tidyverse y RMarkdown</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        <h1 id="0-objetivo-del-práctico">0. Objetivo del práctico</h1>
+<p>El objetivo de este práctico es crear nuestro primer reporte en <strong>RMarkdown</strong> y contener en este el <strong>primer paso de un código en R: cargar paquetes</strong>.</p>
+<p>Para ello repasaremos algunos conceptos básicos de R y Markdown, y los pasos necesarios para la creación de su propio archivo en .Rmd. Este práctico será clave para la realización de tu <a href="/assignment/01-tarea/">tarea N°1</a></p>
+<h2 id="materiales-de-la-sesión">Materiales de la sesión</h2>
+<p>Recuerden que los archivos asociados a este práctico se pueden descargar aquí:</p>
+<ul>
+<li><a href="https://github.com/learn-R/02-class/raw/main/02-clase.zip" target="_blank" rel="noopener"><i class="fas fa-file-archive"></i> <code>02-class.zip</code></a></li>
+</ul>
+<h2 id="1-conceptos-clave">1. Conceptos clave</h2>
+<p><a href="https://rmarkdown.rstudio.com/" target="_blank" rel="noopener"><strong>RMarkdown</strong></a> es un archivo que puede integrar código de R (mediante chunks) y texto en <a href="https://learn-r-uah.netlify.app/resource/markdown/" target="_blank" rel="noopener"><strong>Markdown</strong></a> a la vez. Todo el sitio web de este curso está creado con RMarkdown (y <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">un paquete llamado <strong>blogdown</strong></a>).</p>
+<div class="note">
+<p><strong>RMarkdown</strong> tienen una estructura de al menos 3 partes</p>
+<ol>
+<li>Encabezado (YAML)</li>
+<li>Texto</li>
+<li>Código de R</li>
+</ol>
+
+</div>
+
+<p><img src="img/02/02rmd-example.jpg" alt=""></p>
+<p>¡Vamos a profundizar en cada una de ellas! Pero antes te iremos mostrando el paso a paso para crear un archivo en .Rmd</p>
+<h2 id="2-paso-a-paso-para-crear-un-rmarkdown">2. Paso a paso para crear un RMarkdown</h2>
+<h3 id="paso-1-instalación-de-paquetes">Paso 1: Instalación de paquetes</h3>
+<p>Como vimos en la sesión, para la creación de un RMarkdown necesitamos dar una extensión a R que le permita &ldquo;compilar&rdquo; los archivos construidos en .Rmd a formatos como <code>.pdf</code>, <code>.html</code>, <code>.doc</code>. Para ello instalaremos 2 paquetes: <code>knitr</code> y <code>rmarkdown</code></p>
+<p>Usualmente para cargar paquetes lo hacemos de la siguiente manera:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">  <span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;paquete&#34;</span>)
+  <span style="color:#a6e22e">library</span>(paquete)
+</code></pre></div><p>Pero en esta ocasión utilizaremos un paquete llamado <strong>pacman</strong>, que facilita y agiliza la lectura de los paquetes a utilizar en R. De esta forma lo instalamos 1 única vez así:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;pacman&#34;</span>)
+<span style="color:#a6e22e">library </span>(pacman)
+</code></pre></div><p>Luego instalaremos y cargaremos los paquetes de R de la siguiente manera, volviendo más eficiente el procedimiento de carga de paquetes. Para este práctico cargaremos el paquete <strong>rmarkdown</strong> y <strong>knit</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pacman<span style="color:#f92672">::</span><span style="color:#a6e22e">p_load</span>(rmarkdown,
+               knitr)
+</code></pre></div><h3 id="paso-2-crear-un-nuevo-archivo-en-rmarkdown">Paso 2: Crear un nuevo archivo en Rmarkdown</h3>
+<ol>
+<li>Una vez cargados los paquetes deben dirigirse a <code>File &gt; New File &gt; R Markdown</code></li>
+</ol>
+<p><img src="/img/example/02practico/open_rmark_file.png" alt=""><!-- --></p>
+<ol start="2">
+<li>Luego deben darle un título, poner su nombre y especificar un <em>formato de salida</em>, ya sea en <strong>HTML</strong>, <strong>PDF</strong> o <strong>Word</strong></li>
+</ol>
+<p><img src="/img/example/02practico/open_rmark_file2.png" alt=""><!-- --></p>
+<ol start="3">
+<li>Se creará un archivo con un <strong><em>YAML</em></strong>, que tendrá la información general del documento; y un <strong><em>chunk</em></strong>, o trozo de código</li>
+</ol>
+<p><img src="/img/example/02practico/open_rmark_file3.png" alt=""><!-- --></p>
+<ol start="4">
+<li>Ya pueden comenzar a escribir sus informes en RMarkdown. Veremos en seguida las <a href="#config">configuraciones para dejarlo más lindo y presentable</a></li>
+</ol>
+<h3 id="paso-3-crear-el-archivo-con-formato-desde-el-rmd">Paso 3: Crear el archivo con formato desde el .Rmd</h3>
+<p><img src="https://github.com/hadley/r4ds/raw/master/images/RMarkdownFlow.png" alt=""></p>
+<div class="note">
+Es el botón que permite <em>compilar</em> (tejer o unir) el documento que hemos escrito. Combinará tanto el código de R (insertado en <em>chunks</em>) y como el texto plano, a partir de las instrucciones que dimos en el YAML (¡por eso es tan importante!)
+</div>
+
+<p><img src="/img/assignments/knit-button.png" width="30%" /></p>
+<p>Es <strong>fundamental</strong> que sepan que, cuando se hace <strong>Knit</strong>, RStudio ejecuta cada uno de los trozos <strong>secuencialmente</strong>. No es necesario entender el proceso posterior a cabalidad (aún) <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>: lo importante que debes saber  es que, si todo lo que está dentro de tu .Rmd está bien hecho, deberías ver como resultado un archivo en el formato de salida que definiste en tu YAML (.pdf, .doc o .html).</p>
+<h2 id="config">3. Configuraciones del RMarkdown</h2>
+<h3 id="31-encabezado-yaml">3.1 Encabezado (YAML)</h3>
+<p>Al inicio del Markdown siempre especificar cierta información sobre el documento, por ejemplo, el título, la fecha, autor, entre otras. Esta parte del Markdown se llama <a href="https://learn.getgrav.org/16/advanced/yaml" target="_blank" rel="noopener">YAML</a>.</p>
+<p>Básicamente, con esto establecemos las &ldquo;configuraciones&rdquo; del texto.</p>
+<p>Por ejemplo, si queremos que nuestro archivo esté en PDF, colores, si queremos que incluya bibliografía, entre otros. La &ldquo;cabeza&rdquo; del Markdown o <strong>YAML</strong> está dividida del resto del cuerpo del texto al inicio y al final con tres guiones (<code>---</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<span style="color:#f92672">title</span>: <span style="color:#ae81ff">Título de mi tesis</span>
+<span style="color:#f92672">date</span>: <span style="color:#e6db74">&#34;16 de Agosto, 2021&#34;</span>
+<span style="color:#f92672">author</span>: <span style="color:#e6db74">&#34;Estudiante UAH&#34;</span>
+---
+</code></pre></div><p>Debes poner el texto entre comillas. Si quieres ocupar comillas dentro de tu título, puedes utilizar comillas simples (e.g. mi tesis se titula  <code>Mi tesis: la más &quot;genial&quot; de Chile</code>), entonces ponemos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<span style="color:#f92672">title: `Mi tesis</span>: <span style="color:#ae81ff">la más &#34;genial&#34; de Chile`</span>
+---
+</code></pre></div><h4 id="instrucciones-de-salida-en-yaml-output-formats">Instrucciones de salida en YAML (Output formats)</h4>
+<p>Los formatos de salida se ven en el encabezado (<strong>YAML</strong>) del documento: aquí puedes especificar en qué formato quieres que te entregue tu archivo. De esta forma, puedes especificar qué tipo de documento creas cuando <em>&ldquo;Kniteas&rdquo;</em>  (es como <em>&ldquo;tejer&rdquo;</em>, <em>construir</em>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Mi documento&#34;</span>
+<span style="color:#f92672">output</span>:
+  <span style="color:#f92672">html_document</span>: <span style="color:#ae81ff">default</span>
+  <span style="color:#f92672">pdf_document</span>: <span style="color:#ae81ff">default</span>
+  <span style="color:#f92672">word_document</span>: <span style="color:#ae81ff">default</span>
+---
+</code></pre></div><p>También puedes hacer click en la flecha hacia abajo del botón &ldquo;Knit&rdquo; para elegir la salida <em>y</em> generar el YAML apropiado. Si hace click en el icono del engranaje junto al botón &ldquo;Knit&rdquo; y elige &ldquo;Output options&rdquo; (opciones de salida), puede cambiar la configuración para cada tipo de salida en específico, como las dimensiones de las figuras por defecto o si se incluye o no un índice.</p>
+<p><img src="/img/reference/output-options.png" width="35%" /></p>
+<p>El primer tipo de salida que aparece en <code>output:</code> será el que se genere al pulsar el botón <strong>&ldquo;Knit&rdquo;</strong> o al pulsar el atajo de teclado (<code>⌘⇧K</code> en macOS; <code>control + shift + K</code> en Windows). Si elige una salida diferente con el menú del botón &ldquo;Knit&rdquo;, esa salida se moverá a la parte superior de la sección <code>output</code>.</p>
+<h5 id="adicionales-en-yaml">Adicionales en YAML</h5>
+<p>El encabezado o YAML es <strong>importantísimo</strong>, especialmente cuando tienes configuraciones anidadas bajo cada tipo de salida. Cuando uno ya está más avanzado así es como una sección <code>output</code> suele verse:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Mi tesis&#34;</span>
+<span style="color:#f92672">author</span>: <span style="color:#e6db74">&#34;Valentina Andrade&#34;</span>
+<span style="color:#f92672">date</span>: <span style="color:#e6db74">&#34;16 Agosto 2021&#34;</span>
+<span style="color:#f92672">output</span>: 
+  <span style="color:#f92672">html_document</span>:
+    <span style="color:#f92672">theme</span>: <span style="color:#ae81ff">cerulean</span>
+    <span style="color:#f92672">toc</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">toc_depth</span>: <span style="color:#ae81ff">2</span>
+    <span style="color:#f92672">toc_float</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">number_sections</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">pdf_document</span>: 
+    <span style="color:#f92672">latex_engine</span>: <span style="color:#ae81ff">xelatex </span> <span style="color:#75715e"># Para hacer pdf</span>
+    <span style="color:#f92672">toc</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">word_document</span>: 
+    <span style="color:#f92672">toc</span>: <span style="color:#66d9ef">true</span>
+---
+</code></pre></div><p>En el <strong>YAML</strong> o <strong>encabezado</strong> del documento, se puede modificar:</p>
+<ul>
+<li>
+<p><code>title</code> y <code>subtitle</code>: es el título y subtítulo. Como cualquier carácter en R lo mejor es poner entre comillas su contenido</p>
+</li>
+<li>
+<p><code>author</code>: nombre del autor/a</p>
+</li>
+<li>
+<p><code>date</code>: fecha, puede ser escrita como ustedes quieran</p>
+</li>
+<li>
+<p><code>output</code>: opciones de salida (html, pdf, doc, ¡incluso ppt!)</p>
+</li>
+<li>
+<p><code>toc</code>: &ldquo;Table of contents&rdquo; o, en español, índice. El término <code>depth</code> indica &ldquo;profundidad&rdquo; para ver cuántos títulos mostrar y <code>float</code> para ver si se desliza automáticamente</p>
+</li>
+</ul>
+<p>Si quieres ver más opciones, <a href="https://bookdown.org/yihui/rmarkdown/html-document.html" target="_blank" rel="noopener">temas para tu documento puedes ver aquí</a></p>
+<h3 id="32-texto-markdown">3.2 Texto (Markdown)</h3>
+<p>Abajo del YAML ya podrás escribir texto simple. En la siguiente tabla podrás ver un resumen de los formatos básicos de Markdown, sin embargo pueden repasarlo <a href="https://learn-r-uah.netlify.app/resource/markdown/" target="_blank" rel="noopener">en la sección recursos</a> o <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" target="_blank" rel="noopener">acá</a></p>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="21%" />
+<col width="38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Escribe…</th>
+<th>…o…</th>
+<th>…para obtener</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><pre>Algo de texto en el párrafo.<br>
+Más texto
+espacio entre lineas.</pre></td>
+<td></td>
+<td><p>Algo de texto.</p>
+<p>Algo de texto en el párrafo. Siempre utilizando
+espacios para dividir párrafos</p></td>
+</tr>
+<tr class="even">
+<td><code>*Cursivas*</code></td>
+<td><code>_Cursivas_</code></td>
+<td><em>Cursivas</em></td>
+</tr>
+<tr class="odd">
+<td><code>**Negrita**</code></td>
+<td><code>__Negrita__</code></td>
+<td><strong>Negrita</strong></td>
+</tr>
+<tr class="even">
+<td><code># Título 1</code></td>
+<td></td>
+<td><h1 class="smaller-h1">
+Título 1
+</h1></td>
+</tr>
+<tr class="odd">
+<td><code>## Título 2</code></td>
+<td></td>
+<td><h2 class="smaller-h2">
+Título 2
+</h2></td>
+</tr>
+<tr class="even">
+<td><code>### Título 3</code></td>
+<td></td>
+<td><h3 class="smaller-h3">
+Título 3
+</h3></td>
+</tr>
+<tr class="odd">
+<td>(puedes llegar hasta un título N° 6 con <code>######</code>)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>[Link text](http://www.example.com)</code></td>
+<td></td>
+<td><a href="http://www.example.com">Link text</a></td>
+</tr>
+<tr class="odd">
+<td><code>![Image caption](/path/to/image.png)</code></td>
+<td></td>
+<td><img src="/img/mstile-144x144.png" title="fig:" alt="Class logo" /></td>
+</tr>
+<tr class="even">
+<td>`<code>Inline code` with backticks</code></td>
+<td></td>
+<td><code>Inline code</code> with backticks</td>
+</tr>
+<tr class="odd">
+<td><code>&gt; Citas</code></td>
+<td></td>
+<td><blockquote>
+<p>Citas</p>
+</blockquote></td>
+</tr>
+<tr class="even">
+<td><pre>- Cosas en
+- listas
+- desordenadas</pre></td>
+<td><pre>* Cosas en
+* listas
+* desordenadas</pre></td>
+<td><ul>
+<li>Cosas en</li>
+<li>listas</li>
+<li>desordenadas</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><pre>1. Cosas en
+2. listas
+3. ordenadas</pre></td>
+<td><pre>1) Cosas en
+2) listas
+3) ordenadas</pre></td>
+<td><ol style="list-style-type: decimal">
+<li>Cosas en</li>
+<li>listas</li>
+<li>ordenadas</li>
+</ol></td>
+</tr>
+<tr class="even">
+<td><pre>Línea horizontal
+<p>&mdash;</pre></td></p>
+<td><pre>Línea horizontal
+<p>***</pre></td></p>
+<td><p>Línea horizontal</p>
+<hr /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-código-en-r-chunks">3.3 Código en R (Chunks)</h3>
+<p>Para ingresar <strong>trozos</strong> de código en R a nuestro documento ocuparemos los <strong>chunks</strong>. Estos permiten hacer análisis estadísticos dentro del documento visualizando los resultados en el documento final</p>
+<p>Los chunks se ven así dentro del .Rmd:</p>
+<pre><code>```{r}
+# El codigo va aquí
+
+````
+</code></pre>
+<h4 id="331-añadir-chunks">3.3.1 Añadir Chunks</h4>
+<p>Hay tres formas de insertar chunks:</p>
+<ol>
+<li>
+<p>Pulsar <code>⌘⌥I</code> en macOS o  <code>Control + Alt + I</code> en Windows</p>
+</li>
+<li>
+<p>Pulsa el botón &ldquo;Insert&rdquo; en la parte superior de la ventana del editor</p>
+</li>
+</ol>
+<p><img src="/img/reference/insert-chunk.png" width="30%" /></p>
+<ol start="3">
+<li>Escribirlo manualmente (no recomendado)</li>
+</ol>
+<h4 id="332-nombrar-chunks">3.3.2 Nombrar chunks</h4>
+<p>Se puede añadir nombres a los chunks para hacer más fácil la navegación por el documento. Si haces clic en el pequeño menú desplegable en la parte inferior de tu editor en RStudio, puedes ver una tabla de contenidos que muestra todos los títulos y chunks. Si nombras los chunks, aparecerán en la lista. Si no incluyes un nombre, el chunk seguirá apareciendo, pero no sabrás lo que hace.</p>
+<p><img src="/img/reference/chunk-toc.png" width="40%" /></p>
+<p>Para añadir un nombre, inclúyelo inmediatamente después de la <code>{r</code> en la primera línea del chunk. Los nombres no pueden contener espacios, pero sí guiones bajos y guiones.</p>
+<p>Importante: <strong>Todos los nombres de chunk de tu documento deben ser únicos.</strong></p>
+<pre><code>```{r nombre-chunk}
+# El codigo va aquí
+
+````
+</code></pre>
+<h4 id="333-opciones-de-chunks">3.3.3 Opciones de chunks</h4>
+<p>Hay un montón de opciones diferentes que puedes establecer para cada chunk. Puedes ver una lista completa en la <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf" target="_blank" rel="noopener">Guía de referencia de RMarkdown</a> o en el <a href="https://yihui.org/knitr/options/" target="_blank" rel="noopener">sitio web de <strong>knitr</strong></a>.</p>
+<p>Las opciones van dentro de la sección <code>{r}</code> del chunk:</p>
+<pre><code>```{r nombre-chunk, message = F, echo = F}
+# El codigo va aquí
+
+````
+</code></pre>
+<p>Las opciones de chunk más comunes son estas:</p>
+<ul>
+<li>
+<p><code>fig.width=5</code> y <code>fig.height=3</code> (<em>o el número que quieras</em>): Establece las dimensiones de las figuras</p>
+</li>
+<li>
+<p><code>echo=FALSE</code>: El código no se muestra en el documento final, pero los resultados si</p>
+</li>
+<li>
+<p><code>message=FALSE</code>: Se omiten los mensajes que genera R (como todas las notas que aparecen después de cargar un paquete)</p>
+</li>
+<li>
+<p><code>warning=FALSE</code>: Se omiten las advertencias que genera R</p>
+</li>
+<li>
+<p><code>include=FALSE</code>: El chunk se sigue ejecutando, pero el código y los resultados no se incluyen en el documento final</p>
+</li>
+</ul>
+<p>También puedes configurar las opciones del chunk haciendo clic en el pequeño icono del engranaje en la esquina superior derecha de cualquier chunk:</p>
+<p><img src="/img/reference/chunk-options.png" width="70%" /></p>
+<h2 id="4-resumen">4. Resumen</h2>
+<p>Dentro de la creación de archivos en RMarkdown, hay algunos <strong>conceptos claves</strong> que <em>sí o sií</em> debes manejar para ir construyendo tus documentos en RMarkdown.</p>
+<ol>
+<li>
+<p><strong>YAML</strong>: Es un encabezado al inicio del documento que inicia y acaba con tres guiones <strong>&mdash;</strong>*. Acá se introducen aspectos básicos del documento, como el título, el autor, la fecha y el formato de salida (output)</p>
+</li>
+<li>
+<p><strong>Chunk</strong>: son <strong>trozos</strong> de códigos de R, que permiten hacer análisis estadísticos dentro del documento, visualizando los resultados <strong>directamente</strong> en el documento final</p>
+</li>
+<li>
+<p><strong>Knit</strong>: Es el botón que permite <em>compilar</em> (tejer o unir) el documento que hemos escrito. Combinará tanto el código de R y el texto, a partir de las instrucciones que dimos en el YAML</p>
+</li>
+</ol>
+<h3 id="41-actividad-del-práctico">4.1 Actividad del práctico</h3>
+<p>La actividad tendrá relación con la entrega de la <a href="https://learn-r-uah.netlify.app/assignment/01-tarea/" target="_blank" rel="noopener"><strong>Tarea 1</strong></a>. Esta actividad consiste en la creación de un RMarkdown que contenga lo siguiente:</p>
+<ul>
+<li>
+<p>Un encabezado (YAML) con el título: &ldquo;Práctico 2&rdquo;. También deben incorporar su nombre y fecha</p>
+</li>
+<li>
+<p>Este encabezado debe tener una salida (output), deben elegir <code>html_output</code></p>
+</li>
+<li>
+<p>En el documento  deben incorporarla imagen <code>grafico01</code> (que está en el .zip asociado a la clase)</p>
+</li>
+<li>
+<p>Finalmente, deben crear una tabla simple.</p>
+</li>
+</ul>
+<h2 id="5-recursos">5. Recursos</h2>
+<ul>
+<li><a href="https://es.r4ds.hadley.nz/r-markdown.html" target="_blank" rel="noopener">RMarkdown en Ciencia de Datos - Hadley Whickham</a></li>
+<li><a href="https://rmarkdown.rstudio.com/" target="_blank" rel="noopener">R Markdown</a></li>
+<li><a href="https://rmarkdown.rstudio.com/lesson-1.html" target="_blank" rel="noopener">Tutoriales Markdown</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" target="_blank" rel="noopener">cheatsheets</a></li>
+<li>Para practicar ir a <a href="https://www.markdowntutorial.com/es/" target="_blank" rel="noopener">Tutorial de Markdown</a></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Luego de presionar <em>knit</em>, se convierte la salida de cada trozo en un archivo intermedio en Markdown. Posteriormente, RStudio hace &ldquo;pasar&rdquo; ese documento vía <a href="https://pandoc.org/" target="_blank" rel="noopener">pandoc</a> para convertirlo en HTML, PDF o Word (o cualquier salida que haya seleccionado). <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/example/04-practico/" rel="next">Importar, explorar y exportar datos</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/example/03-practico/" rel="prev">Tipos de datos</a>
+  </div>
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on August 16, 2021</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis avanzado de datos 2 (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

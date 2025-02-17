@@ -1,0 +1,41 @@
+---
+title: "Análisis Factorial Confirmatorio I"
+linktitle: "8: Análisis Factorial Confirmatorio I"
+date: "2024-05-26"
+start_date: "2024-05-26"
+end_date: "2024-05-26"
+menu:
+  content:
+    parent: Contenido
+    weight: 8
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
+slides: "clase-8"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+slide_details <- tibble::tribble(
+  ~title, ~slide, ~active,
+  "Análisis Factorial Confirmatorio I", "1", TRUE)
+```
+
+# Slides
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/clase-8.html")
+```
+
+{{% div fyi %}}
+**¿Cómo ocupar**: Si presionas <kbd>?</kbd> (o <kbd>shift</kbd> + <kbd>/</kbd>) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+{{% /div %}}
+
+
+
+
+

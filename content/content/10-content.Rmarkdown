@@ -1,0 +1,41 @@
+---
+title: "Análisis de Senderos II"
+linktitle: "10: Análisis de Senderos II"
+date: "2021-10-25"
+start_date: "2023-05-29"
+end_date: "2023-05-29"
+menu:
+  content:
+    parent: Contenido
+    weight: 10
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
+slides: "clase-paii"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+slide_details <- tibble::tribble(
+  ~title, ~slide, ~active,
+  "Análisis de Senderos II", "1", TRUE,
+   "", "14", FALSE,
+   "", "29", FALSE
+)
+```
+
+# Slides
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/clase-paii.html")
+```
+
+{{% div fyi %}}
+**¿Cómo ocupar**: Si presionas <kbd>?</kbd> (o <kbd>shift</kbd> + <kbd>/</kbd>) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+{{% /div %}}
+
+

@@ -1,0 +1,220 @@
+---
+title: "Instalación Zotero"
+date: "2021-08-13"
+menu:
+  resource:
+    parent: Tutoriales
+type: docs
+weight: 4
+toc: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Objetivo del taller
+
+Este taller tiene por objetivo conocer el software **Zotero** para facilitar la incorporación de *citas y referencias* en archivos RMarkdown.. Para ello veremos las razones de por qué usar este software y por qué usarlo en conjunto a RMarkdown, finalizando con el proceso de instalación del programa y sus componentes.
+
+El proceso de referenciar es uno de los más relevantes dentro de la vida académica, sin embargo este puede ser difícil y sujeto a muchos errores. Por ello, el sistematizar y facilitar este proceso no sólo puede ahorrar tiempo en trabajos, investigaciones, entre otros. Sino que potenciará el proceso volviéndolo más expedito.
+
+Para ello hay distintas formas de faciltarlo, uno de ellos es **Zotero**, pero ¿por qué utilizar Zotero y no otro gestor?
+
+# 1. Qué es Zotero
+
+[Zotero](www.zotero.org) (www.zotero.org) es un software libre que almacena y administra las referencias bibliográficas, este no sólo es útil como aplicación sino que también tiene extensiones para navegadores como **Chrome, Mozilla Firefox, Safari y Opera**. Estos sincronizan la aplicación mientras se navega guardando los recursos a utilizar.
+
+Sus ventajas son:
+
+-   La automatización del almacenamiento de las referencias bibliográficas
+-   La colaboración y fácil sincronización de referencias
+-   Es un software de acceso abierto y gratis
+
+# 1.1 Zotero + RMarkdown
+
+[RMarkdown](https://learn-r-uah.netlify.app/example/02-practico/) es un archivo que logra integrar código R (mediante chunks) y texto en [Markdown](https://learn-r-uah.netlify.app/resource/markdown/) (lenguaje que brinda un formato de escritura de texto simple).
+
+Sus ventajas son
+
+-   La incorporación de reportes estadísticos, tablas y análisis directamente en un archivo con escritura en texto plano
+
+-   Facilita la reproducibilidad y la colaboración académica
+
+-   Facilita la apertura y acceso de información
+
+Entonces, RMarkdown más Zotero, significan no sólo un aumento de lo reproducible y la colaboración, sino que también una automatización del proceso de referenciar, volviéndolo más simple y sujeto a menos errores.
+
+Entonces, al almacenar las referencias dentro de Zotero, queda a disposición un conjunto de archivos o librería que puede exportarse, compartirse o sincronizarse directamente al documento a utilizar o presentar.
+
+Para que este proceso de almacenamiento y exportación de referencias pueda utilizarse, el software debe transformarlo a un tipo de archivo y uno de ellos es BibTeX.
+
+## 1.1 BibTeX
+
+[BibteX](http://www.bibtex.org/Format/de/) es un tipo archivos con un formato .bib, los cuales funcionan en conjunto a *Latex* (es un sistema de composición de textos) para el almacenamiento de referencias bibliográficas.
+
+Una entrada BibTeX inicia con una palabra después de `@` y una serie de etiquetas que definen las características de la entrada específica. Entre esas etiquetas pueden estar elementos como: autor, título, año, entre otros. Algunas etiquetas son obligatorias para ciertos tipos de entradas de BibTeX, otras son opcionales.
+
+### Etiquetas
+
+En BibTeX las etiquetas son especificadas por su nombre seguido de un signo igual y su contenido, se debe considerar que las etiquetas no distinguen entre mayúsculas y minúsculas y que el contenido debe ir entre comillas, por ejemplo:
+
+    @book`{"marx_1867",
+            title = {El Capital}, 
+            volume = {I}, 
+            author = {Marx, Karl}, 
+            year = {1867}, 
+            pages = {255–276}, 
+            file = {ruta}}`
+
+Dentro del ejemplo es relevante la primera línea, ya que este nombre es el que nos permitirá traerla al texto. Si bien es útil conocer este formato de referencias, es un poco complejo al principio. Lo bueno es que Zotero administra estas referencias y las convierte automáticamente al formato .bib
+
+## 1. 2 Better BibTeX (BBT)
+
+[Better BibTeX](https://retorque.re/zotero-better-bibtex/) cumple las funciones de BibTeX pero la ventaja es que se puede sincronizar para una actualización automática desde los software que gestionan las referencias. Para esto presentaremos la aplicación Better(bib)tex (BBT), que funciona dentro de [Zotero](www.zotero.org). Las ventajas de esto es que ambos son de código abierto
+
+BBT genera una colección con formtao .bib en base a librerías construidas en Zotero, estas se configuran una vez y luego se mantiene sincronizada.
+
+¡Pero antes de ver como funcionan debemos asegurarnos de tener todo instalado!
+
+# 2. Instalación de Zotero
+
+Para instalar Zotero deben ir al [link](https://www.zotero.org/) y apretar el botón **Download**
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/instalacion-zot.png)
+
+-   Luego, deben abrir el archivo descargado
+
+![](https://github.com/learn-R/taller-zotero/blob/main/input/img/image%20(11).png?raw=true)
+
+-   Una vez abran el archivo descargado, les aparecerá esta ventana donde deben apretar el botón *Continuar o Next \>*
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(1).png)
+
+-   Deben seleccionar la opción *Standard*
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(12).png)
+
+-   Luego establecer la ubicación del programa deben apretar *Upgrade*
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(13).png)
+
+-   finalmente deben apretar en *Finish*
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(15).png)
+
+-   Al abrirlo les aparecerá la interfaz del software
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(16).png)
+
+Ahora ya tenemos instalado Zotero, sin embargo no es suficiente, también debemos instalar la extensión BBT para facilitar la sincronización de los datos con el informe que queramos crear.
+
+# 2.1 Zotero y BBT
+
+Para descargar BBT deben ir al [link](https://retorque.re/zotero-better-bibtex/) y en la sección More ir a *Download*
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(7).png)
+
+-   Luego deben hacer click en el archivo con extensión .xpi, pero no deben abrirlo
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(9).png)
+
+{{< div "note" >}}
+
+Dentro de BBT hay varias versiones las cuales pueden irse actualizando, estas se encuentran en el botón compare
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(8).png)
+
+{{< /div >}}
+
+Para incorporarlo deben ir a Zotero en *Tools y Add-ons* / En español es en *Herramientas y complementos*
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(17).png)
+
+-   Les aparecerá una ventana emergente, deben ir a la esquina superior derecha, al icono de tuerca
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(18).png)
+
+-   Luego deben ir a *Install Add-on from file*, encontrar el archivo descargado (.xpi) de BBT
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(19).png)
+
+-   Una vez se encuentra se debe apretar el boton *Install Now*
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(21).png)
+
+-   Luego se debe reiniciar con el botón *Restart Now*
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(22).png)
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(23).png)
+
+Ahora ya tenemos el software que gestiona las referencias y la extensión para mantener sincronizadas las referencias. Sin embargo previo a ver como funcionan dejaremos instaladas las extensiones
+
+## 2.2 Instalación de extensión
+
+Para incluir la extensión de navegador de Zotero hay varias opciones según el navegador que utilicen
+
+-   [Chrome](https://chrome.google.com/webstore/detail/zotero-connector/ekhagklcjbdpajgpjgmbionohlpdbjgc?hl=es)
+
+    ![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(24).png)
+
+-   [Firefox](https://www.zotero.org/download/connectors)
+
+    ![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(29).png)
+
+-   [Microsoft Edge](https://www.zotero.org/download/connectors)
+
+    ![](https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(30).png)
+    
+class: title title-8
+
+# 2.3 Creación de cuenta
+
+Para crearse una cuenta deben ir al siguiente [link](https://www.zotero.org/user/register)
+
+
+![](https://github.com/learn-R/slides/raw/main/img/03/regist.png)
+
+No es necesario crearse una cuenta para usar Zotero, pero si es recomendable
+
+
+# 3. Puente entre Rstudio y Zotero
+
+Para conectar Zotero con Rstudio y facilitar la incorporación de referencias en RMarkdown, necesitamos un conector y para ello tenemos dos opciones: el paquete `citr` y el editor visual.
+
+Opción 1:
+
+`citr` este es un paquete que nos facilitara la conexión entre Zotero y Rstudio
+
+Se puede instalar de varias formas
+
+- con `install.packages`
+
+- Mediante `devtools::install_github("crsh/citr")`
+
+- O descargando una antigua versión del [CRAN](https://cran.r-project.org/src/contrib/Archive/citr/) 
+
+Se reinicia R y luego podrán verlo en la sección **Addins**
+
+- Editor visual
+
+{{< div "note" >}}
+
+Lo más probable es que `citr` genere problemas en su instalación, debido a que fue removido del CRAN, sin embargo la opción más factible es usar el editor visual o utilizar una versión antigua del paquete
+
+{{< /div >}}
+
+# 3. Flujo de trabajo
+
+Una vez teniendo instalado el software y todo lo necesario para empezar estableceremos el flujo de trabajo. Se debe considerar que este proceso es cíclico.
+
+Es importante entender el flujo de trabajo de Zotero + RMarkdown, porque resume todo lo visto, mientras más nos acostumbremos a este flujo de trabajo más simple se hará el proceso de referenciar a través de Zotero.
+
+![](https://github.com/learn-R/taller-zotero/raw/main/input/img/flujo-zotero.png)
+
+# 4. Video tutorial en Youtube
+
+Recuerden que el [video de asociado a este tutorial](https://youtu.be/w-qGJH2uswk) y muchos más podrán encontrarlos en el [canal de youtube del curso](https://www.youtube.com/channel/UCqBUeqBttVjS6h8fawK8sWg)

@@ -1,0 +1,41 @@
+---
+title: "2. Visualización de datos en R"
+linktitle: "2. Visualización de datos en R"
+date: "2024-03-24"
+start_date: "2024-03-24"
+end_date: "2024-03-24"
+menu:
+  content:
+    parent: Contenido
+    weight: 2
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
+slides: "02-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+slide_details <- tibble::tribble(
+  ~title, ~slide, ~active,
+  "Herramientas para el uso de R", "1", TRUE
+)
+```
+
+# Slides
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/02-slides.html")
+```
+
+{{% div fyi %}}
+**¿Cómo ocupar**: Si presionas <kbd>?</kbd> (o <kbd>shift</kbd> + <kbd>/</kbd>) mientras estas viendo las slides, podrás ver los comandos específicos para navegar en ellas.
+{{% /div %}}
+
+
+
+

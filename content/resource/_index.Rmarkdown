@@ -1,0 +1,10 @@
+---
+title: Recursos adicionales
+menu:
+  resource:
+    parent: Recursos
+type: docs
+weight: -1
+---
+
+Aquí podrán encontrar recursos y guías extras sobre uso de R, datos y otros tópicos relevantes. 

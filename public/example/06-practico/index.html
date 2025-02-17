@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="0. Objetivo de la práctica El objetivo del práctico, es avanzar en el procesamiento de los datos a través de la transformación de las variables a utilizar. Para ello revisaremos procedimientos básicos para el manejo de datos con RStudio, profundizando específicamente en la función mutate de dplyr." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/example/06-practico/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/example/06-practico/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis avanzado de datos 2" />
+  <meta property="og:url" content="/example/06-practico/" />
+  <meta property="og:title" content="Transformar variables | Análisis avanzado de datos 2" />
+  <meta property="og:description" content="0. Objetivo de la práctica El objetivo del práctico, es avanzar en el procesamiento de los datos a través de la transformación de las variables a utilizar. Para ello revisaremos procedimientos básicos para el manejo de datos con RStudio, profundizando específicamente en la función mutate de dplyr." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-08-30T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-08-30T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis avanzado de datos 2" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Transformar variables | Análisis avanzado de datos 2</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/">Información general</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/">Prácticos (códigos de ejemplo)</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" >Datos</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/01-practico/">Ejemplos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/01-practico/">1: R, RStudio y Github</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/02-practico/">2: RMarkdown</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/03-practico/">3: Tipos de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/04-practico/">4: Importar, explorar y exportar datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/05-practico/">5: Limpieza de datos</a>
+      </li>
+
+      
+      <li class="active">
+        <a href="/example/06-practico/">6: Transformar variables</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/07-practico/">7: Análisis descriptivo univariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/08-practico/">8: Análisis descriptivo bivariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/09-practico/">9: Muestras complejas y precisión de inferencia estadística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.1-practico/">10.1: Regresiones lineales</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.2-practico/">10.2: Regresión logística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/11-practico/">11 (BONUS): Calidad de modelos y otras técnicas de estimación</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+        <div class="d-none d-xl-block col-xl-2 docs-toc">
+            <ul class="nav toc-top">
+                <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+            </ul>
+
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#0-objetivo-de-la-práctica">0. Objetivo de la práctica</a></li>
+    <li><a href="#1-recursos-de-la-práctica">1. Recursos de la práctica</a></li>
+    <li><a href="#2-librerias-a-utilizar">2. Librerias a utilizar</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-cargar-librerías">1. Cargar librerías</a></li>
+    <li><a href="#2-cargar-base-de-datos">2. Cargar base de datos</a></li>
+    <li><a href="#3-mutate-para-transformación-de--variables">3. <code>mutate()</code> para transformación de  variables</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#mutate-en-base-a-cálculo"><code>mutate()</code> en base a cálculo</a></li>
+            <li><a href="#recode-y-mutate"><code>recode()</code> y <code>mutate()</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#ifelse-para-construir-variables-condicionales"><code>ifelse()</code> para construir variables condicionales</a></li>
+        <li><a href="#case_when-para-construir-variable-en-base-a-múltiples-condiciones"><code>case_when()</code> para construir variable en base a múltiples condiciones</a></li>
+        <li><a href="#calcular-índices-con-rowwise">Calcular índices con <code>rowwise()</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#4-las-variantes-de-mutate">4. Las variantes de <code>mutate()</code></a>
+      <ul>
+        <li><a href="#a-mutate_at">a) mutate_at()</a></li>
+        <li><a href="#b-mutate_if">b) mutate_if()</a></li>
+        <li><a href="#c-mutate_all">c) mutate_all()</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-resumen-con-procesamiento-de-las-variables">5. Resumen con procesamiento de las variables</a></li>
+    <li><a href="#6-guardar-base-procesada">6. Guardar base procesada</a></li>
+  </ul>
+</nav>
+
+ 
+        </div>
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Transformar variables</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        <h2 id="0-objetivo-de-la-práctica">0. Objetivo de la práctica</h2>
+<p>El objetivo del práctico, es avanzar en el procesamiento de los datos a través de la transformación de las variables a utilizar. Para ello revisaremos procedimientos básicos para el manejo de datos con RStudio, profundizando específicamente en la función <code>mutate</code> de <code>dplyr</code>.</p>
+<h2 id="1-recursos-de-la-práctica">1. Recursos de la práctica</h2>
+<p>En este práctico utilizaremos la base de datos de la <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-en-pandemia-2020" target="_blank" rel="noopener"><strong>Encuesta de Caracterización Socioeconómica (CASEN)</strong></a>, la cual fue procesada en el <a href="">Práctico anterior</a>.Recuerden siempre consultar el <a href="http://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2020/Libro_de_codigos_Base_de_Datos_Casen_en_Pandemia_2020.pdf" target="_blank" rel="noopener"><strong>manual/libro de códigos</strong></a> antes de trabajar una base de datos.</p>
+<h2 id="2-librerias-a-utilizar">2. Librerias a utilizar</h2>
+<p>En este práctico utilizaremos cuatro paquetes</p>
+<ol>
+<li>
+<p><code>pacman</code>: este facilita y agiliza la lectura de los paquetes a utilizar en R</p>
+</li>
+<li>
+<p><code>sjmisc</code>: explorar datos</p>
+</li>
+<li>
+<p><code>car()</code>: recodificar manteniendo las etiquetas</p>
+</li>
+<li>
+<p><code>tidyverse</code>: colección de paquetes, del cuál utilizaremos <code>dplyr</code> y <code>forcats</code></p>
+</li>
+<li>
+<p><code>dplyr</code>: para manipular datos</p>
+</li>
+<li>
+<p><code>forcats</code>: para transformar variables en factores</p>
+</li>
+</ol>
+<h1 id="pasos-del-procesamiento">Pasos del procesamiento</h1>
+<h2 id="1-cargar-librerías">1. Cargar librerías</h2>
+<p>Primero instalamos <code>pacman</code> por única vez</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;pacman&#34;</span>)
+<span style="color:#a6e22e">library </span>(pacman)
+</code></pre></div><p>Luego cargaremos así los paquetes. Les recordamos que cuando luego de un paquete ponemos <code>::</code> esto se refiere a que se <em>&ldquo;fuerza&rdquo;</em> que esa función provenga de <em>ese paquete</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pacman<span style="color:#f92672">::</span><span style="color:#a6e22e">p_load</span>(tidyverse,
+               haven, 
+               forcats,
+               car,
+               sjmisc)
+</code></pre></div><h2 id="2-cargar-base-de-datos">2. Cargar base de datos</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_dta</span>(<span style="color:#e6db74">&#34;input/data/datos_proc.rds&#34;</span>) 
+</code></pre></div><p>En el panel <strong>Environment</strong>, visualizamos el nuevo objeto, que posee 76.935 observaciones (o filas), y 11 variables (columnas)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(datos)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 6 x 11
+##          folio sexo    edad ocupacion  ytoth tot_per    ife     o2     o3     o4
+##          &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+## 1 110110010301 Hombre    20    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 2 [No]
+## 2 110110010301 Mujer     56    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 1 [Sí]
+## 3 110110010401 Hombre    77    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+## 4 110110010401 Mujer     60    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+## 5 110110020301 Hombre    18    2 [No] 1.32e6       4 1 [Sí] 2 [No] 2 [No] 2 [No]
+## 6 110110030101 Hombre    82    2 [No] 1.11e6       4 2 [No] 2 [No] 2 [No] 1 [Sí]
+## # ... with 1 more variable: o6 &lt;dbl+lbl&gt;
+</code></pre></div><h2 id="3-mutate-para-transformación-de--variables">3. <code>mutate()</code> para transformación de  variables</h2>
+<p>La función de <code>mutate()</code> permite hacer operaciones para crear nuevas variables o transformar las ya existentes.</p>
+<div class="note">
+mutate(datos, nueva_variable = cálculo o condición)
+</div>
+
+<h4 id="mutate-en-base-a-cálculo"><code>mutate()</code> en base a cálculo</h4>
+<p>Calcularemos una nueva variable llamada <code>nueva_variable</code> que proviene de la suma de 2+3. También una variable <code>ingreso_percapita</code> que proviene de la división del ingreso total del hogar y el número de personas que residen en el hogar</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">mutate</span>(datos, nueva_variable <span style="color:#f92672">=</span> <span style="color:#ae81ff">3+2</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 12
+##           folio sexo    edad ocupacion  ytoth tot_per    ife     o2     o3     o4
+##           &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1 110110010301 Hombre    20    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 2 [No]
+##  2 110110010301 Mujer     56    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  3 110110010401 Hombre    77    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  4 110110010401 Mujer     60    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  5 110110020301 Hombre    18    2 [No] 1.32e6       4 1 [Sí] 2 [No] 2 [No] 2 [No]
+##  6 110110030101 Hombre    82    2 [No] 1.11e6       4 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  7 110110030201 Hombre    56    2 [No] 3.02e5       2 1 [Sí] 2 [No] 2 [No] 1 [Sí]
+##  8 110110030301 Mujer     77    2 [No] 7.40e5       1 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  9 110110030901 Mujer     17    2 [No] 2.19e6       4 2 [No] 2 [No] 2 [No] 2 [No]
+## 10 110110031401 Mujer     74    2 [No] 1.22e6       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 2 more variables: o6 &lt;dbl+lbl&gt;,
+## #   nueva_variable &lt;dbl&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">mutate</span>(datos, nueva_variable <span style="color:#f92672">=</span> <span style="color:#ae81ff">3+2</span>,
+       ingreso_percapita <span style="color:#f92672">=</span> ytoth<span style="color:#f92672">/</span>tot_per)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 13
+##           folio sexo    edad ocupacion  ytoth tot_per    ife     o2     o3     o4
+##           &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1 110110010301 Hombre    20    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 2 [No]
+##  2 110110010301 Mujer     56    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  3 110110010401 Hombre    77    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  4 110110010401 Mujer     60    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  5 110110020301 Hombre    18    2 [No] 1.32e6       4 1 [Sí] 2 [No] 2 [No] 2 [No]
+##  6 110110030101 Hombre    82    2 [No] 1.11e6       4 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  7 110110030201 Hombre    56    2 [No] 3.02e5       2 1 [Sí] 2 [No] 2 [No] 1 [Sí]
+##  8 110110030301 Mujer     77    2 [No] 7.40e5       1 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  9 110110030901 Mujer     17    2 [No] 2.19e6       4 2 [No] 2 [No] 2 [No] 2 [No]
+## 10 110110031401 Mujer     74    2 [No] 1.22e6       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 3 more variables: o6 &lt;dbl+lbl&gt;,
+## #   nueva_variable &lt;dbl&gt;, ingreso_percapita &lt;dbl&gt;
+</code></pre></div><h4 id="recode-y-mutate"><code>recode()</code> y <code>mutate()</code></h4>
+<p>Muchas veces, los valores originales no se ajustan a los análisis que queramos hacer, o a la forma en que deseamos presentar nuestros análisis. Por ello, en el código de procesamiento <strong>recodificaremos</strong> frecuentemente los valores que alcanzan nuestras variables, especialmente cuando trabajamos con variables categóricas.</p>
+<p>En el siguiente ejemplo recodificamos las categorías de respuesta de Mujer a Femenino y de Hombre a Masculino</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(sexo <span style="color:#f92672">=</span> dplyr<span style="color:#f92672">::</span><span style="color:#a6e22e">recode</span>(sexo, <span style="color:#e6db74">&#34;Mujer&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Femenino&#34;</span>, <span style="color:#e6db74">&#34;Hombre&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Masculino&#34;</span>))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 11
+##        folio sexo    edad ocupacion   ytoth tot_per     ife     o2     o3     o4
+##        &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl+lbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1   1.10e11 Mascu~    20    2 [No] 3004167       3  2 [No] 2 [No] 2 [No] 2 [No]
+##  2   1.10e11 Femen~    56    2 [No] 3004167       3  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  3   1.10e11 Mascu~    77    2 [No]  610250       2  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  4   1.10e11 Femen~    60    2 [No]  610250       2  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  5   1.10e11 Mascu~    18    2 [No] 1321481       4  1 [Sí] 2 [No] 2 [No] 2 [No]
+##  6   1.10e11 Mascu~    82    2 [No] 1110000       4  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  7   1.10e11 Mascu~    56    2 [No]  302083       2  1 [Sí] 2 [No] 2 [No] 1 [Sí]
+##  8   1.10e11 Femen~    77    2 [No]  739833       1  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  9   1.10e11 Femen~    17    2 [No] 2190000       4  2 [No] 2 [No] 2 [No] 2 [No]
+## 10   1.10e11 Femen~    74    2 [No] 1220000       2  2 [No] 2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 1 more variable: o6 &lt;dbl+lbl&gt;
+</code></pre></div><p>El problema de la función <code>recode()</code> de <code>dplyr</code> es que, si recodifico números etiquetados, se perderá la etiqueta, conservándose el nuevo valor. Esto es un problema recurrente si, por ejemplo, sólo deseo recodificar valores nulos (por ejemplo, transformar los valores <code>88</code> y <code>99</code> como <code>NA</code>).</p>
+<p>Frente a ello, con el tiempo nos hemos convencido de que la mejor solución hasta ahora es ocupar <code>recode()</code> del paquete <code>car</code>. Si recuerdan, dos funciones con el mismo nombre podrían producir <em>conflictos</em> y, por ello, especificaremos con <code>car::recode()</code> que la función <code>recode()</code> que ocupamos proviene del paquete <code>car</code></p>
+<div class="note">
+<p>datos %$% 
+car::recode(.$variable, c(&lsquo;valor_orig1=nuevo_valor1;valor_org2=nuevo_valor2&rsquo;))</p>
+<p><em>Ojo: %$% es el primo hermano de %&gt;% (básicamente funcionan igual, por lo que podemos emplear tranquilamente %&gt;% si nos encontramos trabajando con <code>mutate</code>)</em></p>
+
+</div>
+
+<p>¡Recodifiquemos caracteres! incluso: podemos transformar inmediatamente en <code>factor</code>, y asignar un orden específico a los niveles que alcanza la variable. Incluyamos la recodificación en <code>mutate()</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(sexo <span style="color:#f92672">=</span> car<span style="color:#f92672">::</span><span style="color:#a6e22e">recode</span>(.$sexo, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;&#34;Mujer&#34;=&#34;Femenino&#34;;&#34;Hombre&#34;= &#34;Masculino&#34;&#39;</span>), 
+              as.factor <span style="color:#f92672">=</span> T, <span style="color:#75715e"># Transformar en factor</span>
+              levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Masculino&#34;</span>, <span style="color:#e6db74">&#34;Femenino&#34;</span>))) <span style="color:#75715e">#Ordenamos los niveles del factor</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 11
+##        folio sexo    edad ocupacion   ytoth tot_per     ife     o2     o3     o4
+##        &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl+lbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1   1.10e11 Mascu~    20    2 [No] 3004167       3  2 [No] 2 [No] 2 [No] 2 [No]
+##  2   1.10e11 Femen~    56    2 [No] 3004167       3  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  3   1.10e11 Mascu~    77    2 [No]  610250       2  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  4   1.10e11 Femen~    60    2 [No]  610250       2  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  5   1.10e11 Mascu~    18    2 [No] 1321481       4  1 [Sí] 2 [No] 2 [No] 2 [No]
+##  6   1.10e11 Mascu~    82    2 [No] 1110000       4  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  7   1.10e11 Mascu~    56    2 [No]  302083       2  1 [Sí] 2 [No] 2 [No] 1 [Sí]
+##  8   1.10e11 Femen~    77    2 [No]  739833       1  2 [No] 2 [No] 2 [No] 1 [Sí]
+##  9   1.10e11 Femen~    17    2 [No] 2190000       4  2 [No] 2 [No] 2 [No] 2 [No]
+## 10   1.10e11 Femen~    74    2 [No] 1220000       2  2 [No] 2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 1 more variable: o6 &lt;dbl+lbl&gt;
+</code></pre></div><p>Notemos que los <em><code>character</code> siempre van entre comillas</em></p>
+<h3 id="ifelse-para-construir-variables-condicionales"><code>ifelse()</code> para construir variables condicionales</h3>
+<p>La función <code>ifelse()</code> permite construir variables en base a condiciones lógicas. Su estructura es la siguiente</p>
+<div class="note">
+if_else(condición,TRUE,FALSE)
+Donde dice <code>TRUE</code> es el valor que se obtiene si la condición es verdadera, mientras que <code>FALSE</code> es todo el resto de las opciones (o cuando es FALSA)
+</div>
+
+<p>Crearemos una variable que <em>dummy</em> que indica si el informante accedió al Ingreso Familiar de Emergencia (IFE) o no</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+ 		 <span style="color:#a6e22e">mutate</span>(ife_d<span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(ife <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 12
+##           folio sexo    edad ocupacion  ytoth tot_per    ife     o2     o3     o4
+##           &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1 110110010301 Hombre    20    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 2 [No]
+##  2 110110010301 Mujer     56    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  3 110110010401 Hombre    77    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  4 110110010401 Mujer     60    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  5 110110020301 Hombre    18    2 [No] 1.32e6       4 1 [Sí] 2 [No] 2 [No] 2 [No]
+##  6 110110030101 Hombre    82    2 [No] 1.11e6       4 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  7 110110030201 Hombre    56    2 [No] 3.02e5       2 1 [Sí] 2 [No] 2 [No] 1 [Sí]
+##  8 110110030301 Mujer     77    2 [No] 7.40e5       1 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  9 110110030901 Mujer     17    2 [No] 2.19e6       4 2 [No] 2 [No] 2 [No] 2 [No]
+## 10 110110031401 Mujer     74    2 [No] 1.22e6       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 2 more variables: o6 &lt;dbl+lbl&gt;, ife_d &lt;dbl&gt;
+</code></pre></div><p>Recordemos que usamos 1 porque <code>ife</code> es una variable de tipo haven_labelled, por lo que es un número etiquetado. Ahora asignemos 1 a las <strong>mujeres que accedieron al IFE</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+ 		 <span style="color:#a6e22e">mutate</span>(ife_d<span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(ife <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;</span> sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Mujer&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 12
+##           folio sexo    edad ocupacion  ytoth tot_per    ife     o2     o3     o4
+##           &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1 110110010301 Hombre    20    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 2 [No]
+##  2 110110010301 Mujer     56    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  3 110110010401 Hombre    77    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  4 110110010401 Mujer     60    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  5 110110020301 Hombre    18    2 [No] 1.32e6       4 1 [Sí] 2 [No] 2 [No] 2 [No]
+##  6 110110030101 Hombre    82    2 [No] 1.11e6       4 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  7 110110030201 Hombre    56    2 [No] 3.02e5       2 1 [Sí] 2 [No] 2 [No] 1 [Sí]
+##  8 110110030301 Mujer     77    2 [No] 7.40e5       1 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  9 110110030901 Mujer     17    2 [No] 2.19e6       4 2 [No] 2 [No] 2 [No] 2 [No]
+## 10 110110031401 Mujer     74    2 [No] 1.22e6       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 2 more variables: o6 &lt;dbl+lbl&gt;, ife_d &lt;dbl&gt;
+</code></pre></div><p>También podemos ocupar esta función como validador, por ejemplo, rellenando con valores lógicos como <code>FALSE</code> cuando no hay información válida en <code>ytoth</code>. Luego esos <code>FALSE</code> podrían ser contados en otros procesos estadísticos</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(validador_ingreso <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(<span style="color:#a6e22e">is.na</span>(ytoth), <span style="color:#66d9ef">FALSE</span>, <span style="color:#66d9ef">TRUE</span>))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 12
+##           folio sexo    edad ocupacion  ytoth tot_per    ife     o2     o3     o4
+##           &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1 110110010301 Hombre    20    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 2 [No]
+##  2 110110010301 Mujer     56    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  3 110110010401 Hombre    77    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  4 110110010401 Mujer     60    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  5 110110020301 Hombre    18    2 [No] 1.32e6       4 1 [Sí] 2 [No] 2 [No] 2 [No]
+##  6 110110030101 Hombre    82    2 [No] 1.11e6       4 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  7 110110030201 Hombre    56    2 [No] 3.02e5       2 1 [Sí] 2 [No] 2 [No] 1 [Sí]
+##  8 110110030301 Mujer     77    2 [No] 7.40e5       1 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  9 110110030901 Mujer     17    2 [No] 2.19e6       4 2 [No] 2 [No] 2 [No] 2 [No]
+## 10 110110031401 Mujer     74    2 [No] 1.22e6       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 2 more variables: o6 &lt;dbl+lbl&gt;,
+## #   validador_ingreso &lt;lgl&gt;
+</code></pre></div><h3 id="case_when-para-construir-variable-en-base-a-múltiples-condiciones"><code>case_when()</code> para construir variable en base a múltiples condiciones</h3>
+<p>Una función que se utiliza frecuentemente para <em>colapsar</em> categorías o construir categorías en base a varias condiciones es <code>case_when()</code> por lo lógico y <em>fácil</em> que es de entender</p>
+<div class="note">
+<p>case_when(variable == condicion ~ valor1,
+variable == condicion ~ valor2,
+TRUE ~ NA_real_)</p>
+<ul>
+<li>Donde, TRUE indica &ldquo;todo el resto&rdquo;, y el NA dependerá de la clase del valor de recodificación. En general, usaremos <code>NA_character_</code> para variables categóricas, y <code>NA_real_</code> para variables numéricas.</li>
+</ul>
+
+</div>
+
+<p>Un ejemplo claro es cuando queremos construir <em>categorías de edad</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(edad_tramo <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>(edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">39</span> <span style="color:#f92672">~</span>  <span style="color:#e6db74">&#34;Joven&#34;</span>,
+                                edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">39</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">59</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Adulto&#34;</span>,
+                                edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">59</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Adulto mayor&#34;</span>,
+                                <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#66d9ef">NA_character_</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(edad, edad_tramo)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 2
+##     edad edad_tramo  
+##    &lt;dbl&gt; &lt;chr&gt;       
+##  1    20 Joven       
+##  2    56 Adulto      
+##  3    77 Adulto mayor
+##  4    60 Adulto mayor
+##  5    18 Joven       
+##  6    82 Adulto mayor
+##  7    56 Adulto      
+##  8    77 Adulto mayor
+##  9    17 Joven       
+## 10    74 Adulto mayor
+## # ... with 76,925 more rows
+</code></pre></div><p>Como se puede ver, no solamente indicamos tramos de la variable edad, sino que utilizamos operadores lógicos (<code>&amp;</code>). Podríamos ocupar el que necesitemos, y sobre todo, también combinar variables (por ejemplo, crear una variable <code>sexo-edad</code>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(sexo_edad_tramo <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>(sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Hombre&#34;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">39</span> <span style="color:#f92672">~</span>  <span style="color:#e6db74">&#34;Hombre joven&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Mujer&#34;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">39</span> <span style="color:#f92672">~</span>  <span style="color:#e6db74">&#34;Mujer joven&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Hombre&#39;</span> <span style="color:#f92672">&amp;</span> (edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">39</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">59</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Hombre adulto&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Mujer&#39;</span> <span style="color:#f92672">&amp;</span> (edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">39</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">59</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Mujer adulta&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Hombre&#39;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">59</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Adulto mayor&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Mujer&#39;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">59</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Adulta mayor&#34;</span>,
+                                <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#66d9ef">NA_character_</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">select</span>(sexo, edad, sexo_edad_tramo)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 3
+##    sexo    edad sexo_edad_tramo
+##    &lt;fct&gt;  &lt;dbl&gt; &lt;chr&gt;          
+##  1 Hombre    20 Hombre joven   
+##  2 Mujer     56 Mujer adulta   
+##  3 Hombre    77 Adulto mayor   
+##  4 Mujer     60 Adulta mayor   
+##  5 Hombre    18 Hombre joven   
+##  6 Hombre    82 Adulto mayor   
+##  7 Hombre    56 Hombre adulto  
+##  8 Mujer     77 Adulta mayor   
+##  9 Mujer     17 Mujer joven    
+## 10 Mujer     74 Adulta mayor   
+## # ... with 76,925 more rows
+</code></pre></div><h3 id="calcular-índices-con-rowwise">Calcular índices con <code>rowwise()</code></h3>
+<p>Como sabemos, la librería <code>dplyr</code> de <code>tidyverse</code> provee diversas herramientas que nos permiten manipular los datos con los cuales nos encontramos trabajando. Una de ellas es su función <code>rowwise()</code>, que posibilita <strong>agrupar los datos en razón de las filas</strong>. Esto es particularmente útil cuando, por ejemplo, queremos construir algún índice. En este caso, utilizaremos las variables ytoth y tot_per para determinar cuál es el ingreso per cápita de cada hogar</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Especificamos que trabajaremos con el dataframe datos</span>
+  <span style="color:#a6e22e">rowwise</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Especificamos que agruparemos por filas</span>
+  <span style="color:#a6e22e">mutate</span>(ing_pc <span style="color:#f92672">=</span> ytoth<span style="color:#f92672">/</span>tot_per) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#Creamos una nueva variable llamada ing_tot, sumando los valores de ss_t, svar_t y reg_t para cada fila </span>
+  <span style="color:#a6e22e">ungroup</span>() <span style="color:#75715e"># Desagrupamos (dejamos de trabajar en razón de filas)</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 12
+##           folio sexo    edad ocupacion  ytoth tot_per    ife     o2     o3     o4
+##           &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1 110110010301 Hombre    20    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 2 [No]
+##  2 110110010301 Mujer     56    2 [No] 3.00e6       3 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  3 110110010401 Hombre    77    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  4 110110010401 Mujer     60    2 [No] 6.10e5       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  5 110110020301 Hombre    18    2 [No] 1.32e6       4 1 [Sí] 2 [No] 2 [No] 2 [No]
+##  6 110110030101 Hombre    82    2 [No] 1.11e6       4 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  7 110110030201 Hombre    56    2 [No] 3.02e5       2 1 [Sí] 2 [No] 2 [No] 1 [Sí]
+##  8 110110030301 Mujer     77    2 [No] 7.40e5       1 2 [No] 2 [No] 2 [No] 1 [Sí]
+##  9 110110030901 Mujer     17    2 [No] 2.19e6       4 2 [No] 2 [No] 2 [No] 2 [No]
+## 10 110110031401 Mujer     74    2 [No] 1.22e6       2 2 [No] 2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 2 more variables: o6 &lt;dbl+lbl&gt;, ing_pc &lt;dbl&gt;
+</code></pre></div><h2 id="4-las-variantes-de-mutate">4. Las variantes de <code>mutate()</code></h2>
+<p>Con lo que ya hemos revisado serán capaces de realizar un procesamiento completo y acabado de sus variables. Sin embargo, hay otras funciones hermanas de mutate() que les recomendamos en caso de querer agilizar procedimientos de procesamiento de datos.</p>
+<h3 id="a-mutate_at">a) mutate_at()</h3>
+<p>Imaginemos que deseamos trabajar al mismo tiempo con todas nuestras variables cuyos valores son 1 == Si y 2 == No. En el caso de las variables <code>ocupacion</code> e <code>ife</code>, que son números etiquetados, podemos desear realizar esa recodificación al mismo tiempo (recordemos que, para recodificar números etiquetados como factores, primero debemos transformar esas variables en <code>numeric</code>). Empleando <code>mutate()</code>, lo haríamos de la siguiente manera</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(ocupacion <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.numeric</span>(.$ocupacion),
+         ife <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.numeric</span>(.$ife)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(ocupacion <span style="color:#f92672">=</span> car<span style="color:#f92672">::</span><span style="color:#a6e22e">recode</span>(.$ocupacion, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;1 = &#39;Si&#39;; 2 = &#39;No&#39;&#34;</span>), as.factor <span style="color:#f92672">=</span> T),
+         ife <span style="color:#f92672">=</span> car<span style="color:#f92672">::</span><span style="color:#a6e22e">recode</span>(.$ife, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;1 = &#39;Si&#39;; 2 = &#39;No&#39;&#34;</span>), as.factor <span style="color:#f92672">=</span> T))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 11
+##           folio sexo    edad ocupacion   ytoth tot_per ife       o2     o3     o4
+##           &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1 110110010301 Hombre    20 No        3004167       3 No    2 [No] 2 [No] 2 [No]
+##  2 110110010301 Mujer     56 No        3004167       3 No    2 [No] 2 [No] 1 [Sí]
+##  3 110110010401 Hombre    77 No         610250       2 No    2 [No] 2 [No] 1 [Sí]
+##  4 110110010401 Mujer     60 No         610250       2 No    2 [No] 2 [No] 1 [Sí]
+##  5 110110020301 Hombre    18 No        1321481       4 Si    2 [No] 2 [No] 2 [No]
+##  6 110110030101 Hombre    82 No        1110000       4 No    2 [No] 2 [No] 1 [Sí]
+##  7 110110030201 Hombre    56 No         302083       2 Si    2 [No] 2 [No] 1 [Sí]
+##  8 110110030301 Mujer     77 No         739833       1 No    2 [No] 2 [No] 1 [Sí]
+##  9 110110030901 Mujer     17 No        2190000       4 No    2 [No] 2 [No] 2 [No]
+## 10 110110031401 Mujer     74 No        1220000       2 No    2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 1 more variable: o6 &lt;dbl+lbl&gt;
+</code></pre></div><p>¿Un poco largo, no? <code>mutate_at()</code> nos permite realizar el mismo procedimiento de recodificación a ambas variables, lo cual hace posible un código más eficiente. Tenemos que incorporar dos argumentos:</p>
+<ul>
+<li><code>vars =</code> : indica qué variables vamos a trabajar.</li>
+<li><code>~()</code> : indica la función que aplicaremos a las variables especificadas en vars</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate_at</span>(<span style="color:#a6e22e">vars</span>(ocupacion, ife), <span style="color:#f92672">~</span>(<span style="color:#a6e22e">as.numeric</span>(.))) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate_at</span>(<span style="color:#a6e22e">vars</span>(ocupacion, ife), <span style="color:#f92672">~</span>(car<span style="color:#f92672">::</span><span style="color:#a6e22e">recode</span>(., <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;1 = &#39;Si&#39;; 2 = &#39;No&#39;&#34;</span>), as.factor <span style="color:#f92672">=</span> T)))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 11
+##           folio sexo    edad ocupacion   ytoth tot_per ife       o2     o3     o4
+##           &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dbl+&gt; &lt;dbl+&gt; &lt;dbl+&gt;
+##  1 110110010301 Hombre    20 No        3004167       3 No    2 [No] 2 [No] 2 [No]
+##  2 110110010301 Mujer     56 No        3004167       3 No    2 [No] 2 [No] 1 [Sí]
+##  3 110110010401 Hombre    77 No         610250       2 No    2 [No] 2 [No] 1 [Sí]
+##  4 110110010401 Mujer     60 No         610250       2 No    2 [No] 2 [No] 1 [Sí]
+##  5 110110020301 Hombre    18 No        1321481       4 Si    2 [No] 2 [No] 2 [No]
+##  6 110110030101 Hombre    82 No        1110000       4 No    2 [No] 2 [No] 1 [Sí]
+##  7 110110030201 Hombre    56 No         302083       2 Si    2 [No] 2 [No] 1 [Sí]
+##  8 110110030301 Mujer     77 No         739833       1 No    2 [No] 2 [No] 1 [Sí]
+##  9 110110030901 Mujer     17 No        2190000       4 No    2 [No] 2 [No] 2 [No]
+## 10 110110031401 Mujer     74 No        1220000       2 No    2 [No] 2 [No] 1 [Sí]
+## # ... with 76,925 more rows, and 1 more variable: o6 &lt;dbl+lbl&gt;
+</code></pre></div><p>¡Podemos intearctuar también con otras funciones que ya hemos utilizado, como <code>starts_with()</code>!</p>
+<p><strong>Atención</strong>: como pueden fijarse, utilizamos un punto (.) en el argumento donde usualmente iría esepcificada la variable que estamos trabajando. Tal punto indica <strong>recursividad</strong>, es decir, que la operación especificada en <code>~()</code> será ejecutada (en orden) a cada una de las variables que especificamos en <code>vars =</code>.</p>
+<h3 id="b-mutate_if">b) mutate_if()</h3>
+<p>También podemos utilizar <code>mutate()</code> a un conjunto de variables seleccionadas a partir de una condición. Por ejemplo, transformemos en <code>factor</code> con <code>forcats::as_factor()</code> a todas las variables que sean números etiquetados</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate_if</span>(is.labelled, <span style="color:#f92672">~</span>(forcats<span style="color:#f92672">::</span><span style="color:#a6e22e">as_factor</span>(.)))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 11
+##         folio sexo   edad ocupacion  ytoth tot_per ife   o2    o3    o4    o6   
+##         &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
+##  1    1.10e11 Homb~    20 No        3.00e6       3 No    No    No    No    No   
+##  2    1.10e11 Mujer    56 No        3.00e6       3 No    No    No    Sí    No   
+##  3    1.10e11 Homb~    77 No        6.10e5       2 No    No    No    Sí    No   
+##  4    1.10e11 Mujer    60 No        6.10e5       2 No    No    No    Sí    No   
+##  5    1.10e11 Homb~    18 No        1.32e6       4 Sí    No    No    No    No   
+##  6    1.10e11 Homb~    82 No        1.11e6       4 No    No    No    Sí    No   
+##  7    1.10e11 Homb~    56 No        3.02e5       2 Sí    No    No    Sí    No   
+##  8    1.10e11 Mujer    77 No        7.40e5       1 No    No    No    Sí    No   
+##  9    1.10e11 Mujer    17 No        2.19e6       4 No    No    No    No    No   
+## 10    1.10e11 Mujer    74 No        1.22e6       2 No    No    No    Sí    No   
+## # ... with 76,925 more rows
+</code></pre></div><h3 id="c-mutate_all">c) mutate_all()</h3>
+<p>Por último, puede suceder que queramos emplear el mismo procedimiento a <strong>todas las variables</strong> incluidas en nuestros datos. Por ejemplo, supongamos que (por algún motivo) deseamos transformar todas las variables en <code>character</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate_all</span>(<span style="color:#f92672">~</span>(<span style="color:#a6e22e">as.character</span>(.)))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 11
+##    folio      sexo  edad  ocupacion ytoth  tot_per ife   o2    o3    o4    o6   
+##    &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 110110010~ Homb~ 20    2         30041~ 3       2     2     2     2     2    
+##  2 110110010~ Mujer 56    2         30041~ 3       2     2     2     1     2    
+##  3 110110010~ Homb~ 77    2         610250 2       2     2     2     1     2    
+##  4 110110010~ Mujer 60    2         610250 2       2     2     2     1     2    
+##  5 110110020~ Homb~ 18    2         13214~ 4       1     2     2     2     2    
+##  6 110110030~ Homb~ 82    2         11100~ 4       2     2     2     1     2    
+##  7 110110030~ Homb~ 56    2         302083 2       1     2     2     1     2    
+##  8 110110030~ Mujer 77    2         739833 1       2     2     2     1     2    
+##  9 110110030~ Mujer 17    2         21900~ 4       2     2     2     2     2    
+## 10 110110031~ Mujer 74    2         12200~ 2       2     2     2     1     2    
+## # ... with 76,925 more rows
+</code></pre></div><p>Como podrán darse cuenta, en este caso no especificamos el argumento <code>vars =</code>, pues con <code>mutate_all()</code> estamos considerando a <strong>todas las variables</strong>.</p>
+<h2 id="5-resumen-con-procesamiento-de-las-variables">5. Resumen con procesamiento de las variables</h2>
+<p>Hasta ahora, solo hemos creado una base de datos que selecciona variables. Ahora nos resta incorporar en un nuevo objeto los cambios que nos parezcan relevantes para la base de datos procesada que utilizaremos en nuestros análisis.</p>
+<p>Como ya conocemos operadores que permiten concatenar procesos ( <code>%&gt;%</code>  y <code>%$%</code>) este procedimiento será mucho más fácil.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(sexo <span style="color:#f92672">=</span> car<span style="color:#f92672">::</span><span style="color:#a6e22e">recode</span>(.$sexo, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;&#34;Mujer&#34;=&#34;Femenino&#34;;&#34;Hombre&#34;= &#34;Masculino&#34;&#39;</span>), 
+              as.factor <span style="color:#f92672">=</span> T, <span style="color:#75715e"># Transformar en factor</span>
+              levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Masculino&#34;</span>, <span style="color:#e6db74">&#34;Femenino&#34;</span>)),
+         ife_d<span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(ife <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;</span> sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Mujer&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         sexo_edad_tramo <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>(sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Masculino&#34;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">39</span> <span style="color:#f92672">~</span>  <span style="color:#e6db74">&#34;Hombre joven&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Femenino&#34;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">39</span> <span style="color:#f92672">~</span>  <span style="color:#e6db74">&#34;Mujer joven&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Masculino&#39;</span> <span style="color:#f92672">&amp;</span> (edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">39</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">59</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Hombre adulto&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Femenino&#39;</span> <span style="color:#f92672">&amp;</span> (edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">39</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">59</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Mujer adulta&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Masculino&#39;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">59</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Adulto mayor&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Femenino&#39;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">59</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Adulta mayor&#34;</span>,
+                                <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#66d9ef">NA_character_</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate_if</span>(is.labelled, <span style="color:#f92672">~</span>(forcats<span style="color:#f92672">::</span><span style="color:#a6e22e">as_factor</span>(.))) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">rowwise</span>() <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(ing_pc <span style="color:#f92672">=</span> ytoth<span style="color:#f92672">/</span>tot_per) <span style="color:#f92672">%&gt;%</span>  
+  <span style="color:#a6e22e">ungroup</span>() 
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## # A tibble: 76,935 x 14
+##        folio sexo    edad ocupacion  ytoth tot_per ife   o2    o3    o4    o6   
+##        &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;
+##  1   1.10e11 Mascu~    20 No        3.00e6       3 No    No    No    No    No   
+##  2   1.10e11 Femen~    56 No        3.00e6       3 No    No    No    Sí    No   
+##  3   1.10e11 Mascu~    77 No        6.10e5       2 No    No    No    Sí    No   
+##  4   1.10e11 Femen~    60 No        6.10e5       2 No    No    No    Sí    No   
+##  5   1.10e11 Mascu~    18 No        1.32e6       4 Sí    No    No    No    No   
+##  6   1.10e11 Mascu~    82 No        1.11e6       4 No    No    No    Sí    No   
+##  7   1.10e11 Mascu~    56 No        3.02e5       2 Sí    No    No    Sí    No   
+##  8   1.10e11 Femen~    77 No        7.40e5       1 No    No    No    Sí    No   
+##  9   1.10e11 Femen~    17 No        2.19e6       4 No    No    No    No    No   
+## 10   1.10e11 Femen~    74 No        1.22e6       2 No    No    No    Sí    No   
+## # ... with 76,925 more rows, and 3 more variables: ife_d &lt;dbl&gt;,
+## #   sexo_edad_tramo &lt;chr&gt;, ing_pc &lt;dbl&gt;
+</code></pre></div><p>¡Ahora que estamos seguras/os sobre-escribimos la base!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">datos_proc <span style="color:#f92672">&lt;-</span> datos <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(sexo <span style="color:#f92672">=</span> car<span style="color:#f92672">::</span><span style="color:#a6e22e">recode</span>(.$sexo, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;&#34;Mujer&#34;=&#34;Femenino&#34;;&#34;Hombre&#34;= &#34;Masculino&#34;&#39;</span>), 
+              as.factor <span style="color:#f92672">=</span> T, <span style="color:#75715e"># Transformar en factor</span>
+              levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Masculino&#34;</span>, <span style="color:#e6db74">&#34;Femenino&#34;</span>)),
+         ife_d<span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(ife <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;</span> sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Mujer&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+         sexo_edad_tramo <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>(sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Masculino&#34;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">39</span> <span style="color:#f92672">~</span>  <span style="color:#e6db74">&#34;Hombre joven&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Femenino&#34;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">39</span> <span style="color:#f92672">~</span>  <span style="color:#e6db74">&#34;Mujer joven&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Masculino&#39;</span> <span style="color:#f92672">&amp;</span> (edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">39</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">59</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Hombre adulto&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Femenino&#39;</span> <span style="color:#f92672">&amp;</span> (edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">39</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">59</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Mujer adulta&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Masculino&#39;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">59</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Adulto mayor&#34;</span>,
+                                sexo <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Femenino&#39;</span> <span style="color:#f92672">&amp;</span> edad <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">59</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;Adulta mayor&#34;</span>,
+                                <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#66d9ef">NA_character_</span>)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate_if</span>(is.labelled, <span style="color:#f92672">~</span>(forcats<span style="color:#f92672">::</span><span style="color:#a6e22e">as_factor</span>(.))) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">rowwise</span>() <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(ing_pc <span style="color:#f92672">=</span> ytoth<span style="color:#f92672">/</span>tot_per) <span style="color:#f92672">%&gt;%</span>  
+  <span style="color:#a6e22e">ungroup</span>() 
+</code></pre></div><p>Podemos visualizar la base resultante a partir de <code>view_df()</code> de <code>sjPlot</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sjPlot<span style="color:#f92672">::</span><span style="color:#a6e22e">view_df</span>(datos)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## Registered S3 methods overwritten by &#39;parameters&#39;:
+##   method                           from      
+##   as.double.parameters_kurtosis    datawizard
+##   as.double.parameters_skewness    datawizard
+##   as.double.parameters_smoothness  datawizard
+##   as.numeric.parameters_kurtosis   datawizard
+##   as.numeric.parameters_skewness   datawizard
+##   as.numeric.parameters_smoothness datawizard
+##   print.parameters_distribution    datawizard
+##   print.parameters_kurtosis        datawizard
+##   print.parameters_skewness        datawizard
+##   summary.parameters_kurtosis      datawizard
+##   summary.parameters_skewness      datawizard
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">## Warning in sprintf(&#34;%i&#34;, as.integer(range(x[[index]], na.rm = T))): NAs
+## introduced by coercion to integer range
+</code></pre></div><table style="border-collapse:collapse; border:none;">
+<caption>Data frame: datos</caption>
+<tr>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">ID</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Name</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Label</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Values</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Value Labels</th>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">1</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">folio</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">IdentificaciÃ³n hogar (comuna area seg viv hogar)</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: NA-NA</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">sexo</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">Sexo</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">Hombre<br>Mujer</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">3</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">edad</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">Edad</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: 15-110</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">4</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">ocupacion</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o1. La semana pasada, Â¿trabajÃ³ al menos una hora?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">1<br>2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">SÃ­<br>No</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">5</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">ytoth</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">Ingreso total del hogar</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: 0-92666667</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">6</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">tot_per</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">Total de personas en el hogar</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2"><em>range: 1-6</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">7</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">ife</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">y26d_hog. Ãšltimos 12 meses, Â¿alguien recibiÃ³<br>Ingreso Familiar de Emergencia?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">1<br>2<br>9</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">SÃ­<br>No<br>No sabe</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">8</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o2. Aunque no trabajÃ³ la semana pasada, Â¿realizÃ³<br>alguna actividad?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">1<br>2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">SÃ­<br>No</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">9</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">o3</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">o3. Aunque no trabajÃ³, Â¿tenÃ­a algÃºn empleo del<br>cual estuvo ausente temporalmente</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">1<br>2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">SÃ­<br>No</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">10</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o4</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">o4. Â¿Ha trabajado alguna vez?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">1<br>2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">SÃ­<br>No</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">11</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">o6</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">o6. Â¿BuscÃ³ trabajo remunerado o cuenta propia en<br>las Ãºltimas cuatro semanas?</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">1<br>2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">SÃ­<br>No</td>
+</tr>
+</table>
+<h2 id="6-guardar-base-procesada">6. Guardar base procesada</h2>
+<p>Para guardar la base de datos procesada, debes dirigir la ruta hacia tu Rproject</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">saveRDS</span>(datos_proc, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;output/datos_proc.rds&#34;</span>)
+</code></pre></div><h1 id="resumen">Resumen</h1>
+<p>En este práctico aprendimos a</p>
+<ol>
+<li>Utilizar la función <code>mutate()</code> de <code>dplyr</code> (¡y sus variantes!)</li>
+<li>Construir variables condicionales con <code>ifelse()</code> y <code>case_when()</code></li>
+<li>Construir índices agrupando por filas con <code>rowwise()</code></li>
+</ol>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/example/08-practico/" rel="next">Análisis descriptivo bivariado</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/example/10.2-practico/" rel="prev">Regresión logística</a>
+  </div>
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on August 30, 2021</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis avanzado de datos 2 (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

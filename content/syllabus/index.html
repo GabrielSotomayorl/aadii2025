@@ -1,0 +1,879 @@
+---
+title: Syllabus
+slug: syllabus
+citeproc: true
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-syllabus-no-bib.csl
+output:
+  blogdown::html_page:
+    toc: true
+    fig_caption: false
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#i.-identificación" id="toc-i.-identificación">I. Identificación</a></li>
+<li><a href="#ii.-presentación" id="toc-ii.-presentación">II. Presentación</a></li>
+<li><a href="#iii.-resultados-de-aprendizaje" id="toc-iii.-resultados-de-aprendizaje">III. Resultados de Aprendizaje</a>
+<ul>
+<li><a href="#resultado-general" id="toc-resultado-general">Resultado general</a></li>
+<li><a href="#resultados-específicos" id="toc-resultados-específicos">Resultados específicos</a></li>
+</ul></li>
+<li><a href="#iv.-contenidos." id="toc-iv.-contenidos.">IV. Contenidos.</a>
+<ul>
+<li><a href="#gestión-de-datos-con-r" id="toc-gestión-de-datos-con-r">1. Gestión de datos con R</a></li>
+<li><a href="#introducción-a-los-modelos-multivariados" id="toc-introducción-a-los-modelos-multivariados">2. Introducción a los modelos multivariados</a></li>
+<li><a href="#formas-funcionales-de-los-modelos-de-regresión" id="toc-formas-funcionales-de-los-modelos-de-regresión">3. Formas funcionales de los Modelos de Regresión</a></li>
+<li><a href="#análisis-factorial-exploratorio" id="toc-análisis-factorial-exploratorio">4. Análisis Factorial Exploratorio</a></li>
+<li><a href="#análisis-factorial-confirmatorio" id="toc-análisis-factorial-confirmatorio">5. Análisis Factorial Confirmatorio</a></li>
+<li><a href="#análisis-de-sendero" id="toc-análisis-de-sendero">6. Análisis de Sendero</a></li>
+<li><a href="#modelos-de-ecuaciones-estructurales" id="toc-modelos-de-ecuaciones-estructurales">7. Modelos de Ecuaciones estructurales</a></li>
+</ul></li>
+<li><a href="#v.-metodología-del-curso" id="toc-v.-metodología-del-curso">V. Metodología del curso</a></li>
+<li><a href="#vi.-evaluación" id="toc-vi.-evaluación">VI. Evaluación</a>
+<ul>
+<li><a href="#recorrección" id="toc-recorrección">Recorrección</a></li>
+</ul></li>
+<li><a href="#vii.-bibliografía" id="toc-vii.-bibliografía">VII. Bibliografía</a>
+<ul>
+<li><a href="#vii.1-bibliografía-obligatoria" id="toc-vii.1-bibliografía-obligatoria">VII.1 Bibliografía Obligatoria</a></li>
+<li><a href="#vii.2-bibliografía-complementaria" id="toc-vii.2-bibliografía-complementaria">VII.2 Bibliografía complementaria</a></li>
+</ul></li>
+<li><a href="#viii.-cláusula-ética" id="toc-viii.-cláusula-ética">VIII. Cláusula Ética</a></li>
+<li><a href="#ix.-cronograma-de-trabajo" id="toc-ix.-cronograma-de-trabajo">IX. Cronograma de trabajo</a></li>
+<li><a href="#x.-normativa-de-prevevención-y-sanción-de-acciones-de-discriminación-violencia-sexual-y-de-género-de-la-universidad-diego-portales." id="toc-x.-normativa-de-prevevención-y-sanción-de-acciones-de-discriminación-violencia-sexual-y-de-género-de-la-universidad-diego-portales.">X. NORMATIVA DE PREVEVENCIÓN Y SANCIÓN DE ACCIONES DE DISCRIMINACIÓN, VIOLENCIA SEXUAL Y DE GÉNERO DE LA UNIVERSIDAD DIEGO PORTALES.</a></li>
+<li><a href="#descargar-programa-en-pdf" id="toc-descargar-programa-en-pdf">Descargar programa en pdf</a></li>
+</ul>
+</div>
+
+<p>{{% courseinfo %}}</p>
+<div id="i.-identificación" class="section level1">
+<h1>I. Identificación</h1>
+<p>Código: SOC9035</p>
+<p>Créditos: 5</p>
+<p>Período Académico: 1º semestre 2024</p>
+<p>Requisito: Análisis Avanzado de Datos</p>
+<p>Horario: Lunes módulos 2 y 3 10.00 a 11.20 y 11.30 a 12.50</p>
+<p>Sala: Laboratorio de computación 2° piso FCSH</p>
+<p>Docente: Profesor: Gabriel
+<a href="gabriel.sotomayor@mail.udp.cl">gabriel.sotomayor@mail.udp.cl</a></p>
+<p>Ayudante: Patricio Alarcón
+<a href="patricio.alarcon@mail.udp.cl">anais.herrera@mail.udp.cl</a></p>
+<p>Fernanda Hurtado
+<a href="fernanda.hurtado@mail.udp.cl">nicolas.hernandez_f@mail.udp.cl</a></p>
+</div>
+<div id="ii.-presentación" class="section level1">
+<h1>II. Presentación</h1>
+<p>El curso profundiza las principales técnicas multivariantes, que
+permiten analizar en forma conjunta la interacción de múltiples
+factores, lo cual da la posibilidad de estudiar de forma más compleja
+los problemas sociales.</p>
+<p>Se enfatizan la comprensión de procedimientos e interpretación de
+resultados, así como el uso de herramientas computacionales,
+principalmente en R y RStudio. Se trabajará en la aplicación de los
+métodos sin necesidad de estudiar en profundidad los fundamentos
+matemáticos de todos ellos.</p>
+<p>Al final del curso el alumno deberá ser capaz de realizar análisis
+descriptivo de los datos tanto primarios como secundarios y poder
+seleccionar la técnica estadística adecuada a utilizar cuando se tienen
+datos multivariables.</p>
+</div>
+<div id="iii.-resultados-de-aprendizaje" class="section level1">
+<h1>III. Resultados de Aprendizaje</h1>
+<div id="resultado-general" class="section level2">
+<h2>Resultado general</h2>
+<p>Entregar herramientas al alumno para que pueda abordar el análisis de
+datos desde la estadística multivariante descriptiva e inferencial,
+elaborando y probando hipótesis y desarrollando modelos explicativos de
+determinados fenómenos de estudio.</p>
+</div>
+<div id="resultados-específicos" class="section level2">
+<h2>Resultados específicos</h2>
+<ol style="list-style-type: decimal">
+<li>Manejar bases de datos complejas.</li>
+<li>Plantear y estructurar adecuadamente un problema de análisis
+multivariante.</li>
+<li>Identificar el tipo de técnica adecuada, o combinación de ellas, a
+aplicar en cada situación concreta.</li>
+<li>Comprender las herramientas utilizada en cada una de las técnicas
+estudiadas.</li>
+<li>Aprender a utilizar los programas computacionales necesarios para
+aplicar los distintos modelos estudiados, particularmente R.</li>
+<li>Interpretar los resultados del análisis.</li>
+<li>Redactar correctamente un informe con los resultados del análisis.</li>
+</ol>
+</div>
+</div>
+<div id="iv.-contenidos." class="section level1">
+<h1>IV. Contenidos.</h1>
+<div id="gestión-de-datos-con-r" class="section level2">
+<h2>1. Gestión de datos con R</h2>
+<p>• Introducción a R y Rstudio<br />
+• Gestión de datos con tidyverse.<br />
+• Cálculo de estadísticos descriptivos.<br />
+• Visualización de datos con ggplot.</p>
+</div>
+<div id="introducción-a-los-modelos-multivariados" class="section level2">
+<h2>2. Introducción a los modelos multivariados</h2>
+<p>• Uso de modelos en ciencias sociales<br />
+• Modelos exploratorios y modelos confirmatorios<br />
+• Repaso de conceptos estadísticos: covarianza, correlación e
+inferencia.<br />
+• Supuestos de análisis.</p>
+</div>
+<div id="formas-funcionales-de-los-modelos-de-regresión" class="section level2">
+<h2>3. Formas funcionales de los Modelos de Regresión</h2>
+<p>• Introducción<br />
+• Modelo Logarítmico bivariado<br />
+• Modelo Logarítmico Multivariado<br />
+• Interpretación de los coeficientes<br />
+• Ejemplos de aplicación en R.</p>
+</div>
+<div id="análisis-factorial-exploratorio" class="section level2">
+<h2>4. Análisis Factorial Exploratorio</h2>
+<p>• Análisis factorial exploratorio y su aplicación en la investigación
+sociológica. El concepto de varianza y covarianza.<br />
+• Diferencias entre el análisis de componente principal y de factor
+común. Supuestos de la técnica.<br />
+• La extracción de factores comunes. Métodos de extracción de factores,
+criterios de selección del número de factores y rotación.<br />
+• La matriz factorial y su interpretación. Evaluación del modelo
+factorial y cálculo de puntuaciones factoriales.</p>
+</div>
+<div id="análisis-factorial-confirmatorio" class="section level2">
+<h2>5. Análisis Factorial Confirmatorio</h2>
+<p>• Análisis factorial confirmatorio y su aplicación en la investigación
+sociológica. El análisis confirmatorio frente al análisis exploratorio.
+Supuestos de la técnica.<br />
+• Especificación e identificación del modelo. Estimación de parámetros,
+evaluación del ajuste y reespecificación.<br />
+• Fiabilidad y validez de los modelos de medida. Validez convergente y
+validez discriminante. Evaluación de la capacidad confirmatoria del
+modelo.<br />
+• Ejemplo de análisis factorial confirmatorio.</p>
+</div>
+<div id="análisis-de-sendero" class="section level2">
+<h2>6. Análisis de Sendero</h2>
+<p>• Análisis de sendero y su aplicación en la investigación sociológica.
+Supuestos de la técnica.<br />
+• Especificación del modelo.<br />
+• Evaluación del modelo de medición y de la capacidad confirmatoria del
+modelo. • Ejemplo de análisis de sendero.</p>
+</div>
+<div id="modelos-de-ecuaciones-estructurales" class="section level2">
+<h2>7. Modelos de Ecuaciones estructurales</h2>
+<p>• Análisis de ecuaciones estructurales y su aplicación en la
+investigación sociológica.<br />
+• La obtención de un modelo de ecuaciones estructurales: la estructura
+del modelo. Supuestos de la técnica.<br />
+• Estimación del modelo empírico.<br />
+• Evaluación del modelo.<br />
+• Introducción de modificaciones y/o conclusión del análisis. Evaluación
+de la capacidad confirmatoria del modelo.<br />
+• Ejemplos sobre modelamiento de ecuaciones estructurales.</p>
+</div>
+</div>
+<div id="v.-metodología-del-curso" class="section level1">
+<h1>V. Metodología del curso</h1>
+<p>Este curso se desarrolla sobre la base de clases expositivas y talleres
+de aplicación con uso intensivo de software computacionales a partir del
+sitio web del curso, lo cual permite trabajar cada uno de los distintos
+tópicos detallados en el contenido.</p>
+<p>Se realizarán 2 sesiones semanales, 1 de clases y otra en forma de
+taller. Durante el curso cada alumno desarrollará trabajos de
+aplicación.</p>
+<p>Adicionalmente se realizarán ayudantías cada 2 semanas aproximadamente,
+centradas especialmente en la aplicación en R de lo aprendido en la
+cátedra.</p>
+</div>
+<div id="vi.-evaluación" class="section level1">
+<h1>VI. Evaluación</h1>
+<p>Se utilizarán distintas formas de evaluación: Tareas, pruebas y trabajos
+de investigación</p>
+<p>• Tareas de uso de R</p>
+<p>• 1 prueba solemne (35 %) (Formas funcionales de los Modelos de
+Regresión y AFE).</p>
+<p>• Trabajo final (AFC, Senderos o SEM).</p>
+<table style="width:75%;">
+<colgroup>
+<col width="23%" />
+<col width="23%" />
+<col width="27%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><ul>
+<li>*Ponderación**</li>
+</ul></td>
+<td><strong>Fecha
+(semana)</strong></td>
+</tr>
+<tr class="even">
+<td>Tareas uso de
+R</td>
+<td>30%</td>
+<td><p>25 de marzo</p>
+<p>29 de abril</p>
+<p>3 de junio</p>
+<p>1 de julio</p></td>
+</tr>
+<tr class="odd">
+<td>Prueba</td>
+<td>35%</td>
+<td>20 de mayo</td>
+</tr>
+<tr class="even">
+<td>Trabajo final</td>
+<td>35%</td>
+<td>1 de julio</td>
+</tr>
+</tbody>
+</table>
+<p>La nota de eximición es 5,5 siempre y cuando no se tengan notas bajo 4,0
+en la prueba. La nota mínima en el examen para aprobar el curso es un
+3,5.</p>
+<p>Notas:</p>
+<ol style="list-style-type: decimal">
+<li>Si un estudiante falta a una evaluación, puede presentar ante la
+Secretaría de Estudios un certificado médico dentro de los cinco
+días hábiles posteriores a dicha evaluación, para tener derecho a
+rendir una prueba recuperativa. Las evaluaciones no rendidas tendrán
+nota 1.0. Los estudiantes tendrán derecho a un máximo de una prueba
+recuperativa, dicha prueba se realizará la última semana de clases e
+incluirá toda la materia del semestre</li>
+</ol>
+<div id="recorrección" class="section level2">
+<h2>Recorrección</h2>
+<p>Según reglamento, los estudiantes tienen derecho a conocer las notas y
+la pauta de corrección de todas las evaluaciones en un plazo que no
+podrá exceder de 10 días hábiles contados desde la fecha desde que éstas
+fueran rendidas, como también a conocer el resultado de sus evaluaciones
+solemnes o principales, antes de rendir las siguientes de igual
+categoría en una misma asignatura.</p>
+<p>Los estudiantes pueden imputar la corrección de cualquier evaluación
+escrita, en un plazo no superior a 5 días hábiles desde la entrega de la
+nota. Ello, a través de una carta dirigida al secretario de estudios,
+que debe ir acompañada por la prueba, trabajo o informe evaluado y
+además, por las correcciones y comentarios que eventualmente haya
+entregado el/la docente. El académico deberá comunicar al estudiante el
+resultado de la recorrección, fundamentando por escrito sus argumentos,
+en un plazo no superior a los 5 días hábiles</p>
+</div>
+</div>
+<div id="vii.-bibliografía" class="section level1">
+<h1>VII. Bibliografía</h1>
+<div id="vii.1-bibliografía-obligatoria" class="section level2">
+<h2>VII.1 Bibliografía Obligatoria</h2>
+<table style="width:83%;">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>N°</th>
+<th>TÍTULO</th>
+<th>AUTOR</th>
+<th>ED. Y
+AÑO</th>
+<th>E
+D
+ITORIAL</th>
+<th>ISBN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A
+NALISIS
+ES
+TA
+DISTICO
+MULTIV
+AR
+IANTE -
+UN
+ENFOQUE
+TEORICO
+Y
+P
+RACTICO</td>
+<td><p>DE LA
+GARZA</p>
+<p>GARCIA,
+JORGE</p></td>
+<td>2013</td>
+<td>McG
+r
+aw-Hill</td>
+<td><h2 id="section">978</h2>
+<p>607-15-</p>
+<p>0817-1</p></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A
+nálisis
+de
+datos
+multiv
+ar
+iantes.</td>
+<td>Peña,
+Daniel</td>
+<td>2002</td>
+<td>McG
+r
+aw-Hill</td>
+<td>84
+4
+8136101</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A
+nálisis
+Mul
+ti
+variado
+Ap
+licado.</td>
+<td>URIEL Y
+ALDAS</td>
+<td>2005,
+1ª
+Edición</td>
+<td><p>E
+d
+itorial</p>
+<p>Thomson</p></td>
+<td>84
+4
+8136101</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>A
+nálisis
+Mult
+iv
+ariante
+para
+las
+C
+iencias
+mS
+ociales</td>
+<td><p>LEVI
+J.P. y</p>
+<p>VARELA
+J.;</p></td>
+<td>2001</td>
+<td>P
+rentice
+Hall.</td>
+<td>84-20
+5
+-3727-6</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Modelos
+de E
+cu
+aciones
+Estr
+uc
+turales
+Cu
+adernos
+de es
+ta
+dística</td>
+<td><p>B at
+is
+ta,J.M.
+y</p>
+<p>C
+oenders
+G.,</p></td>
+<td>2012,
+2º ed.</td>
+<td>La
+Muralla</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Int
+ro
+ducción
+al
+A
+nálisis
+de
+Re
+gresión
+Lineal</td>
+<td><p>Mo
+nt
+gomery,</p>
+<p>Peck y
+Vining</p></td>
+<td>2006,
+3º
+e
+dición.</td>
+<td>Con
+t
+inental</td>
+<td>970-2
+4
+-0327-8</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>El
+a
+nálisis
+fa
+ctorial
+como
+técnica
+de inve
+st
+igación
+en P
+si
+cología</td>
+<td>Fe
+rrando,
+P. J.,
+&amp;
+Anguian
+o-
+Ca
+rrasco,
+C.</td>
+<td>2010</td>
+<td>Papeles
+del Ps
+i
+cólogo,
+31,
+18-33</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>A
+nálisis
+fa
+ctorial
+confi
+rm
+atorio.
+Su
+u
+tilidad
+en la v
+al
+idación
+de cues
+ti
+onarios
+rel
+ac
+ionados
+con la
+salud.</td>
+<td>. Bati
+st
+a-
+Foguet,
+J.M.,
+Co
+enders,
+G., &amp;
+Alonso,
+J.</td>
+<td>2004</td>
+<td><p>M
+edicina
+C
+línica,</p>
+<p>122(
+S
+upl.1).</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Modelos
+de e
+cu
+aciones
+estr
+uc
+turales</td>
+<td>Ruiz,
+M.A.,
+Pardo,
+A., &amp;
+San
+Martín,
+R.</td>
+<td>2010</td>
+<td><p>Papeles
+del</p>
+<p>Ps
+i
+cólogo,
+Vol.
+31,
+Núm.</p>
+<p>1, pp.
+34-45</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>RStudio
+para Es
+ta
+dística
+De
+sc
+riptiva
+en
+C
+iencias
+So
+ciales.
+Manual
+de
+apoyo
+docente
+para la
+as
+i
+gnatura
+Es
+ta
+dística
+De
+sc
+riptiva</td>
+<td>Bo
+ccardo,
+G. y
+Ruiz,
+F.</td>
+<td>2019</td>
+<td><p>Depa
+r
+tamento
+de Soc
+i
+ología,
+F
+acultad
+de</p>
+<p>C
+iencias
+S
+o
+ciales,
+Uni
+v
+ersidad
+de
+Chile</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>R para
+Ciencia
+de
+Datos
+[link]
+(h%20%2
+0ttps:/
+%20%20%
+20%20%2
+0/es.r4
+%20%20%
+20ds.ha
+d%20%20
+ley%20%
+20%20%2
+0.nz%20
+/in%20%
+20%20de
+x.html)</td>
+<td>W
+ickham,
+H</td>
+<td>2019</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="vii.2-bibliografía-complementaria" class="section level2">
+<h2>VII.2 Bibliografía complementaria</h2>
+<table style="width:94%;">
+<colgroup>
+<col width="12%" />
+<col width="31%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>N °</td>
+<td>TÍTULO</td>
+<td>AUTOR</td>
+<td>ED. Y
+AÑO</td>
+<td>EDI
+TORIAL</td>
+<td>ISBN</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Técnicas de Análisis
+Mult ivariante para
+la Inve stigación
+Social y Comercial</td>
+<td>Díaz
+de
+Rada
+Iguz
+quiza,
+Vidal</td>
+<td>2002</td>
+<td>Ra-Ma</td>
+<td>8478
+975152</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>APPLIED LOGISTIC R
+EGRESSION</td>
+<td>H
+OSMER,
+D
+AVID -
+LEM
+ESHOW,</td>
+<td>2º
+e
+dición</td>
+<td>WILEY</td>
+<td>0-
+471-3
+5632-8</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Métodos Mult
+ivariados Aplicados
+al análisis de Datos</td>
+<td>D.E.
+J
+ohnson</td>
+<td>2000</td>
+<td>In
+terna
+tional
+T
+homson
+Ed
+itores</td>
+<td>9687
+529903</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Análisis fa
+ctoriales simples y
+m últiples. O
+bjetivos, métodos e
+inter pretación</td>
+<td><ol start="2" style="list-style-type: upper-alpha">
+<li>Es
+cofier
+y J.
+Pagès</li>
+</ol></td>
+<td>1994</td>
+<td>Se
+rvicio
+Edit
+orial,
+Unive
+rsidad
+del
+País</td>
+<td>8475
+853838</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Análisis es
+tadístico para datos
+ca tegóricos</td>
+<td>Ato,
+M. y
+López,
+J. J.</td>
+<td>1996</td>
+<td>Si
+ntesis</td>
+<td>8477
+383928</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="viii.-cláusula-ética" class="section level1">
+<h1>VIII. Cláusula Ética</h1>
+<p>La Escuela establece severas sanciones para las faltas graves que los
+estudiantes realicen, tales como plagio o falsificación de documentos,
+señalados en el Reglamento del Estudiante de Pre-grado en el Título XIII
+de las Conductas Contrarias a los Principios Universitarios.</p>
+<p>El Comité de Ética es la instancia responsable de revisar y resolver las
+situaciones que sean contrarias a los principios universitarios, en
+relación al desarrollo de conductas ilícitas que vicien los procesos de
+evaluación. Son definidas como conductas que vician una evaluación,
+todos aquellos actos que implican un rompimiento de los estándares
+éticos que un estudiante debe resguardar en una evaluación,
+distorsionando la apreciación de los conocimientos y habilidades reales
+que el estudiante posee (por ejemplo, copia y uso indebido de documento
+y/o medios electrónicos, modificación o falsificación de documentos,
+plagio en trabajos escritos).</p>
+<p>Se consideran como fuentes de información que se deben citar, los textos
+e imágenes en formato electrónico o en papel, en todas sus modalidades:
+libros, diarios, documentos de trabajo, artículos académicos, etc.</p>
+</div>
+<div id="ix.-cronograma-de-trabajo" class="section level1">
+<h1>IX. Cronograma de trabajo</h1>
+<table style="width:92%;">
+<colgroup>
+<col width="20%" />
+<col width="70%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>11 de marzo</td>
+<td>Análisis de datos y uso de R</td>
+</tr>
+<tr class="even">
+<td>18 de marzo</td>
+<td>Análisis de datos y uso de R</td>
+</tr>
+<tr class="odd">
+<td>25 de marzo</td>
+<td>Introducción a los modelos multivariados</td>
+</tr>
+<tr class="even">
+<td>1 de abril</td>
+<td>Formas funcionales de los Modelos de Regresión</td>
+</tr>
+<tr class="odd">
+<td>8 de abril</td>
+<td>Formas funcionales de los Modelos de Regresión</td>
+</tr>
+<tr class="even">
+<td>15 de abril</td>
+<td>Análisis Factorial Exploratorio</td>
+</tr>
+<tr class="odd">
+<td>22 de abril</td>
+<td>Análisis Factorial Exploratorio</td>
+</tr>
+<tr class="even">
+<td>29 de abril</td>
+<td>Prueba 1</td>
+</tr>
+<tr class="odd">
+<td>6 de mayo</td>
+<td>Receso</td>
+</tr>
+<tr class="even">
+<td>13 de mayo</td>
+<td>Análisis Factorial Confirmatorio</td>
+</tr>
+<tr class="odd">
+<td>20 de mayo</td>
+<td>Análisis Factorial Confirmatorio</td>
+</tr>
+<tr class="even">
+<td>27 de mayo</td>
+<td>Análisis de sendero</td>
+</tr>
+<tr class="odd">
+<td>3 de junio</td>
+<td>Análisis de sendero</td>
+</tr>
+<tr class="even">
+<td>10 de junio</td>
+<td>Modelos de ecuaciones estructurales</td>
+</tr>
+<tr class="odd">
+<td>17 de junio</td>
+<td>Modelos de ecuaciones estructurales</td>
+</tr>
+<tr class="even">
+<td>24 de junio</td>
+<td>Modelos de ecuaciones estructurales</td>
+</tr>
+<tr class="odd">
+<td>1 de julio</td>
+<td>Repaso</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="x.-normativa-de-prevevención-y-sanción-de-acciones-de-discriminación-violencia-sexual-y-de-género-de-la-universidad-diego-portales." class="section level1">
+<h1>X. NORMATIVA DE PREVEVENCIÓN Y SANCIÓN DE ACCIONES DE DISCRIMINACIÓN, VIOLENCIA SEXUAL Y DE GÉNERO DE LA UNIVERSIDAD DIEGO PORTALES.</h1>
+<p>Tal como señala esta normativa:</p>
+<p>“La Universidad Diego Portales (UDP) promueve el pluralismo y la
+independencia crítica de quienes la integran y tienen como uno de sus
+principales objetivos el desarrollo integral de las personas que forman
+parte de ella y de la sociedad. En ese marco, la UDP promueve una
+convivencia reflexiva basada en el reconocimiento a la dignidad de las
+personas, la libertad de expresión, la libertad sexual, la identidad y
+expresión de género, y la autonomía.”</p>
+<p>Por lo tanto:</p>
+<p>“Quienes integren la Universidad tienen la obligación de conocer esta
+normativa y los protocolos, sitios web y programas que de ella se
+deriven. Particularmente responsables de su implementación serán las
+autoridades de la Universidad, quienes tendrán la primera obligación de
+hacer frente a situaciones que deñen a sus integrantes. Para lograr
+estos objetivos, se debe realizar la correcta difusión y socialización
+de la normativa.”</p>
+<p>Los detalles de la normativa pueden ser consultados en el siguiente
+enlace: <a href="https://www.udp.cl/cms/wp-content/uploads/2021/06/RESOLUCIO%CC%81N-DE-RECTORI%CC%81A-No-43-NORMATIVA-PREVENCION-Y-SANCION-ACCIONES-DE-VIOLENCIA-SEXUAL-DIC-2018.pdf">Normativa de prevención y sanción de acciones de violencia
+sexual</a></p>
+</div>
+<div id="descargar-programa-en-pdf" class="section level1">
+<h1><a href="../files/Programa%20Analisis%20de%20datos%20II%20-%202024.pdf/">Descargar programa en pdf</a></h1>
+<p><a Puedes descargar el programa apretando el siguiente botón class="btn btn-primary" href="../files/Programa Analisis de datos II - 2024.pdf/" role="button"><i class="far fa-file-pdf"></i></a></p>
+</div>

@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="0. Objetivo del práctico El objetivo del práctico es introducirnos en herramientas que permiten establecer un flujo de trabajo en R. Para ello, aprenderemos cómo abrir un nuevo script y a crear un nuevo proyecto de R (o Rproject)." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/example/01-practico/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/example/01-practico/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis avanzado de datos 2" />
+  <meta property="og:url" content="/example/01-practico/" />
+  <meta property="og:title" content="Bienvenido/a a R, RStudio y Github | Análisis avanzado de datos 2" />
+  <meta property="og:description" content="0. Objetivo del práctico El objetivo del práctico es introducirnos en herramientas que permiten establecer un flujo de trabajo en R. Para ello, aprenderemos cómo abrir un nuevo script y a crear un nuevo proyecto de R (o Rproject)." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-08-09T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-08-09T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis avanzado de datos 2" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Bienvenido/a a R, RStudio y Github | Análisis avanzado de datos 2</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis avanzado de datos 2"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/">Información general</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/">Prácticos (códigos de ejemplo)</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" >Datos</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/01-practico/">Ejemplos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li class="active">
+        <a href="/example/01-practico/">1: R, RStudio y Github</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/02-practico/">2: RMarkdown</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/03-practico/">3: Tipos de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/04-practico/">4: Importar, explorar y exportar datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/05-practico/">5: Limpieza de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/06-practico/">6: Transformar variables</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/07-practico/">7: Análisis descriptivo univariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/08-practico/">8: Análisis descriptivo bivariado</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/09-practico/">9: Muestras complejas y precisión de inferencia estadística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.1-practico/">10.1: Regresiones lineales</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10.2-practico/">10.2: Regresión logística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/11-practico/">11 (BONUS): Calidad de modelos y otras técnicas de estimación</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+        <div class="d-none d-xl-block col-xl-2 docs-toc">
+            <ul class="nav toc-top">
+                <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+            </ul>
+
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#0-objetivo-del-práctico">0. Objetivo del práctico</a></li>
+    <li><a href="#1-crear-un-nuevo-script-r">1. Crear un nuevo script (.R)</a></li>
+    <li><a href="#2-crear-un-nuevo-proyecto-de-r-rproj">2. Crear un nuevo proyecto de R (.Rproj)</a></li>
+    <li><a href="#3-github">3. GitHub</a>
+      <ul>
+        <li><a href="#ventajas">Ventajas:</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-github-classroom">4. Github Classroom</a></li>
+    <li><a href="#3-github-desktop">3. Github Desktop</a></li>
+    <li><a href="#4-botones-principales-en-github-desktop">4. Botones principales en GitHub Desktop:</a></li>
+    <li><a href="#5-conceptos-claves-de-github">5. Conceptos claves de Github</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#flujo-de-trabajo-colectivo-y-de-acceso-abierto">Flujo de trabajo colectivo y de acceso abierto</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#6-github-class-room-del-curso-learn-r-uah">6. GitHub Class Room del curso (learn-R-UAH)</a>
+      <ul>
+        <li><a href="#61-recibir-una-tarea">6.1 Recibir una tarea</a></li>
+        <li><a href="#62-ingresa-el-linkhttpsclassroomgithubcomataoncqa7">6.2 Ingresa el <a href="https://classroom.github.com/a/taONcqa7">link</a></a></li>
+        <li><a href="#63-resolver-una-tarea">6.3 Resolver una tarea</a></li>
+        <li><a href="#64-tarea-0">6.4 Tarea 0</a></li>
+        <li><a href="#65-subir-una-tarea">6.5 Subir una tarea</a></li>
+        <li><a href="#66-recibir-comentarios">6.6 Recibir comentarios</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-video-tutorial-en-youtube">7. Video tutorial en Youtube</a></li>
+  </ul>
+</nav>
+
+ 
+        </div>
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Bienvenido/a a R, RStudio y Github</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        <h2 id="0-objetivo-del-práctico">0. Objetivo del práctico</h2>
+<p>El objetivo del práctico es introducirnos en herramientas que permiten establecer un flujo de trabajo en R. Para ello, aprenderemos cómo abrir un nuevo <strong>script</strong> y a crear un nuevo <strong>proyecto de R (o Rproject)</strong>. Además, utilizaremos GitHub, que es una plataforma que permite alojar los .Rproj y códigos de cada uno de ustedes. De hecho, tal como mostraremos en el práctico, utilizaremos <strong>GitHub</strong><em>ClassRoom</em> para que ustedes puedan subir sus tareas.</p>
+<p>Previo a esto, deben ver el <a href="https://youtu.be/Zj8yL-nx9vM" target="_blank" rel="noopener">Tutorial de instalación de R</a>.</p>
+<p>Ahora aprenderemos a crear scripts, proyectos, colaborar y resolver las tareas.</p>
+<h2 id="1-crear-un-nuevo-script-r">1. Crear un nuevo script (.R)</h2>
+<p>Para que empecemos a trabajar en el lenguaje R, lo primero es saber cómo abrir un nuevo script; pero <em>¡¿qué es un script?!</em> Dicho en términos simples, el script es la <em>&ldquo;hoja&rdquo;</em> sobre la cual escribiremos y guardaremos cada uno de los códigos que trabajemos cuando estemos trabajando con datos cuantitativos. Si bien podemos ejecutar los códigos directamente desde la <strong>consola</strong>, estos se eliminarán una vez que cerremos la sesión en RStudio:</p>
+<p><img src="/img/example/consola.png" width="60%" /></p>
+<p>Así, cuando escribamos en nuestro <strong>script</strong>, podremos archivar los códigos que vayamos ejecutando, para poder reproducirlos posteriormente, compartirlos con otras personas, entre otros. Ahora, lo que nos convoca: <strong>¿cómo puedo abrir un nuevo script?</strong></p>
+<p>Hacerlo es bastante sencillo. En la sección <em>superior izquierda</em> de RStudio, debe hacerse click en la hoja con un signo + verde y, luego, seleccionar la opción <strong>R Script</strong> en el menú desplegado:</p>
+<p><img src="/img/example/open-script.png" width="60%" /></p>
+<p>Otra manera de abrir un nuevo script es hacer click en la opción <strong>File</strong> de la <em>barra superior</em></p>
+<p><img src="/img/example/file.png" width="60%" /></p>
+<p>para, posteriormente seleccionar <strong>New File &gt; R Script</strong> en los menús desplegados:</p>
+<p><img src="/img/example/new-script.png" width="60%" /></p>
+<p>Por último, podemos mantener presionadas las teclas <strong>Ctrl + Shift + N</strong> en Windows, o <strong>⌘ + Shift + N</strong>
+en <em>Mac</em>.</p>
+<p>Ya hemos abierto un nuevo script (<strong>¡Genial!</strong>), que se debe ver de la siguiente manera:</p>
+<p><img src="/img/example/script.png" width="60%" /></p>
+<p>Podemos escribir en él los códigos, que se ejecutarán en la <strong>consola</strong> una vez mantengamos presionadas las teclas <strong>Control + Enter</strong> al inicio de la línea</p>
+<p><img src="/img/example/script-console.png" width="60%" /></p>
+<p>Ahora, por supuesto, debemos guardar nuestro script una vez terminemos de trabajar en él, a modo de no perder el trabajo avanzado. Para ello, podemos hacer click en el <strong>disquete</strong> situado en la <em>barra que se encuentra sobre el código</em></p>
+<p><img src="/img/example/save.jpg" width="60%" /></p>
+<p>Para luego, elegir el directorio donde deseamos almacenar nuestro script, y asignarle un nombre determinado (en este caso <strong>script1</strong>) que, ojalá, tenga que ver con los procedimientos ejecutados en este (por ejemplo, <em>procesamiento</em> o <em>análisis</em>). La extensión de los archivos que almacenan scripts es <strong>.R</strong> (<em>¡no lo olvides!</em>)</p>
+<p><img src="/img/example/save-script.png" width="60%" /></p>
+<p><img src="/img/example/name-script.png" width="60%" /></p>
+<p>Una vez almacenado en una carpeta, cada vez que clickeemos en los casetes o mantengamos presionadas las teclas <strong>Control + S</strong>, el archivo se actualizará a la última versión que hayamos guardado.</p>
+<h2 id="2-crear-un-nuevo-proyecto-de-r-rproj">2. Crear un nuevo proyecto de R (.Rproj)</h2>
+<p>¡Todavía nos falta algo para iniciarnos en el flujo de trabajo del curso! debemos crear un nuevo <strong>Proyecto de R o R Project (<em>.Rproj</em>)</strong>. ¿Qué es esto, se preguntarán ustedes? en pocas palabras, será la <strong>semilla de nuestra carpeta de trabajo</strong>, es decir, constituye el centro a partir del cual estaremos trabajando el resto de archivos incluidos en nuestro trabajo con los datos, como los <em>scripts</em>, los <em>datos</em> con los que trabajamos, los <em>gráficos</em> que generaremos durante el análisis, y todo aquello vinculado a los procesos que ejecutemos en un trabajo en específico. A lo largo del curso aprenderemos a trabajar adecuadamente con los .Rproj, manteniendo un flujo de trabajo que <em>facilita la reproductibilidad</em> de los procesos con los que aprenderemos los contenidos, así como de las tareas que ustedes rendirán durante el semestre. Sin embargo, ahora nos limitaremos a aprender a crear un nuevo proyecto.</p>
+<p>¿Cómo lo hacemos? Es bastante sencillo, y se asemeja a la creación de scripts. No obstante, esta vez nos dirigiremos a la sección <em>superior derecha de RStudio</em>, donde se encuentra una <em>R inscrita a un cubo</em></p>
+<p><img src="/img/example/rproj.png" width="60%" /></p>
+<p>Haremos click en ella, y se desplegará un panel con opciones. Clickearemos en <strong>New Project&hellip;</strong></p>
+<p><img src="/img/example/new-proj.png" width="60%" /></p>
+<p>Emergerá una ventana que nos preguntará en qué carpeta queremos alojar nuestro nuevo proyecto. Podemos elegir crear una nueva carpeta haciendo click en <strong>New Directory</strong>, o elegir una carpeta ya existente en nuestro computador, clickeando en <strong>Existing Directory</strong></p>
+<p><img src="/img/example/new-proj1.png" width="60%" /></p>
+<p>Si optamos por lo primero, se nos preguntará qué tipo de proyecto deseamos crear. En este caso, elegiremos <strong>New Project</strong></p>
+<p><img src="/img/example/new-proj2.png" width="60%" /></p>
+<p>Aparecerá una ventana que nos pregunta el nombre que queremos asignarle a la nueva carpeta que crearemos, y en qué carpeta se alojará esta. Si hacemos click en <em>Browse</em>, podemos buscar un directorio específico en el cual queramos alojar la nueva carpeta</p>
+<p><img src="/img/example/new-proj3.png" width="60%" /></p>
+<p>En caso de elegir lo segundo, se nos solicitará directamente en qué carpeta (ya existente) queremos alojar nuestro proyecto. Una vez más, podemos utilizar <em>Browse</em> para navegar entre las carpetas de nuestro computador, hasta hallar aquella en que deseamos alojar este nuevo archivo</p>
+<p><img src="/img/example/new-proj4.png" width="60%" /></p>
+<p>¡Listo! ahora sólo debemos ir a nuestra carpeta y buscar el proyecto que hemos creado. Es un archivo de extensión .Rproj, cuyo ícono es una R inscrita en un cubo.</p>
+<p><img src="/img/example/new-proj5.png" width="60%" /></p>
+<p>Es fundamental que, de aquí en adelante, siempre que vayamos a trabajar en alguna tarea con R, <strong>creemos el nuevo proyecto y lo abramos para empezar a trabajar</strong>. Ello setearé nuestro directorio de trabajo directamente en la carpeta donde se encuentra el archivo .Rproj, lo cual nos permitirá trabajar colaborativamente con mayor facilidad (¡algo <strong>fundamental</strong> en el curso!). Además, cada vez que vayamos a retomar nuestro trabajo en algún proyecto, debemos <strong>siempre abrir el proyecto antes que cualquier cosa</strong>, para lo cual debemos hacer doble click sobre su ícono.</p>
+<h2 id="3-github">3. GitHub</h2>
+<p>Es un sistema de control de versiones en línea que rastrea los cambios de códigos, facilita la colaboración y el acceso abierto. En este curso será un programa esencial para el desarrollo tanto de clases como prácticos, por lo que vamos a aprender a utilizarlo repasando aspectos básicos. Esto además será profundizado y detallado en clases.</p>
+<h3 id="ventajas">Ventajas:</h3>
+<p>Las principales ventajas son:</p>
+<ul>
+<li>
+<p>Facilita el flujo del trabajo y la colaboración entre usuarios</p>
+</li>
+<li>
+<p>Es de acceso abierto</p>
+</li>
+<li>
+<p>Permite hacer seguimiento a los errores</p>
+</li>
+<li>
+<p>Tiene variedades de funciones y plataformas</p>
+</li>
+</ul>
+<p>No obstante, la plataforma central en el curso será <strong>GitHub Classroom</strong></p>
+<h2 id="4-github-classroom">4. Github Classroom</h2>
+<p>Es una plataforma de Github que facilita la interacción y aprendizaje entre estudiantes y profesores. Utilizaremos esta plataforma a lo largo del curso, principalmente porque permite que las y los estudiantes trabajen individual y colectivamente usando los repositorios de Github. En esta plataforma entregarán sus tareas, recibirán comentarios y retroalimentaciones pudiendo trabajar colaborativamente.</p>
+<ul>
+<li>Pasos para ingresar a Github classroom</li>
+</ul>
+<ol>
+<li>
+<p>Crear cuenta:</p>
+</li>
+<li>
+<p>Dirigirse al <a href="https://n9.cl/954ne" target="_blank" rel="noopener">Link</a></p>
+</li>
+</ol>
+<p><img src="/img/example/create.png" width="60%" /></p>
+<ol start="3">
+<li>
+<p>Clickear en “Crea una cuenta”</p>
+</li>
+<li>
+<p>Introduce tu correo electrónico</p>
+</li>
+<li>
+<p>Crea una contraseña</p>
+</li>
+<li>
+<p>Introduce el nombre de usuario (similar a su nombre)</p>
+</li>
+<li>
+<p>Clickear en Crear una cuenta</p>
+</li>
+</ol>
+<p><img src="/img/example/capt.png" width="60%" /></p>
+<ol start="8">
+<li>
+<p>Ve al correo electrónico que pusiste anteriormente</p>
+</li>
+<li>
+<p>Copia el código e introdúcelo en la página</p>
+</li>
+</ol>
+<div class="note">
+Recuerda que el correo que uses debe ser el mismo correo que usaste en pasos anteriores. <a href="https://youtu.be/9YD-F6-ktes">Ver tutorial 1</a>.
+</div>
+
+<h2 id="3-github-desktop">3. Github Desktop</h2>
+<p>Esta es una aplicación que permite trabajar los repositorios de Github en los computadores, de forma local e intuitiva, facilitando la coordinación entre las modificaciones realizadas a nivel local y en la plataforma web. Para utilizarlo, debemos</p>
+<p>a. Instalar Github Desktop</p>
+<p>b. Dirigirse a <a href="https://desktop.github.com/" target="_blank" rel="noopener">Link</a></p>
+<p><img src="/img/example/deskdown.png" width="60%" /></p>
+<p>c. Crear una carpeta para los contenidos del curso</p>
+<p>d. Vincular la dirección de la carpeta</p>
+<div class="note">
+<h4 id="para-windows">Para Windows</h4>
+<ul>
+<li>
+<p>Clickear en Download for Windows (64bit)</p>
+</li>
+<li>
+<p>Ejecutar el archivo descargado</p>
+</li>
+<li>
+<p>Introduce tu usuario y contraseña</p>
+</li>
+</ul>
+<h4 id="para-mac">Para Mac</h4>
+<ul>
+<li>
+<p>Clickear en Download for macOS</p>
+</li>
+<li>
+<p>Ejecutar el archivo descargado</p>
+</li>
+<li>
+<p>Introduce tu usuario y contraseña</p>
+</li>
+</ul>
+
+</div>
+
+<h2 id="4-botones-principales-en-github-desktop">4. Botones principales en GitHub Desktop:</h2>
+<ul>
+<li>
+<p><strong>Clone repository</strong>: Copia un repositorio a tu computador</p>
+</li>
+<li>
+<p><strong>Create new repository</strong>: crea un nuevo repositorio</p>
+</li>
+<li>
+<p><strong>Add existing repository</strong>: incorpora un repositorio existente</p>
+</li>
+</ul>
+<p><img src="/img/example/con1desk.png" width="60%" /></p>
+<ul>
+<li>
+<p><strong>Open the repository in Rstudio</strong>: Abre todo el proyecto en RStudio</p>
+</li>
+<li>
+<p><strong>View the files of your repository in explorer</strong>: Muestra los archivos en la carpeta que se encuentra</p>
+</li>
+<li>
+<p><strong>Open the repository on Github</strong>: abre el repositorio en la página</p>
+</li>
+<li>
+<p><strong>Commit to master</strong>: forma de guardar los cambios</p>
+</li>
+<li>
+<p><strong>Push origin</strong>: manda los cambios al repositorio en línea</p>
+</li>
+</ul>
+<p><img src="/img/example/con2desk.jpg" width="60%" /></p>
+<h2 id="5-conceptos-claves-de-github">5. Conceptos claves de Github</h2>
+<ul>
+<li>
+<p><strong>Repositorios</strong>: Es donde se alberga el trabajo; una carpeta que contiene todos los archivos y el historial de cambios realizados. Estos se almacenan en la nube.</p>
+</li>
+<li>
+<p><strong>Cloning</strong>: Los repositorios pueden clonarse creando copias locales que extraen toda la información y antiguas versiones del repositorio. Posteriormente podemos modificar los archivos del repositorio clonado, para sincronizar la copia local con la copia en Github.</p>
+</li>
+<li>
+<p><strong>Commit</strong>: Es la forma de guardar el estado de tu proyecto, como una captura en la que se deja un mensaje informativo.</p>
+</li>
+<li>
+<p><strong>Push</strong>: Esta es la forma en la que se puede incorporar (<em>subir</em>) los cambios locales al repositorio de Github.</p>
+</li>
+<li>
+<p><strong>README</strong>: Se utiliza a modo de presentación o introducción de los repositorios.</p>
+</li>
+<li>
+<p><strong>Pull</strong>: Esta es la forma en la que se puede sincronizar (<em>bajar</em>) los cambios del repositorio de Github al repositorio local.</p>
+</li>
+</ul>
+<h4 id="flujo-de-trabajo-colectivo-y-de-acceso-abierto">Flujo de trabajo colectivo y de acceso abierto</h4>
+<ul>
+<li>
+<p><strong>Forks</strong>: Es otra forma de copiar un repositorio, permitiendo hacer cambios sin afectar al proyecto original.</p>
+</li>
+<li>
+<p><strong>Pull requests</strong>: Es una forma de solicitar que sean incorporados los cambios que has hecho desde un repositorio local, al repositorio original.</p>
+</li>
+</ul>
+<p><img src="/img/example/concepclav.png" width="60%" /></p>
+<h2 id="6-github-class-room-del-curso-learn-r-uah">6. GitHub Class Room del curso (learn-R-UAH)</h2>
+<p><strong>Pasos para las dinámicas del curso</strong></p>
+<h3 id="61-recibir-una-tarea">6.1 Recibir una tarea</h3>
+<h3 id="62-ingresa-el-linkhttpsclassroomgithubcomataoncqa7">6.2 Ingresa el <a href="https://classroom.github.com/a/taONcqa7" target="_blank" rel="noopener">link</a></h3>
+<p>a. El link contiene la tarea, ustedes deben aceptar la tarea la cual creará un <em><strong>repositorio</strong></em> que contendrá la <em>información</em> y las <em>instrucciones</em> de la tarea.</p>
+<p><img src="/img/example/ingrestarea.png" width="60%" /></p>
+<p>b. Para eso deben ir a <em><strong>GitHub Desktop</strong></em>, <em><strong>clonar</strong> el respositorio desde internet</em>.</p>
+<p><img src="/img/example/paso2tarea.png" width="60%" /></p>
+<p>c. Luego deben escoger el repositorio de la tarea, escoger la carpeta en la que se encontrará y clonarlo</p>
+<p><img src="/img/example/paso3tarea.png" width="60%" /></p>
+<p>d. Después deben abrir el repositorio creado a través de <em><strong>RStudio</strong></em>, ahí verán el mismo contenido pero en un archivo <em><strong>.md</strong></em></p>
+<p><img src="/img/example/paso4tarea.png" width="60%" /></p>
+<h3 id="63-resolver-una-tarea">6.3 Resolver una tarea</h3>
+<p>a. Ahora resolveremos la <strong>Tarea 0</strong> en conjunto, una vez abierto el <a href="https://classroom.github.com/a/taONcqa7" target="_blank" rel="noopener">repositorio         clonado</a>. Recuerden que es en este repositorio donde deben completar y subir la tarea</p>
+<p>b. La tarea se encuentra en un archivo llamado <code>*README*</code> con información de los conceptos básicos y el flujo de GitHub, deben leerlo detalladamente.</p>
+<p>c. Una vez leido deberán ir al final del archivo en <strong>Tarea 0</strong> y responder las preguntas correspondientes</p>
+<p><img src="/img/example/paso5tarea.png" width="60%" /></p>
+<h3 id="64-tarea-0">6.4 Tarea 0</h3>
+<p>¡Puedes ver las instrucciones de la <a href="/assignment/00-tarea/">tarea en el siguiente link</a> o en <a href="https://classroom.github.com/a/taONcqa7" target="_blank" rel="noopener">GitHub Class Room</a></p>
+<h3 id="65-subir-una-tarea">6.5 Subir una tarea</h3>
+<p>a. Una vez listo, deberán <em><strong>subir</strong></em> la tarea al repositorio remoto a través de GitHub Desktop</p>
+<p><img src="/img/example/paso6tarea.png" width="60%" /></p>
+<h3 id="66-recibir-comentarios">6.6 Recibir comentarios</h3>
+<p>a. Les llegará un correo con los comentarios y retroalimentación de su tarea</p>
+<h2 id="7-video-tutorial-en-youtube">7. Video tutorial en Youtube</h2>
+<p>Recuerden que el <a href="https://www.youtube.com/watch?v=Zj8yL-nx9vM" target="_blank" rel="noopener">video de asociado a este práctico</a> y muchos más podrán encontrarlos en el <a href="https://www.youtube.com/channel/UCqBUeqBttVjS6h8fawK8sWg" target="_blank" rel="noopener">canal de youtube del curso</a></p>
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=Zj8yL-nx9vM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/example/10.1-practico/" rel="next">Regresiones lineales</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/example/05-practico/" rel="prev">Limpieza de datos</a>
+  </div>
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on August 9, 2021</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis avanzado de datos 2 (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

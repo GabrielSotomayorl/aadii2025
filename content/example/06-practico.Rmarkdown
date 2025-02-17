@@ -1,0 +1,160 @@
+---
+title: "Análisis Factorial Exploratorio I"
+linktitle: "6: Análisis Factorial Exploratorio I"
+date: "2023-04-29"
+menu:
+  example:
+    parent: Ejemplos
+    weight: 6
+type: docs
+toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r set up, echo = F}
+knitr::opts_knit$set(sql.max.print = 10)
+```
+
+## 0. Objetivo del práctico
+
+El objetivo de este práctico es revisar como realizar la comprobación de supuestos y tratamiento de variables para la realización de un Análisis factorial Exploratorio. 
+
+
+## 1. Carga y gestión de datos
+
+En primer lugar, cargaremos una base de datos de PNUD 2015, que incluye los siguientes ítem. Con estos esperamos revisar si existen estructuras latentes en como las personas evalúan las oportunidades que entrega Chile. 
+
+![](https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/05/Practico.png)
+
+Estos datos están en formato csv (comma separated value), por lo cual podemos leerlos con la función *read.csv2* incluida con r base.
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+#cargamos los datos 
+datos <- read.csv("https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/data/EDH_2013_csv.csv") |> 
+  select(salud = P25a,ingr = P25b, trab = P25c,  educ = P25d, vivi = P25e,  segur = P25f, medio = P25g, liber = P25h, proye = P25i) 
+
+```
+
+
+A continuación, revisamos los datos y daremos por perdidos los valores no sabe y no responde. 
+
+```{r}
+#   3.    DEFINIR VALORES PERDIDOS para Las variables, intervalares discretas de 7 categorias de las base de Datos PNUD 2015
+summary(datos)
+
+#Categorizar como NA 8 y 9 (NS/NR).
+datos <- datos %>%
+  mutate(across(everything(), ~na_if(.x, 9))) %>%
+  mutate(across(everything(), ~na_if(.x, 8)))
+```
+
+A continuación, exploramos los datos para conocer sus medias y distribución. En este punto es relevante revisar si existe mucha diferencia en sus niveles de variabilidad, ya que esto afectara los resultados del Análisis Factorial Exploratorio.
+
+```{r,warning=FALSE}
+#   4.    ANALISIS DESCRIPTIVO DE LAS VARIABLES. 
+library(summarytools)
+print(dfSummary(datos, headings = FALSE, method = "render"))
+```
+
+##  2.  Comprobación de supuestos
+
+En este bloque de código, se cargan las bibliotecas necesarias para realizar la comprobación de supuestos.
+
+```{r,warning= F}
+library(psych)
+library(MVN)
+```
+
+Para la comprobación de supuestos partiremos por generar una base de datos listwise, es decir, en la que se eliminan todos los casos que tienen valores perdidos en alguno de los ítem. Esto es posible en este caso por el número moderado de casos perdidos existentes. Pasamos de tener 1780 casos a 1632.
+
+```{r}
+#   5a.   Crear una base solo con listwise (para test de Mardia)
+datosLW <- na.omit(datos)
+dim(datosLW)
+```
+
+A continuación, revisaremos la existencia de casos atípicos multivariantes a partir del cálculo y evaluación de la distancia de Mahalanobis. Primero se crean las medias para cada variable (mean) y la matriz de covarianzas (Sx) para calcular la distancia de mahalanobis con la función correspondiente. 
+
+Luego se calcula el valor p asociado con cada distancia de Mahalanobis D2 y se guarda como una nueva variable: datosLW$sigmahala=(1-pchisq(D2, 9)).
+
+Finalmente se filtran los casos atípicos multivariantes según el valor p de la distancia de mahalanobis, y se elimina la variable creada en el paso anterior.
+
+```{r}
+#Tratamiento de casos atipicos
+mean<-colMeans(datosLW[1:9])
+Sx<-cov(datosLW[1:9]) #matriz de varianza covariaza 
+D2<-mahalanobis(datosLW[1:9],mean,Sx)
+
+datosLW$sigmahala=(1-pchisq(D2, df = 9))  # Usando 9 grados de libertad
+
+#eliminar casos atipicos
+datosLW <- datosLW %>%
+  filter(sigmahala > 0.001) %>%
+  select(-sigmahala)
+```
+
+A continuación, utilizamos la función **mvn**  para evaluar la normalidad multivariante y univariante en un conjunto de datos. Especificamos que utilice el test de Mardia para evaluar la existencia de normalidad multivariante en nuestros datos.   
+
+El output de esta función tiene 4 elementos: en gráfico q-q que compara la distribución multivariante de los datos con una normal, los resultados de la prueba de Mardia para evaluar la normalidad multivariante, los resultados de la prueba de Anderson-Darling para evaluar la normalidad univariante de cada variable en el conjunto de datos y estadísticas descriptivas para cada variable en el conjunto de datos, entre las que resulta particularmente relevante la asimetría, que en caso de no existir normalidad, se espera que se encuentra dentro del rango +-2.
+
+```{r}
+  #Test de Mardia.
+MVN::mvn(datosLW,mvnTest	= "mardia",multivariatePlot="qq")
+
+```
+
+Tanto el test de mardia como la prueba de normalidad univariante para cada variable dan cuenta de que no existe normalidad, lo cual debe tenerse en cuenta al seleccionar la forma de extracción de los factores. También nos indica que más adelante no será posible interpretar la preuba de esfericidad de Barlett para multicolinealdiad, ya que esta supone normalidad multivariante.
+
+A pesar de que no existe normalidad multivariante, encontramos una asimetría moderada, por lo que es posible continuar con el análisis.   
+
+A continuación calculamos la matriz de correlaciones para evaluar la existencia de colinealidad. Esto es relevante porque es necesario que exista suficiente varianza común entre las variables para la extracción de factores comunes. 
+
+```{r}
+#Matriz de Correlaciones 
+#Uso de Pearson por caracteristicas de las variables (discretas de baja asimetria)
+
+cor_datos<- cor(datosLW)
+print(cor_datos)
+print(det(cor_datos))#Cercano a 0 correlacion multivariante
+```
+
+La matriz de correlaciones da cuenta de un alto nivel de correlación entre las variables. Como criterio general se espera que existan correlaciones de al menos 0,3. 
+
+El determinante de la matriz de correlaciones se calcula con la función det(). Un determinante cercano a 0 indica que existe correlación multivariante entre las variables. En este caso, el determinante es 0.0001593243, lo que sugiere que hay  colinealidad entre las variables.
+
+A continuación se presenta como calcular una matriz de correlaciones policóricas para el caso de estar trabajando con variables ordinales. En caso de variable dicotómicas (0-1) corresponde usar correlaciones tetracóricas mediante la función 'tetrachoric()'.
+
+```{r}
+#Probar con matriz policlorica en caso de estar trabajando con variables ordinales.
+polychoric(datosLW)
+
+```
+
+Por último, chequeamos la existencia de multicolinealidad. Con fines de presentar el código, se calcula la prueba de esfericidad de Bartlett, sin embargo esta no puede interpretarse de manera confiable, ya que esta presupone normalidad multivariante, la cual no existe en este caso. 
+
+La prueba de esfericidad de Bartlett evalúa si la matriz de correlaciones es significativamente diferente de la matriz de identidad. En otras palabras, contrasta la hipótesis nula de que las variables no están correlacionadas en absoluto (es decir, la matriz de correlaciones es igual a la matriz de identidad). La función toma los como argumento la matriz de correlaciones y el n.
+
+```{r}
+#   5c.   MULTICOLINEALIDAD
+#Test de esfericidad de Bartlett. Contrastar la hipotesis Nula de Igualdad con Matriz identidad
+
+print(cortest.bartlett(cor_datos,n = nrow(datosLW)))
+```
+
+En este caso, el valor chi-cuadrado es 11479.18 y el valor p es muy pequeño, lo que indica que se debe rechazar la hipótesis nula de que la matriz de correlaciones es igual a la matriz de identidad. Esto sugiere que hay correlaciones entre las variables y es apropiado continuar con el análisis factorial exploratorio.
+
+La función **KMO()** calcula la medida de adecuación del muestreo de Kaiser-Meyer-Olkin (KMO) para evaluar la adecuación de los datos para el análisis factorial. La medida KMO varía entre 0 y 1, y valores más altos indican que el análisis factorial es más adecuado para los datos. 
+
+```{r}
+#KMO
+KMO(datosLW)
+```
+
+El output incluye:
+
+- Overall MSA: La medida KMO general para todo el conjunto de datos.  
+- MSA for each item: La medida KMO para cada variable en el conjunto de datos.  
+
+En este caso, la medida KMO general es 0.94, lo que indica una adecuación muy alta para el análisis factorial. Además, las medidas KMO para cada variable también son altas (entre 0.88 y 0.95), lo que sugiere que cada variable contribuye adecuadamente al análisis factorial.

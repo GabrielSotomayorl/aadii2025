@@ -1,0 +1,56 @@
+main:
+  - name: Organización
+    identifier: schedule
+    url: /schedule/
+    weight: 1
+  - name: Planificación
+    parent: schedule
+    url: /schedule/
+    weight: 1
+  - name: Syllabus
+    parent: schedule
+    url: /syllabus/
+    weight: 2
+  - name: Clases
+    url: /content/
+    weight: 3
+  - name: Prácticos
+    url: /example/
+    weight: 4
+  # - name: Tareas 
+  #   identifier: assignment
+  #   url: /assignment/
+  #   weight: 5
+  - name: Recursos
+    url: /resource/
+    weight: 6
+  # - name: '<i class="fab fa-r-project"></i>'
+  #   url: https://rstudio.cloud/
+  #   weight: 7
+
+content:
+  - name: Información general
+    weight: 1
+  - name: Contenido
+    weight: 2
+example:
+  - name: Información general
+    weight: 1
+  - name: Datos
+    weight: 2
+  - name: Ejemplos
+    weight: 3
+assignment:
+  - name: Información general
+    weight: 1
+  - name: Tareas
+    weight: 2
+  - name: Proyecto final
+    weight: 3
+resource:
+  - name: Recursos
+    weight: 1
+  - name: Material complementario
+    weight: 3
+  - name: Tutoriales
+    weight: 2

@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en-us" 
+      xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.2.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="0. Objetivo del prácticoEl objetivo de este práctico es presentar una introducción a los tipos de datos que podemos encontrarnos trabajando con R. Esto constituye uno de los pilares fundamentales para el correcto procesamiento, análisis y presentación de resultados." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/example/03-practicodatatypes/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#5271FF" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i%7CBarlow:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.563f345701788434b4fee407179620aa.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/example/03-practicodatatypes/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@valentiandrade" />
+    <meta property="twitter:creator" content="@valentiandrade" />
+  
+  <meta property="og:site_name" content="Análisis Estadístico en R" />
+  <meta property="og:url" content="/example/03-practicodatatypes/" />
+  <meta property="og:title" content="Tipos de datos | Análisis Estadístico en R" />
+  <meta property="og:description" content="0. Objetivo del prácticoEl objetivo de este práctico es presentar una introducción a los tipos de datos que podemos encontrarnos trabajando con R. Esto constituye uno de los pilares fundamentales para el correcto procesamiento, análisis y presentación de resultados." /><meta property="og:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" />
+    <meta property="twitter:image" content="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-08-16T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-08-16T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/custom-css/print.css" media="print" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <meta name="application-name" content="2255: Análisis Estadístico en R" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="/img/mstile-144x144.png" />
+
+
+  <title>Tipos de datos | Análisis Estadístico en R</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.js"></script>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis Estadístico en R"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_0x70_resize_lanczos_2.png" alt="Análisis Estadístico en R"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Organización</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/schedule/"><span>Planificación</span></a>
+            
+              <a class="dropdown-item" href="/syllabus/"><span>Syllabus</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Clases</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/example/"><span>Prácticos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Tareas <i class="fab fa-github"></i></span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/assignment/"><span>Tareas</span></a>
+            
+              <a class="dropdown-item" href="https://classroom.github.com/classrooms/86887318-learn-r-uah-2021"><span>Github Classroom<i class="fab fa-github"></i></span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/resource/"><span>Recursos</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://join.slack.com/t/learn-r-uah/shared_invite/zt-sh9uysuu-IzEG8~u5k2YYGWgpAFTRFA" target="_blank" rel="noopener"><span><i class="fab fa-slack"></i></span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://rstudio.cloud/" target="_blank" rel="noopener"><span><i class="fab fa-r-project"></i></span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+    
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/">Información general</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/">Prácticos (códigos de ejemplo)</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" >Datos</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/example/01-practico/">Ejemplos</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/example/01-practico/">1: R, RStudio y Github</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/02-practico/">2: RMarkdown</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/03-practico/">3: Importar, explorar y limpiar datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/04-practico/">4: Transformar y seleccionar variables</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/05-practico/">5: Tidydata y manipulación de datos</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/06-practico/">6: Análisis descriptivo</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/07-practico/">7: Muestras complejas y precisión de inferencia estadística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/08-practico/">8: Regresiones lineales, predictores categóricos y representación gráfica</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/09-practico/">9: Regresión logística</a>
+      </li>
+
+      
+      <li >
+        <a href="/example/10-practico/">10: Calidad de modelos y otras técnicas de estimación</a>
+      </li>
+
+      
+      <li class="active">
+        <a href="/example/03-practicodatatypes/">3: Tipos de datos</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+        <div class="d-none d-xl-block col-xl-2 docs-toc">
+            <ul class="nav toc-top">
+                <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+            </ul>
+
+            
+
+ 
+        </div>
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+                    <h1>Tipos de datos</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        
+<script src="03-practico(datatypes)_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+
+</div>
+
+<div id="objetivo-del-práctico" class="section level1">
+<h1>0. Objetivo del práctico</h1>
+<p>El objetivo de este práctico es presentar una introducción a los tipos de datos que podemos encontrarnos trabajando con R. Esto constituye uno de los pilares fundamentales para el correcto procesamiento, análisis y presentación de resultados.</p>
+<div id="materiales-de-la-sesión" class="section level2">
+<h2>Materiales de la sesión</h2>
+<p>En este práctico trabajaremos con datos de la <strong>Encuesta Suplementaria de Ingresos (<em>ESI</em>)</strong> desarrollada por el <strong>Instituto Nacional de Estadísticas</strong> en el año 2020. Esta es “un módulo complementario que se aplica dentro de la Encuesta Nacional de Empleo (ENE) (…) Su objetivo principal es caracterizar los ingresos laborales de las personas que son clasificadas como ocupadas en la ENE y otras fuentes de ingresos de los hogares”, contando con un diseño muestral probabilístico, estratificado y bietápico. Pueden encontrar más información <a href="https://www.ine.cl/estadisticas/sociales/ingresos-y-gastos/encuesta-suplementaria-de-ingresos">aquí</a>.</p>
+<p>Recuerden que los archivos asociados a este práctico se pueden descargar aquí:</p>
+<ul>
+<li><a href="https://github.com/learn-R/02-class/raw/main/02-clase.zip"><i class="fas fa-file-archive"></i> <code>02-class.zip</code></a></li>
+</ul>
+</div>
+<div id="tipos-de-datos" class="section level2">
+<h2>1. Tipos de datos</h2>
+<div id="a-qué-son" class="section level3">
+<h3>a) ¿Qué son?</h3>
+<p>Tanto en R como en la mayoría de lenguajes de programación, contamos con datos de <em>diversos tipos</em>, en razón de los cuales podemos ejecutar determinados procedimientos de tratamiento o análisis.</p>
+<p>Los tipos de datos están <strong>íntimamente relacionados con el <em>nivel de medición</em> de las variables</strong> a las cuales corresponden. Como habrán aprendido en sus cursos de estadística, la teoría de los niveles de medición contempla cuatro de ellos:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Nominal</strong>: para variables categóricas o cualitativas. Los números asignados permiten dividir los datos en diferentes grupos, sin la asignación de un orden específico para las categorías entre las cuales se dispersan los datos. Un ejemplo de variable nominal es la comuna de residencia o el género.</p></li>
+<li><p><strong>Ordinal</strong>: para variables categóricas o cualitativas. Los números asignados permiten dividir los datos en diferentes grupos y, a la vez, establecer un <em>orden no exacto</em> entre ellos. Ello quiere decir que un número más bajo (alto) indicará una menor (mayor) presencia del atributo. Sin embargo, los números no indican distancias concretas: por ejemplo, la distancia entre las categorías 1 y 2 <strong>no necesariamente</strong> es la misma que aquella que existe entre las categorías 2 y 3. Para ilustrarlo más claramente, las escalas Likert representan un ejemplo clásico de variables ordinales: el/la informante puede declarar un mayor o menor grado de acuerdo con las medidas adoptadas por el gobierno durante la pandemia. Sin embargo, no sabemos <strong>cuán más de acuerdo se encuentran</strong>: sólo sabemos que se encuentran más o menos de acuerdo con aquellas medidas en relación con otro/a informante.</p></li>
+<li><p><strong>Intervalar</strong>: para variables numéricas o cuantitativas. Aquí es posible clasificar y ordenar los datos, estableciendo además distancias concretas entre un valor y otro. Por ello, las variables intervalares nos permiten <strong>ejecutar operaciones aritméticas</strong> y, por lo tanto, es posible calcular estadísticos como la media de una distribución. Un ejemplo de variable intervalar puede ser la cantidad de jugadoras/es presentes en una cancha de basketball durante un partido.</p></li>
+<li><p><strong>De razón</strong>: para variables numéricas o cuantitativas. La mayor diferencia con las variables de nivel intervalar es que <strong>incluyen un cero absoluto</strong> que indica <strong>ausencia del atributo</strong>. En el caso anterior, podríamos señalar que, teóricamente, no puede haber cero jugadoras/es en una cancha de basketball durante un partido, pues de ser así no estaría ocurriendo el partido. Sin embargo, sí podemos decir que una persona propietaria de un emprendimiento tiene 2, 4 o 0 trabajadores/as contratados/as. En este caso, el 0 indicaría que <em>no ha contratado a ningún/a trabajador/a</em>, y la distancia entre 0 y 2 trabajadores/as es la misma que la que existe entre 2 y 4 trabajadores/as (es decir, una diferencia de 2 trabajadores/as para cada caso).</p></li>
+</ol>
+<p>En la sección <strong>Recursos</strong> de la página web del curso podrán encontrar un artículo explicativo referente a los <a href="https://learn-r-uah.netlify.app/resource/r-datatypes-example/">tipos de variables</a>, donde se presentan además algunos ejemplos para cada una de ellas.</p>
+</div>
+<div id="b-qué-tipos-de-datos-podemos-encontrarnos-en-r" class="section level3">
+<h3>b) ¿Qué tipos de datos podemos encontrarnos en R?</h3>
+<p>Para responder a esta pregunta ¡metamos las manos en la masa! (o en los datos). Como se señaló anteriormente, trabajaremos con la Encuesta Suplementaria de Ingresos en su versión 2020.</p>
+<pre class="r"><code>pacman::p_load(sjPlot, sjmisc)</code></pre>
+<p>Estos datos ya han sido procesados para ajustarse a los contenidos del curso. Por ello, contamos con 5 variables que permitirán ilustrar los contenidos que atañen a este práctico</p>
+<pre class="r"><code>view_df(data, encoding = &quot;UTF-8&quot;)</code></pre>
+<table style="border-collapse:collapse; border:none;">
+<caption>
+Data frame: data
+</caption>
+<tr>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+ID
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Name
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Label
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Values
+</th>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">
+Value Labels
+</th>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+1
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+id
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Identificador de individuo
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+&lt;output omitted&gt;
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+2
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+a6
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+a6. Â¿Por quÃ© razÃ³n no trabajÃ³ la semana pasada?
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>88<br><span style="omit">&lt;…&gt;</span>
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Vacaciones o permisos<br>Licencia mÃ©dica<br>Por horario o jornada variable o flexible<br>Huelga o conflicto laboral<br>Asistencia a cursos de capacitaciÃ³n<br>Problemas de salud<br>SuspensiÃ³n temporal del trabajo<br>No tuvo pedidos o clientes<br>Razones climÃ¡ticas o catÃ¡strofes naturales<br>Su trabajo es ocasional<br>Razones econÃ³micas o tÃ©cnicas de la empresa o negocio<br>Su trabajo es estacional<br>Clausura de negocio o de empresa<br>Otras razones (especificar)<br>No sabe<br><span style="omit">&lt;… truncated&gt;</span>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+3
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+a6_otro
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Otras razones de ausencia al trabajo
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+4
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+nivel
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Nivel educacional mas alto aprobado
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Basica o primaria<br>Media o humanidades<br>Menos que basica/primaria<br>Tecnico profesional<br>Universitaria o mas
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+5
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+ingresos
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">
+Ingresos por sueldos y salarios
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2">
+<em>range: 0.0-9312239.1</em>
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+6
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+afp
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+Empleador cotiza en prevision (AFP)
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">
+</td>
+</tr>
+</table>
+<p>¡Vamos a revisar cada una de ellas!</p>
+<div id="i-character" class="section level4">
+<h4>I) character</h4>
+<p>Los datos <code>character</code> están directamente asociados a las variables cualitativas (o categóricas). En general, estos datos incluyen palabras, aunque también pueden incorporar números que no representen una variable numérica, como puede ser el RUT de los/as informantes: es un número que no denota una distancia clara entre la inscripción de una persona a la de otra. Suelen ser utilizadas para variables de texto abierto, como es el caso de la variable <strong>a6_otro</strong>, que detalla otras razones por las cuales las/os informantes declararon ausentarse al trabajo durante la semana pasada, más allá de aquellas especificadas en las alternativas de respuesta de la pregunta original.</p>
+<p>Para saber cuál es el tipo de una variable en específico, utilizaremos la función <code>class()</code> del paquete base de R</p>
+<pre class="r"><code>class(data$a6_otro)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Si deseamos trabajar con texto abierto, o manipular ese texto ¡debemos trabajar con character! sin embargo, estas variables no tienden a ser las mejores a la hora de presentar nuestros resultados, entre otras razones, porque no nos permiten especificar un orden distinto al alfabético. Para solucionarlo, tenemos las variables de tipo <strong>Factor</strong></p>
+</div>
+<div id="ii-factor" class="section level4">
+<h4>II) Factor</h4>
+<p>Las variables de tipo <code>Factor</code> son las ideales a la hora de trabajar con variables de tipo nominal u ordinal. Esto se debe a dos motivos: en primer lugar, su comptabilidad con librerías como <code>sjPlot</code>, <code>sjmisc</code> o <code>ggplot2</code>, que nos permiten presentar de manera cómoda estos datos; así como su compatibilidad con funciones dedicadas a la generación de distintos modelos estadísticos, como modelos de análisis de clases latentes o de regresión. En segundo término, porque cabe la posibilidad de <strong>establecer un orden (distinto al alfabético)</strong> entre las categorías de la variable, lo cual es <em>fundamental</em> si trabajamos con variables ordinales, como el <strong>nivel educacional</strong> de las/os informantes</p>
+<pre class="r"><code>class(data$nivel)</code></pre>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<pre><code>## 
+## Nivel educacional mas alto aprobado (x) &lt;categorical&gt;
+## # total N=71935  valid N=71152  mean=2.43  sd=1.40
+## 
+## Value                     |     N | Raw % | Valid % | Cum. %
+## ------------------------------------------------------------
+## Basica o primaria         | 21374 | 29.71 |   30.04 |  30.04
+## Media o humanidades       | 26194 | 36.41 |   36.81 |  66.85
+## Menos que basica/primaria |  6417 |  8.92 |    9.02 |  75.87
+## Tecnico profesional       |  6003 |  8.35 |    8.44 |  84.31
+## Universitaria o mas       | 11164 | 15.52 |   15.69 | 100.00
+## &lt;NA&gt;                      |   783 |  1.09 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+<p>¿Cómo podemos ordenar los factores de una variable de este tipo? ¡Calma! en el práctico 6 profundizaremos como corresponde en la transformación de variables.</p>
+</div>
+<div id="iii-numeric" class="section level4">
+<h4>III) numeric</h4>
+<p>Como su nombre lo indica, este tipo de variables nos permiten trabajar con variables con un nivel de medición cuantitativo</p>
+<pre class="r"><code>class(data$ingresos)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>Mientras R arroja un error al, por ejemplo, intentar calcular el promedio de nivel educacional</p>
+<pre class="r"><code>mean(data$nivel)</code></pre>
+<pre><code>## Warning in mean.default(data$nivel): argument is not numeric or logical:
+## returning NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>¡Si podemos calcular la media de ingresos por sueldos y salarios!</p>
+<pre class="r"><code>mean(data$ingresos)</code></pre>
+<pre><code>## [1] 162615.6</code></pre>
+<p>¡Mucho cuidado! muchas veces, los datos incluyen variables de tipo <code>numeric</code> que, teóricamente, no son variables numéricas (por ejemplo, variables donde 1 == Si, y 2 == No). Por ello, es fundamental que <strong>revisen detalladamente la documentación anexa</strong> de sus datos, a modo de determinar cuáles variables corresponden su tipo de dato con su nivel de medición, y cuáles no.</p>
+</div>
+<div id="iv-dbl-lbl-números-etiquetados" class="section level4">
+<h4>IV) dbl + lbl (números etiquetados)</h4>
+<p>Es bastante usual (como veremos en el siguiente práctico) que, aunque estemos trabajando en lenguaje R, los datos que emplearemos estén en formato SPSS (.sav) o Stata (.dta). En ambos casos, los datos (sobre todo las variables categóricas) presentan una estructura de números etiquetados, donde el valor principal de la variable es un número, pero el cual presenta una etiqueta en palabras que identifica a qué refiere cada una de las categorías de la variable. En general, cuando preguntamos sobre la clase de una variable dbl+lbl, obtendremos algo así:</p>
+<pre class="r"><code>class(data$a6)</code></pre>
+<pre><code>## [1] &quot;haven_labelled&quot; &quot;vctrs_vctr&quot;     &quot;double&quot;</code></pre>
+<pre><code>## 
+## a6. ¿Por qué razón no trabajó la semana pasada? (x) &lt;numeric&gt;
+## # total N=71935  valid N=2635  mean=5.39  sd=3.56
+## 
+## Value |                                                 Label |     N | Raw % | Valid % | Cum. %
+## ------------------------------------------------------------------------------------------------
+##     1 |                                 Vacaciones o permisos |   227 |  0.32 |    8.61 |   8.61
+##     2 |                                       Licencia médica |   823 |  1.14 |   31.23 |  39.85
+##     3 |             Por horario o jornada variable o flexible |    86 |  0.12 |    3.26 |  43.11
+##     4 |                            Huelga o conflicto laboral |     4 |  0.01 |    0.15 |  43.26
+##     5 |                   Asistencia a cursos de capacitación |    24 |  0.03 |    0.91 |  44.17
+##     6 |                                    Problemas de salud |    77 |  0.11 |    2.92 |  47.10
+##     7 |                       Suspensión temporal del trabajo |   976 |  1.36 |   37.04 |  84.14
+##     8 |                            No tuvo pedidos o clientes |   131 |  0.18 |    4.97 |  89.11
+##     9 |            Razones climáticas o catástrofes naturales |    27 |  0.04 |    1.02 |  90.13
+##    10 |                               Su trabajo es ocasional |    45 |  0.06 |    1.71 |  91.84
+##    11 | Razones económicas o técnicas de la empresa o negocio |    29 |  0.04 |    1.10 |  92.94
+##    12 |                              Su trabajo es estacional |    12 |  0.02 |    0.46 |  93.40
+##    13 |                      Clausura de negocio o de empresa |     8 |  0.01 |    0.30 |  93.70
+##    14 |                           Otras razones (especificar) |   166 |  0.23 |    6.30 | 100.00
+##    88 |                                               No sabe |     0 |  0.00 |    0.00 | 100.00
+##    99 |                                           No responde |     0 |  0.00 |    0.00 | 100.00
+##  &lt;NA&gt; |                                                  &lt;NA&gt; | 69300 | 96.34 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+<p>En este caso, cada número se asocia con una razón por la cual el/la informante se ausentó del trabajo la semana anterior. Por supuesto, es una variable ordinal.</p>
+<p>La mayor parte de las veces, sobre todo por la compatibilidad con librerías de representación gráfica, buscaremos que nuestros números etiquetados se conviertan en factores ¡el práctico 6 se encargará de profundizar en ello!</p>
+</div>
+<div id="v-logical" class="section level4">
+<h4>V) logical</h4>
+<p>¡El último tipo de dato! Los valores lógicos (<code>logical</code>) son bastante frecuentes al estar trabajando con datos</p>
+<pre class="r"><code>class(data$afp)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre><code>## 
+## Empleador cotiza en prevision (AFP) (x) &lt;lgl&gt;
+## # total N=71935  valid N=19976  mean=0.82  sd=0.38
+## 
+## Value |     N | Raw % | Valid % | Cum. %
+## ----------------------------------------
+## FALSE |  3505 |  4.87 |   17.55 |  17.55
+## TRUE  | 16471 | 22.90 |   82.45 | 100.00
+## &lt;NA&gt;  | 51959 | 72.23 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+<p>Los datos de clase <code>logical</code> presentan tres posibles valores: <code>TRUE</code> (verdadero), <code>FALSE</code> (falso) y <code>NA</code> (valor nulo, ausencia de dato). En este caso, las personas con valor <code>TRUE</code> están empleados por alguien que si paga cotizaciones en previsión, mientras que las personas con valor <code>FALSE</code> no tienen tal característica</p>
+</div>
+</div>
+</div>
+<div id="resumen" class="section level2">
+<h2>4. Resumen</h2>
+<p>¡Aprendimos los posibles tipos de datos con los cuales nos enfrentaremos a trabajar en R! Como resumen:</p>
+<ul>
+<li>Variables cualitativas: <code>character</code>, <code>Factor</code> o <code>dbl + lbl</code></li>
+<li>Variables cuantitativas: <code>numeric</code></li>
+<li>Valores lógicos: <code>logical</code></li>
+</ul>
+<p>Recuerden que es fundamental que se apoyen en la <strong>documentación anexa</strong> a la hora de trabajar con datos ¡así evitarán calcular el promedio de las religiones que declaran las/os informantes!</p>
+</div>
+<div id="recursos" class="section level2">
+<h2>5. Recursos</h2>
+<ul>
+<li><a href="https://es.r4ds.hadley.nz/r-markdown.html">RMarkdown en Ciencia de Datos - Hadley Whickham</a></li>
+<li><a href="https://rmarkdown.rstudio.com/">R Markdown</a></li>
+<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">Tutoriales Markdown</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">cheatsheets</a></li>
+<li>Para practicar ir a <a href="https://www.markdowntutorial.com/es/">Tutorial de Markdown</a></li>
+</ul>
+</div>
+<div id="reporte-de-progreso" class="section level2">
+<h2>6. Reporte de progreso</h2>
+<p>¡Recuerda rellenar tu reporte de progreso! En <a href="https://learn-r.formr.org/">https://learn-r.formr.org/</a>. Te llegó un código único a tu correo electrónico. Mediante él debes acceder para actualizar tu estado de avance del curso.</p>
+</div>
+</div>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/example/02-practico/" rel="next">RStudio, tidyverse y RMarkdown</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/example/05-practico/" rel="prev">Tidydata y manipulación de datos</a>
+  </div>
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Last updated on August 16, 2021</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer>
+    <hr>
+
+    <div class="row course-info">
+        <div class="col-md-7">
+            <p>
+                <strong>2255: Análisis Estadístico en R (II° Semestre- 2021)</strong><br>
+
+                <a href="https://www.uahurtado.cl/" target="_blank" rel="noopener">Universidad Alberto Hurtado</a> &emsp;&emsp;
+                <a href="http://sociologia.uahurtado.cl/" target="_blank" rel="noopener">Departamento de Sociología</a>
+            </p>
+
+            <p>
+                <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener"><i class="fas fa-user"></i>
+                    Valentina Andrade</a> &emsp;&emsp;
+                <a href="mailto:valentinaandrade@uchile.cl"><i class="fas fa-envelope"></i>
+                    valentinaandrade@uchile.cl</a>
+            </p>
+
+            <p>
+                <i class="far fa-calendar-alt"></i> Clases: Lunes 16.30-17.40 &emsp;&emsp;
+                <i class="fas fa-pencil-alt"></i> Práctico: Lunes 18.00-19.20 
+                <br><i class="fas fa-university"></i> Online, en link de Zoom
+            </p>
+        </div>
+
+        <div class="col-md-5 credits">
+            <p>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+            
+            <p>Content <i class="fab fa-creative-commons"></i> 2021. Web developed by Andrew Heiss and custom by <a href="https://valentinaandrade.netlify.app/" target="_blank" rel="noopener">Valentina Andrade</a></p>
+        
+            <p>This site created with the <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> in <a href="https://bookdown.org/yihui/blogdown/" target="_blank" rel="noopener">blogdown</a> and <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>. </p>
+            
+            <p><a href="https://github.com/valentinaandrade" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
+        </div>
+    </div>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+
+        
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.8b7df62fd2da18ce73e29c13cc0a6198.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.c6ceb5c48772e46156651a48070d6139.js"></script>
+
+    
+
+<script src="/js/math-code.js"></script>
+
+
+    
+    
+
+    
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

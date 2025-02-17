@@ -1,0 +1,166 @@
+---
+title: "Análisis de Ecuaciones Estructurales"
+linktitle: "12: Análisis de Ecuaciones Estructurales"
+date: "2023-07-03"
+menu:
+  example:
+    parent: Ejemplos
+    weight: 13
+type: docs
+toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Los Modelos de Ecuaciones Estructurales son una familia de modelos estadísticos multivariantes que permiten estimar el efecto y las relaciones entre múltiples variables tanto observadas como latentes. 
+
+En esta guía trabajaremos con la [Encuesta de Bienestar Social](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-bienestar-social). Construiremos un modelo de ecuaciones estructurales que busca observar el efecto de la seguridad ciudadana percibida en el barrio sobre la salud mental, en particular la sintomatología depresiva, ambas medidas como variables latentes a partir de escalas. Además se incluirán como co-varaibles el quintil de ingreso autónomo, la zona (urbano/rural), el sexo, la edad, la percepción de haber recibido maltrato y la satisfacción con la vida social. 
+
+Las escalas utilizadas pueden observarse a continuación:
+
+![](https://github.com/Clases-GabrielSotomayor/pruebapagina/blob/master/content/example/input/ebs.png?raw=true)
+
+```{r}
+# Carga las bibliotecas necesarias
+library(haven)
+library(MVN)
+library(dplyr)
+library(lavaan)
+library(semPlot) 
+library(semTable)
+```
+
+Las bibliotecas necesarias son haven para la importación de datos, MVN para la evaluación de la normalidad multivariante, lavaan para realizar análisis de senderos, semPlot para la visualización del modelo y semTable para la presentación de los resultados.
+
+```{r}
+# Importar datos
+temp <- tempfile() #Creamos un archivo temporal
+download.file("https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/bienestar-social/Base_de_datos_EBS_2021_SPSS.sav.zip",temp) #descargamos los datos
+data <- haven::read_sav(unz(temp, "Base de datos EBS 2021 SPSS.sav")) #cargamos los datos
+unlink(temp); remove(temp) #eliminamos el archivo temporal
+```
+
+Los datos se importan de una URL utilizando la función read_sav de la biblioteca haven.
+```{r}
+# Tratamiento de los datos
+ebs <- data %>% 
+  mutate(zona = ifelse(zona == 2, 1, 0),
+         sexo = ifelse(sexo == 2, 1, 0)) %>% 
+  select(qaut, zona, sexo, 
+         sm_1 = b9_1,
+         sm_2 = b9_2,
+         sm_3 = b9_3,
+         sm_4 = b9_4,
+         seg_1 = h4_1,
+         seg_2 = h4_2,
+         seg_3 = h4_3,
+         seg_4 = h4_4,
+         maltrato = e5,
+         social = a3_5,
+         edad = l1)
+```
+
+Luego realizamos transformaciones necesarias a los datos, incluyendo la re codificación de variables dicotómicas, la selección de las variables a utilizar y la reasignación de sus nombres para facilitar su interpretabilidad. 
+
+```{r}
+# Comprobación de supuestos
+dim(ebs)
+cor(ebs,use = "complete.obs")
+summary(ebs)
+mvn(ebs,mvnTest = "mardia")
+```
+
+Aquí se revisan varios supuestos antes de ajustar el modelo de ecuaciones estructurales. 
+- dim(datos) muestra las dimensiones de los datos 
+- cor(datos,use = "complete.obs") muestra las correlaciones entre variables
+- summary(datos) ofrece un resumen estadístico de las variables
+- mvn(datos) evalúa la normalidad multivariante, que es un supuesto clave en el análisis de ecuaciones estructurales, en particular para es uso del método de estimación de máxima verosimilitud.
+
+# Especificación y estimación del modelo
+
+Para especificar el modelo, debemos definir las variables que lo componen y sus relaciones. Para integrar esto en R, en el paquete lavaan, debemos expresar nuestro modelo de ecuaciones estructurales en la sintaxis propia de dicho paquete:
+
+| Sintaxis | Comando                                          | Ejemplo                                                           |
+|---------------|------------------------|---------------------------------|
+| \~       | Regresar en                                      | Regresar B sobre A: B \~ A                                        |
+| \~\~     | (Co)varianza                                     | Varianza de A: A \~\~ A                                           |
+| =\~      | Definir variable latente                         | Definir Definir Factor 1 por A-D: F1 =\~ A + B + C + D            |
+| :=       | Definir parámetro fuera del modelo               | Definir parámetro u2 como doble del cuadrado de u: u2 := 2\*(u^2) |
+| \*       | Etiquetar parámetros (etiqueta antes de símbolo) | Etiquetar la regresión de Z sobre X como b: Z \~ b\*X             |
+
+```{r}
+# Especificar y ajustar el modelo de senderos
+mod_sem <-   'SM =~ sm_1+sm_2+sm_3+sm_4
+              SEG =~ seg_1+seg_2+seg_3+seg_4
+              SM ~ qaut+zona+sexo+edad+SEG+maltrato+social'
+ajus_sem <- sem(mod_sem, data=ebs)
+```
+
+Aquí, el primer bloque define las variables latentes (SM y SEG) como indicadas por sus respectivas variables observadas (sm_1, sm_2, etc. para SM y seg_1, seg_2, etc. para SEG). El operador =~ se utiliza para definir las variables latentes.
+
+El segundo bloque especifica la ecuación estructural, donde la variable latente SM es modelada en función de varias otras variables y la variable latente SEG. El operador ~ se utiliza para definir las relaciones de regresión en el modelo.
+
+Finalmente, sem() es la función que ajusta el modelo de ecuaciones estructurales. Acepta la especificación del modelo y los datos en los que se basa.
+
+```{r}
+# Resumen de los resultados del modelo de ecuaciones estructurales
+summary(ajus_sem, fit.measures = T, standardized = T, rsquare = T, modindices = T)
+
+```
+
+La función summary() proporciona un resumen de los resultados, incluyendo varias medidas de ajuste, las cargas factoriales de las variables latentes medidas coeficientes estandarizados, los coeficientes de determinación (R^2) y los índices de modificación.
+
+En primer lugar debemos ver si el ajuste global del modelo es apropiado.
+
+Test de chi cuadrado: Este es un test que compara el modelo estimado con el modelo de saturación (uno que ajusta perfectamente los datos). Un resultado no significativo (p>0.05) sugiere que el modelo de la hipótesis se ajusta igual de bien que el modelo saturado. En este caso, el p-valor es menor a 0,01, lo que indica que el modelo no se ajusta perfectamente a los datos.
+
+CFI/TLI: Estos son índices de ajuste comparativo que comparan el ajuste del modelo de la hipótesis con el de un modelo nulo. Valores por encima de 0.90 suelen considerarse aceptables, y por encima de 0.95 muy buenos. En este caso, el CFI es 0.936 y el TLI es 0.92, lo que sugiere que el modelo se ajusta razonablemente bien a los datos, aunque podría ser mejor.
+
+RMSEA: Es una medida de ajuste absoluto que indica el error de aproximación en el ajuste del modelo. Valores por debajo de 0.05 se consideran buenos, y por debajo de 0.08 aceptables. Aquí, el RMSEA es 0.055, lo que indica un ajuste aceptable.
+
+Variables Latentes (Latent Variables): Esta parte muestra los resultados para las variables latentes del modelo, que son "SM (Salud Mental)" y "SEG (Seguridad)". Para cada variable latente, se proporcionan los coeficientes de las relaciones entre la variable latente y las variables observables correspondientes (como sm_1, sm_2, etc. para "SM" y seg_1, seg_2, etc. para "SEG"). Las estimaciones son los coeficientes de carga factoriales que indican cuánto de la varianza de cada indicador es explicada por el factor latente. Los valores p (P(>|z|)) indican si cada coeficiente de carga factorial es significativamente diferente de cero.
+
+La sección de regresiones muestra los efectos de varias covariables sobre la salud mental (SM). Cada coeficiente muestra cómo cambia la puntuación esperada de la sintomatología depresiva (SM) en desviaciones estándar con un cambio de una desviación estándar en la variable correspondiente, manteniendo constantes todas las demás variables.
+
+qaut (Quintil de ingreso autónomo): La estimación es -0.036, lo que indica que un aumento de una desviación estándar en el quintil en el ingreso autónomo está asociado con una disminución en la sintomatología depresiva. Es decir, a medida que aumenta el ingreso autónomo de los encuestados, tienden a tener menos síntomas de depresión. El valor p<0,001 sugiere que este efecto es significativo.
+
+zona (Urbano/rural): El coeficiente para la zona es -0.005, lo que indica que los encuestados en zonas rurales tienen una puntuación de sintomatología depresiva ligeramente más baja que los encuestados en zonas urbanas. Sin embargo, este efecto no es significativo (p = 0.763), lo que sugiere que no hay una diferencia significativa en la sintomatología depresiva entre los residentes urbanos y rurales en este estudio.
+
+sexo: El coeficiente para el sexo es 0.186, lo que indica que, en promedio, las mujeres presentan una mayor sintomatilogía depresiva (con 0=masculino y 1=femenino ). El valor p<0,001 sugiere que este efecto es significativo.
+
+edad: El coeficiente para la edad es -0.001, lo que indica que la sintomatología depresiva tiende a disminuir con la edad. Es decir, los encuestados mayores tienden a tener menos síntomas de depresión que los encuestados más jóvenes. El valor p de 0.001 sugiere que este efecto es significativo.
+
+SEG (Seguridad ciudadana percibida): La estimación para SEG es -0.100, lo que sugiere que un aumento de una desviación enstándar en la percepción de seguridad ciudadana en el barrio está asociado con una  disminución  de 0,1 desviaciones en la sintomatología depresiva. El valor p<0,001 indica que este efecto es significativo.
+
+maltrato (Percepción de haber recibido maltrato): El coeficiente es 0.162, lo que indica que en promedio los encuestados que perciben haber recibido maltrato con mayor frecuencia tienen una mayor sintomatología depresiva. El valor p de 0.000 indica que este efecto es significativo.
+
+social (Satisfacción con la vida social): La estimación para social es -0.126, lo que sugiere que un aumento en la satisfacción con la vida social está asociado con una disminución en la sintomatología depresiva. El valor p<0,001 indica que este efecto es significativo.
+
+```{r,results='asis'}
+# Crear una tabla de resultados en formato APA
+semTable(ajus_sem, type = "html", paramSets = c("loadings", "slopes", "latentcovariances", 
+                                                "fits", "constructed"), file = "resultados_sem")
+```
+
+Aquí usamos semTable() para generar una tabla con los resultados principales del modelo.
+
+```{r,eval=FALSE}
+# Mostrar la tabla de resultados en un navegador
+browseURL("resultados_sem.html")
+
+```
+
+Aquí utilizamos browseURL() para abrir el archivo HTML generado en el navegador por defecto. Es una manera eficaz de visualizar la tabla de resultados.
+
+```{r}
+# Diagrama del modelo de ecuaciones estructurales
+semPaths(ajus_sem, # modelo ajustado
+         what = "std",  # mostrar cargas estandarizadas
+         label.cex = 1, edge.label.cex = 1, # tamaño de las etiquetas y caracteres
+         residuals = FALSE, # no mostrar residuos
+         edge.color = "black") # color de las flechas
+```
+
+Aquí usamos semPaths() para generar un diagrama del modelo de ecuaciones estructurales que hemos ajustado. Los argumentos de esta función son similares a los que hemos usado antes. ajus_sem es el modelo ajustado, what = "std" indica que se deben mostrar las cargas estandarizadas en lugar de las no estandarizadas, label.cex = 1 y edge.label.cex = 1 controlan el tamaño de las etiquetas y de las flechas respectivamente, residuals = FALSE indica que no se deben mostrar los residuos en el diagrama, y edge.color = "black" establece el color de las flechas a negro.
+
+Este diagrama proporciona una representación visual del modelo de ecuaciones estructurales que hemos ajustado, lo que puede facilitar su interpretación. En el diagrama, las variables observables se representan como rectángulos, las variables latentes como óvalos, y las relaciones entre variables como flechas. Las cargas factoriales o coeficientes de las rutas se representan junto a las flechas correspondientes.

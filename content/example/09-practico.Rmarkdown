@@ -1,0 +1,103 @@
+---
+title: "Análisis Factorial Confirmatorio con Indicadores Categóricos"
+linktitle: "9: Análisis Factorial Confirmatorio con Indicadores Categóricos"
+date: "2023-05-12"
+menu:
+  example:
+    parent: Ejemplos
+    weight: 9
+type: docs
+editor_options: 
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+En esta ocasión, realizaremos un análisis factorial confirmatorio con indicadores categóricos. 
+
+Iniciamos cargando los paquetes necesarios para el análisis. Los paquetes son: haven para importar datos, lavaan para estimar el análisis factorial confirmatorio (AFC), semPlot para crear gráficos de SEM y semTable para producir tablas de SEM.
+```{r, warning=FALSE}
+# Carga paquetes
+library(haven) # importar SPSS, Stata, etc.
+library(summarytools)
+library(dplyr)
+library(lavaan) # estimar SEM
+library(semPlot) # graficar SEM
+library(semTable) # tablas SEM
+```
+
+En este ejercicio analizaremos una escala de autoritarismo proveniente del estudio "International Civic and Citizenship Education Study 2016".
+
+A continuación, importamos los datos que vamos a analizar. Los datos están almacenados en un archivo .sav de SPSS llamado "ISLCHLC3.sav". Lo importamos utilizando la función read_spss() del paquete haven.
+```{r}
+# Importar datos
+#datos <- read_spss("ISLCHLC3.sav")
+datos <- read_sav(url("https://github.com/Clases-GabrielSotomayor/pruebapagina/raw/master/content/example/input/data/ISLCHLC3.sav"))
+```
+
+Seleccionamos y visualizamos las variables a utilizar como parte del modelo. 
+
+```{r}
+datos <- datos |> 
+  select(LS3G01A , LS3G01B, LS3G01C, LS3G01D ,
+           LS3G01E , LS3G01F , LS3G02A , LS3G02B , LS3G02C)
+
+print(dfSummary(datos, headings = FALSE, method = "render"))
+```
+
+Definimos el modelo de medición para nuestro Análisis Factorial Confirmatorio (AFC). Estamos definiendo un factor latente ("autoritarismo") y nueve ítems observables. El operador =~ se utiliza para indicar las relaciones entre el factor y los ítems
+```{r}
+# Definir modelo de medicion
+mod_conf <- 'autoritarismo =~ LS3G01A + LS3G01B + LS3G01C + LS3G01D + 
+LS3G01E + LS3G01F + LS3G02A + LS3G02B + LS3G02C'
+```
+Para ajustar el modelo utilizamos la función cfa() del paquete lavaan. Sin embargo, a diferencia de un análisis factorial confirmatorio con indicadores continuos, debemos especificar que los ítems son categóricos mediante el argumento ordered = T y el estimador utilizado es "DWLS" (Diagonally Weighted Least Squares), que es adecuado para variables categóricas.
+```{r}
+# Ajustar modelo CFA
+mod_conf_afc <- cfa(mod_conf, data = datos, estimator="DWLS", ordered = T)
+```
+Luego, visualizamos un resumen de los resultados del modelo con la función summary(). Activamos las opciones para mostrar las cargas factoriales estandarizadas (standardized = TRUE) e índices de ajuste extendidos (fit.measures = TRUE).
+```{r}
+# Resultados
+## Salida general
+summary(mod_conf_afc,
+        standardized = TRUE, # mostrar cargas estandarizadas
+        fit.measures = TRUE) # mostrar índices de ajuste extendidos
+```
+Además, podemos ver solo los índices de ajuste específicos que nos interesan utilizando la función fitmeasures().
+```{r}
+# Ver solo indices de ajuste
+fitmeasures(mod_conf_afc,
+            fit.measures = c("chisq", "df", "pvalue",
+                             "cfi", "rmsea"))
+```
+Los índices de ajuste incluyen la chi-cuadrada (chisq), los grados de libertad (df), el p-valor (pvalue), el índice de ajuste comparativo (cfi), y el error cuadrático medio de aproximación (rmsea). Estos índices nos ayudan a evaluar qué tan bien se ajusta el modelo a nuestros datos.
+
+A continuación, creamos un gráfico del modelo usando la función semPaths(). La opción what = "std" se utiliza para mostrar las cargas factoriales estandarizadas en el gráfico.
+```{r}
+# Diagrama modelo
+semPaths(mod_conf_afc, # modelo ajustado
+         what = "std",  # mostrar cargas estandarizadas
+         label.cex = 1, edge.label.cex = 1, # tamaño flechas y caracteres
+         residuals = FALSE, # no mostrar residuos
+         edge.color = "black") # color flechas
+```
+Para interpretar el gráfico, las flechas representan las relaciones entre el factor latente y los ítems. Los números en las flechas son las cargas factoriales estandarizadas, que indican la fuerza de la relación entre cada ítem y el factor.
+
+A continuación, calculamos las comunalidades, que son las proporciones de varianza de cada ítem que se explican por el factor. Usamos la función inspect() con what = "rsquare" para hacer esto.
+```{r}
+# Comunalidades
+inspect(mod_conf_afc, what = "rsquare")
+```
+Por último, revisamos los índices de modificación, que sugieren cambios potenciales al modelo que podrían mejorar el ajuste. Mostramos los índices en orden decreciente para identificar los cambios más impactantes primero.
+```{r}
+# Indices de modificacion
+## Mostrar 'mi' en orden decreciente
+modificationindices(mod_conf_afc, sort. = T)
+```
+Estos índices pueden ayudarte a mejorar tu modelo. Sin embargo, cualquier cambio que hagas en el modelo basándote en estos índices debe tener sentido teórico. No es recomendable hacer cambios al modelo solo porque los índices de modificación sugieran que mejorarán el ajuste.

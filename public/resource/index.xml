@@ -1,0 +1,1130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recursos adicionales | Análisis avanzado de datos 2</title>
+    <link>/resource/</link>
+      <atom:link href="/resource/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recursos adicionales</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/logo_hu02bc8dfe7cae86b2ee03430b67caeaf2_22353_300x300_fit_lanczos_2.png</url>
+      <title>Recursos adicionales</title>
+      <link>/resource/</link>
+    </image>
+    
+    <item>
+      <title>Instalación de R, RStudio y Slack</title>
+      <link>/resource/install/</link>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/resource/install/</guid>
+      <description>&lt;h1 id=&#34;contenido&#34;&gt;Contenido&lt;/h1&gt;
+&lt;h2 id=&#34;1-r&#34;&gt;1. R&lt;/h2&gt;
+&lt;p&gt;R es un lenguaje de programación y software de código abierto, empleado en procesamiento, análisis y visualización de datos estadísticos, altamente extendibles.&lt;/p&gt;
+&lt;h3 id=&#34;ventajas&#34;&gt;Ventajas:&lt;/h3&gt;
+&lt;p&gt;Las principales ventajas son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Es un lenguaje de programación destacado en lo que respecta al análisis estadístico&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Es de acceso y código abierto&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permite graficar el análisis y los datos estadísticos de forma eficiente y llamativa&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Se encuentra en constante actualización y desarrollo&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para descargar &lt;strong&gt;R&lt;/strong&gt;, deben dirigirse al siguiente &lt;a href=&#34;https://cran.r-project.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;link&lt;/a&gt;, y seguir los pasos de instalación según su sistema operativo. Para el caso de &lt;em&gt;Windows&lt;/em&gt; y &lt;em&gt;macOS&lt;/em&gt;, se debe descargar el instalador de R, ejecutarlo, y proseguir con la instalación. Lo recomendado es instalarlo en español, y mantener las opciones de instalación que vienen por defecto.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/r-versions-os.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;A continuación, se presentan imágenes del proceso de instalación de R en &lt;em&gt;Windows&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Se aceptan las condiciones de uso&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/r-windows3.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Se define la carpeta de instalación. Pueden escoger donde deseen realizar la instalación clickeando en &lt;em&gt;examinar&lt;/em&gt;; no obstante, se recomienda mantener la ruta predeterminada, en &lt;em&gt;Archivos de programa&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/r-windows4.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Se recomienda seleccionar la &lt;em&gt;Instalación de usuario&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/r-windows5.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Asimismo, también es recomendable no especificar las opciones de configuración&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/r-windows6.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Si se desea, se pueden crear &lt;em&gt;accesos directos&lt;/em&gt;. Lo que sí es importante, es &lt;em&gt;guardar el número de versión en el registro&lt;/em&gt;, y &lt;em&gt;asociar archivos .RData con R&lt;/em&gt; (lo análogo a asociar archivos .sav con SPSS, o archivos .dta con STATA)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/r-windows7.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Particularmente para el caso de &lt;em&gt;macOS&lt;/em&gt;, es indispensable la instalación de &lt;strong&gt;XQuartz&lt;/strong&gt;, pues este software nos permitirá visualizar, por ejemplo, los gráficos que elaboremos en R. Para ello, debemos dirigirnos al siguiente &lt;a href=&#34;https://www.xquartz.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;enlace&lt;/a&gt;, descargar la última versión disponible del software, y seguir el proceso de instalación. Tal como en el caso de R, lo recomendado es mantener la configuración predeterminada.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/xquartz.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Para el caso de &lt;em&gt;Ubuntu&lt;/em&gt;, la versión 4.1 de R (que es la actual) viene incluida para gran parte de las versiones de Ubuntu. Para poder ejecutarlas, deben abrir el &lt;strong&gt;terminal&lt;/strong&gt; y ejecutar los siguientes códigos (disponibles en el mirror de Ubuntu):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/r-ubuntu.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Siguiendo los pasos anteriores, la instalación de R está &lt;em&gt;finalizada&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Sin embargo, para laborar y aprender de manera más cómoda y eficiente, este curso trabajará principalmente con &lt;strong&gt;RStudio&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;2-rstudio&#34;&gt;2. RStudio&lt;/h2&gt;
+&lt;p&gt;Es un ambiente integrado de desarrollo para R (y Python, otro lenguaje de programación, que no se abordará en este curso), que permite visualizar el trabajo llevado a cabo, de manera más cómoda, sencilla y eficiente.&lt;/p&gt;
+&lt;p&gt;Para instalarlo, deben dirigirse a la &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/#download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;siguiente página web&lt;/a&gt;. Allí, en la sección &lt;strong&gt;All Installers&lt;/strong&gt;, seleccionar el instalador correspondiente a su sistema operativo.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/rstudio-installers.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;El proceso de instalación es el mismo que para &lt;em&gt;R&lt;/em&gt;. Simplemente, se recomienda mantener todo en predeterminado.&lt;/p&gt;
+&lt;h2 id=&#34;21-rstudio-cloud&#34;&gt;2.1. RStudio Cloud&lt;/h2&gt;
+&lt;p&gt;Sin embargo, también está la opción de trabajar en &lt;strong&gt;RStudio Cloud&lt;/strong&gt;, en caso que sus computadores no presenten los &lt;em&gt;requerimientos mínimimos&lt;/em&gt; para trabajar con RStudio de manera local. Para poder trabajar en RStudio Cloud, debemos &lt;em&gt;crear un usuario&lt;/em&gt;. Sin embargo, primero crearemos un &lt;strong&gt;usuario en GitHub&lt;/strong&gt;, para luego conectarse a RStudio Cloud desde allí.&lt;/p&gt;
+&lt;p&gt;Entonces, debemos dirigirnos a la página de &lt;a href=&#34;https://github.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt;. Allí, debemos hacer click en &lt;strong&gt;Sign up&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/github-signup1.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Una vez allí, debemos ingresar nuestro correo electrónico, y luego seguir los pasos que se encuentran en el correo de confirmación. Es recomendable que creen la cuenta con la dirección de correo electrónico &lt;strong&gt;que usen cotidianamente&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Posteriormente, nos dirigimos a la página de &lt;a href=&#34;https://rstudio.cloud&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RStudio Cloud&lt;/a&gt;, y hacemos click en &lt;strong&gt;Sign Up&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud-signup1.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Volvemos a hacer click en &lt;strong&gt;Sign Up&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud-signup2.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Luego, hacemos click en &lt;strong&gt;Sign Up with GitHub&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud-signup3.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Se nos redirigirá a la página de &lt;strong&gt;GitHub&lt;/strong&gt;, donde debemos ingresar los datos del usuario de GitHub que creamos en pasos anteriores.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud-signup4.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Una vez realizado todo lo anterior, ingresaremos a &lt;strong&gt;RStudio Cloud&lt;/strong&gt;. Allí, encontraremos nuestro espacio de trabajo (&lt;em&gt;Your Workspace&lt;/em&gt;), donde podremos encontrar nuestros &lt;strong&gt;proyectos&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud1.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Haciendo click en la pestaña &lt;em&gt;Projects&lt;/em&gt;, situada en la pestaña superior, aparecerá el botón &lt;strong&gt;New Project&lt;/strong&gt;. Al pulsarlo, podremos crear un nuevo proyecto.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud2.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Luego, se generará el nuevo proyecto. Es importante que &lt;strong&gt;renombremos el nuevo proyecto&lt;/strong&gt;, haciendo click en el recuadro que se encuentra en la sección superior (en este caso, el proyecto se nombró como &lt;em&gt;Proyecto 1&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud4.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Para cargar archivos (como bases de datos, o archivos .R), debemos hacer click en el botón &lt;strong&gt;Upload&lt;/strong&gt;, situado en la sección &lt;em&gt;Files&lt;/em&gt; situada en la esquina inferior derecha. Aparecerá una ventana emergente, y debemos hacer click en &lt;strong&gt;Seleccionar archivo&lt;/strong&gt;, para explorar en nuestra computadora los archivos que necesitemos para trabajar.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud5.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;También podemos exportar el proyecto (con todos sus archivos asociados), haciendo click en el botón &lt;strong&gt;More&lt;/strong&gt; (al lado del &lt;em&gt;engranaje&lt;/em&gt;). Es importante que hagamos click en las casillas situadas a la izquierda de todos los archivos que deseemos descargar.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud6.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En la sección superior derecha, encontraremos un &lt;em&gt;engranaje&lt;/em&gt;. En la pestaña &lt;em&gt;Info&lt;/em&gt; encontraremos la información general del proyecto; además, podremos agregar una descripción general de este.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud7.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;A la derecha de &lt;em&gt;Info&lt;/em&gt;, encontraremos la pestaña &lt;em&gt;Access&lt;/em&gt;. Allí, podremos cambiar quiénes pueden ver el proyecto. Por defecto, solamente quien creó el proyecto puede verlo; sin embargo, podemos permitir que cualquiera (Everyone) pueda hacerlo.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud8.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Para poder compartir nuestros proyectos, debemos hacer click en los &lt;em&gt;tres puntos&lt;/em&gt; situados a la derecha del engranaje, y luego hacer click en &lt;strong&gt;Share Project Link&lt;/strong&gt;. Aparecerá una ventana emergente, donde podemos agregar las direcciones de correo electrónico de todas las personas que queramos invitar al proyecto. También podemos agregar un mensaje a la invitación.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/cloud9.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-slack&#34;&gt;3. Slack&lt;/h2&gt;
+&lt;p&gt;Este software será el principal medio de comunicación en el marco del curso. Allí, las y los estudiantes podrán plantear todas sus dudas, para que estas puedan ser respondidas de forma colectiva, tanto por parte del equipo docente, como de otras y otros estudiantes.&lt;/p&gt;
+&lt;p&gt;Primero, debemos descargar el instalador de &lt;strong&gt;Slack&lt;/strong&gt;, dependiendo de nuestro sistema operativo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://slack.com/intl/es-cl/downloads/windows&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://slack.com/intl/es-cl/downloads/mac&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;macOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://slack.com/intl/es-cl/downloads/linux&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Linux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En la siguiente imagen, está el ejemplo de &lt;em&gt;Windows&lt;/em&gt; (64 bits)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack1.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Una vez descargado el archivo, debemos ejecutarlo, y seguir el proceso de instalación. Tal como en el resto de los software instalados, recomendamos mantener todas las opciones de instalación &lt;em&gt;por defecto&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Luego, debemos crear una &lt;em&gt;cuenta de Slack&lt;/em&gt;, dirigiéndose a la &lt;a href=&#34;https://slack.com/get-started#/create&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;siguiente página web&lt;/a&gt;. Se recomienda usar la &lt;em&gt;dirección de correo que usen de forma cotidiana&lt;/em&gt;, a modo de estar al tanto de la actividad en el canal de Slack.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack2.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Posteriormente, deben confirmar su correo electrónico y, por último, han de hacer click en el link &lt;strong&gt;Unirse a slack de curso&lt;/strong&gt;, presente en el apartado &lt;em&gt;Syllabus&lt;/em&gt; de la página web. Ello redireccionará a la aplicación, abriendo allí el espacio de trabajo del curso.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack3.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Una vez realizado aquello, debemos permitir que la página web abra la aplicación de Slack, y se nos redirigirá al &lt;strong&gt;espacio de trabajo&lt;/strong&gt; del curso.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack4.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;A la izquierda, encontraremos los diversos &lt;em&gt;canales&lt;/em&gt; asignados para distintas actividades. Aquellos que tengan a la izquierda un &lt;strong&gt;#&lt;/strong&gt;, son canales abiertos a todas y todos quienes integren el espacio de trabajo; mientras que aquellos que tengan un &lt;strong&gt;candado&lt;/strong&gt; a su izquierda son canales privados. Haciendo click en &lt;strong&gt;añadir canales&lt;/strong&gt;, podemos crear &lt;em&gt;nuevos canales&lt;/em&gt; (lo cual pueden hacer cuando, en el futuro, utilicen Slack para sus trabajos personales).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack5.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Bajo los canales encontraremos la sección de &lt;strong&gt;mensajes directos&lt;/strong&gt;, donde podremos enviar mensajes privados a cualquier persona que integre el espacio de trabajo. No olviden que pueden comunicarnos todas sus dudas, inquietudes y sugerencias respecto del curso.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack6.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En la sección superior derecha encontraremos nuestro usuario.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack7.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Si hacemos click, se abrirá una pestaña emergente, donde podremos acceder a diversas configuraciones.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack8.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En &lt;strong&gt;Modificar tu perfil&lt;/strong&gt;, podemos cambiar nuestro nombre, describir a qué nos dedicamos, definir nuestros pronombres, entre otros elementos. También, podemos seleccionar una foto de perfil, para que el resto de las personas que integren el espacio de trabajo puedan (re)conocernos.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack9.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En la sección de &lt;strong&gt;Preferencias&lt;/strong&gt;, podremos establecer diferentes configuraciones referentes, por ejemplo, a las &lt;em&gt;notificaciones&lt;/em&gt;, la &lt;em&gt;barra lateral&lt;/em&gt;, o seleccionar distintos &lt;em&gt;temas&lt;/em&gt;, para personalizar la apariencia de nuestro espacio de trabajo.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/tutorial/install/slack10.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;una-vez-realizado-todo-lo-anterior-ya-estamos-listas-y-listos-para-empezar-a-trabajar-en-el-curso&#34;&gt;Una vez realizado todo lo anterior ¡Ya estamos listas y listos para empezar a trabajar en el curso!&lt;/h3&gt;
+&lt;h2 id=&#34;4-video-tutorial-en-youtube&#34;&gt;4. Video tutorial en Youtube&lt;/h2&gt;
+&lt;p&gt;Recuerden que el &lt;a href=&#34;https://www.youtube.com/watch?v=9YD-F6-ktes&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;video de asociado a este práctico&lt;/a&gt; y muchos más podrán encontrarlos en el &lt;a href=&#34;https://www.youtube.com/channel/UCqBUeqBttVjS6h8fawK8sWg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;canal de youtube del curso&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;https://www.youtube.com/embed/9YD-F6-ktes&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tipos de datos en R</title>
+      <link>/resource/r-datatypes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/resource/r-datatypes/</guid>
+      <description>&lt;p&gt;La presente entrada es una traducción del artículo &lt;a href=&#34;https://statsandr.com/blog/data-types-in-r/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Data types in R&lt;/strong&gt;&lt;/a&gt; elaborado por &lt;em&gt;Antoine Soetewey&lt;/em&gt; (2019).&lt;/p&gt;
+&lt;p&gt;Este artículo presenta los diferentes tipos de datos (&lt;em&gt;data types&lt;/em&gt;) en R. Para aprender sobre diferentes tipos de variables desde un punto de vista estadístico, diríjanse a la entrada &lt;a href=&#34;https://learn-r-udp.netlify.app/resource/r-datatypes-examples/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tipos de variables y ejemplos&lt;/a&gt;, disponible en la sección &lt;strong&gt;Recursos&lt;/strong&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;qué-tipos-de-datos-existen-en-r&#34;&gt;¿Qué tipos de datos existen en R?&lt;/h1&gt;
+&lt;p&gt;Los 6 tipos de datos más comunes en R son:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Numeric&lt;/li&gt;
+&lt;li&gt;Integer&lt;/li&gt;
+&lt;li&gt;Complex&lt;/li&gt;
+&lt;li&gt;Character&lt;/li&gt;
+&lt;li&gt;Factor&lt;/li&gt;
+&lt;li&gt;Logical&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Los sets de datos en R usualmente constituyen una combinación de estos 6 tipos diferentes de datos. Más adelante, exploraremos en mayor detalle cada tipo de dato, exceptuando el tipo &amp;ldquo;complex&amp;rdquo;, en tanto nos enfocaremos en los principales, y este tipo de dato rara vez es utilizado en la práctica.&lt;/p&gt;
+&lt;h1 id=&#34;numeric&#34;&gt;Numeric&lt;/h1&gt;
+&lt;p&gt;El tipo de dato más común en R es &lt;strong&gt;numeric&lt;/strong&gt;. Una variable o una serie será almacenado como un dato numérico si sus valores son números, o si tales valores contienen decimales. Por ejemplo, las siguientes dos series son almacenadas como numeric de forma predeterminada:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Series numeric sin decimales&lt;/span&gt;
+num_data &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
+num_data
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] 3 7 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(num_data)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;numeric&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Series numeric con decimales&lt;/span&gt;
+num_data_dec &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3.4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;7.1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2.9&lt;/span&gt;)
+num_data_dec
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] 3.4 7.1 2.9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(num_data_dec)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;numeric&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# También podemos chequear la clase con la función str() &lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;str&lt;/span&gt;(num_data_dec)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;##  num [1:3] 3.4 7.1 2.9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;En otras palabras, si se asigna uno o varios números a un objeto en R, este se almacenará como numeric de forma predeterminada (números con decimales), a menos que se especifique algo distinto.&lt;/p&gt;
+&lt;h1 id=&#34;integer&#34;&gt;Integer&lt;/h1&gt;
+&lt;p&gt;Los datos de tipo &lt;strong&gt;Integer&lt;/strong&gt; son, de hecho, un tipo particular de datos numericos. Los Integer (&lt;em&gt;enteros&lt;/em&gt;) son datos numéricos sin decimales. Pueden ser utilizados si es que estás seguro/a de que los números almacenados &lt;strong&gt;nunca&lt;/strong&gt; incorporarán decimales. Por ejemplo, digamos que estás interesada/o en el número de hijas/os en una muestra de 10 familias. Esta variable es discreta (para repasar estos contenidos, diríjanse a la entrada &lt;a href=&#34;https://learn-r-udp.netlify.app/resource/r-datatypes-examples/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tipos de variables y ejemplos&lt;/a&gt;), y nunca tendrá decimales. De estemodo, estos datos pueden almacenarse como integer gracias a la función &lt;code&gt;as.integer()&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;children
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;##  [1] 1 3 2 2 4 4 1 1 1 4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;children &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.integer&lt;/span&gt;(children)
+&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(children)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;integer&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hay que considerar que si la variable no tiene decimales, R automáticamente establecerá el tipo de datos como integer en lugar de numeric.&lt;/p&gt;
+&lt;h1 id=&#34;character&#34;&gt;Character&lt;/h1&gt;
+&lt;p&gt;Los datos de tipo &lt;strong&gt;character&lt;/strong&gt; son utilizados al almacenar texto, conocido como &lt;em&gt;strings&lt;/em&gt; en R. La forma más simple de almacenar datos en formato character es usando &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; alrededor del texto:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;char &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;some text&amp;#34;&lt;/span&gt;
+char
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;some text&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(char)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;character&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Si deseas forzar a que cualquier tipo de dato sea almacenado como character, puedes hacerlo con la función &lt;code&gt;as.character()&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;char2 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.character&lt;/span&gt;(children)
+char2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;##  [1] &amp;#34;1&amp;#34; &amp;#34;3&amp;#34; &amp;#34;2&amp;#34; &amp;#34;2&amp;#34; &amp;#34;4&amp;#34; &amp;#34;4&amp;#34; &amp;#34;1&amp;#34; &amp;#34;1&amp;#34; &amp;#34;1&amp;#34; &amp;#34;4&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(char2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;character&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hay que notar que cualquier elemento entre &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; será considerado como character, sin importar si luce como character o no. Por ejemplo:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;chars &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;7.42&amp;#34;&lt;/span&gt;)
+chars
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;7.42&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(chars)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;character&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Además, en la medida que exista al menos un valor character dentro de una variable o vector, este será considerado como character:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;char_num &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3.72&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;)
+char_num
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;text&amp;#34; &amp;#34;1&amp;#34;    &amp;#34;3.72&amp;#34; &amp;#34;4&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(char_num)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;character&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Por último, pese a que los espacios no importen en datos numéricos, estos sí son relevantes en datos character:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;num_space &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+num_nospace &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;# ¿Es num_space igual a num_nospace?&lt;/span&gt;
+num_space &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; num_nospace
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] TRUE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;char_space &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text &amp;#34;&lt;/span&gt;
+char_nospace &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# ¿Es char_space igual a char_nospace?&lt;/span&gt;
+char_space &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; char_nospace
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] FALSE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Como pueden ver en los resultados anteriores, un espacio en datos de tipo character (por ejemplo, entre &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;) lo convierte en un string diferente para R&lt;/p&gt;
+&lt;h1 id=&#34;factor&#34;&gt;Factor&lt;/h1&gt;
+&lt;p&gt;Las variables &lt;strong&gt;Factor&lt;/strong&gt; son un caso especial de variables character, en el sentido de que también contienen texto.Sin embargo, las variables factor son utilizadas cuando existe un número limitado de strings character únicas. Usualmente representan una &lt;a href=&#34;https://learn-r-udp.netlify.app/resource/r-datatypes-examples/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;variable categórica&lt;/a&gt;. Por ejemplo, el &lt;em&gt;sexo&lt;/em&gt; usualmente toma sólo dos valores, &amp;ldquo;masculino&amp;rdquo; y &amp;ldquo;femenino&amp;rdquo; (y será considerado una variable factor), mientras que el &lt;em&gt;nombre&lt;/em&gt; generalmente presentará montones de posibilidades (de modo que será considerado una variable character). Para crear un factor, empleamos la función &lt;code&gt;factor()&lt;/code&gt; :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;gender &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;factor&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;female&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;female&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;male&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;female&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;male&amp;#34;&lt;/span&gt;))
+gender
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] female female male   female male  
+## Levels: female male
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Para conocer los diferentes &lt;em&gt;niveles&lt;/em&gt; (levels) de una variable factor, ocupamos la función &lt;code&gt;levels()&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;levels&lt;/span&gt;(gender)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;female&amp;#34; &amp;#34;male&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;De manera predeterminada, los niveles son ordenados alfabéticamente. Estos pueden ser reordenados con el argumento &lt;code&gt;levels&lt;/code&gt; de la función &lt;code&gt;factor()&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;gender &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;factor&lt;/span&gt;(gender, levels &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;male&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;female&amp;#34;&lt;/span&gt;))
+&lt;span style=&#34;color:#a6e22e&#34;&gt;levels&lt;/span&gt;(gender)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;male&amp;#34;   &amp;#34;female&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Las strings character pueden convertirse en factores con la función &lt;code&gt;as.factor()&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;text &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;test1&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;test2&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;test1&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;test1&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;# Crear un vector character&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(text) &lt;span style=&#34;color:#75715e&#34;&gt;# Conocer la clase&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;character&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;text_factor &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.factor&lt;/span&gt;(text) &lt;span style=&#34;color:#75715e&#34;&gt;# Transformar a factor&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(text_factor) &lt;span style=&#34;color:#75715e&#34;&gt;# Re-conocer la clase&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;factor&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Las strings character han sido transformadas en factor, como muestra su clase de tipo &lt;code&gt;factor&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;logical&#34;&gt;Logical&lt;/h1&gt;
+&lt;p&gt;Una variable logical (lógica) es una variable que incluye sólo dos valores: &lt;code&gt;TRUE&lt;/code&gt; or &lt;code&gt;FALSE&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;value1 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;
+value2 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# ¿Es value1 mayor a value2?&lt;/span&gt;
+greater &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; value1 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; value2
+greater
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] FALSE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(greater)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;logical&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# ¿Es value1 menor o igual a value2?&lt;/span&gt;
+less &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; value1 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; value2
+less
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] TRUE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;(less)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] &amp;#34;logical&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;También es posible transformar datos logical en datos numeric. Luego de transformar de logical a numeric con la función &lt;code&gt;as.numeric()&lt;/code&gt;, los valores &lt;code&gt;FALSE&lt;/code&gt; equivaldrán a 0, y los valores &lt;code&gt;TRUE&lt;/code&gt; equivaldrán a 1:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;greater_num &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.numeric&lt;/span&gt;(greater)
+&lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt;(greater)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;less_num &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.numeric&lt;/span&gt;(less)
+&lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt;(less)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Por su parte, datos numeric pueden convertirse en datos logical, con &lt;code&gt;FALSE&lt;/code&gt; para todos los valores iguales a 0 y &lt;code&gt;TRUE&lt;/code&gt; para todos los otros valores.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;x &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;as.logical&lt;/span&gt;(x)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] FALSE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;y &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;as.logical&lt;/span&gt;(y)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;## [1] TRUE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;¡Gracias por leer! Esperamos que este artículo les ayude a entender los tipos básicos de datos en R y sus particularidades. Si desean aprender más sobre diferentes tipos de variables desde un puntos de vista estadístico, lean &lt;a href=&#34;https://learn-r-udp.netlify.app/resource/r-datatypes-examples/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tipos de variables y ejemplos&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Como siempre, si tienen alguna pregunta o sugerencia relacionada con el tópico cubierto en este artículo, por favor coméntenlo por los canales de comunicación del curso, para que otras/os lectoras/es puedan beneficiarse de la discusión.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tipos de variables y ejemplos</title>
+      <link>/resource/r-datatypes-example/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/resource/r-datatypes-example/</guid>
+      <description>&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/viz/viz.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/grViz-binding/grViz.js&#34;&gt;&lt;/script&gt;
+&lt;p&gt;La presente entrada es una traducción del artículo &lt;a href=&#34;https://statsandr.com/blog/variable-types-and-examples/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Variable types and examples&lt;/strong&gt;&lt;/a&gt; elaborado por &lt;em&gt;Antoine Soetewey&lt;/em&gt; (2019).&lt;/p&gt;
+&lt;p&gt;Este artículo presenta los diferentes tipos de variables desde un punto de vista estadístico. Para aprender sobre los diferentes tipos de datos en R, revisen &lt;a href=&#34;https://learn-r-udp.netlify.app/resource/r-datatypes/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tipos de datos en R&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;imágen-panorámica&#34;&gt;Imágen panorámica&lt;/h1&gt;
+&lt;p&gt;En estadística, las variables son clasificadas en 4 tipos diferentes:&lt;/p&gt;
+&lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:672px;height:480px;&#34; class=&#34;grViz html-widget&#34;&gt;&lt;/div&gt;
+&lt;script type=&#34;application/json&#34; data-for=&#34;htmlwidget-1&#34;&gt;{&#34;x&#34;:{&#34;diagram&#34;:&#34;digraph {\n\n\n\n\n  \&#34;1\&#34; [label = \&#34;Variable\&#34;, style = \&#34;filled,rounded\&#34;, shape = \&#34;box\&#34;, fontname = \&#34;helvetica\&#34;, tooltip = \&#34;- name: Variable\&#34;, fillcolor = \&#34;LightGray\&#34;, fontcolor = \&#34;#000000\&#34;] \n  \&#34;2\&#34; [label = \&#34;Cualitativa\&#34;, style = \&#34;filled,rounded\&#34;, shape = \&#34;box\&#34;, fontname = \&#34;helvetica\&#34;, tooltip = \&#34;- name: Cualitativa\&#34;, fillcolor = \&#34;LightGray\&#34;, fontcolor = \&#34;#000000\&#34;] \n  \&#34;3\&#34; [label = \&#34;Nominal\&#34;, style = \&#34;filled,rounded\&#34;, shape = \&#34;box\&#34;, fontname = \&#34;helvetica\&#34;, tooltip = \&#34;- name: Nominal\&#34;, fillcolor = \&#34;LightGray\&#34;, fontcolor = \&#34;#000000\&#34;] \n  \&#34;4\&#34; [label = \&#34;Ordinal\&#34;, style = \&#34;filled,rounded\&#34;, shape = \&#34;box\&#34;, fontname = \&#34;helvetica\&#34;, tooltip = \&#34;- name: Ordinal\&#34;, fillcolor = \&#34;LightGray\&#34;, fontcolor = \&#34;#000000\&#34;] \n  \&#34;5\&#34; [label = \&#34;Cuantitativa\&#34;, style = \&#34;filled,rounded\&#34;, shape = \&#34;box\&#34;, fontname = \&#34;helvetica\&#34;, tooltip = \&#34;- name: Cuantitativa\&#34;, fillcolor = \&#34;LightGray\&#34;, fontcolor = \&#34;#000000\&#34;] \n  \&#34;6\&#34; [label = \&#34;Discreta\&#34;, style = \&#34;filled,rounded\&#34;, shape = \&#34;box\&#34;, fontname = \&#34;helvetica\&#34;, tooltip = \&#34;- name: Discreta\&#34;, fillcolor = \&#34;LightGray\&#34;, fontcolor = \&#34;#000000\&#34;] \n  \&#34;7\&#34; [label = \&#34;Continua\&#34;, style = \&#34;filled,rounded\&#34;, shape = \&#34;box\&#34;, fontname = \&#34;helvetica\&#34;, tooltip = \&#34;- name: Continua\&#34;, fillcolor = \&#34;LightGray\&#34;, fontcolor = \&#34;#000000\&#34;] \n  \&#34;1\&#34;-&gt;\&#34;2\&#34; \n  \&#34;1\&#34;-&gt;\&#34;5\&#34; \n  \&#34;2\&#34;-&gt;\&#34;3\&#34; \n  \&#34;2\&#34;-&gt;\&#34;4\&#34; \n  \&#34;5\&#34;-&gt;\&#34;6\&#34; \n  \&#34;5\&#34;-&gt;\&#34;7\&#34; \n}&#34;,&#34;config&#34;:{&#34;engine&#34;:&#34;dot&#34;,&#34;options&#34;:null}},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}&lt;/script&gt;
+&lt;h1 id=&#34;cuantitativas&#34;&gt;Cuantitativas&lt;/h1&gt;
+&lt;p&gt;Una variable &lt;strong&gt;cuantitativa&lt;/strong&gt; es aquella que refleja una noción de &lt;strong&gt;magnitud&lt;/strong&gt;, es decir, cuyos valores posibles son &lt;strong&gt;números&lt;/strong&gt;. Así, una variable cuantitativa representa una medida y es numérica.&lt;/p&gt;
+&lt;p&gt;Las variables cuantitativas se dividen en dos tipos: &lt;strong&gt;discretas&lt;/strong&gt; y &lt;strong&gt;continuas&lt;/strong&gt;. La diferencia entre ambas se explicará en las siguientes dos secciones.&lt;/p&gt;
+&lt;h2 id=&#34;discretas&#34;&gt;Discretas&lt;/h2&gt;
+&lt;p&gt;Variables &lt;strong&gt;cuantitativas discretas&lt;/strong&gt; son aquellas cuyos valores posibles pueden ser &lt;strong&gt;contabilizados&lt;/strong&gt; y tienen un &lt;strong&gt;número finito de posibilidades&lt;/strong&gt;. Los valores tienden a ser (aunque no siempre) enteros. Aquí hay algunos ejemplos de variables discretas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Número de hijas/os por familia&lt;/li&gt;
+&lt;li&gt;Número de estudiantes en una clase&lt;/li&gt;
+&lt;li&gt;Número de ciudadanos/as en un país&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pese a que pueda tomar un largo tiempo el contar a las y los ciudadanas/os de un gran país, esto es técnicamente factible. Más aún, para todos los ejemplos, el número de posibilidades es &lt;strong&gt;finito&lt;/strong&gt;. Cualquiera sea el número de hijas/os en una familia, este nunca será 3.58 o 7.912, de modo que el número de posibilidades es un número finito y, de esa manera, contabilizable.&lt;/p&gt;
+&lt;h2 id=&#34;continuas&#34;&gt;Continuas&lt;/h2&gt;
+&lt;p&gt;Por otra parte, las variables &lt;strong&gt;cuantitativas continuas&lt;/strong&gt; son aquellas cuyos valores &lt;strong&gt;no son contabilizables&lt;/strong&gt;, teniendo un &lt;strong&gt;número infinito de posibilidades&lt;/strong&gt;. Por ejemplo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Edad&lt;/li&gt;
+&lt;li&gt;Peso&lt;/li&gt;
+&lt;li&gt;Altura&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para simplificar, usualmente nos referimos a años, kilogramos (libras) y centímetros (o pies y pulgadas), para edad, peso y altura respectivamente. Sin embargo, una persona de 28 años puede realmenter tener 28 años, 7 meses, 16 días, 3 horas, 4 minutos, 5 segundos, 31 milisegundos, 9 nanosegundos de edad.&lt;/p&gt;
+&lt;p&gt;Para todas las mediciones, usualmente nos detenemos en un nivel estándar de granularidad, pero nada (excepto nuestras herramientas medición) nos impide ir más allá, llevándonos a un &lt;strong&gt;número infinito de valores potenciales&lt;/strong&gt;. El hecho de que los valores puedan tomar un número infinito de posibilidades lo hace incontabilizable.&lt;/p&gt;
+&lt;h1 id=&#34;cualitativas&#34;&gt;Cualitativas&lt;/h1&gt;
+&lt;p&gt;En oposición a las variables cuantitativas, las variables &lt;strong&gt;cualitativas&lt;/strong&gt; (también referidas como variables categóricas o &lt;a href=&#34;link%20p%c3%a1gina%20UDP&#34;&gt;factores&lt;/a&gt; en R) son variables que &lt;strong&gt;no son numéricas&lt;/strong&gt; y cuyos &lt;strong&gt;valores encajan en categorías&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;En otras palabras, una variable &lt;strong&gt;cualitativa&lt;/strong&gt; es aquella que toma como valores modalidades, &lt;strong&gt;categorías&lt;/strong&gt; o incluso niveles, en contraste con variables &lt;strong&gt;cuantitativas&lt;/strong&gt; que miden una &lt;strong&gt;cantidad&lt;/strong&gt; en cada individuo.&lt;/p&gt;
+&lt;p&gt;Las variables cualitativas se dividen en dos tipos: &lt;strong&gt;nominales&lt;/strong&gt; y &lt;strong&gt;ordinales&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;nominales&#34;&gt;Nominales&lt;/h2&gt;
+&lt;p&gt;Una variable &lt;strong&gt;cualitativa nominal&lt;/strong&gt; es aquella en que &lt;strong&gt;ordenar&lt;/strong&gt; no es posible ni está implicado en los niveles (levels). Por ejemplo, la variable género es nominal porque no hay orden en los niveles femenino/masculino. El color de ojos es otro ejemplo de una variable nominal, pues no hay orden entre ojos azules, cafés o verdes.&lt;/p&gt;
+&lt;p&gt;Una variable nominal puede contemplar dos niveles (por ejemplo ¿eres fumador/a? Sí/No, o ¿cuál es tu género? Femenino/Masculina), o un extenso número de niveles (¿cuál es tu licenciatura universitaria? donde cada tipo de licenciatura (sociología, psicología, física, entre otras) constituye un nivel).&lt;/p&gt;
+&lt;h2 id=&#34;ordinales&#34;&gt;Ordinales&lt;/h2&gt;
+&lt;p&gt;Por otra parte, una variable &lt;strong&gt;cualitativa ordinal&lt;/strong&gt; implica un &lt;strong&gt;orden asignado a los niveles&lt;/strong&gt;. Por ejemplo, si la gravedad de accidentes de tránsito es medida en una escala como leve, moderada y fatal, esta variable es cualitativa ordinal en tanto hay un claro orden entre los niveles.&lt;/p&gt;
+&lt;p&gt;Otro buen ejemplo es la salud, cuyos valores posible son pobre, razonable, buena o excelente. De nuevo, hay un claro orden en estas variables, de modo que la salud en este caso constituye una variable ordinal cualitativa.&lt;/p&gt;
+&lt;h1 id=&#34;transformación-de-variables&#34;&gt;Transformación de variables&lt;/h1&gt;
+&lt;p&gt;Hay dos formas principales de transformación de variables:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;De variable continua a variable discreta&lt;/li&gt;
+&lt;li&gt;De variable cuantitativa a variable cualitativa&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;de-continua-a-discreta&#34;&gt;De continua a discreta&lt;/h2&gt;
+&lt;p&gt;Digamos que estamos interesados/as en edades de bebés. Los datos coleccionados es la edad de los bebés, siendo una variable cuantitativa continua. Sin embargo, trabajaremos sólo con el número de semanas desde el nacimiento, transformando así a la edad en una variable discreta. La variable edad sigue siendo cuantitativa, pero la variable que estamos trabajando (en este caso, el número de semanas desde el nacimiento) es una variable cuantitativa discreta.&lt;/p&gt;
+&lt;h2 id=&#34;de-cuantitativa-a-cualitativa&#34;&gt;De cuantitativa a cualitativa&lt;/h2&gt;
+&lt;p&gt;Digamos que estamos interesadas/os en el Índice de Masa Corporal (IMC). Para esto, las/los investigadoras/os coleccionaron datos sobre altura y peso de individuos, calculando su IMC. El IMC es una variable cuantitativa continua, pero las/los investigadoras/os desean transformarla en una variable cualitativa, categorizando a las personas bajo cierto límite en bajo peso, sobre cierto límite en sobre peso, y al resto como peso normal. El IMC inicial es una variable cuantitativa continua, pero la categorización del IMC la transforma en una variable cualitativa (ordinal), cuyos niveles son bajo peso &amp;lt; normal &amp;lt; sobre peso.&lt;/p&gt;
+&lt;p&gt;Lo mismo sucede cuando la edad es transformada en una variable cualitativa ordinal con niveles como menores de edad, adultos y adultos mayores. También suele ser el caso (especialmente en encuestas) cuando la variable salario (cuantitativa continua) es transformada n una variable cualitativa ordinal que contempla diferentes rangos de salarios (por ejemplo, $0 - $100.000, $100.001 - $200.000, etc.)&lt;/p&gt;
+&lt;h1 id=&#34;notas-adicionales&#34;&gt;Notas adicionales&lt;/h1&gt;
+&lt;h2 id=&#34;diferentes-tipos-de-variables-para-diferentes-tipos-de-análisis-estadísticos&#34;&gt;Diferentes tipos de variables para diferentes tipos de análisis estadísticos&lt;/h2&gt;
+&lt;p&gt;La razón por la cual usualmente clasificamos variables en diferentes tipos es que no todos los análisis estadísticos pueden realizar para todos los tipos de variables. Por ejemplo, es imposible calcular una &lt;em&gt;media&lt;/em&gt; de la variable “color de cabello,” al no poder sumar cabello castaño y cabello rubio.&lt;/p&gt;
+&lt;p&gt;Por otra parte, hallar la &lt;em&gt;moda&lt;/em&gt; de una variable continua no hace mucho sentido, pues la mayor parte del tiempo no habrá dos valores exactamente iguales, de modo que no existirá moda. Por ejemplo, intentar encontrar la moda de la altura de las y los estudiantes de un curso. Si se tiene suerte, un par de estudiantes medirán lo mismo. No obstante, la mayor parte del tiempo, cada estudiante tendrá un tamaño diferente (especialmente si las alturas han sido medidas en milímetros), de modo que no habrá moda. Para ver que tipo de análisis es posible en cada variable, pueden hacer una revisión más detallada en los artículos “&lt;a href=&#34;/blog/descriptive-statistics-by-hand/&#34;&gt;Descriptive statistics by hand&lt;/a&gt;” y “&lt;a href=&#34;/blog/descriptive-statistics-in-r/&#34;&gt;Descriptive statistics in R&lt;/a&gt;.”&lt;/p&gt;
+&lt;p&gt;De forma semejante, algunos tests estadísticos sólo pueden realizarse en cierto tipo de variables, Por ejemplo, una &lt;em&gt;correlación&lt;/em&gt; sólo puede calcularse para variables cuantitativas, mientras que un &lt;em&gt;test Chi-cuadrado de independencia&lt;/em&gt; se realiza con variables cualitativas, y un test &lt;em&gt;T-Student&lt;/em&gt; o &lt;em&gt;ANOVA&lt;/em&gt; requiere una combinación de variables cuantitativas y cualitativas.&lt;/p&gt;
+&lt;h2 id=&#34;codificación-engañosa-de-datos&#34;&gt;Codificación engañosa de datos&lt;/h2&gt;
+&lt;p&gt;Por último, pero no menos importante, es usual que en algunos set de datos se empleen números para variables cualitativas. Por ejemplo, un/a investigador/a puede asignar el número “1” a mujer y el número “2” a hombre (o “0” a la respuesta “No” y “1” a la respuesta “Sí). Pese a la clasificación numérica, la variable género sigue siendo una variable cualitativa, y no una discreta, como pareciera. La clasficación numérica sólo es utilizada para facilitar la recolección y tratamiento de datos. Es, de hecho, más sencillo escribir”1&amp;quot; o “2” en lugar de “mujer” y “hombre,” disminuyendo la posibilidad de errores de codificación.&lt;/p&gt;
+&lt;p&gt;Si te enfrentas a este tipo de configuración, no olvides &lt;strong&gt;transformar&lt;/strong&gt; la variable en el tipo correcto antes de realizar análisis estadísticos. Usualmente, un &lt;strong&gt;análisis descriptivo&lt;/strong&gt; básico (y el conocimiento sobre las variable que han sido medidas) previo a los análisis estadísticos principales basta para identificar si el tipo de las variables es correcto.&lt;/p&gt;
+&lt;p&gt;Gracias por leer. Esperamos que este artículo les ayude a comprender los diferentes tipos de variables. Si desean aprender más sobre los distintos tipos de datos en R, lean la entrada &lt;a href=&#34;https://learn-r-udp.netlify.app/resource/r-datatypes/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tipos de datos en R&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Como siempre, si tienen alguna pregunta o sugerencia relacionada con el tópico cubierto en este artículo, por favor coméntenlo por los canales de comunicación del curso, para que otras/os lectoras/es puedan beneficiarse de la discusión.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Descomprimir archivos</title>
+      <link>/resource/unzipping/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/resource/unzipping/</guid>
+      <description>&lt;p&gt;Debido a que los Rproject  de RStudio normalmente consisten en múltiples archivos (scripts de R, conjuntos de datos, salida gráfica, etc.) la forma más fácil de distribuirlos para los ejemplos, tareas y proyectos es combinar todos los diferentes archivos en una sola colección comprimida llamada &lt;strong&gt;archivo comprimido&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Cuando descomprimes un archivo comprimido, tu sistema operativo extrae todos los archivos que contiene en una nueva carpeta de tu ordenador.&lt;/p&gt;
+&lt;p&gt;Descomprimir archivos en macOS es trivial, pero descomprimir archivos en Windows puede ser molesto, si no sigues los siguientes pasos. Aquí tienes una guía útil para descomprimir archivos tanto en macOS como en Windows.&lt;/p&gt;
+&lt;h2 id=&#34;descomprimir-archivos-en-macos&#34;&gt;Descomprimir archivos en macOS&lt;/h2&gt;
+&lt;p&gt;Haz doble clic en el archivo &lt;code&gt;.zip&lt;/code&gt; descargado. macOS creará automáticamente una nueva carpeta con el mismo nombre que el archivo &lt;code&gt;.zip&lt;/code&gt;, y todo el contenido del archivo estará dentro. Haz doble clic en el archivo de proyecto de RStudio (&lt;code&gt;.Rproj&lt;/code&gt;) para empezar.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;knitr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;include_graphics&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/img/unzipping/unzip-mac.png&amp;#34;&lt;/span&gt;, error &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;FALSE&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;/img/unzipping/unzip-mac.png&#34; alt=&#34;&#34;&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;h2 id=&#34;descomprimir-archivos-en-windows&#34;&gt;Descomprimir archivos en Windows&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;tl;dr&lt;/strong&gt;: Haz clic con el botón derecho del ratón en el archivo &lt;code&gt;.zip&lt;/code&gt;, selecciona &amp;ldquo;Extraer todo&amp;hellip;&amp;rdquo;, y trabaja con la carpeta descomprimida resultante.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;A diferencia de macOS, Windows no descomprime automáticamente las cosas por ti. Si haces doble clic en el archivo &lt;code&gt;.zip&lt;/code&gt;, Windows te mostrará lo que hay dentro, pero lo hará sin extraer nada. ¡Esto &lt;del&gt;puede ser&lt;/del&gt; increíblemente confuso! Esto es lo que parece: las únicas pistas de que esta carpeta es realmente un archivo &lt;code&gt;.zip&lt;/code&gt; son que hay una pestaña de &amp;ldquo;Herramientas de carpetas comprimidas&amp;rdquo; en la parte superior, y hay una columna de &amp;ldquo;Ratio&amp;rdquo; que muestra cuánto está comprimido cada archivo.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/unzipping/inside-zip-windows.png&#34; width=&#34;80%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Es muy tentador intentar abrir archivos desde esta vista. Sin embargo, si lo hace, las cosas se romperán y no podrá trabajar correctamente con ninguno de los archivos de la carpeta comprimida. Si abre el archivo del Proyecto R, por ejemplo, RStudio apuntará a un extraño directorio de trabajo enterrado en alguna carpeta temporal:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/unzipping/temp-wd-windows.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Lo más probable es que no puedas abrir ningún archivo de datos ni guardar nada, lo cual será frustrante.&lt;/p&gt;
+&lt;p&gt;En lugar de eso, tienes que hacer clic con el botón derecho del ratón en el archivo &lt;code&gt;.zip&lt;/code&gt; y seleccionar &amp;ldquo;Extraer todo&amp;hellip;&amp;quot;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/unzipping/extract-windows-1.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;A continuación, elige dónde quieres descomprimir todos los archivos y haz clic en &amp;ldquo;Extraer&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/unzipping/extract-windows-2.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Finalmente deberías tener una carpeta real con todo el contenido del archivo comprimido. Abre el archivo del proyecto R y RStudio apuntará al directorio de trabajo correcto y todo funcionará.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/unzipping/extract-windows-3.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Instalación Zotero</title>
+      <link>/resource/install-zotero/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/resource/install-zotero/</guid>
+      <description>&lt;h1 id=&#34;objetivo-del-taller&#34;&gt;Objetivo del taller&lt;/h1&gt;
+&lt;p&gt;Este taller tiene por objetivo conocer el software &lt;strong&gt;Zotero&lt;/strong&gt; para facilitar la incorporación de &lt;em&gt;citas y referencias&lt;/em&gt; en archivos RMarkdown.. Para ello veremos las razones de por qué usar este software y por qué usarlo en conjunto a RMarkdown, finalizando con el proceso de instalación del programa y sus componentes.&lt;/p&gt;
+&lt;p&gt;El proceso de referenciar es uno de los más relevantes dentro de la vida académica, sin embargo este puede ser difícil y sujeto a muchos errores. Por ello, el sistematizar y facilitar este proceso no sólo puede ahorrar tiempo en trabajos, investigaciones, entre otros. Sino que potenciará el proceso volviéndolo más expedito.&lt;/p&gt;
+&lt;p&gt;Para ello hay distintas formas de faciltarlo, uno de ellos es &lt;strong&gt;Zotero&lt;/strong&gt;, pero ¿por qué utilizar Zotero y no otro gestor?&lt;/p&gt;
+&lt;h1 id=&#34;1-qué-es-zotero&#34;&gt;1. Qué es Zotero&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;www.zotero.org&#34;&gt;Zotero&lt;/a&gt; (&lt;a href=&#34;http://www.zotero.org&#34;&gt;www.zotero.org&lt;/a&gt;) es un software libre que almacena y administra las referencias bibliográficas, este no sólo es útil como aplicación sino que también tiene extensiones para navegadores como &lt;strong&gt;Chrome, Mozilla Firefox, Safari y Opera&lt;/strong&gt;. Estos sincronizan la aplicación mientras se navega guardando los recursos a utilizar.&lt;/p&gt;
+&lt;p&gt;Sus ventajas son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;La automatización del almacenamiento de las referencias bibliográficas&lt;/li&gt;
+&lt;li&gt;La colaboración y fácil sincronización de referencias&lt;/li&gt;
+&lt;li&gt;Es un software de acceso abierto y gratis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;11-zotero--rmarkdown&#34;&gt;1.1 Zotero + RMarkdown&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://learn-r-uah.netlify.app/example/02-practico/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RMarkdown&lt;/a&gt; es un archivo que logra integrar código R (mediante chunks) y texto en &lt;a href=&#34;https://learn-r-uah.netlify.app/resource/markdown/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Markdown&lt;/a&gt; (lenguaje que brinda un formato de escritura de texto simple).&lt;/p&gt;
+&lt;p&gt;Sus ventajas son&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;La incorporación de reportes estadísticos, tablas y análisis directamente en un archivo con escritura en texto plano&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Facilita la reproducibilidad y la colaboración académica&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Facilita la apertura y acceso de información&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Entonces, RMarkdown más Zotero, significan no sólo un aumento de lo reproducible y la colaboración, sino que también una automatización del proceso de referenciar, volviéndolo más simple y sujeto a menos errores.&lt;/p&gt;
+&lt;p&gt;Entonces, al almacenar las referencias dentro de Zotero, queda a disposición un conjunto de archivos o librería que puede exportarse, compartirse o sincronizarse directamente al documento a utilizar o presentar.&lt;/p&gt;
+&lt;p&gt;Para que este proceso de almacenamiento y exportación de referencias pueda utilizarse, el software debe transformarlo a un tipo de archivo y uno de ellos es BibTeX.&lt;/p&gt;
+&lt;h2 id=&#34;11-bibtex&#34;&gt;1.1 BibTeX&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.bibtex.org/Format/de/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BibteX&lt;/a&gt; es un tipo archivos con un formato .bib, los cuales funcionan en conjunto a &lt;em&gt;Latex&lt;/em&gt; (es un sistema de composición de textos) para el almacenamiento de referencias bibliográficas.&lt;/p&gt;
+&lt;p&gt;Una entrada BibTeX inicia con una palabra después de &lt;code&gt;@&lt;/code&gt; y una serie de etiquetas que definen las características de la entrada específica. Entre esas etiquetas pueden estar elementos como: autor, título, año, entre otros. Algunas etiquetas son obligatorias para ciertos tipos de entradas de BibTeX, otras son opcionales.&lt;/p&gt;
+&lt;h3 id=&#34;etiquetas&#34;&gt;Etiquetas&lt;/h3&gt;
+&lt;p&gt;En BibTeX las etiquetas son especificadas por su nombre seguido de un signo igual y su contenido, se debe considerar que las etiquetas no distinguen entre mayúsculas y minúsculas y que el contenido debe ir entre comillas, por ejemplo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@book`{&amp;quot;marx_1867&amp;quot;,
+        title = {El Capital}, 
+        volume = {I}, 
+        author = {Marx, Karl}, 
+        year = {1867}, 
+        pages = {255–276}, 
+        file = {ruta}}`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dentro del ejemplo es relevante la primera línea, ya que este nombre es el que nos permitirá traerla al texto. Si bien es útil conocer este formato de referencias, es un poco complejo al principio. Lo bueno es que Zotero administra estas referencias y las convierte automáticamente al formato .bib&lt;/p&gt;
+&lt;h2 id=&#34;1-2-better-bibtex-bbt&#34;&gt;1. 2 Better BibTeX (BBT)&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://retorque.re/zotero-better-bibtex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Better BibTeX&lt;/a&gt; cumple las funciones de BibTeX pero la ventaja es que se puede sincronizar para una actualización automática desde los software que gestionan las referencias. Para esto presentaremos la aplicación Better(bib)tex (BBT), que funciona dentro de &lt;a href=&#34;www.zotero.org&#34;&gt;Zotero&lt;/a&gt;. Las ventajas de esto es que ambos son de código abierto&lt;/p&gt;
+&lt;p&gt;BBT genera una colección con formtao .bib en base a librerías construidas en Zotero, estas se configuran una vez y luego se mantiene sincronizada.&lt;/p&gt;
+&lt;p&gt;¡Pero antes de ver como funcionan debemos asegurarnos de tener todo instalado!&lt;/p&gt;
+&lt;h1 id=&#34;2-instalación-de-zotero&#34;&gt;2. Instalación de Zotero&lt;/h1&gt;
+&lt;p&gt;Para instalar Zotero deben ir al &lt;a href=&#34;https://www.zotero.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;link&lt;/a&gt; y apretar el botón &lt;strong&gt;Download&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/instalacion-zot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego, deben abrir el archivo descargado&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/blob/main/input/img/image%20(11).png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Una vez abran el archivo descargado, les aparecerá esta ventana donde deben apretar el botón &lt;em&gt;Continuar o Next &amp;gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(1).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Deben seleccionar la opción &lt;em&gt;Standard&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(12).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego establecer la ubicación del programa deben apretar &lt;em&gt;Upgrade&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(13).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;finalmente deben apretar en &lt;em&gt;Finish&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(15).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Al abrirlo les aparecerá la interfaz del software&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(16).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Ahora ya tenemos instalado Zotero, sin embargo no es suficiente, también debemos instalar la extensión BBT para facilitar la sincronización de los datos con el informe que queramos crear.&lt;/p&gt;
+&lt;h1 id=&#34;21-zotero-y-bbt&#34;&gt;2.1 Zotero y BBT&lt;/h1&gt;
+&lt;p&gt;Para descargar BBT deben ir al &lt;a href=&#34;https://retorque.re/zotero-better-bibtex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;link&lt;/a&gt; y en la sección More ir a &lt;em&gt;Download&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(7).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego deben hacer click en el archivo con extensión .xpi, pero no deben abrirlo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(9).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;note&#34;&gt;
+&lt;p&gt;Dentro de BBT hay varias versiones las cuales pueden irse actualizando, estas se encuentran en el botón compare&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(8).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Para incorporarlo deben ir a Zotero en &lt;em&gt;Tools y Add-ons&lt;/em&gt; / En español es en &lt;em&gt;Herramientas y complementos&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(17).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Les aparecerá una ventana emergente, deben ir a la esquina superior derecha, al icono de tuerca&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(18).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego deben ir a &lt;em&gt;Install Add-on from file&lt;/em&gt;, encontrar el archivo descargado (.xpi) de BBT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(19).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Una vez se encuentra se debe apretar el boton &lt;em&gt;Install Now&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(21).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego se debe reiniciar con el botón &lt;em&gt;Restart Now&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(22).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(23).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Ahora ya tenemos el software que gestiona las referencias y la extensión para mantener sincronizadas las referencias. Sin embargo previo a ver como funcionan dejaremos instaladas las extensiones&lt;/p&gt;
+&lt;h2 id=&#34;22-instalación-de-extensión&#34;&gt;2.2 Instalación de extensión&lt;/h2&gt;
+&lt;p&gt;Para incluir la extensión de navegador de Zotero hay varias opciones según el navegador que utilicen&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://chrome.google.com/webstore/detail/zotero-connector/ekhagklcjbdpajgpjgmbionohlpdbjgc?hl=es&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chrome&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(24).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.zotero.org/download/connectors&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Firefox&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(29).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.zotero.org/download/connectors&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Edge&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(30).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;class: title title-8&lt;/p&gt;
+&lt;h1 id=&#34;23-creación-de-cuenta&#34;&gt;2.3 Creación de cuenta&lt;/h1&gt;
+&lt;p&gt;Para crearse una cuenta deben ir al siguiente &lt;a href=&#34;https://www.zotero.org/user/register&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/slides/raw/main/img/03/regist.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;No es necesario crearse una cuenta para usar Zotero, pero si es recomendable&lt;/p&gt;
+&lt;h1 id=&#34;3-puente-entre-rstudio-y-zotero&#34;&gt;3. Puente entre Rstudio y Zotero&lt;/h1&gt;
+&lt;p&gt;Para conectar Zotero con Rstudio y facilitar la incorporación de referencias en RMarkdown, necesitamos un conector y para ello tenemos dos opciones: el paquete &lt;code&gt;citr&lt;/code&gt; y el editor visual.&lt;/p&gt;
+&lt;p&gt;Opción 1:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;citr&lt;/code&gt; este es un paquete que nos facilitara la conexión entre Zotero y Rstudio&lt;/p&gt;
+&lt;p&gt;Se puede instalar de varias formas&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;con &lt;code&gt;install.packages&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mediante &lt;code&gt;devtools::install_github(&amp;quot;crsh/citr&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;O descargando una antigua versión del &lt;a href=&#34;https://cran.r-project.org/src/contrib/Archive/citr/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CRAN&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Se reinicia R y luego podrán verlo en la sección &lt;strong&gt;Addins&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Editor visual&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;note&#34;&gt;
+Lo más probable es que &lt;code&gt;citr&lt;/code&gt; genere problemas en su instalación, debido a que fue removido del CRAN, sin embargo la opción más factible es usar el editor visual o utilizar una versión antigua del paquete
+&lt;/div&gt;
+
+&lt;h1 id=&#34;3-flujo-de-trabajo&#34;&gt;3. Flujo de trabajo&lt;/h1&gt;
+&lt;p&gt;Una vez teniendo instalado el software y todo lo necesario para empezar estableceremos el flujo de trabajo. Se debe considerar que este proceso es cíclico.&lt;/p&gt;
+&lt;p&gt;Es importante entender el flujo de trabajo de Zotero + RMarkdown, porque resume todo lo visto, mientras más nos acostumbremos a este flujo de trabajo más simple se hará el proceso de referenciar a través de Zotero.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/flujo-zotero.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;4-video-tutorial-en-youtube&#34;&gt;4. Video tutorial en Youtube&lt;/h1&gt;
+&lt;p&gt;Recuerden que el &lt;a href=&#34;https://youtu.be/w-qGJH2uswk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;video de asociado a este tutorial&lt;/a&gt; y muchos más podrán encontrarlos en el &lt;a href=&#34;https://www.youtube.com/channel/UCqBUeqBttVjS6h8fawK8sWg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;canal de youtube del curso&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Zotero &#43; RMarkdown</title>
+      <link>/resource/zotero-rmd/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/resource/zotero-rmd/</guid>
+      <description>&lt;h1 id=&#34;0-objetivo-del-taller&#34;&gt;0. Objetivo del taller&lt;/h1&gt;
+&lt;p&gt;Este taller tiene por objetivo conocer el software &lt;strong&gt;Zotero&lt;/strong&gt; para
+facilitar la incorporación de &lt;em&gt;citas y referencias&lt;/em&gt; en archivos
+RMarkdown.&lt;/p&gt;
+&lt;h1 id=&#34;1-recursos-del-práctico&#34;&gt;1. Recursos del práctico&lt;/h1&gt;
+&lt;p&gt;Para este práctico utilizaremos una colección hecha para el taller de &lt;em&gt;Zotero&lt;/em&gt;, que
+nos facilitará la realización de los ejercicios.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/learn-R/taller-zotero/raw/main/material-taller.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;i class=&#34;fas fa-file-archive&#34;&gt;&lt;/i&gt; &lt;code&gt;material-taller.zip&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;2-flujo-de-trabajo&#34;&gt;2. Flujo de trabajo&lt;/h1&gt;
+&lt;p&gt;Como se vio en el &lt;a href=&#34;https://www.youtube.com/watch?v=w-qGJH2uswk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tutorial de
+instalación&lt;/a&gt;, una vez
+teniendo instalado el software y sus complementos, es necesario tener en
+cuenta el flujo de trabajo.&lt;/p&gt;
+&lt;p&gt;Es importante entender el flujo de trabajo de Zotero + RMarkdown, ya que
+resume todo lo visto, mientras más nos acostumbremos a este flujo de
+trabajo más simple se hará el proceso de referenciar a través de Zotero.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/flujo-zotero.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-almacenar&#34;&gt;3 Almacenar&lt;/h2&gt;
+&lt;p&gt;El primer paso es almacenar los datos que se han leído y recopilado. El
+almacenamiento inmediato de estos datos será de utilidad para el
+reporte.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Una de las ventajas de realizar el proceso de almacenar de esta
+forma es que se lleva un registro de lo leído, evitando la pérdida
+de información.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para esto &lt;strong&gt;Zotero&lt;/strong&gt;, no sólo tiene la solución, sino que también
+existen diversas formas de hacerlo. Las cuales veremos a continuación&lt;/p&gt;
+&lt;h3 id=&#34;31-almacenar-referencias-de-forma-manual&#34;&gt;3.1 Almacenar referencias de forma manual&lt;/h3&gt;
+&lt;p&gt;Una de las formas más comunes (aunque no más fácil) es almacenar las
+referencias de forma manual.&lt;/p&gt;
+&lt;p&gt;Se debe considerar que si bien esto facilita el proceso, hay formas más
+expeditas de almacenamiento.&lt;/p&gt;
+&lt;p&gt;Para esto debemos seguir los siguientes pasos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 1: Abrir Zotero&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 2: Dirigirse al botón verde con un signo “+” y seleccionar el
+tipo de archivo a almacenar (artículo, libro, vídeo, etc.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/almac-manual.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Paso 3: Finalmente, deben llenar las secciones que aparecen en el
+lado derecho.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/llenado-manual.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;32-almacenar-a-través-de-la-extensión-de-navegador&#34;&gt;3.2 Almacenar a través de la extensión de navegador&lt;/h3&gt;
+&lt;p&gt;Almacenar a través de la extensión del navegador web, es una de las
+opciones más simples de almacenamiento, solo debes seguir los siguientes
+pasos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 1: Dirigirte al artículo, &lt;a href=&#34;https://www.cnnchile.com/coronavirus/chile-71-poblacion-6-17-recibido-primera-dosis_20211019/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;noticia&lt;/a&gt;, vídeo que quieras almacenar&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 2: Apretar el botón de la extensión&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 3: Seleccionar la carpeta donde se almacenará&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/zotero-conector.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;¡Listo!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/resultado-zotero-conect.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;33-almacenar-a-través-del-identificador&#34;&gt;3.3 Almacenar a través del identificador&lt;/h3&gt;
+&lt;p&gt;Otra de las opciones que ofrece Zotero es el almacenamiento a través del
+identificador (DOI, ISBN, PMID o arXiv ID), los pasos a seguir son los
+siguientes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 1: Tener el identificador copiado (para este ejemplo
+utilizaremos este 978-84-459-0745-0, ustedes también pueden probar
+con ese ISBN)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 2: Abrir Zotero Paso 3: Ir a al dibujo de una “varita”&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 3: Ingresar el identificador&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/almacen-identificador.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;¡Listo!&lt;/p&gt;
+&lt;h3 id=&#34;34-almacenar-por-archivo&#34;&gt;3.4 Almacenar por archivo&lt;/h3&gt;
+&lt;p&gt;Una última forma de almacenar referencias es a través de archivos.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 1: Tener un archivo para almacenar&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/arch-almac.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 2: Moverlo a Zotero&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/result-save-arch.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;¡Listo!&lt;/p&gt;
+&lt;h2 id=&#34;4-exportar-y-formatos&#34;&gt;4. Exportar y formatos&lt;/h2&gt;
+&lt;p&gt;Una vez almacenados, se viene la siguiente etapa de nuestro flujo: la de
+&lt;em&gt;&lt;strong&gt;exportación&lt;/strong&gt;&lt;/em&gt; y hay dos opciones para exportar los archivos&lt;/p&gt;
+&lt;p&gt;Opción 1: Exportar archivos con formato .bib&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 1: Botón derecho a la carpeta a exportar&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 2: Apretar en &lt;strong&gt;“Exportar colección”&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/export.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 3: Seleccionar formato BibTeX&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/bib-exp.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 4: Seleccionar carpeta donde alojaremos el archivo (input) y
+guardar&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/bib.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Opción 2: Exportar archivos con BetterBibTeX&lt;/p&gt;
+&lt;p&gt;Con esta opción Rstudio automáticamente reconoce la biblioteca, los
+pasos son los siguientes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 1: Botón derecho a la carpeta a exportar&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 2: Apretar en &lt;strong&gt;“Exportar colección”&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/export.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 3: Seleccionar formato BibTeX y opción &lt;strong&gt;keep updates&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/bbt.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 4: Seleccionar carpeta donde alojaremos el archivo (input) y
+guardar&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/bibliot-bibtex.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;41-carpeta&#34;&gt;4.1 Carpeta&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/slides/raw/main/img/01/flow-rproject.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;42-yaml-bibliography-y-csl&#34;&gt;4.2 YAML: bibliography y csl&lt;/h2&gt;
+&lt;p&gt;Para incluir las citas en un documento RMarkdown se debe tener en
+consideración dos aspectos, el archivo que almacena las citas y el
+formato en el que queremos referenciar. Por eso en el YAML se deben
+especificar estos dos aspectos&lt;/p&gt;
+&lt;h3 id=&#34;421-especificar-carpeta-de-donde-se-extraen-las-referencias&#34;&gt;4.2.1 Especificar carpeta de donde se extraen las referencias&lt;/h3&gt;
+&lt;p&gt;Para este aspecto en el encabezado (YAML) debe especificarse con
+&lt;code&gt;bibliography&lt;/code&gt; la ruta hacia el archivo, el nombre del archivo y su
+extensión&lt;/p&gt;
+&lt;p&gt;Nuestro YAML quedaría así&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: &amp;quot;taller zotero&amp;quot;
+author: &amp;quot;Dafne Jaime Vargas&amp;quot;
+date: &amp;quot;30-09-2021&amp;quot;
+output: html_document
+bibliography: input/taller.bib
+link-citations: yes
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;422-formato-de-citación&#34;&gt;4.2.2 formato de citación&lt;/h3&gt;
+&lt;p&gt;Tan relevante como el reverenciar, lo es el formato en el que se
+referencia, para ello debemos ir al siguiente
+&lt;a href=&#34;https://www.zotero.org/styles&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;link&lt;/a&gt; y descargar el formato con el que
+se quiere citar&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/styles.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;¿Cómo se descarga?, para este proceso hay más de una opción:&lt;/p&gt;
+&lt;p&gt;Opción 1: Descargar el archivo&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Paso 1: Poner en el buscador el estilo de citación y hacerle click&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/ej.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 2: Una vez les salga el mensaje de “Zotero Connector,” apretar
+en &lt;strong&gt;cancel&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/sinc-aut-zot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Les descargará un archivo con extensión .csl&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/csl-archivo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finalmente, en su archivo RMarkdown, en la sección del YAML deben
+dejar la ruta hacia el archivo, el nombre del archivo y su formato&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;---&lt;/span&gt;
+title&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;taller zotero&amp;#34;&lt;/span&gt;
+author&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Dafne Jaime Vargas&amp;#34;&lt;/span&gt;
+date&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;30-09-2021&amp;#34;&lt;/span&gt;
+output&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; html_document
+bibliography&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; input&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;taller.bib
+csl&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; input&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;cambridge&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;university&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;press&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;numeric.csl
+&lt;span style=&#34;color:#f92672&#34;&gt;---&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;¡Listo!&lt;/p&gt;
+&lt;p&gt;Opción 2:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 1: Poner en el buscador el estilo de citación y hacerle click&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/styles.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paso 2: Una vez les salga el mensaje de “Zotero Connector,” apretar
+en &lt;strong&gt;OK&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/sinc-aut-zot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Luego ir a preferencias de Zotero&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/pref.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;En la sección “Exportar” deben elegir formato predeterminado&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/conf-zot-apa.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Actualizar los datos en caso de ser BetterBibTeX o volver a exportar en caso de archivo BibTeX&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;En esta ocasión nuestro en nuestro YAML no habría que especificar un
+estilo de citación&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;¡Listo!&lt;/p&gt;
+&lt;h1 id=&#34;5-citar-en-rmarkdown&#34;&gt;5. Citar en RMarkdown&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ahora ya podemos citar, y es muy simple sólo debemos abrir nuestro
+RMarkdown&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hacer click en Addins &amp;gt; insert citations o citr:::insert_citation()&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Luego hacer knit&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;¡Listo!&lt;/p&gt;
+&lt;p&gt;{{&amp;lt; div “note” &amp;gt;}}&lt;/p&gt;
+&lt;h3 id=&#34;bonus&#34;&gt;BONUS&lt;/h3&gt;
+&lt;p&gt;En Zotero no sólo se puede almacenar los datos de la referencia y sus
+archivos, sino que se pueden añadir notas, apuntes, etiquetas, entre
+otros&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/apuntes.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;{{&amp;lt; /div &amp;gt;}}&lt;/p&gt;
+&lt;p&gt;Ya puedes volver a leer, Zotero hará todo lo demás por ti. Solo recuerda
+los pasos a seguir&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/flujo-zotero.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego, deben abrir el archivo descargado&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/blob/main/input/img/image%20(11).png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Una vez abran el archivo descargado, les aparecerá esta ventana donde deben apretar el botón &lt;em&gt;Continuar o Next &amp;gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(1).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Deben seleccionar la opción &lt;em&gt;Standard&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(12).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego establecer la ubicación del programa deben apretar &lt;em&gt;Upgrade&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(13).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;finalmente deben apretar en &lt;em&gt;Finish&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(15).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Al abrirlo les aparecerá la interfaz del software&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(16).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Ahora ya tenemos instalado Zotero, sin embargo no es suficiente, también debemos instalar la extensión BBT para facilitar la sincronización de los datos con el informe que queramos crear.&lt;/p&gt;
+&lt;h1 id=&#34;21-zotero-y-bbt&#34;&gt;2.1 Zotero y BBT&lt;/h1&gt;
+&lt;p&gt;Para descargar BBT deben ir al &lt;a href=&#34;https://retorque.re/zotero-better-bibtex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;link&lt;/a&gt; y en la sección More ir a &lt;em&gt;Download&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(7).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego deben hacer click en el archivo con extensión .xpi, pero no deben abrirlo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(9).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;{{&amp;lt; div “note” &amp;gt;}}&lt;/p&gt;
+&lt;p&gt;Dentro de BBT hay varias versiones las cuales pueden irse actualizando, estas se encuentran en el botón compare&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(8).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;{{&amp;lt; /div &amp;gt;}}&lt;/p&gt;
+&lt;p&gt;Para incorporarlo deben ir a Zotero en &lt;em&gt;Tools y Add-ons&lt;/em&gt; / En español es en &lt;em&gt;Herramientas y complementos&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(17).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Les aparecerá una ventana emergente, deben ir a la esquina superior derecha, al icono de tuerca&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(18).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego deben ir a &lt;em&gt;Install Add-on from file&lt;/em&gt;, encontrar el archivo descargado (.xpi) de BBT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(19).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Una vez se encuentra se debe apretar el boton &lt;em&gt;Install Now&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(21).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luego se debe reiniciar con el botón &lt;em&gt;Restart Now&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(22).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(23).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Ahora ya tenemos el software que gestiona las referencias y la extensión para mantener sincronizadas las referencias. Sin embargo previo a ver como funcionan dejaremos instaladas las extensiones&lt;/p&gt;
+&lt;h2 id=&#34;22-instalación-de-extensión&#34;&gt;2.2 Instalación de extensión&lt;/h2&gt;
+&lt;p&gt;Para incluir la extensión de navegador de Zotero hay varias opciones según el navegador que utilicen&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://chrome.google.com/webstore/detail/zotero-connector/ekhagklcjbdpajgpjgmbionohlpdbjgc?hl=es&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chrome&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(24).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.zotero.org/download/connectors&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Firefox&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(29).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.zotero.org/download/connectors&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Edge&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/image%20(30).png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;class: title title-8&lt;/p&gt;
+&lt;h1 id=&#34;23-creación-de-cuenta&#34;&gt;2.3 Creación de cuenta&lt;/h1&gt;
+&lt;p&gt;Para crearse una cuenta deben ir al siguiente &lt;a href=&#34;https://www.zotero.org/user/register&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/slides/raw/main/img/03/regist.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;No es necesario crearse una cuenta para usar Zotero, pero si es recomendable&lt;/p&gt;
+&lt;h1 id=&#34;3-puente-entre-rstudio-y-zotero&#34;&gt;3. Puente entre Rstudio y Zotero&lt;/h1&gt;
+&lt;p&gt;Para conectar Zotero con Rstudio y facilitar la incorporación de referencias en RMarkdown, necesitamos un conector y para ello tenemos dos opciones: el paquete &lt;code&gt;citr&lt;/code&gt; y el editor visual.&lt;/p&gt;
+&lt;p&gt;Opción 1:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;citr&lt;/code&gt; este es un paquete que nos facilitara la conexión entre Zotero y Rstudio&lt;/p&gt;
+&lt;p&gt;Se puede instalar de varias formas&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;con &lt;code&gt;install.packages&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mediante &lt;code&gt;devtools::install_github(&amp;quot;crsh/citr&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;O descargando una antigua versión del &lt;a href=&#34;https://cran.r-project.org/src/contrib/Archive/citr/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CRAN&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Se reinicia R y luego podrán verlo en la sección &lt;strong&gt;Addins&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Editor visual&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;{{&amp;lt; div “note” &amp;gt;}}&lt;/p&gt;
+&lt;p&gt;Lo más probable es que &lt;code&gt;citr&lt;/code&gt; genere problemas en su instalación, debido a que fue removido del CRAN, sin embargo la opción más factible es usar el editor visual o utilizar una versión antigua del paquete&lt;/p&gt;
+&lt;p&gt;{{&amp;lt; /div &amp;gt;}}&lt;/p&gt;
+&lt;h1 id=&#34;3-flujo-de-trabajo&#34;&gt;3. Flujo de trabajo&lt;/h1&gt;
+&lt;p&gt;Una vez teniendo instalado el software y todo lo necesario para empezar estableceremos el flujo de trabajo. Se debe considerar que este proceso es cíclico.&lt;/p&gt;
+&lt;p&gt;Es importante entender el flujo de trabajo de Zotero + RMarkdown, porque resume todo lo visto, mientras más nos acostumbremos a este flujo de trabajo más simple se hará el proceso de referenciar a través de Zotero.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/learn-R/taller-zotero/raw/main/input/img/flujo-zotero.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;4-video-tutorial-en-youtube&#34;&gt;4. Video tutorial en Youtube&lt;/h1&gt;
+&lt;p&gt;Recuerden que el &lt;a href=&#34;https://youtu.be/w-qGJH2uswk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;video de asociado a este tutorial&lt;/a&gt; y muchos más podrán encontrarlos en el &lt;a href=&#34;https://www.youtube.com/channel/UCqBUeqBttVjS6h8fawK8sWg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;canal de youtube del curso&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>¿Qué es Markdown?</title>
+      <link>/resource/markdown/</link>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>/resource/markdown/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://daringfireball.net/projects/markdown/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Markdown&lt;/a&gt; es una clase especial de lenguaje que permite darle formato a texto simple. Por ejemplo, poder hacer cursivas, negritas, incorporar links, etc.&lt;/p&gt;
+&lt;p&gt;Para que el formato que se le ha dado pueda ser visto, el archivo en Markdown (&lt;em&gt;.md&lt;/em&gt;) pasa por un convertidor universal llamado &lt;a href=&#34;https://pandoc.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pandoc&lt;/a&gt;. Este, a diferencia de procesadores como los que ocupa Office no es pagado. Por ello, para no solo para editar tus archivos de texto no necesitarás un software, sino que para crear PDF, archivos .doc (Word), presentación (como las de Power Point) o HTML (para hacer sitios web) es &lt;strong&gt;completamente gratis&lt;/strong&gt;. Solo debes encontrar un editor que pueda hacer esto.&lt;/p&gt;
+&lt;p&gt;La buena noticia es que ya lo conoces: ¡nuestro amigo RStudio!&lt;/p&gt;
+&lt;h2 id=&#34;formatos-básicos-de-markdown&#34;&gt;Formatos básicos de Markdown&lt;/h2&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;40%&#34; /&gt;
+&lt;col width=&#34;21%&#34; /&gt;
+&lt;col width=&#34;38%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Escribe…&lt;/th&gt;
+&lt;th&gt;…o…&lt;/th&gt;
+&lt;th&gt;…para obtener&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;pre&gt;Algo de texto en el párrafo.&lt;br&gt;
+Más texto
+espacio entre lineas.&lt;/pre&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Algo de texto.&lt;/p&gt;
+&lt;p&gt;Algo de texto en el párrafo. Siempre utilizando
+espacios para dividir párrafos&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;code&gt;*Cursivas*&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;_Cursivas_&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;Cursivas&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;code&gt;**Negrita**&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;__Negrita__&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Negrita&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;code&gt;# Título 1&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;h1 class=&#34;smaller-h1&#34;&gt;
+Título 1
+&lt;/h1&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;code&gt;## Título 2&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;h2 class=&#34;smaller-h2&#34;&gt;
+Título 2
+&lt;/h2&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;code&gt;### Título 3&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;h3 class=&#34;smaller-h3&#34;&gt;
+Título 3
+&lt;/h3&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;(puedes llegar hasta un título N° 6 con &lt;code&gt;######&lt;/code&gt;)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;code&gt;[Link text](http://www.example.com)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.example.com&#34;&gt;Link text&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;code&gt;![Image caption](/path/to/image.png)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;/img/mstile-144x144.png&#34; title=&#34;fig:&#34; alt=&#34;Class logo&#34; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;`&lt;code&gt;Inline code` with backticks&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Inline code&lt;/code&gt; with backticks&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;code&gt;&amp;gt; Citas&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;blockquote&gt;
+&lt;p&gt;Citas&lt;/p&gt;
+&lt;/blockquote&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;pre&gt;- Cosas en
+- listas
+- desordenadas&lt;/pre&gt;&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;* Cosas en
+* listas
+* desordenadas&lt;/pre&gt;&lt;/td&gt;
+&lt;td&gt;&lt;ul&gt;
+&lt;li&gt;Cosas en&lt;/li&gt;
+&lt;li&gt;listas&lt;/li&gt;
+&lt;li&gt;desordenadas&lt;/li&gt;
+&lt;/ul&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;pre&gt;1. Cosas en
+2. listas
+3. ordenadas&lt;/pre&gt;&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;1) Cosas en
+2) listas
+3) ordenadas&lt;/pre&gt;&lt;/td&gt;
+&lt;td&gt;&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Cosas en&lt;/li&gt;
+&lt;li&gt;listas&lt;/li&gt;
+&lt;li&gt;ordenadas&lt;/li&gt;
+&lt;/ol&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;pre&gt;Línea horizontal
+&lt;p&gt;&amp;mdash;&lt;/pre&gt;&lt;/td&gt;&lt;/p&gt;
+&lt;td&gt;&lt;pre&gt;Línea horizontal
+&lt;p&gt;***&lt;/pre&gt;&lt;/td&gt;&lt;/p&gt;
+&lt;td&gt;&lt;p&gt;Línea horizontal&lt;/p&gt;
+&lt;hr /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;expresiones-matemáticas&#34;&gt;Expresiones matemáticas&lt;/h2&gt;
+&lt;p&gt;Markdown también utiliza &lt;em&gt;LaTeX&lt;/em&gt; para crear ecuaciones matemáticas (y no nos complica tanto la vida como el editor de Word). Si para tu tesis o un proyecto las utilizas te dejo esta &lt;a href=&#34;http://www.malinc.se/math/latex/basiccodeen.php&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;guía de comando básicos para crear ecuaciones matemáticas&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Para introducir una ecuación debes poner los símbolos de peso ($)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;La ecuación cuadratica es la siguiente
+
+$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;**Con ello obtendremos: **&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;La ecuación cuadratica es la siguiente&lt;/p&gt;
+&lt;p&gt;$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;Evidentemente como el símbolo peso sirve para hacer ecuaciones matemáticas, no lo puedes utilizar en un archivo escrito en Markdown para hacer referencia &lt;strong&gt;realmente&lt;/strong&gt; al símbolo peso. Para ello, debes escribir el símbolo antecedido con un (&lt;code&gt;\&lt;/code&gt;). Así obtendrás una frase escrita como &amp;quot; &lt;code&gt;Te hago la tarea de R por \$100.000.&lt;/code&gt; En caso contrario, si pones el símbólo pesos solo y sin &lt;code&gt;\&lt;/code&gt; entenderá la oración como una ecuación.&lt;/p&gt;
+&lt;h2 id=&#34;tablas&#34;&gt;Tablas&lt;/h2&gt;
+&lt;p&gt;Hacer tablas es muy fácil. Mira el siguiente ejemplo&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Se escribe así&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|   12  |  12  |    12   |    12  |
+|  123  |  123 |   123   |   123  |
+|    1  |    1 |     1   |     1  |
+
+Tabla: Descripción de la tabla
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;…to get…&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;Right&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Left&lt;/th&gt;
+&lt;th&gt;Default&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Center&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;12&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;12&lt;/td&gt;
+&lt;td&gt;12&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;123&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;123&lt;/td&gt;
+&lt;td&gt;123&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;123&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Tabla: Descripción de la tabla&lt;/p&gt;
+&lt;h2 id=&#34;pies-de-página&#34;&gt;Pies de página&lt;/h2&gt;
+&lt;p&gt;Para hacer pies de página debes saber cuál es su (1) identificador y (2) lo que quieres escribir en el pie de página. El identificador puede ser lo que tu quieras: pueden ser números como &lt;code&gt;[^1]&lt;/code&gt;, pero también pueden ser letras.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Debes escribir…&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Aquí escribo una referencia de mi tesis[^1] y aquí otra más [^note-sobre-marx].
+
+[^1]: Esta es una nota
+
+[^note-sobre-marx]: Marx, lo más genial. 
+
+Y bueno, aquí sigo escribiendo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Para obtener&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Aquí escribo una referencia de mi tesis&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;  y aquí otra más.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Y bueno, aquí sigo escribiendo&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Esta es una nota.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Marx, lo más genial.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;la-cabeza-del-markdown&#34;&gt;La &amp;ldquo;cabeza&amp;rdquo; del Markdown&lt;/h2&gt;
+&lt;p&gt;Al inicio del Markdown siempre debemos poner algunas informaciones sobre el documento, por ejemeplo, el título, la fecha, autor, etc. Esta parte del Markdown se llama &lt;a href=&#34;https://learn.getgrav.org/16/advanced/yaml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;YAML&lt;/a&gt;. Básicamente, con esto establecemos las &amp;ldquo;configuraciones&amp;rdquo; del texto.&lt;/p&gt;
+&lt;p&gt;Por ejemplo, si queremos que nuestro archivo esté en PDF, colores, si queremos que incluya bibliografía, entre otros. La &amp;ldquo;cabeza&amp;rdquo; del Markdown o &lt;strong&gt;YAMLS&lt;/strong&gt; está dividida del resto del cuerpo del texto al inicio y al final con tres líneas (&lt;code&gt;---&lt;/code&gt;).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;---
+&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Título de mi tesis&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;date&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;13 de Agosto, 2021&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;author&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Estudiante UAH&amp;#34;&lt;/span&gt;
+---
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Debes poner este texto entre comillas. Si quieres ocupar comillas dentro de tu título, puedes utilizar comillas simples (e.g. mi tesis se titula  &lt;code&gt;Mi tesis: la más &amp;quot;genial&amp;quot; de Chile&lt;/code&gt;), entonces ponemos&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;---
+&lt;span style=&#34;color:#f92672&#34;&gt;title: `Mi tesis&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;la más &amp;#34;genial&amp;#34; de Chile`&lt;/span&gt;
+---
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;otros-recursos-que-te-recomendamos-revisar&#34;&gt;Otros recursos que te recomendamos revisar&lt;/h2&gt;
+&lt;p&gt;En estos links podrás encontrar distintos ejemplos para practicar. También si quieres conocer más sobre quién creó esta maravilla, revisa sobre &lt;a href=&#34;https://www.youtube.com/watch?v=mT8FJcIx3HI&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Aaron Swartz&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://commonmark.org/help/tutorial/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;CommonMark&amp;rsquo;s Markdown tutorial&lt;/strong&gt;&lt;/a&gt;: A quick interactive Markdown tutorial.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.markdowntutorial.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Markdown tutorial&lt;/strong&gt;&lt;/a&gt;: Another interactive tutorial to practice using Markdown.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://packetlife.net/media/library/16/Markdown.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Markdown cheatsheet&lt;/strong&gt;&lt;/a&gt;: Useful one-page reminder of Markdown syntax.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://plain-text.co/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;The Plain Person’s Guide to Plain Text Social Science&lt;/strong&gt;&lt;/a&gt;: A comprehensive explanation and tutorial about why you should write data-based reports in Markdown.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

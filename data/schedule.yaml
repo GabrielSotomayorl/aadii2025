@@ -1,0 +1,230 @@
+lessons:
+  - title: 'Análisis avanzado de datos 2'
+    header: True
+
+  - title: '<span class="content-title">Unidad 1. Análisis de datos y uso de R</span>'
+    date: "11 - 18 de marzo"
+    date_start: "11 marzo"
+    date_end: "18 marzo"
+    bg: 1
+    
+  - title: '• Introducción a R y Rstudio<br>• Gestión de datos con tidyverse'
+    session: "Sesión 1"
+    date: "11 marzo"
+    content: "01-content"
+    example: "01-practico"
+    resource: "install"
+    bg: 1
+
+  - title: '• Cálculo de estadísticos descriptivos<br>• Visualización de datos con ggplot'
+    session: "Sesión 2"
+    date: "18 marzo"
+    content: "02-content"
+    example: "02-practico"
+    # assignment: "00-tarea"
+    # resource: "markdown"
+    bg: 1
+    bottomborder: True
+
+  - title: '<span class="content-title">Unidad 2. Introducción a los modelos multivariados</span>'
+    date: "25 de marzo"
+    date_start: "25 marzo"
+    date_end: "25 marzo"
+    bg: 2
+
+  - title: '• Uso de modelos en ciencias sociales<br>• Modelos exploratorios y modelos confirmatorios<br>• Repaso de conceptos estadísticos: covarianza, correlación e inferencia<br>• Supuestos de análisis'
+    session: "Sesión 3"
+    date: "25 marzo"
+    content: "03-content"
+    #example: "03-practico"
+    bg: 2
+    bottomborder: True
+    
+  - title: '<span class="content-title">Unidad 3. Formas funcionales de los Modelos de Regresión</span>'
+    date: "1 - 8 de abril"
+    date_start: "1 abril"
+    date_end: "8 abril"
+    bg: 1
+    
+
+  - title: '• Introducción<br>• Modelo Logarítmico bivariado'
+    session: "Sesión 4"
+    date: "1 abril"
+    content: "04-content"
+    example: "04-practico"
+    bg: 1
+
+
+
+  - title: '• Modelo Logarítmico Multivariado<br>• Interpretación de los coeficientes<br>• Ejemplos de aplicación en R'
+    session: "Sesión 5"
+    date: "8 abril"
+    content: "05-content"
+    example: "05-practico"
+    bg: 1
+    bottomborder: True
+
+  - title: '<span class="content-title">Unidad 4. Análisis Factorial Exploratorio</span>'
+    date: "15 - 22 de abril"
+    date_start: "15 abril"
+    date_end: "22 abril"
+    bg: 2
+
+
+  - title: '• Análisis factorial exploratorio y su aplicación<br>• Diferencias entre el análisis de componente principal y de factor común'
+    session: "Sesión 6"
+    date: "15 abril"
+    bg: 2
+    content: "06-content"
+    example: "06-practico"
+    # assignment: "02-tarea"
+    
+  - title: '• La extracción de factores comunes<br>• La matriz factorial y su interpretación'
+    session: "Sesión 7"
+    date: "22 abril"
+    bottomborder: True
+    content: "07-content"
+    example: "07-practico"
+    # assignment: "03-tarea"
+    bg: 2
+
+  - title: '• Prueba 1'
+    session: "Sesión 8"
+    date: "29 abril"
+    bg: 1
+    bottomborder: True
+    
+    
+  - title: '**• Receso**'
+    session: "Sesión -"
+    date: "6 mayo"
+    bg: 2
+    bottomborder: True
+
+  - title: '<span class="content-title">Unidad 5. Análisis Factorial Confirmatorio</span>'
+    date: "13 - 20 de mayo"
+    date_start: "13 de mayo"
+    date_end: "20 mayo"
+    bg: 1
+
+  - title: '• Análisis factorial confirmatorio y su aplicación<br>• Especificación e identificación del modelo'
+    session: "Sesión 10"
+    date: "20 mayo"
+    content: "08-content"
+    example: "08-practico"
+    # assignment: "04-tarea"
+    bg: 1
+
+
+  - title: '• Fiabilidad y validez de los modelos de medida<br>• Ejemplo de análisis factorial confirmatorio'
+    session: "Sesión 10"
+    date: "20 mayo"
+    #content: "09-content"
+    # example: "09-practico"
+    # assignment: "04-tarea"
+    bg: 1
+    bottomborder: True
+
+  - title: '<span class="content-title">Unidad 6. Análisis de Sendero</span>'
+    date: "27 de mayo - 3 de junio"
+    date_start: "27 mayo"
+    date_end: "3 junio"
+    bg: 2
+    
+  - title: '• Análisis de sendero y su aplicación<br>• Especificación del modelo'
+    session: "Sesión 11"
+    date: "27 mayo"
+    bg: 2
+    #content: "10-content"
+    #example: "10-practico"
+
+
+  - title: '• Evaluación del modelo de medición y de la capacidad confirmatoria del modelo<br>• Ejemplo de análisis de sendero'
+    session: "Sesión 12"
+    date: "3 junio"
+    #content: "11-content"
+    # example: "11-practico"
+    # assignment: "04-tarea"
+    bg: 2
+    bottomborder: True
+
+  - title: '<span class="content-title">Unidad 7. Modelos de Ecuaciones estructurales</span>'
+    date: "10 - 24 de junio"
+    date_start: "10 junio"
+    date_end: "24 junio"
+    bg: 1
+
+  - title: '• Análisis de ecuaciones estructurales y su aplicación'
+    session: "Sesión 13"
+    date: "10 junio"
+    bg: 1
+    #content: "12-content"
+    # example: "12-practico"
+
+
+  - title: '• La obtención de un modelo de ecuaciones estructurales<br>• Estimación del modelo empírico'
+    session: "Sesión 14"
+    date: "17 junio"
+    # content: "13-content"
+    # example: "13-practico"
+    bg: 1
+
+
+  - title: '• Evaluación del modelo'
+    session: "Sesión 15"
+    date: "24 junio"
+    # content: "14-content"
+    # example: "14-practico"
+    bg: 1
+    bottomborder: True
+
+  - title: '• Repaso<br>• Apoyo para trabajos finales<br>• Cierre del curso'
+    session: "Sesión 16"
+    date: "1 julio"
+    bg: 2
+    bottomborder: True
+
+  # - title: '<i class="fas fa-dice-six"></i> **Entrega final**'
+  #   date: "21 Noviembre"
+  #   assignment: "final-project"
+  #   bg: 3
+  #   bottomborder: True
+  # 
+  # - title: 'Resumen Evaluaciones'
+  #   header: True
+  # 
+  # - title: '<i class="fas fa-square"></i> **Tarea 0: Colaborando en Github**'
+  #   date: "22 agosto"
+  #   assignment: "00-tarea"
+  #   bg: 3
+  #   bottomborder: True
+  # 
+  # - title: '<i class="fas fa-dice-two"></i> **Tarea 1: Procesamiento de datos**'
+  #   date: "26 septiembre"
+  #   assignment: "02-tarea"
+  #   bg: 3
+  #   bottomborder: True
+  # 
+  # - title: '<i class="fas fa-dice-two"></i> **Tarea 2: Análisis descriptivo**'
+  #   date: "24 octubre"
+  #   assignment: "03-tarea"
+  #   bg: 3
+  #   bottomborder: True
+  # 
+  # - title: '<i class="fas fa-dice-two"></i> **Tarea 3: Muestras complejas**'
+  #   date: "7 noviembre"
+  #   assignment: "04-tarea"
+  #   bg: 3
+  #   bottomborder: True
+  # 
+  # - title: '<i class="fas fa-dice-two"></i> **Tarea 4: Regresiones en R**'
+  #   date: "14 noviembre"
+  #   assignment: "05-tarea"
+  #   bg: 3
+  #   bottomborder: True
+  # 
+  # - title: '<i class="fas fa-dice-six"></i> **Entrega investigación final**'
+  #   date: "21 noviembre"
+  #   assignment: "final-project"
+  #   bg: 3
+  #   bottomborder: True

@@ -1,0 +1,357 @@
+---
+title: "Análisis de datos estadísticos en R"
+author: "Valentina Andrade"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    includes:
+      after_body: "html/insert-logo.html"
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      beforeInit: "libs/macros.js"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+                      fig.retina = 3, fig.align = "center")
+```
+
+```{r packages-data, include=FALSE}
+pacman::p_load(tidyverse, sjPlot, ggsci, wordcloud2)
+theme_set(theme_sjplot2())
+```
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "share_again", "scribble", "frezeeframe", "editable"))
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\">Copiar código</i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\">¡Listo!</i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+
+class: center middle main-title section-title-1 top-logo
+
+.small[
+# Análisis de regresión lineal múltiple
+]
+
+.class-info[
+<br>
+**Sesión N° 4**<br>
+**Análisis Avanzado de Datos II**
+<br>
+
+.pull-right.small[
+**Profesor** Gabriel Sotomayor López <br>
+.tiny[Universidad Diego Portales<br>
+]
+]
+
+]
+
+---
+class: title title-inv-1
+
+# Objetivos de la sesión
+
+- Introducir el análisis de regresión lineal simple y múltiple 
+
+- Revisar la ejecución de modelos de regresión en R 
+
+---
+class: title title-inv-1
+
+# Contenidos Sesión N°4
+
+.box-3.medium.sp-after-half[**Introducción a regresión lineal**]
+
+.box-4.medium.sp-after-half[**Regresión lineal múltiple**]
+
+.box-1.medium.sp-after-half[**Supuestos del modelo de regresión**]
+
+
+---
+
+class: center middle main-title section-title-3 top-logo
+
+# Introducción a regresión lineal
+
+---
+
+class: title title-3
+
+# Varianza
+
+.small[**Varianza:** es el promedio de las distancias de los casos al promedio, tomando en cuenta los signos (eleva al cuadrado todas las distancias al promediarlas)]
+
+.center[![:scale 20%](https://www.calculadoraconversor.com/wp-content/uploads/2016/11/formula-varianza-muestral.png)]
+
+.small[**Desviación estándar:** Es la raíz cuadrada de la varianza. Es la que mejor da cuenta de la dispersión (es decir de las distancias de los casos al promedio]
+
+.center[![:scale 30%](https://revistachilenadeanestesia.cl/img/Rev%20Chil%20Anest%202014;%2043%20116-121.xml_image14.jpg)]
+
+---
+
+class: title title-3
+
+# Covarianza
+
+.sma[La covarianza da cuenta del a variación conjunta de dos variables respecto de sus medias.  
+Puede tomar valores positivos, dando cuenta de una relación directa (por ejemplo a mayor educación, mayores ingresos) o valores negativos, dando cuenta de una relación inversa (por ejemplo a menores horas de trabajo, mayor satisfacción con la vida).]
+.center[![:scale 50%](https://economipedia.com/wp-content/uploads/2017/10/F%C3%B3rmula-de-la-Covarianza-tama%C3%B1o-extenso.jpg)]
+
+---
+
+class: title title-3
+
+# Correlación
+
+La correlación (correlación de Pearson) corresponde a un valor estandarizado de la covarianza que puede tomar valores ente -1 y 1.
+  
+
+.center[![:scale 55%](https://www.questionpro.com/blog/wp-content/uploads/2019/07/analisis-de-correlacion-2-450x122.jpg)]
+.center[![:scale 20%](https://economipedia.com/wp-content/uploads/2015/12/formula-correlaci%C3%B3n.png)]
+
+---
+
+class: title title-3
+
+# Correlación
+
+.center[![:scale 75%](https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/03/corr.png)]
+
+---
+
+class: title title-3
+
+# Regresión lineal
+
+.small[La regresión lineal es una técnica de análisis estadístico que nos permite estimar los efectos de ciertas variables (independientes o predictores) en una variable cuantitativa (dependiente o predicha).  
+
+Nos permite conocer la variación de una variable dependiente respecto a la variación de una o más variables independientes. Esto nos puede permitir predecir el valor que asume la variable dependiente á partir del valor de las independientes.   
+
+Al igual que las pruebas estadística bivariadas revisadas en la clases pasadas, nos permite hacer inferencia estadística, es decir, determinar si las relaciones observadas en el modelo de regresión son estadísticamente significativas.]
+
+---
+
+class: title title-3
+
+# Recta de regresión
+
+La covariación de Y respecto de X puede expresarse a partir de una recta. 
+
+.center[𝑌=𝛼+𝛽𝑋]
+
+  
+.small[𝑌 =  Valor estimado de la variable dependiente  
+𝛼 = El intercepto (valor que asume Y cuando X es 0)  
+𝛽 = el coeficiente de regresión o pendiente es decir, el efecto en Y de un aumento de 1 en X   
+X = la variable independiente.]
+
+---
+
+class: title title-3
+
+# .small[Estimación de mínimos cuadrados ordinarios]
+.center[![:scale 62%](https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/03/mco.png)]
+
+.tiny[Para estimar dicha recta se utiliza la estimación de mínimos cuadrados ordinarios (Ordinary Least Squares OLS). Esta busca minimizar al suma de los residuos al cuadrado, siendo estos últimos la diferencia entre los valores predichos por el modelo (la recta) y cada valor observado.]
+
+---
+
+class: title title-3
+
+# Coeficientes de la ecuación  
+
+Constante o intercepto 
+Valor esperado de Y cuando la variable independiente tiene el valor 0
+
+.center[![:scale 30%](https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/03/B0.jpg)]
+
+
+Coeficiente de regresión (β)
+Cambio en Y por cada aumento en una unidad de X, indica la relación entre X e Y
+
+.center[![:scale 30%](https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/03/B1.jpg)]
+---
+
+class: title title-3
+
+# Coeficiente de determinación R2
+
+Estadístico de ajuste que describe la proporción de la varianza de Y que se relaciona con las variables independientes del modelo.
+
+.center[![:scale 50%](https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/03/R2.jpg)]
+---
+
+class: center middle main-title section-title-4 top-logo
+
+# Regresión lineal múltiple
+
+---
+
+class: title title-4
+
+# Regresión lineal múltiple
+
+Corresponde a una extensión del modelo de regresión lineal donde agregamos más variables independientes.
+
+.center[![:scale 50%](https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/03/rlm.jpg)]
+
+.center[![:scale 50%](https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/03/rlm2.jpg)]
+---
+
+class: title title-4
+
+# Regresión lineal múltiple
+
+.small[**Constante o intercepto**   
+Valor esperado de Y cuando las variables independientes tienen valor 0
+
+**Coeficiente de regresión (β)**  
+Cambio en Y por cada aumento en una unidad de X, controlando por las demás variables en el modelo. Indica la relación parcial entre X e Y
+
+**Coeficiente de determinación R2 **  
+Igual interpretación que en el modelo de regresión simple
+Describe la proporción en la varianza de Y que es explicada por el modelo de regresión (en este caso, por todas las variables incluidas)]
+
+---
+
+class: title title-4
+
+# Control estadístico
+
+En una regresión lineal múltiple buscamos dar cuenta de la relación entre una variable x1 sobre y considerando además el efecto de x2 sobre y.  
+Así, podemos estimar el efecto, por ejemplo, de la edad en los ingresos independiente de la educación, es decir, manteniendo esta última constante (controlando por).  
+Cuando no existe relación entre los predictores, la inclusión de otras variables no afecta el valor de los coeficientes de regresión. 
+
+---
+
+class: title title-4
+
+# Inferencia en los coeficientes de regresión
+
+Igual que en el caso de la regresión lineal, pero evaluando si una variable tiene un efecto significativo una vez que controlamos por las demás variables en el modelo:
+
+H0: 𝛽𝑗=0, controlando por las demás variables
+H1: 𝛽𝑗≠0, controlando por las demás variables
+
+Distribución muestral t con n-(k+1) grados de libertad
+
+Donde 
+n= tamaño de la muestra
+k= número de variables independientes en el modelo
+
+---
+
+class: center middle main-title section-title-1 top-logo
+
+# Supuestos del modelo de regresión
+
+---
+
+class: title title-1
+
+# Ausencia de casos atípicos
+
+Corresponden a observaciones individuales que no siguen el patrón de relación de los demás casos. Es decir, son casos que el modelo predice menos bien que a los demás casos.  
+- Estos casos pueden influenciar resultados, en particular si la muestra es chica. 
+- Se recomienda correr el modelo excluyendo casos atípicos para ver si cambian los estadísticos (pendiente y constante). 
+
+
+---
+
+class: title title-1
+
+# Relación lineal
+- Y y X se relacionan por medio de una ecuación lineal (gráficamente, la relación forma una recta).
+- Si la relación es aproximadamente lineal, tiene sentido usar modelos de regresión lineal.
+- Se puede evaluar en base a diagramas de dispersión (si el n es pequeño)
+- Una correlación alta entre las variables es indicación de que la relación es lineal.
+- Si la relación no es lineal, considerar utilizar otro tipo de regresión o transformar variables (por ejemplo, ver efectos de variables al cuadrado).
+
+---
+
+class: title title-1
+
+# .tiny[Ausencia de multicolinealidad entre las variables dependientes]  
+.small[Cuando dos o más variables independientes están altamente correlacionadas. 
+- En estas situaciones resulta difícil estimar cuál de las dos variables es la que explica la variable dependiente, generando errores estándar altos y baja precisión de los coeficientes calculados. 
+- Para identificar esta situación, hay que revisar la matriz de correlación entre las variables y detectar correlaciones de 0,8 o más. Si este es el caso, es recomendable eliminar una de las dos variables del modelo.]
+
+---
+
+class: title title-1
+
+# .tiny[Ausencia de multicolinealidad entre las variables dependientes]  
+.small[
+- También existen estadísticos que miden la presencia de multicolinealidad al correr el análisis de regresión. En particular: 
+- **Factor de inflación de la varianza, VIF**: indicador de cuánto aumenta el error estándar debido a problemas de multicolinealidad.
+- Sacamos la raíz cuadrada e interpretamos el valor resultante como en cuantas veces mayor es el error estándar debido a problemas de multicolinealidad. Por ejemplo, un VIF de 4 significa que el error estándar es 2 veces mayor de lo que sería si las variables no estuvieran correlacionadas.
+- Un VIF mayor a 2.5 es considerado como indicando problemas de multicolinealidad.]
+
+---
+
+class: title title-1
+
+# Homocedasticidad de los errores
+
+Los residuos tienen una varianza constante a lo largo de los distintos valores de Y  
+
+- Residuos: diferencia entre el valor estimado por el modelo y el valor observado que tiene un caso en la muestra  
+- Esto quiere decir que el modelo es igualmente apropiado para predecir valores bajos (por ejemplo, bajos ingresos) y altos de la variable dependiente (por ejemplo, altos ingresos).  
+- El contrario es heterocedasticidad  
+**Solución: Modelos con errores estándares robustos**
+
+---
+
+class: title title-1
+
+# .small[Normalidad en la distribución de los residuos]
+
+Los residuos en torno a los valores estimados de Y se distribuyen normalmente.
+- Si los residuos se distribuyen normalmente, quiere decir que la mayor parte de los residuos se encuentran en torno a 0 (es decir, son valores que se alejan poco del valor observado). 
+- A su vez, son cada vez menos los residuos a medida que estos valores son mayores en términos absolutos.
+
+
+---
+class: center middle main-title section-title-1 top-logo
+
+.small[
+# Análisis de regresión lineal múltiple
+]
+
+.class-info[
+<br>
+**Sesión N° 4**<br>
+**Análisis Avanzado de Datos II**
+<br>
+
+.pull-right.small[
+**Profesor** Gabriel Sotomayor López <br>
+.tiny[Universidad Diego Portales<br>
+]
+]
+
+]

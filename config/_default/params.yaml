@@ -71,7 +71,7 @@ privacy_pack: false
 # Enable visitors to edit pages?
 #   `repo` defines the repository URL. `editable` defines which page types can be edited.
 edit_page:
-  repo_url: 'https://github.com/GabrielSotomayorl/aadii2024' 
+  repo_url: 'https://github.com/GabrielSotomayorl/aadii2025' 
   content_dir: ''
   repo_branch: master
   editable:
@@ -109,23 +109,23 @@ instructor:
 
 
 ayudante1: 
-  name: Patricio Alarcón
-  email: patricio.alarcon@mail.udp.cl
-  github: 
-
-ayudante2: 
   name: Fernanda Hurtado
   email: fernanda.hurtado@mail.udp.cl 
 
+
+ayudante2: 
+  name: Francisca Hernández
+  email: francisca.hernandez_c@mail.udp.cl
+
 course:
   number: "SOC9035"
-  semester: "I° Semestre - 2024"
+  semester: "I° Semestre - 2025"
   days: "Clases: Lunes 10:00-12:50"
   location: "Laboratorio de Computación 2° piso FCSH"
-  dates: "Ayudantía: Lunes 13:00-14:20"
+  dates: "Ayudantía: Por definir"
   github: "GabrielSotomayorl"
-  copyrightYear: "2024. Web developed by Andrew Heiss and custom by"
-  whatsapp: "https://chat.whatsapp.com/LLRtnrLRsu8HPJs5F2ELGM"
+  copyrightYear: "2025. Web developed by Andrew Heiss and custom by"
+  whatsapp: "Pendiente"
 
 university: 
   name: Universidad Diego Portales
@@ -250,7 +250,7 @@ comments:
 
   # Configuration of Disqus.
   disqus:
-    shortname: 'aad-ii-2023'  # Paste the shortname from your Disqus dashboard    show_count: true  # Show comment count in page header? (true/false)
+    shortname: 'aad-ii-2025'  # Paste the shortname from your Disqus dashboard    show_count: true  # Show comment count in page header? (true/false)
 
   # Configuration of Commento.
   commento:

@@ -1,0 +1,33 @@
+/*-- scss:defaults --*/
+
+$body-bg: #8B0000; /* Rojo oscuro */
+$body-color: #fff;
+$link-color: #E53935; /* Rojo vibrante */
+
+/*-- scss:rules --*/
+
+/* Fondo blanco para chunks de código */
+.reveal .slides pre code {
+  background-color: #ffffff; /* Fondo blanco */
+  color: #000000; /* Texto negro para asegurar legibilidad */
+  padding: 10px; /* Opcional: añade un poco de padding para mayor legibilidad */
+  border-radius: 5px; /* Opcional: esquinas redondeadas */
+}
+
+.reveal .slides section {
+  text-align: justify;
+}
+
+.reveal .slides h1, 
+.reveal .slides h2, 
+.reveal .slides h3, 
+.reveal .slides h4, 
+.reveal .slides h5, 
+.reveal .slides h6 {
+  text-align: left; /* Para que los encabezados no se justifiquen */
+}
+
+/* Aplica el color rojo a los títulos h2 en diapositivas claras */
+.reveal .slides section:not(.dark-background) h2 {
+  color: #C53030; /* Rojo medio */
+}

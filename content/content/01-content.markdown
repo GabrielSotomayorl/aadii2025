@@ -31,7 +31,7 @@ slides: "01-slides"
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#1">
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#0">
 </iframe>
 
 </div>
@@ -46,8 +46,4 @@ slides: "01-slides"
 
 # Materiales de la clase
 
-- [<i class="fas fa-laptop-code"></i> Práctico](https://aadii2023.netlify.app/example/01-practico/)
-
-# Recomendaciones
-
-- <i class="fas fa-book"></i> Hadley Wickham, [“Data Science: How is it Different To Statistics?”](http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/)
+- [<i class="fas fa-laptop-code"></i> Práctico](https://aadii2025.netlify.app/example/01-practico/)

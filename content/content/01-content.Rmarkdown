@@ -1,9 +1,9 @@
 ---
 title: "Introducción al curso Análisis avanzado de datos II"
 linktitle: "1: Introducción al curso Análisis avanzado de datos II"
-date: "2022-03-14"
-start_date: "2022-03-14"
-end_date: "2022-03-18"
+date: "2025-03-10"
+start_date: "2025-03-10"
+end_date: "2025-03-10"
 menu:
   content:
     parent: Contenido
@@ -20,7 +20,7 @@ source(here::here("R", "slide-tabs.R"))
 
 slide_details <- tibble::tribble(
   ~title, ~slide, ~active,
-  "Introducción al curso Análisis avanzado de datos II", "1", TRUE
+  "Introducción al curso Análisis avanzado de datos II", "0", TRUE
 )
 ```
 
@@ -38,12 +38,9 @@ slide_tabs(slide_details, "/slides/01-slides.html")
 
 # Materiales de la clase
 
-- [<i class="fas fa-laptop-code"></i> Práctico](https://aadii2023.netlify.app/example/01-practico/)
+- [<i class="fas fa-laptop-code"></i> Práctico](https://aadii2025.netlify.app/example/01-practico/)
 
 
-# Recomendaciones 
-
-- <i class="fas fa-book"></i> Hadley Wickham, ["Data Science: How is it Different To Statistics?"](http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/) 
 
 
 

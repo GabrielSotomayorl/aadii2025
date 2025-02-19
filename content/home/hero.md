@@ -13,8 +13,8 @@ hero_media: logo.png
 design:
   background:
     # Background gradient
-    gradient_start: '#39c9bb'
-    gradient_end: '#4cfff9'
+    gradient_start: '#8B0000'  # Rojo muy oscuro
+    gradient_end:   '#C53030'  # Rojo intenso
 
     # Text color (true=light or false=dark).
     text_color_light: true

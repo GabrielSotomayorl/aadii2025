@@ -1,13 +1,12 @@
-// Inferno colors
-// viridisLite::viridis(8, option = "inferno", begin = 0.1, end = 0.9)
+// Inferno colors (Adapted for a red theme)
 $colors: (
-    #480B6A,  /* Dark purple */
-    #771C6D,  /* Purple */
-    #A52C60,  /* Pink */
-    #CF4446,  /* Red */
-    #EE6A24,  /* Orange */
-    #FB9E07,  /* Yellow */
-    #42159D   /* Blue */
+    #8B0000,  /* Dark Red */
+    #B22222,  /* Firebrick */
+    #D32F2F,  /* Crimson */
+    #E53935,  /* Red */
+    #F4511E,  /* Deep Orange */
+    #FF7043,  /* Coral */
+    #990033   /* Burgundy */
 );
 
 body {

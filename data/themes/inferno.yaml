@@ -5,18 +5,18 @@ name: "Inferno"
 light: true
 
 # Primary
-primary: "#30C8C9"
+primary: "#C53030"  # Rojo oscuro
 
 # Links
-link: "#30C8C9"
-link_hover: "#206468"
+link: "#C53030"  # Rojo oscuro
+link_hover: "#8B0000"  # Rojo intenso
 
 # Menu
-menu_primary: "#fff"
-menu_text: "#30C8C9"
-menu_text_active: "#238D8D"
-menu_title: "#238D8D"
+menu_primary: "#fff"  # Blanco
+menu_text: "#C53030"  # Rojo oscuro
+menu_text_active: "#A02020"  # Rojo profundo
+menu_title: "#A02020"  # Rojo profundo
 
 # Home sections
-home_section_odd: "rgb(255, 255, 255)"
-home_section_even: "rgb(247, 247, 247)"
+home_section_odd: "rgb(255, 240, 240)"  # Rojo muy claro
+home_section_even: "rgb(247, 220, 220)"  # Rosa claro

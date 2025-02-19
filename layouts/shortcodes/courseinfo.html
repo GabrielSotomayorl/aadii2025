@@ -2,35 +2,126 @@
     <div class="col-md-4">
         <h3>Docente</h3>
         <ul class="icon-list">
-            <li><i class="fas fa-user"></i> <a href="{{ .Site.Params.instructor.url }}" target="_blank" rel="noopener"> {{ .Site.Params.instructor.name }}</a></li>
-            <li><i class="fas fa-university"></i><a href="https://{{ .Site.Params.instructor.url }}"> {{ .Site.Params.instructor.office }}</a></li>
-            <li><i class="fas fa-envelope"></i> <a href="mailto:{{ .Site.Params.instructor.email }}"> {{ .Site.Params.instructor.email }}</a></li>
-            <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/{{ .Site.Params.instructor.twitter }}" target="_blank" rel="noopener"> @{{ .Site.Params.instructor.twitter }}</a></li>
-            <li><i class="fas fa-calendar-check"></i> <a href="{{ .Site.Params.instructor.appointment_url }}" target="_blank" rel="noopener"> Agendar reunión</a></li>
+            <!-- Nombre con link (si .Site.Params.instructor.url está definido) -->
+            <li>
+                <i class="fas fa-user"></i>
+                <a href="{{ .Site.Params.instructor.url }}" target="_blank" rel="noopener">
+                    {{ .Site.Params.instructor.name }}
+                </a>
+            </li>
+
+            <!-- Eliminado: Agendar reunión
+            <li>
+                <i class="fas fa-university"></i>
+                <a href="https://{{ .Site.Params.instructor.url }}">
+                    {{ .Site.Params.instructor.office }}
+                </a>
+            </li>
+            -->
+            <!-- Email -->
+            <li>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:{{ .Site.Params.instructor.email }}">
+                    {{ .Site.Params.instructor.email }}
+                </a>
+            </li>
+            
+
+            <li>
+                <i class="fab fa-twitter"></i>
+                <a href="https://twitter.com/{{ .Site.Params.instructor.twitter }}" target="_blank" rel="noopener">
+                    @{{ .Site.Params.instructor.twitter }}
+                </a>
+            </li>
+
+            
+            <!-- Eliminado: Agendar reunión
+            <li>
+                <i class="fas fa-calendar-check"></i>
+                <a href="{{ .Site.Params.instructor.appointment_url }}" target="_blank" rel="noopener">
+                    Agendar reunión
+                </a>
+            </li>
+            -->
         </ul>
     </div>
+    
     <div class="col-md-4">
         <h3>Ayudantes</h3>
         <ul class="icon-list">
-            <li><i class="fas fa-user"></i> <a href="{{ .Site.Params.ayudante1.url }}" target="_blank" rel="noopener"> {{ .Site.Params.ayudante1.name }}</a></li>
-            <li><i class="fas fa-envelope"></i> <a href="mailto:{{ .Site.Params.ayudante1.email }}"> {{ .Site.Params.ayudante1.email }}</a></li>
-            <li><i class="fas fa-calendar-check"></i> <a href="{{ .Site.Params.ayudante1.appointment_url }}" target="_blank" rel="noopener"> Agendar reunión</a></li>
-            <li><i class="fas fa-user"></i> <a href="{{ .Site.Params.ayudante2.url }}" target="_blank" rel="noopener"> {{ .Site.Params.ayudante2.name }}</a></li>
-            <li><i class="fas fa-envelope"></i> <a href="mailto:{{ .Site.Params.ayudante2.email }}"> {{ .Site.Params.ayudante2.email }}</a></li>
-            <li><i class="fas fa-calendar-check"></i> <a href="{{ .Site.Params.ayudante2.appointment_url }}" target="_blank" rel="noopener"> Agendar reunión</a></li>
+            <!-- Ayudante 1 -->
+            <li>
+                <i class="fas fa-user"></i>
+                <a href="{{ .Site.Params.ayudante1.url }}" target="_blank" rel="noopener">
+                    {{ .Site.Params.ayudante1.name }}
+                </a>
+            </li>
+            <li>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:{{ .Site.Params.ayudante1.email }}">
+                    {{ .Site.Params.ayudante1.email }}
+                </a>
+            </li>
+            
+            <!-- Eliminado: Agendar reunión de Ayudante 1
+            <li>
+                <i class="fas fa-calendar-check"></i>
+                <a href="{{ .Site.Params.ayudante1.appointment_url }}" target="_blank" rel="noopener">
+                    Agendar reunión
+                </a>
+            </li>
+            -->
+            
+            <!-- Ayudante 2 -->
+            <li>
+                <i class="fas fa-user"></i>
+                <a href="{{ .Site.Params.ayudante2.url }}" target="_blank" rel="noopener">
+                    {{ .Site.Params.ayudante2.name }}
+                </a>
+            </li>
+            <li>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:{{ .Site.Params.ayudante2.email }}">
+                    {{ .Site.Params.ayudante2.email }}
+                </a>
+            </li>
+            
+            <!-- Eliminado: Agendar reunión de Ayudante 2
+            <li>
+                <i class="fas fa-calendar-check"></i>
+                <a href="{{ .Site.Params.ayudante2.appointment_url }}" target="_blank" rel="noopener">
+                    Agendar reunión
+                </a>
+            </li>
+            -->
         </ul>
     </div>
+    
     <div class="col-md-4">
         <h3>Detalles del curso</h3>
         <ul class="icon-list">
-            <li><i class="far fa-calendar-alt"></i> {{ .Site.Params.course.days }}</li>
-            <li><i class="fas fa-pencil-alt"></i> {{ .Site.Params.course.dates }}</li>
-            {{ if isset .Site.Params.course "location" }}<li><i class="fas fa-university"></i> {{ .Site.Params.course.location }}</li>{{end}}
-            {{- if isset .Site.Params.course "slack" }}<li><i class="fab fa-slack"></i> <a href="{{ .Site.Params.course.slack }}" target="_blank" rel="noopener">Slack</a></li>{{ end }}
+            <li>
+                <i class="far fa-calendar-alt"></i> {{ .Site.Params.course.days }}
+            </li>
+            <li>
+                <i class="fas fa-pencil-alt"></i> {{ .Site.Params.course.dates }}
+            </li>
+            {{ if isset .Site.Params.course "location" }}
+            <li>
+                <i class="fas fa-university"></i> {{ .Site.Params.course.location }}
+            </li>
+            {{ end }}
+            {{ if isset .Site.Params.course "slack" }}
+            <li>
+                <i class="fab fa-slack"></i>
+                <a href="{{ .Site.Params.course.slack }}" target="_blank" rel="noopener">Slack</a>
+            </li>
+            {{ end }}
         </ul>
     </div>
+    
     <div class="col-md-4 contact-policy">
         <h3>Contacto</h3>
-        <p>{{ .Site.Params.instructor.contact_policy | markdownify}}</p>
+        <p>{{ .Site.Params.instructor.contact_policy | markdownify }}</p>
     </div>
 </div>

@@ -102,7 +102,7 @@ instructor:
   name: Gabriel Sotomayor López
   email: 	gabriel.sotomayor@mail.udp.cl
   twitter: gsotomayorl
-  url:
+  #url:
   github: GabrielSotomayorl
   contact_policy: >-
     El canal de contacto de preferencia es el mail gabriel.sotomayor@mail.udp.cl
@@ -169,7 +169,7 @@ main_menu:
   show_logo: true
   highlight_active_link: true
   show_language: false
-  show_day_night: false
+  show_day_night: true
   show_search: false
 
 # Show estimated reading time for posts? (true/false)

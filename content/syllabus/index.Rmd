@@ -8,8 +8,8 @@ output:
   blogdown::html_page:
     toc: true
     fig_caption: false
-editor_options: 
-  markdown: 
+editor_options:
+  markdown:
     wrap: 72
 ---
 
@@ -27,431 +27,264 @@ Código: SOC9035
 
 Créditos: 5
 
-Período Académico: 1º semestre 2024
+Período Académico: 1º semestre 2025
 
 Requisito: Análisis Avanzado de Datos
 
+Duración: Semestral
+
 Horario: Lunes módulos 2 y 3 10.00 a 11.20 y 11.30 a 12.50
 
-Sala: Laboratorio de computación 2° piso FCSH
+Sala: Laboratorio de computación
 
-Docente: Profesor: Gabriel
+Asistencia: No es obligatoria
+
+Docente: Profesor: Gabriel Sotomayor
 [gabriel.sotomayor\@mail.udp.cl](gabriel.sotomayor@mail.udp.cl)
 
-Ayudante: Patricio Alarcón
-[anais.herrera\@mail.udp.cl](patricio.alarcon@mail.udp.cl)
+Ayudante: Fernanda Hurtado
+[fernanda.hurtado\@mail.udp.cl](fernanda.hurtado@mail.udp.cl)
 
-Fernanda Hurtado
-[nicolas.hernandez_f\@mail.udp.cl](fernanda.hurtado@mail.udp.cl)
+Francisca Hernández
+[francisca.hernandez_c\@mail.udp.cl](francisca.hernandez_c@mail.udp.cl)
 
 # II. Presentación
 
-El curso profundiza las principales técnicas multivariantes, que
-permiten analizar en forma conjunta la interacción de múltiples
-factores, lo cual da la posibilidad de estudiar de forma más compleja
-los problemas sociales.
+Este curso profundiza en las técnicas de análisis multivariante,
+permitiendo examinar de manera integrada la interacción de múltiples
+factores en el estudio de problemas sociales. Se enfatiza la
+comprensión de los procedimientos y la interpretación rigurosa de los
+resultados, con un enfoque aplicado mediante el uso de herramientas
+computacionales, principalmente R y RStudio.
 
-Se enfatizan la comprensión de procedimientos e interpretación de
-resultados, así como el uso de herramientas computacionales,
-principalmente en R y RStudio. Se trabajará en la aplicación de los
-métodos sin necesidad de estudiar en profundidad los fundamentos
-matemáticos de todos ellos.
-
-Al final del curso el alumno deberá ser capaz de realizar análisis
-descriptivo de los datos tanto primarios como secundarios y poder
-seleccionar la técnica estadística adecuada a utilizar cuando se tienen
-datos multivariables.
+El curso prioriza la aplicación práctica de los métodos estadísticos sin
+requerir una profundización en sus fundamentos matemáticos. Al finalizar,
+el estudiante será capaz de analizar datos primarios y secundarios,
+identificar la técnica estadística adecuada según el contexto y generar
+informes que comuniquen de manera efectiva los hallazgos obtenidos.
 
 # III. Resultados de Aprendizaje
 
-## Resultado general
+## III.1. Resultado general:
 
-Entregar herramientas al alumno para que pueda abordar el análisis de
-datos desde la estadística multivariante descriptiva e inferencial,
-elaborando y probando hipótesis y desarrollando modelos explicativos de
-determinados fenómenos de estudio.
+Desarrollar la capacidad de aplicar técnicas de estadística
+multivariante descriptiva e inferencial para analizar datos, formular
+hipótesis y construir modelos explicativos en investigaciones sociales,
+asegurando la correcta interpretación y comunicación de los resultados.
 
-## Resultados específicos
+## III.2. Resultados específicos:
 
-1.  Manejar bases de datos complejas.
-2.  Plantear y estructurar adecuadamente un problema de análisis
-    multivariante.
-3.  Identificar el tipo de técnica adecuada, o combinación de ellas, a
-    aplicar en cada situación concreta.
-4.  Comprender las herramientas utilizada en cada una de las técnicas
-    estudiadas.
-5.  Aprender a utilizar los programas computacionales necesarios para
-    aplicar los distintos modelos estudiados, particularmente R.
-6.  Interpretar los resultados del análisis.
-7.  Redactar correctamente un informe con los resultados del análisis.
+1.  Gestionar bases de datos complejas, asegurando su preparación y
+    estructuración para el análisis.
+2.  Definir y estructurar problemas de análisis multivariante, formulando
+    preguntas de investigación con sustento metodológico.
+3.  Seleccionar técnicas estadísticas adecuadas, justificando su
+    aplicación en función del tipo de datos y los objetivos del
+    análisis.
+4.  Utilizar herramientas computacionales especializadas, aplicando
+    modelos en R y RStudio de manera efectiva.
+5.  Interpretar de forma rigurosa los resultados del análisis,
+    identificando sus alcances y limitaciones.
+6.  Redactar informes técnicos y académicos, comunicando los hallazgos de
+    manera clara, estructurada y fundamentada.
 
 # IV. Contenidos.
 
 ## 1. Gestión de datos con R
 
-• Introducción a R y Rstudio\
-• Gestión de datos con tidyverse.\
-• Cálculo de estadísticos descriptivos.\
-• Visualización de datos con ggplot.
+-   Introducción a la manipulación de datos con tidyverse.
+-   Cálculo e interpretación de estadísticos descriptivos.
+-   Visualización de información con ggplot2.
+-   Elementos introductorios de investigación reproducible.
 
-## 2. Introducción a los modelos multivariados
+## 2. Introducción al uso de muestras complejas en R
 
-• Uso de modelos en ciencias sociales\
-• Modelos exploratorios y modelos confirmatorios\
-• Repaso de conceptos estadísticos: covarianza, correlación e
-inferencia.\
-• Supuestos de análisis.
+-   Conceptos fundamentales de muestreo complejo.
+-   Diseño de encuestas y aplicación de ponderaciones.
+-   Inferencia estadística en muestras complejas.
+-   Manejo de encuestas con los paquetes survey y svyr.
 
-## 3. Formas funcionales de los Modelos de Regresión
+## 3. Introducción a los modelos multivariados
 
-• Introducción\
-• Modelo Logarítmico bivariado\
-• Modelo Logarítmico Multivariado\
-• Interpretación de los coeficientes\
-• Ejemplos de aplicación en R.
+-   Rol de los modelos en las ciencias sociales.
+-   Diferencias entre enfoques exploratorios y confirmatorios.
+-   Repaso de conceptos estadísticos clave: covarianza, correlación e
+    inferencia.
+-   Supuestos del análisis multivariante y su importancia.
 
-## 4. Análisis Factorial Exploratorio
+## 4. Repaso de modelos de regresión
 
-• Análisis factorial exploratorio y su aplicación en la investigación
-sociológica. El concepto de varianza y covarianza.\
-• Diferencias entre el análisis de componente principal y de factor
-común. Supuestos de la técnica.\
-• La extracción de factores comunes. Métodos de extracción de factores,
-criterios de selección del número de factores y rotación.\
-• La matriz factorial y su interpretación. Evaluación del modelo
-factorial y cálculo de puntuaciones factoriales.
+-   Relevancia del control estadístico.
+-   Regresión lineal múltiple.
+-   Regresión logística binaria.
 
-## 5. Análisis Factorial Confirmatorio
+## 5. Análisis Factorial Exploratorio
 
-• Análisis factorial confirmatorio y su aplicación en la investigación
-sociológica. El análisis confirmatorio frente al análisis exploratorio.
-Supuestos de la técnica.\
-• Especificación e identificación del modelo. Estimación de parámetros,
-evaluación del ajuste y reespecificación.\
-• Fiabilidad y validez de los modelos de medida. Validez convergente y
-validez discriminante. Evaluación de la capacidad confirmatoria del
-modelo.\
-• Ejemplo de análisis factorial confirmatorio.
+-   Aplicación en la investigación sociológica.
+-   Comparación entre análisis de componentes principales y factor común;
+    supuestos del método.
+-   Métodos de extracción de factores, criterios de selección y
+    técnicas de rotación.
+-   Interpretación de la matriz factorial y evaluación del ajuste.
+    Cálculo de puntuaciones factoriales.
+-   Introducción al paquete psych.
 
-## 6. Análisis de Sendero
+## 6. Análisis Factorial Confirmatorio
 
-• Análisis de sendero y su aplicación en la investigación sociológica.
-Supuestos de la técnica.\
-• Especificación del modelo.\
-• Evaluación del modelo de medición y de la capacidad confirmatoria del
-modelo. • Ejemplo de análisis de sendero.
+-   Diferencias principales con el análisis factorial exploratorio.
+-   Especificación e identificación del modelo, estimación de parámetros.
+-   Evaluación del ajuste, reespecificación y validez (convergente y
+    discriminante).
+-   Ejemplo práctico de análisis confirmatorio.
+-   Introducción al paquete lavaan.
 
-## 7. Modelos de Ecuaciones estructurales
+## 7. Análisis de Sendero
 
-• Análisis de ecuaciones estructurales y su aplicación en la
-investigación sociológica.\
-• La obtención de un modelo de ecuaciones estructurales: la estructura
-del modelo. Supuestos de la técnica.\
-• Estimación del modelo empírico.\
-• Evaluación del modelo.\
-• Introducción de modificaciones y/o conclusión del análisis. Evaluación
-de la capacidad confirmatoria del modelo.\
-• Ejemplos sobre modelamiento de ecuaciones estructurales.
+-   Fundamentos y aplicación en ciencias sociales.
+-   Especificación del modelo de sendero y verificación de supuestos.
+-   Evaluación de la medición y capacidad confirmatoria.
+-   Ejemplo aplicado en investigación sociológica.
 
-# V. Metodología del curso
+## 8. Modelos de Ecuaciones Estructurales
 
-Este curso se desarrolla sobre la base de clases expositivas y talleres
-de aplicación con uso intensivo de software computacionales a partir del
-sitio web del curso, lo cual permite trabajar cada uno de los distintos
-tópicos detallados en el contenido.
+-   Definición y aplicación de los SEM en ciencias sociales.
+-   Estructura del modelo y supuestos de la técnica.
+-   Estimación y evaluación del modelo, introducción de modificaciones.
+-   Ejemplos de modelamiento de ecuaciones estructurales.
 
-Se realizarán 2 sesiones semanales, 1 de clases y otra en forma de
-taller. Durante el curso cada alumno desarrollará trabajos de
-aplicación.
+# V. Metodología.
 
-Adicionalmente se realizarán ayudantías cada 2 semanas aproximadamente,
-centradas especialmente en la aplicación en R de lo aprendido en la
-cátedra.
+El curso se desarrolla a través de clases expositivas y talleres
+prácticos, con uso intensivo de herramientas computacionales,
+principalmente R, apoyado en los recursos disponibles en el sitio web
+del curso. Esta metodología permite trabajar de manera estructurada cada
+uno de los temas abordados.
+
+Se llevarán a cabo dos sesiones semanales: una clase teórica y un taller
+aplicado, donde los estudiantes desarrollarán ejercicios y análisis
+basados en datos reales.
+
+Además, se realizarán ayudantías cada dos semanas, enfocadas en reforzar
+la aplicación en R de los conceptos abordados en la cátedra,
+proporcionando un espacio para resolver dudas y fortalecer habilidades
+prácticas.
 
 # VI. Evaluación
 
-Se utilizarán distintas formas de evaluación: Tareas, pruebas y trabajos
-de investigación
+Se utilizarán distintas formas de evaluación: Tareas, pruebas y
+trabajos de investigación
 
-• Tareas de uso de R
+-   Tareas de uso de R
+-   1 prueba solemne
+-   Trabajo grupal de investigación.
 
-• 1 prueba solemne (35 %) (Formas funcionales de los Modelos de
-Regresión y AFE).
-
-• Trabajo final (AFC, Senderos o SEM).
-
-+----------------+----------------+-------------------+
-|                | *              | **Fecha           |
-|                | *Ponderación** | (semana)**        |
-+----------------+----------------+-------------------+
-| Tareas uso de  | 30%            | 25 de marzo       |
-| R              |                |                   |
-|                |                | 29 de abril       |
-|                |                |                   |
-|                |                | 3 de junio        |
-|                |                |                   |
-|                |                | 1 de julio        |
-+----------------+----------------+-------------------+
-| Prueba         | 35%            | 20 de mayo        |
-+----------------+----------------+-------------------+
-| Trabajo final  | 35%            | 1 de julio        |
-+----------------+----------------+-------------------+
+|                 | Ponderación | Fecha (semana) |
+| :-------------- | :---------- | :------------- |
+| Tareas uso de R | 30%         | 24 de marzo    |
+|                 |             | 28 de abril    |
+|                 |             | 2 de junio     |
+|                 |             | 16 de junio    |
+| Prueba          | 35%         | 19 de mayo     |
+| Trabajo final   | 35%         | 1 de julio     |
 
 La nota de eximición es 5,5 siempre y cuando no se tengan notas bajo 4,0
 en la prueba. La nota mínima en el examen para aprobar el curso es un
 3,5.
 
-Notas:
+Sobre inasistencia a evaluaciones:  
+Si un estudiante falta a una evaluación, puede presentar ante la
+Secretaría de Estudios un certificado médico dentro de los cinco días
+hábiles posteriores a dicha evaluación, para tener derecho a rendir una
+prueba recuperativa. Las evaluaciones no rendidas tendrán nota 1.0. Los
+estudiantes tendrán derecho a un máximo de una prueba recuperativa,
+dicha prueba se realizará la última semana de clases e incluirá toda la
+materia del semestre.
 
-1.  Si un estudiante falta a una evaluación, puede presentar ante la
-    Secretaría de Estudios un certificado médico dentro de los cinco
-    días hábiles posteriores a dicha evaluación, para tener derecho a
-    rendir una prueba recuperativa. Las evaluaciones no rendidas tendrán
-    nota 1.0. Los estudiantes tendrán derecho a un máximo de una prueba
-    recuperativa, dicha prueba se realizará la última semana de clases e
-    incluirá toda la materia del semestre
-
-## Recorrección
+## Re corrección
 
 Según reglamento, los estudiantes tienen derecho a conocer las notas y
 la pauta de corrección de todas las evaluaciones en un plazo que no
-podrá exceder de 10 días hábiles contados desde la fecha desde que éstas
-fueran rendidas, como también a conocer el resultado de sus evaluaciones
-solemnes o principales, antes de rendir las siguientes de igual
-categoría en una misma asignatura.
-
+podrá exceder de 10 días hábiles contados desde la fecha desde que
+éstas fueran rendidas, como también a conocer el resultado de sus
+evaluaciones solemnes o principales, antes de rendir las siguientes de
+igual categoría en una misma asignatura.  
 Los estudiantes pueden imputar la corrección de cualquier evaluación
-escrita, en un plazo no superior a 5 días hábiles desde la entrega de la
-nota. Ello, a través de una carta dirigida al secretario de estudios,
+escrita, en un plazo no superior a 5 días hábiles desde la entrega de
+la nota. Ello, a través de una carta dirigida al secretario de estudios,
 que debe ir acompañada por la prueba, trabajo o informe evaluado y
 además, por las correcciones y comentarios que eventualmente haya
 entregado el/la docente. El académico deberá comunicar al estudiante el
 resultado de la recorrección, fundamentando por escrito sus argumentos,
-en un plazo no superior a los 5 días hábiles
+en un plazo no superior a los 5 días hábiles.
 
 # VII. Bibliografía
 
-## VII.1 Bibliografía Obligatoria
+## VII.1. Bibliografía obligatoria.
 
-+---------+---------+---------+---------+---------+---------+
-| N°      | TÍTULO  | AUTOR   | ED. Y   | E       | ISBN    |
-|         |         |         | AÑO     | D       |         |
-|         |         |         |         | ITORIAL |         |
-+=========+=========+=========+=========+=========+=========+
-| 1       | A       | DE LA   | 2013    | McG     | 978     |
-|         | NALISIS | GARZA   |         | r       | -       |
-|         | ES      |         |         | aw-Hill | 607-15- |
-|         | TA      | GARCIA, |         |         |         |
-|         | DISTICO | JORGE   |         |         | 0817-1  |
-|         | MULTIV  |         |         |         |         |
-|         | AR      |         |         |         |         |
-|         | IANTE - |         |         |         |         |
-|         | UN      |         |         |         |         |
-|         | ENFOQUE |         |         |         |         |
-|         | TEORICO |         |         |         |         |
-|         | Y       |         |         |         |         |
-|         | P       |         |         |         |         |
-|         | RACTICO |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
-| 2       | A       | Peña,   | 2002    | McG     | 84      |
-|         | nálisis | Daniel  |         | r       | 4       |
-|         | de      |         |         | aw-Hill | 8136101 |
-|         | datos   |         |         |         |         |
-|         | multiv  |         |         |         |         |
-|         | ar      |         |         |         |         |
-|         | iantes. |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
-| 3       | A       | URIEL Y | 2005,   | E       | 84      |
-|         | nálisis | ALDAS   | 1ª      | d       | 4       |
-|         | Mul     |         | Edición | itorial | 8136101 |
-|         | ti      |         |         |         |         |
-|         | variado |         |         | Thomson |         |
-|         | Ap      |         |         |         |         |
-|         | licado. |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
-| 4       | A       | LEVI    | 2001    | P       | 84-20   |
-|         | nálisis | J.P. y  |         | rentice | 5       |
-|         | Mult    |         |         | Hall.   | -3727-6 |
-|         | iv      | VARELA  |         |         |         |
-|         | ariante | J.;     |         |         |         |
-|         | para    |         |         |         |         |
-|         | las     |         |         |         |         |
-|         | C       |         |         |         |         |
-|         | iencias |         |         |         |         |
-|         | mS      |         |         |         |         |
-|         | ociales |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
-| 5       | Modelos | B at    | 2012,   | La      |         |
-|         | de E    | is      | 2º ed.  | Muralla |         |
-|         | cu      | ta,J.M. |         |         |         |
-|         | aciones | y       |         |         |         |
-|         | Estr    |         |         |         |         |
-|         | uc      | C       |         |         |         |
-|         | turales | oenders |         |         |         |
-|         | Cu      | G.,     |         |         |         |
-|         | adernos |         |         |         |         |
-|         | de es   |         |         |         |         |
-|         | ta      |         |         |         |         |
-|         | dística |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
-| 6       | Int     | Mo      | 2006,   | Con     | 970-2   |
-|         | ro      | nt      | 3º      | t       | 4       |
-|         | ducción | gomery, | e       | inental | -0327-8 |
-|         | al      |         | dición. |         |         |
-|         | A       | Peck y  |         |         |         |
-|         | nálisis | Vining  |         |         |         |
-|         | de      |         |         |         |         |
-|         | Re      |         |         |         |         |
-|         | gresión |         |         |         |         |
-|         | Lineal  |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
-| 7       | El      | Fe      | 2010    | Papeles |         |
-|         | a       | rrando, |         | del Ps  |         |
-|         | nálisis | P. J.,  |         | i       |         |
-|         | fa      | &       |         | cólogo, |         |
-|         | ctorial | Anguian |         | 31,     |         |
-|         | como    | o-      |         | 18-33   |         |
-|         | técnica | Ca      |         |         |         |
-|         | de inve | rrasco, |         |         |         |
-|         | st      | C.      |         |         |         |
-|         | igación |         |         |         |         |
-|         | en P    |         |         |         |         |
-|         | si      |         |         |         |         |
-|         | cología |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
-| 8       | A       | . Bati  | 2004    | M       |         |
-|         | nálisis | st      |         | edicina |         |
-|         | fa      | a-      |         | C       |         |
-|         | ctorial | Foguet, |         | línica, |         |
-|         | confi   | J.M.,   |         |         |         |
-|         | rm      | Co      |         | 122(    |         |
-|         | atorio. | enders, |         | S       |         |
-|         | Su      | G., &   |         | upl.1). |         |
-|         | u       | Alonso, |         |         |         |
-|         | tilidad | J.      |         |         |         |
-|         | en la v |         |         |         |         |
-|         | al      |         |         |         |         |
-|         | idación |         |         |         |         |
-|         | de cues |         |         |         |         |
-|         | ti      |         |         |         |         |
-|         | onarios |         |         |         |         |
-|         | rel     |         |         |         |         |
-|         | ac      |         |         |         |         |
-|         | ionados |         |         |         |         |
-|         | con la  |         |         |         |         |
-|         | salud.  |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
-| 9       | Modelos | Ruiz,   | 2010    | Papeles |         |
-|         | de e    | M.A.,   |         | del     |         |
-|         | cu      | Pardo,  |         |         |         |
-|         | aciones | A., &   |         | Ps      |         |
-|         | estr    | San     |         | i       |         |
-|         | uc      | Martín, |         | cólogo, |         |
-|         | turales | R.      |         | Vol.    |         |
-|         |         |         |         | 31,     |         |
-|         |         |         |         | Núm.    |         |
-|         |         |         |         |         |         |
-|         |         |         |         | 1, pp.  |         |
-|         |         |         |         | 34-45   |         |
-+---------+---------+---------+---------+---------+---------+
-| 10      | RStudio | Bo      | 2019    | Depa    |         |
-|         | para Es | ccardo, |         | r       |         |
-|         | ta      | G. y    |         | tamento |         |
-|         | dística | Ruiz,   |         | de Soc  |         |
-|         | De      | F.      |         | i       |         |
-|         | sc      |         |         | ología, |         |
-|         | riptiva |         |         | F       |         |
-|         | en      |         |         | acultad |         |
-|         | C       |         |         | de      |         |
-|         | iencias |         |         |         |         |
-|         | So      |         |         | C       |         |
-|         | ciales. |         |         | iencias |         |
-|         | Manual  |         |         | S       |         |
-|         | de      |         |         | o       |         |
-|         | apoyo   |         |         | ciales, |         |
-|         | docente |         |         | Uni     |         |
-|         | para la |         |         | v       |         |
-|         | as      |         |         | ersidad |         |
-|         | i       |         |         | de      |         |
-|         | gnatura |         |         | Chile   |         |
-|         | Es      |         |         |         |         |
-|         | ta      |         |         |         |         |
-|         | dística |         |         |         |         |
-|         | De      |         |         |         |         |
-|         | sc      |         |         |         |         |
-|         | riptiva |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
-| 11      | R para  | W       | 2019    |         |         |
-|         | Ciencia | ickham, |         |         |         |
-|         | de      | H       |         |         |         |
-|         | Datos   |         |         |         |         |
-|         | [link]  |         |         |         |         |
-|         | (h%20%2 |         |         |         |         |
-|         | 0ttps:/ |         |         |         |         |
-|         | %20%20% |         |         |         |         |
-|         | 20%20%2 |         |         |         |         |
-|         | 0/es.r4 |         |         |         |         |
-|         | %20%20% |         |         |         |         |
-|         | 20ds.ha |         |         |         |         |
-|         | d%20%20 |         |         |         |         |
-|         | ley%20% |         |         |         |         |
-|         | 20%20%2 |         |         |         |         |
-|         | 0.nz%20 |         |         |         |         |
-|         | /in%20% |         |         |         |         |
-|         | 20%20de |         |         |         |         |
-|         | x.html) |         |         |         |         |
-+---------+---------+---------+---------+---------+---------+
+-   Batista-Foguet, J. M., Coenders, G., & Alonso, J. (2004). Análisis
+    factorial confirmatorio: su utilidad en la validación de
+    cuestionarios relacionados con la salud. *Medicina Clínica, 122*(Supl.
+    1).
+-   Boccardo, G. & Ruiz, F. (2019). *RStudio para estadística
+    descriptiva en ciencias sociales: Manual de apoyo docente para la
+    asignatura Estadística Descriptiva*. Departamento de Sociología,
+    Facultad de Ciencias Sociales, Universidad de Chile.
+-   Cea D’Ancona, M. A. (2002). *Análisis multivariable: teoría y
+    práctica de la investigación social*. Síntesis Sociológica. ISBN:
+    84-7738-943-8
+-   Darlington, R. B. & Hayes, A. F. (2017). *Regression analysis and
+    linear models: concepts, applications, and implementation*. Guilford
+    Press.
+-   De la Garza García, J. (2013). *Análisis estadístico multivariante:
+    un enfoque teórico y práctico*. McGraw-Hill. ISBN: 978-607-15-0817-1
+-   Ferrando, P. J. & Anguiano-Carrasco, C. (2010). El análisis
+    factorial como técnica de investigación en psicología. *Papeles del
+    Psicólogo, 31*, 18–33.
+-   Gana, K. & Broc, G. (2019). *Structural equation modeling with
+    lavaan*. Wiley. ISBN: 978-1786303691
+-   Levi, J. P. & Varela, J. (2001). *Análisis multivariante para las
+    ciencias sociales*. Prentice Hall. ISBN: 84-205-3727-6
+-   Ministerio de Desarrollo Social y Familia. (2023). *Metodología de
+    diseño muestral: Encuesta de Caracterización Socioeconómica Nacional
+    (Casen 2022)* (Versión revisada en octubre 2023). Santiago, Chile:
+    Ministerio de Desarrollo Social y Familia. Recuperado de
+    <https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2022/Diseno_Muestral_Casen_2022_v20oct23.pdf>.
+-   Pérez, E., Medrano, L. A., & Rosas, J. S. (2013). El path analysis:
+    conceptos básicos y ejemplos de aplicación. *Revista Argentina de
+    Ciencias del Comportamiento, 5*(1), 52–66.
+-   Ruiz, M. A., Pardo, A., & San Martín, R. (2010). Modelos de
+    ecuaciones estructurales. *Papeles del Psicólogo, 31*(1), 34–45.
+-   Uriel, E. & Aldás, J. (2005). *Análisis multivariado aplicado*.
+    Editorial Thomson. ISBN: 8448136101
+-   Wickham, H. (2019). *R para ciencia de datos*. \[Versión en
+    español]. Disponible en:
+    <https://es.r4ds.hadley.nz/index.html>
+-   Zimmer, S. A., Powell, R. J., & Velásquez, I. C. (2024). *Exploring
+    complex survey data analysis using R: A tidy introduction with
+    {srvyr} and {survey}*. CRC Press.
 
-## VII.2 Bibliografía complementaria
+## VII.2. Bibliografía complementaria.
 
-+--------+----------------------+--------+--------+--------+--------+
-| N °    | TÍTULO               | AUTOR  | ED. Y  | EDI    | ISBN   |
-|        |                      |        | AÑO    | TORIAL |        |
-+--------+----------------------+--------+--------+--------+--------+
-| 1      | Técnicas de Análisis | Díaz   | 2002   | Ra-Ma  | 8478   |
-|        | Mult ivariante para  | de     |        |        | 975152 |
-|        | la Inve stigación    | Rada   |        |        |        |
-|        | Social y Comercial   | Iguz   |        |        |        |
-|        |                      | quiza, |        |        |        |
-|        |                      | Vidal  |        |        |        |
-+--------+----------------------+--------+--------+--------+--------+
-| 2      | APPLIED LOGISTIC R   | H      | 2º     | WILEY  | 0-     |
-|        | EGRESSION            | OSMER, | e      |        | 471-3  |
-|        |                      | D      | dición |        | 5632-8 |
-|        |                      | AVID - |        |        |        |
-|        |                      | LEM    |        |        |        |
-|        |                      | ESHOW, |        |        |        |
-+--------+----------------------+--------+--------+--------+--------+
-| 3      | Métodos Mult         | D.E.   | 2000   | In     | 9687   |
-|        | ivariados Aplicados  | J      |        | terna  | 529903 |
-|        | al análisis de Datos | ohnson |        | tional |        |
-|        |                      |        |        | T      |        |
-|        |                      |        |        | homson |        |
-|        |                      |        |        | Ed     |        |
-|        |                      |        |        | itores |        |
-+--------+----------------------+--------+--------+--------+--------+
-| 5      | Análisis fa          | B.     | 1994   | Se     | 8475   |
-|        | ctoriales simples y  | Es     |        | rvicio | 853838 |
-|        | m últiples. O        | cofier |        | Edit   |        |
-|        | bjetivos, métodos e  | y J.   |        | orial, |        |
-|        | inter pretación      | Pagès  |        | Unive  |        |
-|        |                      |        |        | rsidad |        |
-|        |                      |        |        | del    |        |
-|        |                      |        |        | País   |        |
-+--------+----------------------+--------+--------+--------+--------+
-| 6      | Análisis es          | Ato,   | 1996   | Si     | 8477   |
-|        | tadístico para datos | M. y   |        | ntesis | 383928 |
-|        | ca tegóricos         | López, |        |        |        |
-|        |                      | J. J.  |        |        |        |
-+--------+----------------------+--------+--------+--------+--------+
+-   Ato, M. & López, J. J. (1996). *Análisis estadístico para datos
+    categóricos*. Sintesis. ISBN: 8477383928
+-   Díaz de Rada Iguzquiza, V. (2002). *Técnicas de análisis
+    multivariante para la investigación social y comercial*. Ra-Ma. ISBN:
+    8478975152
+-   Escofier, B. & Pagès, J. (1994). *Análisis factoriales simples y
+    múltiples: objetivos, métodos e interpretación*. Servicio Editorial,
+    Universidad del País. ISBN: 8475853838
+-   Johnson, D. E. (2000). *Métodos multivariados aplicados al análisis
+    de datos*. International Thomson Editores. ISBN: 9687529903
+-   Rosseel, Y. (2017). *The lavaan tutorial*. Department of Data
+    Analysis, Ghent University. Retrieved from
+    <https://faculty.washington.edu/matsueda/courses/529/Readings/Lavaan%20tutorial.pdf>
 
 # VIII. Cláusula Ética
 
 La Escuela establece severas sanciones para las faltas graves que los
 estudiantes realicen, tales como plagio o falsificación de documentos,
 señalados en el Reglamento del Estudiante de Pre-grado en el Título XIII
-de las Conductas Contrarias a los Principios Universitarios.
-
+de las Conductas Contrarias a los Principios Universitarios.  
 El Comité de Ética es la instancia responsable de revisar y resolver las
 situaciones que sean contrarias a los principios universitarios, en
 relación al desarrollo de conductas ilícitas que vicien los procesos de
@@ -461,76 +294,55 @@ todos aquellos actos que implican un rompimiento de los estándares
 distorsionando la apreciación de los conocimientos y habilidades reales
 que el estudiante posee (por ejemplo, copia y uso indebido de documento
 y/o medios electrónicos, modificación o falsificación de documentos,
-plagio en trabajos escritos).
-
+plagio en trabajos escritos).  
 Se consideran como fuentes de información que se deben citar, los textos
 e imágenes en formato electrónico o en papel, en todas sus modalidades:
 libros, diarios, documentos de trabajo, artículos académicos, etc.
 
 # IX. Cronograma de trabajo
 
-+--------------+--------------------------------------------------+
-| 11 de marzo  | Análisis de datos y uso de R                     |
-+--------------+--------------------------------------------------+
-| 18 de marzo  | Análisis de datos y uso de R                     |
-+--------------+--------------------------------------------------+
-| 25 de marzo  | Introducción a los modelos multivariados         |
-+--------------+--------------------------------------------------+
-| 1 de abril   | Formas funcionales de los Modelos de Regresión   |
-+--------------+--------------------------------------------------+
-| 8 de abril   | Formas funcionales de los Modelos de Regresión   |
-+--------------+--------------------------------------------------+
-| 15 de abril  | Análisis Factorial Exploratorio                  |
-+--------------+--------------------------------------------------+
-| 22 de abril  | Análisis Factorial Exploratorio                  |
-+--------------+--------------------------------------------------+
-| 29 de abril  | Prueba 1                                         |
-+--------------+--------------------------------------------------+
-| 6 de mayo    | Receso                                           |
-+--------------+--------------------------------------------------+
-| 13 de mayo   | Análisis Factorial Confirmatorio                 |
-+--------------+--------------------------------------------------+
-| 20 de mayo   | Análisis Factorial Confirmatorio                 |
-+--------------+--------------------------------------------------+
-| 27 de mayo   | Análisis de sendero                              |
-+--------------+--------------------------------------------------+
-| 3 de junio   | Análisis de sendero                              |
-+--------------+--------------------------------------------------+
-| 10 de junio  | Modelos de ecuaciones estructurales              |
-+--------------+--------------------------------------------------+
-| 17 de junio  | Modelos de ecuaciones estructurales              |
-+--------------+--------------------------------------------------+
-| 24 de junio  | Modelos de ecuaciones estructurales              |
-+--------------+--------------------------------------------------+
-| 1 de julio   | Repaso                                           |
-+--------------+--------------------------------------------------+
+| Fecha       | Tema                                                | Lectura Obligatoria                                                                                                                                                                                                                                                                                                         | Evaluaciones   |
+| :---------- | :-------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
+| 10 de marzo | Gestión de datos con R                             | Boccardo, G. & Ruiz, F. (2019). RStudio para estadística descriptiva en ciencias sociales. Wickham, H. (2019). R para ciencia de datos.                                                                                                                                                                                    |                |
+| 17 de marzo | Gestión de datos con R                             |                                                                                                                                                                                                                                                                                                                            |                |
+| 24 de marzo | Introducción al uso de muestras complejas en R      | Zimmer, S. A., Powell, R. J., & Velásquez, I. C. (2024). Exploring complex survey data analysis using R: A tidy introduction with {srvyr} and {survey}. Ministerio de Desarrollo Social y Familia. (2023). Metodología de diseño muestral: Encuesta de Caracterización Socioeconómica Nacional (Casen 2022 | Pauta Tarea 1 |
+| 31 de marzo | Introducción al uso de muestras complejas en R      |                                                                                                                                                                                                                                                                                                                            | Entrega Tarea 1|
+| 7 de abril  | Introducción a los modelos multivariados             |                                                                                                                                                                                                                                                                                                                            |                |
+| 14 de abril | Repaso de modelos de regresión                     | Darlington, R. B. & Hayes, A. F. (2017). Regression analysis and linear models                                                                                                                                                                                                                                                |                |
+| 21 de abril | Repaso de modelos de regresión                     |                                                                                                                                                                                                                                                                                                                            |                |
+| 28 de abril | Análisis Factorial Exploratorio                      | Cea D’Ancona, M. A. (2002). Análisis multivariable: teoría y práctica de la investigación social. Síntesis Sociológica. ISBN: 84-7738-943-8                                                                                                                                                                                 | Pauta Tarea 2 |
+| 5 de mayo   | Receso                                              |                                                                                                                                                                                                                                                                                                                            |                |
+| 12 de mayo  | Análisis Factorial Exploratorio                      |                                                                                                                                                                                                                                                                                                                            | Entrega Tarea 2|
+| 19 de mayo  | Prueba 1                                            |                                                                                                                                                                                                                                                                                                                            |                |
+| 26 de mayo  | Análisis Factorial Confirmatorio                     | Ferrando, P. J. & Anguiano-Carrasco, C. (2010). El análisis factorial como técnica de investigación en psicología. Papeles del Psicólogo, 31, 18–33. Gana, K. & Broc, G. (2019). Structural equation modeling with lavaan. Wiley. ISBN: 978-1786303691                                                        |                |
+| 2 de junio  | Análisis Factorial Confirmatorio                     |                                                                                                                                                                                                                                                                                                                            | Pauta Tarea 3 |
+| 9 de junio  | Análisis de sendero                                 | Pérez, E., Medrano, L. A., & Rosas, J. S. (2013). El path analysis: conceptos básicos y ejemplos de aplicación. Gana, K. & Broc, G. (2019). Structural equation modeling with lavaan. Wiley. ISBN: 978-1786303691                                                                                                   | Entrega Tarea 3|
+| 16 de junio | Análisis de sendero                                 |                                                                                                                                                                                                                                                                                                                            | Pauta Tarea 4 |
+| 23 de junio | Modelos de ecuaciones estructurales                 | Ruiz, M. A., Pardo, A., & San Martín, R. (2010). Modelos de ecuaciones estructurales Gana, K. & Broc, G. (2019). Structural equation modeling with lavaan. Wiley. ISBN: 978-1786303691                                                                                                                               | Entrega Tarea 4|
+| 30 de junio | Modelos de ecuaciones estructurales                 |                                                                                                                                                                                                                                                                                                                            | Entrega Trabajo Final |
 
 # X. NORMATIVA DE PREVEVENCIÓN Y SANCIÓN DE ACCIONES DE DISCRIMINACIÓN, VIOLENCIA SEXUAL Y DE GÉNERO DE LA UNIVERSIDAD DIEGO PORTALES.
 
-Tal como señala esta normativa:
-
-"La Universidad Diego Portales (UDP) promueve el pluralismo y la
+Tal como señala esta normativa:  
+“La Universidad Diego Portales (UDP) promueve el pluralismo y la
 independencia crítica de quienes la integran y tienen como uno de sus
 principales objetivos el desarrollo integral de las personas que forman
 parte de ella y de la sociedad. En ese marco, la UDP promueve una
 convivencia reflexiva basada en el reconocimiento a la dignidad de las
 personas, la libertad de expresión, la libertad sexual, la identidad y
-expresión de género, y la autonomía."
-
-Por lo tanto:
-
-"Quienes integren la Universidad tienen la obligación de conocer esta
+expresión de género, y la autonomía.”  
+Por lo tanto:  
+“Quienes integren la Universidad tienen la obligación de conocer esta
 normativa y los protocolos, sitios web y programas que de ella se
 deriven. Particularmente responsables de su implementación serán las
 autoridades de la Universidad, quienes tendrán la primera obligación de
 hacer frente a situaciones que deñen a sus integrantes. Para lograr
 estos objetivos, se debe realizar la correcta difusión y socialización
-de la normativa."
-
+de la normativa.”  
 Los detalles de la normativa pueden ser consultados en el siguiente
-enlace: [Normativa de prevención y sanción de acciones de violencia
-sexual](https://www.udp.cl/cms/wp-content/uploads/2021/06/RESOLUCIO%CC%81N-DE-RECTORI%CC%81A-No-43-NORMATIVA-PREVENCION-Y-SANCION-ACCIONES-DE-VIOLENCIA-SEXUAL-DIC-2018.pdf)
+enlace:  
+[https://staticcl1.fidelizador.com/udportales/2022/enero/actualizacion-normativa/RESOLUCION_%20RECTORIA_%20N%3F03_%28APRUEBA_MODIF_NORMATIVA_VIOLENCIA%202022%29OK.pdf](https://staticcl1.fidelizador.com/udportales/2022/enero/actualizacion-normativa/RESOLUCION_%20RECTORIA_%20N%3F03_%28APRUEBA_MODIF_NORMATIVA_VIOLENCIA%202022%29OK.pdf)
 
-# [Descargar programa en pdf](../files/Programa%20Analisis%20de%20datos%20II%20-%202024.pdf/)
+# [Descargar programa en pdf](../files/Programa%20Analisis%20de%20datos%20II%20-%202025.pdf/)
 
-<a Puedes descargar el programa apretando el siguiente botón class="btn btn-primary" href="../files/Programa Analisis de datos II - 2024.pdf/" role="button"><i class="far fa-file-pdf"></i></a>
+<a Puedes descargar el programa apretando el siguiente botón class="btn btn-primary" href="../files/Programa Analisis de datos II - 2025.pdf/" role="button"><i class="far fa-file-pdf"></i></a>

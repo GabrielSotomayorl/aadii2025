@@ -2,171 +2,146 @@ lessons:
   - title: 'Análisis avanzado de datos 2'
     header: True
 
-  - title: '<span class="content-title">Unidad 1. Análisis de datos y uso de R</span>'
+  - title: '<span class="content-title">Unidad 1. Gestión de datos con R</span>'
     date: "10 - 17 de marzo"
     date_start: "10 marzo"
     date_end: "17 marzo"
     bg: 1
-    
-  - title: '• Introducción a R y Rstudio<br>• Gestión de datos con tidyverse'
+
+  - title: '• Introducción a la manipulación de datos con tidyverse<br>• Cálculo e interpretación de estadísticos descriptivos'
     session: "Sesión 1"
     date: "10 marzo"
-    # content: "01-content"
-    # example: "01-practico"
-    # resource: "install"
     bg: 1
 
-  - title: '• Cálculo de estadísticos descriptivos<br>• Visualización de datos con ggplot'
+  - title: '• Visualización de información con ggplot2<br>• Elementos introductorios de investigación reproducible'
     session: "Sesión 2"
     date: "17 marzo"
-    # content: "02-content"
-    # example: "02-practico"
-    # assignment: "00-tarea"
-    # resource: "markdown"
     bg: 1
     bottomborder: True
 
-  - title: '<span class="content-title">Unidad 2. Introducción a los modelos multivariados</span>'
-    date: "24 de marzo"
+  - title: '<span class="content-title">Unidad 2. Introducción al uso de muestras complejas en R</span>'
+    date: "24 - 31 de marzo"
     date_start: "24 marzo"
-    date_end: "24 marzo"
+    date_end: "31 marzo"
     bg: 2
 
-  - title: '• Uso de modelos en ciencias sociales<br>• Modelos exploratorios y modelos confirmatorios<br>• Repaso de conceptos estadísticos: covarianza, correlación e inferencia<br>• Supuestos de análisis'
+  - title: '• Conceptos fundamentales de muestreo complejo<br>• Diseño de encuestas y aplicación de ponderaciones'
     session: "Sesión 3"
     date: "24 marzo"
-    # content: "03-content"
     bg: 2
-    bottomborder: True
-    
-  - title: '<span class="content-title">Unidad 3. Formas funcionales de los Modelos de Regresión</span>'
-    date: "31 de marzo - 7 de abril"
-    date_start: "31 marzo"
-    date_end: "7 abril"
-    bg: 1
-    
-  - title: '• Introducción<br>• Modelo Logarítmico bivariado'
+
+  - title: '• Inferencia estadística en muestras complejas<br>• Manejo de encuestas con los paquetes survey y svyr'
     session: "Sesión 4"
     date: "31 marzo"
-    # content: "04-content"
-    # example: "04-practico"
+    bg: 2
+    bottomborder: True
+
+  - title: '<span class="content-title">Unidad 3. Introducción a los modelos multivariados</span>'
+    date: "7 de abril"
+    date_start: "7 abril"
+    date_end: "7 abril"
     bg: 1
 
-  - title: '• Modelo Logarítmico Multivariado<br>• Interpretación de los coeficientes<br>• Ejemplos de aplicación en R'
+  - title: '• Rol de los modelos en las ciencias sociales<br>• Diferencias entre enfoques exploratorios y confirmatorios<br>• Repaso de conceptos estadísticos clave: covarianza, correlación e inferencia<br>• Supuestos del análisis multivariante y su importancia.'
     session: "Sesión 5"
     date: "7 abril"
-    # content: "05-content"
-    # example: "05-practico"
     bg: 1
     bottomborder: True
 
-  - title: '<span class="content-title">Unidad 4. Análisis Factorial Exploratorio</span>'
+  - title: '<span class="content-title">Unidad 4. Repaso de modelos de regresión</span>'
     date: "14 - 21 de abril"
     date_start: "14 abril"
     date_end: "21 abril"
     bg: 2
 
-  - title: '• Análisis factorial exploratorio y su aplicación<br>• Diferencias entre el análisis de componente principal y de factor común'
+  - title: '• Relevancia del control estadístico<br>• Regresión lineal múltiple'
     session: "Sesión 6"
     date: "14 abril"
-    # content: "06-content"
-    # example: "06-practico"
-    bg: 2
-    
-  - title: '• La extracción de factores comunes<br>• La matriz factorial y su interpretación'
-    session: "Sesión 7"
-    date: "21 abril"
-    bottomborder: True
-    # content: "07-content"
-    # example: "07-practico"
-    # assignment: "03-tarea"
     bg: 2
 
-  - title: '• Prueba 1'
+  - title: '• Regresión logística binaria'
+    session: "Sesión 7"
+    date: "21 abril"
+    bg: 2
+    bottomborder: True
+
+  - title: '<span class="content-title">Unidad 5. Análisis Factorial Exploratorio</span>'
+    date: "28 de abril - 12 de mayo" # Adjusted to include receso and Prueba 1
+    date_start: "28 abril"
+    date_end: "12 mayo"
+    bg: 1
+
+  - title: '• Aplicación en la investigación sociológica<br>• Comparación entre análisis de componentes principales y factor común; supuestos del método'
     session: "Sesión 8"
     date: "28 abril"
     bg: 1
-    bottomborder: True
-    
+
   - title: '**• Receso**'
     session: "Sesión -"
-    date: "5 mayo"
+    date: "5 mayo" # Receso week is May 6-10th. Setting date to 5th for representation.
+    bg: 1
+    bottomborder: True
+
+  - title: '• Métodos de extracción de factores, criterios de selección y técnicas de rotación<br>• Interpretación de la matriz factorial y evaluación del ajuste. Cálculo de puntuaciones factoriales.<br>• Introducción al paquete psych.'
+    session: "Sesión 9"
+    date: "12 mayo"
+    bottomborder: True
+    bg: 1
+
+
+  - title: '**• Prueba 1**'
+    session: "Sesión 10"
+    date: "19 de mayo"
     bg: 2
     bottomborder: True
 
-  - title: '<span class="content-title">Unidad 5. Análisis Factorial Confirmatorio</span>'
-    date: "12 - 19 de mayo"
-    date_start: "12 de mayo"
-    date_end: "19 mayo"
-    bg: 1
-
-  - title: '• Análisis factorial confirmatorio y su aplicación<br>• Especificación e identificación del modelo'
-    session: "Sesión 10"
-    date: "19 mayo"
-    # content: "08-content"
-    # example: "08-practico"
-    # assignment: "04-tarea"
-    bg: 1
-
-  - title: '• Fiabilidad y validez de los modelos de medida<br>• Ejemplo de análisis factorial confirmatorio'
-    session: "Sesión 10"
-    date: "19 mayo"
-    bg: 1
-    bottomborder: True
-
-  - title: '<span class="content-title">Unidad 6. Análisis de Sendero</span>'
+  - title: '<span class="content-title">Unidad 6. Análisis Factorial Confirmatorio</span>'
     date: "26 de mayo - 2 de junio"
     date_start: "26 mayo"
     date_end: "2 junio"
-    bg: 2
-    
-  - title: '• Análisis de sendero y su aplicación<br>• Especificación del modelo'
+    bg: 1
+
+  - title: '• Diferencias principales con el análisis factorial exploratorio<br>• Especificación e identificación del modelo, estimación de parámetros'
     session: "Sesión 11"
     date: "26 mayo"
-    bg: 2
-    # content: "10-content"
-    # example: "10-practico"
+    bg: 1
 
-  - title: '• Evaluación del modelo de medición y de la capacidad confirmatoria del modelo<br>• Ejemplo de análisis de sendero'
+  - title: '• Evaluación del ajuste, reespecificación y validez (convergente y discriminante)<br>• Ejemplo práctico de análisis confirmatorio.<br>• Introducción al paquete lavaan.'
     session: "Sesión 12"
     date: "2 junio"
-    # content: "11-content"
-    # example: "11-practico"
-    # assignment: "04-tarea"
-    bg: 2
+    bg: 1
     bottomborder: True
 
-  - title: '<span class="content-title">Unidad 7. Modelos de Ecuaciones estructurales</span>'
-    date: "9 - 23 de junio"
+  - title: '<span class="content-title">Unidad 7. Análisis de Sendero</span>'
+    date: "9 - 16 de junio"
     date_start: "9 junio"
-    date_end: "23 junio"
-    bg: 1
+    date_end: "16 junio"
+    bg: 2
 
-  - title: '• Análisis de ecuaciones estructurales y su aplicación'
+  - title: '• Fundamentos y aplicación en ciencias sociales<br>• Especificación del modelo de sendero y verificación de supuestos'
     session: "Sesión 13"
     date: "9 junio"
-    bg: 1
-    # content: "12-content"
-    # example: "12-practico"
+    bg: 2
 
-  - title: '• La obtención de un modelo de ecuaciones estructurales<br>• Estimación del modelo empírico'
+  - title: '• Evaluación de la medición y capacidad confirmatoria<br>• Ejemplo aplicado en investigación sociológica.'
     session: "Sesión 14"
     date: "16 junio"
-    # content: "13-content"
-    # example: "13-practico"
-    bg: 1
-
-  - title: '• Evaluación del modelo'
-    session: "Sesión 15"
-    date: "23 junio"
-    # content: "14-content"
-    # example: "14-practico"
-    bg: 1
-    bottomborder: True
-
-  - title: '• Repaso<br>• Apoyo para trabajos finales<br>• Cierre del curso'
-    session: "Sesión 16"
-    date: "30 junio"
     bg: 2
     bottomborder: True
 
+  - title: '<span class="content-title">Unidad 8. Modelos de Ecuaciones estructurales</span>'
+    date: "23 - 30 de junio"
+    date_start: "23 junio"
+    date_end: "30 junio"
+    bg: 1
+
+  - title: '• Definición y aplicación de los SEM en ciencias sociales<br>• Estructura del modelo y supuestos de la técnica.'
+    session: "Sesión 15"
+    date: "23 junio"
+    bg: 1
+
+  - title: '• Estimación y evaluación del modelo, introducción de modificaciones.<br>• Entrega Trabajo Final'
+    session: "Sesión 16"
+    date: "30 junio"
+    bg: 1
+    bottomborder: True

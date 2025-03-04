@@ -2,7 +2,7 @@
 title: "Clase 1: Introducción al Curso Análisis Avanzado de Datos II"
 subtitle: ""
 author: "Gabriel Sotomayor"
-date: "Marzo 2024"
+date: "10-03-2025"
 format:
   revealjs:
     theme: [dark, custom.scss]
@@ -14,115 +14,129 @@ editor: visual
 
 ## Presentación {.smaller background-color="white"}
 
-El curso profundiza las principales técnicas multivariantes, que permiten analizar en forma conjunta la interacción de múltiples factores, lo cual da la posibilidad de estudiar de forma más compleja los problemas sociales.
+Este curso profundiza en las técnicas de análisis multivariante, permitiendo examinar de manera integrada la interacción de múltiples factores en el estudio de problemas sociales. Se enfatiza la comprensión de los procedimientos y la interpretación rigurosa de los resultados, con un enfoque aplicado mediante el uso de herramientas computacionales, principalmente **R y RStudio**.
 
-Se enfatizan la comprensión de procedimientos e interpretación de resultados, así como el uso de herramientas computacionales, principalmente en **R y RStudio**. Se trabajará en la aplicación de los métodos sin necesidad de estudiar en profundidad los fundamentos matemáticos de todos ellos.
+El curso prioriza la aplicación práctica de los métodos estadísticos sin requerir una profundización en sus fundamentos matemáticos. Al finalizar, el estudiante será capaz de analizar datos primarios y secundarios, identificar la técnica estadística adecuada según el contexto y generar informes que comuniquen de manera efectiva los hallazgos obtenidos.
 
-Al final del curso el alumno deberá ser capaz de realizar análisis descriptivo de los datos tanto primarios como secundarios y poder seleccionar la técnica estadística adecuada a utilizar cuando se tienen datos multivariables.
+## Resultados de Aprendizaje {background-color="white"}
 
-## Resultados de Aprendizaje {.smaller background-color="white"}
-
-**Resultado general:** Entregar herramientas al alumno para que pueda abordar el análisis de datos desde la estadística multivariante descriptiva e inferencial, elaborando y probando hipótesis y desarrollando modelos explicativos de determinados fenómenos de estudio.
+**Resultado general:** Desarrollar la capacidad de aplicar técnicas de estadística multivariante descriptiva e inferencial para analizar datos, formular hipótesis y construir modelos explicativos en investigaciones sociales, asegurando la correcta interpretación y comunicación de los resultados.
 
 ## Resultados Específicos {.smaller background-color="white"}
 
-1.  Manejar bases de datos complejas.
-2.  Plantear y estructurar adecuadamente un problema de análisis multivariante.
-3.  Identificar el tipo de técnica adecuada, o combinación de ellas, a aplicar en cada situación concreta.
-4.  Comprender las herramientas utilizada en cada una de las técnicas estudiadas.
-5.  Aprender a utilizar los programas computacionales necesarios para aplicar los distintos modelos estudiados, particularmente R.
-6.  Interpretar los resultados del análisis.
-7.  Redactar correctamente un informe con los resultados del análisis.
+1.  Gestionar bases de datos complejas, asegurando su preparación y estructuración para el análisis.
+2.  Definir y estructurar problemas de análisis multivariante, formulando preguntas de investigación con sustento metodológico.
+3.  Seleccionar técnicas estadísticas adecuadas, justificando su aplicación en función del tipo de datos y los objetivos del análisis.
+4.  Utilizar herramientas computacionales especializadas, aplicando modelos en R y RStudio de manera efectiva.
+5.  Interpretar de forma rigurosa los resultados del análisis, identificando sus alcances y limitaciones.
+6.  Redactar informes técnicos y académicos, comunicando los hallazgos de manera clara, estructurada y fundamentada.
 
 ## Contenidos {.smaller .dark-background}
 
 ### 1. Gestión de Datos con R
 
--   Introducción a R y Rstudio
--   Gestión de datos con tidyverse.
--   Cálculo de estadísticos descriptivos.
--   Visualización de datos con ggplot.
+-   Introducción a la manipulación de datos con tidyverse.
+-   Cálculo e interpretación de estadísticos descriptivos.
+-   Visualización de información con ggplot2.
+-   Elementos introductorios de investigación reproducible.
 
-### 2. Introducción a los Modelos Multivariados
+### 2. Introducción al uso de muestras complejas en R
 
--   Uso de modelos en ciencias sociales
--   Modelos exploratorios y modelos confirmatorios
--   Repaso de conceptos estadísticos: covarianza, correlación e inferencia.
--   Supuestos de análisis.
-
-### 3. Formas Funcionales de los Modelos de Regresión
-
--   Introducción
--   Modelo Logarítmico bivariado
--   Modelo Logarítmico Multivariado
--   Interpretación de los coeficientes
--   Ejemplos de aplicación en R.
+-   Conceptos fundamentales de muestreo complejo.
+-   Diseño de encuestas y aplicación de ponderaciones.
+-   Inferencia estadística en muestras complejas.
+-   Manejo de encuestas con los paquetes survey y svyr.
 
 ## Contenidos {.smaller .dark-background}
 
-### 4. Análisis Factorial Exploratorio
+### 3. Introducción a los Modelos Multivariados
 
--   Análisis factorial exploratorio y su aplicación en la investigación sociológica. El concepto de varianza y covarianza.
--   Diferencias entre el análisis de componente principal y de factor común. Supuestos de la técnica.
--   La extracción de factores comunes. Métodos de extracción de factores, criterios de selección del número de factores y rotación.
--   La matriz factorial y su interpretación. Evaluación del modelo factorial y cálculo de puntuaciones factoriales.
+-   Rol de los modelos en las ciencias sociales.
+-   Diferencias entre enfoques exploratorios y confirmatorios.
+-   Repaso de conceptos estadísticos clave: covarianza, correlación e inferencia.
+-   Supuestos del análisis multivariante y su importancia.
 
-### 5. Análisis Factorial Confirmatorio
+### 4. Repaso de modelos de regresión
 
--   Análisis factorial confirmatorio y su aplicación en la investigación sociológica. El análisis confirmatorio frente al análisis exploratorio. Supuestos de la técnica.
--   Especificación e identificación del modelo. Estimación de parámetros, evaluación del ajuste y reespecificación.
--   Fiabilidad y validez de los modelos de medida. Validez convergente y validez discriminante. Evaluación de la capacidad confirmatoria del modelo.
--   Ejemplo de análisis factorial confirmatorio.
+-   Relevancia del control estadístico.
+-   Regresión lineal múltiple.
+-   Regresión logística binaria.
 
 ## Contenidos {.smaller .dark-background}
 
-### 6. Análisis de Sendero
+### 5. Análisis Factorial Exploratorio
 
--   Análisis de sendero y su aplicación en la investigación sociológica. Supuestos de la técnica.
--   Especificación del modelo.
--   Evaluación del modelo de medición y de la capacidad confirmatoria del modelo.
--   Ejemplo de análisis de sendero.
+-   Aplicación en la investigación sociológica.
+-   Comparación entre análisis de componentes principales y factor común; supuestos del método.
+-   Métodos de extracción de factores, criterios de selección y técnicas de rotación.
+-   Interpretación de la matriz factorial y evaluación del ajuste. Cálculo de puntuaciones factoriales.
+-   Introducción al paquete psych.
 
-### 7. Modelos de Ecuaciones Estructurales
+## Contenidos {.smaller .dark-background}
 
--   Análisis de ecuaciones estructurales y su aplicación en la investigación sociológica.
--   La obtención de un modelo de ecuaciones estructurales: la estructura del modelo. Supuestos de la técnica.
--   Estimación del modelo empírico.
--   Evaluación del modelo.
--   Introducción de modificaciones y/o conclusión del análisis. Evaluación de la capacidad confirmatoria del modelo.
--   Ejemplos sobre modelamiento de ecuaciones estructurales.
+### 6. Análisis Factorial Confirmatorio
+
+-   Diferencias principales con el análisis factorial exploratorio.
+-   Especificación e identificación del modelo, estimación de parámetros.
+-   Evaluación del ajuste, reespecificación y validez (convergente y discriminante).
+-   Ejemplo práctico de análisis confirmatorio.
+-   Introducción al paquete lavaan.
+
+## Contenidos {.smaller .dark-background}
+
+### 7. Análisis de Sendero
+
+-   Fundamentos y aplicación en ciencias sociales.
+-   Especificación del modelo de sendero y verificación de supuestos.
+-   Evaluación de la medición y capacidad confirmatoria.
+-   Ejemplo aplicado en investigación sociológica.
+
+### 8. Modelos de Ecuaciones Estructurales
+
+-   Definición y aplicación de los SEM en ciencias sociales.
+-   Estructura del modelo y supuestos de la técnica.
+-   Estimación y evaluación del modelo, introducción de modificaciones.
+-   Ejemplos de modelamiento de ecuaciones estructurales.
 
 ## Bibliografía {.smaller background-color="white"}
+| Ítem | Título                                                                                                                      | Autor                                          | Año             |
+|:-----|:----------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------|:----------------|
+| 1    | Analisis Estadistico Multivariante -<br>Un Enfoque Teorico y Practico                                                       | De La Garza<br>Garcia, Jorge                    | 2013            |
+| 2    | Análisis de datos multivariantes.                                                                                           | Peña, Daniel                                   | 2002            |
+| 3    | Análisis Multivariado Aplicado                                                                                              | Uriel Y Aldas                                  | 2005, 1ª Edición|
+| 4    | Análisis Multivariante para las Ciencias Sociales                                                                           | Levi J.P. y<br>Varela J.                        | 2001            |
+| 5    | Modelos de Ecuaciones Estructurales Cuadernos de estadística                                                                  | Batista, J.M. y Coenders G.                     | 2012            |
+| 6    | Introducción al Análisis de Regresión Lineal                                                                                | Montgomery, Peck y Vining                      | 2006            |
+| 7    | El análisis factorial como técnica de investigación en Psicología                                                           | Ferrando, P. J., & Anguiano-Carrasco, C.         | 2010            |
 
-|        | Analisis Estadistico Multivariante -<br>Un Enfoque Teorico y Practico                                                         | De La Garza<br>Garcia, Jorge                       | 2013             |
-|:----------|:-----------------------------------|:--------------|:----------|
-| **2**  | Análisis de datos multivariantes.                                                                                             | Peña, Daniel                                       | 2002             |
-| **3**  | Análisis Multivariado Aplicado                                                                                                | Uriel Y Aldas                                      | 2005, 1ª Edición |
-| **4**  | Análisis Multivariante para las Ciencias Sociales                                                                             | Levi J.P. y<br>Varela J.;                          | 2001             |
-| **5**  | Modelos de Ecuaciones Estructurales Cuadernos de estadística                                                                  | Batista, J.M. y Coenders G.,                       | 2012,            |
-| **6**  | Introducción al Análisis de Regresión Lineal                                                                                  | Montgomery, Peck y Vining                          | 2006,            |
-| **7**  | El análisis factorial como técnica de investigación en Psicología                                                             | Ferrando, P. J., & Anguiano-Carrasco, C.           | 2010             |
-| **8**  | Análisis factorial confirmatorio. Su utilidad en la validación de cuestionarios relacionados con la salud.                    | . Batista-Foguet, J.M., Coenders, G., & Alonso, J. | 2004             |
-| **9**  | El Path Analysis: conceptos básicos y ejemplos de aplicación.                                                                 | Pérez, E., Medrano, L. A., & Rosas, J. S           | 2013             |
-| **10** | Modelos de ecuaciones estructurales                                                                                           | Ruiz, M.A., Pardo, A., & San Martín, R.            | 2010             |
-| **11** | RStudio para Estadística Descriptiva en Ciencias Sociales. Manual de apoyo docente para la asignatura Estadística Descriptiva | Boccardo, G. y Ruiz, F.                            | 2019             |
-| **12** | R para Ciencia de Datos <https://es.r4ds.hadley.nz/index.html>                                                                | Wickham, H                                         | 2019             |
+
+
+## Bibliografía {.smaller background-color="white"}
+| Ítem | Título                                                                                                                      | Autor                                             | Año           |
+|:-----|:----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|:--------------|
+| 8    | Análisis factorial confirmatorio. Su utilidad en la validación de cuestionarios relacionados con la salud.                   | Batista-Foguet, J.M., Coenders, G., & Alonso, J.    | 2004          |
+| 9    | El Path Analysis: conceptos básicos y ejemplos de aplicación.                                                               | Pérez, E., Medrano, L. A., & Rosas, J. S             | 2013          |
+| 10   | Modelos de ecuaciones estructurales                                                                                         | Ruiz, M.A             | 2010          |
+| 11   | RStudio para Estadística Descriptiva en Ciencias Sociales. Manual de apoyo docente para la asignatura Estadística Descriptiva | Boccardo, G. y Ruiz, F.                             | 2019          |
+| 12   | R para Ciencia de Datos [https://es.r4ds.hadley.nz/index.html](https://es.r4ds.hadley.nz/index.html)                           | Wickham, H                                       | 2019          |
+| 13   | Exploring complex survey data analysis using R: A tidy introduction with {srvyr} and {survey}                                | Zimmer, S. A    | 2024          |
+
 
 ## Evaluaciones {.smaller .dark-background}
 
-| Evaluación               | Fechas                                                  | Porcentaje |
-|:------------------------|:-----------------------------|:----------------|
-| Evaluación de R          | 25 de marzo<br>15 de abril<br>27 de mayo<br>17 de junio | 30%        |
-| Prueba 1                 | 29 de abril                                             | 35%        |
-| Trabajo de Investigación | 1 de julio                                              | 35%        |
+| Evaluación               | Fechas                  | Porcentaje |
+|:------------------------|:-----------------------|:----------------|
+| Tareas uso de R          | 24 de marzo<br>28 de abril<br>2 de junio<br>16 de junio | 30%        |
+| Prueba                 | 19 de mayo              | 35%        |
+| Trabajo final | 1 de julio               | 35%        |
 
 ## Ayudantías {background-color="white"}
 
 El curso tiene dos ayudantes:
 
-Patrio Alarcón [patricio.alarcon\@mail.udp.cl](mailto:patricio.alarcon@mail.udp.cl)
-
 Fernanda Hurtado [fernanda.hurtado\@mail.udp.cl](mailto:fernanda.hurtado@mail.udp.cl)
+
+Francisca Hernández [francisca.hernandez_c\@mail.udp.cl](mailto:francisca.hernandez_c@mail.udp.cl)
 
 Están disponibles para responder las dudas que puedan tener a lo largo del curso, tanto estadísticas como de uso de software.
 
@@ -132,13 +146,15 @@ También les acompañarán en la realización de tareas y trabajos de investigac
 
 ## Página del Curso {background-color="white"}
 
-[https://aadii2024.netlify.app/](https://aadii2024.netlify.app/){preview-link="true"}
+[https://aadii2025.netlify.app/](https://aadii2025.netlify.app/){preview-link="true"}
 
 ## Delegado de Curso {.dark-background}
 
 Las comunicaciones del curso con el equipo docente para temas colectivos deberán gestionarse de manera centralizada mediante un delegado, especialmente considerando que hay alumnos de distintas generaciones.
 
 Esto es particularmente relevante para solicitudes respecto a evaluaciones.
+
+---
 
 ## Objetivos de la Sesión {background-color="white"}
 

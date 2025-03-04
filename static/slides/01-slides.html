@@ -8,10 +8,10 @@
 <link href="01-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="01-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="01-slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Gabriel Sotomayor">
-  <meta name="dcterms.date" content="2024-03-01">
+  <meta name="dcterms.date" content="2025-10-03">
   <title>Clase 1: Introducción al Curso Análisis Avanzado de Datos II</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -336,168 +336,210 @@ Gabriel Sotomayor
 </div>
 </div>
 
-  <p class="date">2024-03-01</p>
+  <p class="date">2025-10-03</p>
 </section>
 <section id="presentación" class="slide level2 smaller" data-background-color="white">
 <h2>Presentación</h2>
-<p>El curso profundiza las principales técnicas multivariantes, que permiten analizar en forma conjunta la interacción de múltiples factores, lo cual da la posibilidad de estudiar de forma más compleja los problemas sociales.</p>
-<p>Se enfatizan la comprensión de procedimientos e interpretación de resultados, así como el uso de herramientas computacionales, principalmente en <strong>R y RStudio</strong>. Se trabajará en la aplicación de los métodos sin necesidad de estudiar en profundidad los fundamentos matemáticos de todos ellos.</p>
-<p>Al final del curso el alumno deberá ser capaz de realizar análisis descriptivo de los datos tanto primarios como secundarios y poder seleccionar la técnica estadística adecuada a utilizar cuando se tienen datos multivariables.</p>
+<p>Este curso profundiza en las técnicas de análisis multivariante, permitiendo examinar de manera integrada la interacción de múltiples factores en el estudio de problemas sociales. Se enfatiza la comprensión de los procedimientos y la interpretación rigurosa de los resultados, con un enfoque aplicado mediante el uso de herramientas computacionales, principalmente <strong>R y RStudio</strong>.</p>
+<p>El curso prioriza la aplicación práctica de los métodos estadísticos sin requerir una profundización en sus fundamentos matemáticos. Al finalizar, el estudiante será capaz de analizar datos primarios y secundarios, identificar la técnica estadística adecuada según el contexto y generar informes que comuniquen de manera efectiva los hallazgos obtenidos.</p>
 </section>
-<section id="resultados-de-aprendizaje" class="slide level2 smaller" data-background-color="white">
+<section id="resultados-de-aprendizaje" class="slide level2" data-background-color="white">
 <h2>Resultados de Aprendizaje</h2>
-<p><strong>Resultado general:</strong> Entregar herramientas al alumno para que pueda abordar el análisis de datos desde la estadística multivariante descriptiva e inferencial, elaborando y probando hipótesis y desarrollando modelos explicativos de determinados fenómenos de estudio.</p>
+<p><strong>Resultado general:</strong> Desarrollar la capacidad de aplicar técnicas de estadística multivariante descriptiva e inferencial para analizar datos, formular hipótesis y construir modelos explicativos en investigaciones sociales, asegurando la correcta interpretación y comunicación de los resultados.</p>
 </section>
 <section id="resultados-específicos" class="slide level2 smaller" data-background-color="white">
 <h2>Resultados Específicos</h2>
 <ol type="1">
-<li>Manejar bases de datos complejas.</li>
-<li>Plantear y estructurar adecuadamente un problema de análisis multivariante.</li>
-<li>Identificar el tipo de técnica adecuada, o combinación de ellas, a aplicar en cada situación concreta.</li>
-<li>Comprender las herramientas utilizada en cada una de las técnicas estudiadas.</li>
-<li>Aprender a utilizar los programas computacionales necesarios para aplicar los distintos modelos estudiados, particularmente R.</li>
-<li>Interpretar los resultados del análisis.</li>
-<li>Redactar correctamente un informe con los resultados del análisis.</li>
+<li>Gestionar bases de datos complejas, asegurando su preparación y estructuración para el análisis.</li>
+<li>Definir y estructurar problemas de análisis multivariante, formulando preguntas de investigación con sustento metodológico.</li>
+<li>Seleccionar técnicas estadísticas adecuadas, justificando su aplicación en función del tipo de datos y los objetivos del análisis.</li>
+<li>Utilizar herramientas computacionales especializadas, aplicando modelos en R y RStudio de manera efectiva.</li>
+<li>Interpretar de forma rigurosa los resultados del análisis, identificando sus alcances y limitaciones.</li>
+<li>Redactar informes técnicos y académicos, comunicando los hallazgos de manera clara, estructurada y fundamentada.</li>
 </ol>
 </section>
 <section id="contenidos" class="slide level2 smaller dark-background">
 <h2>Contenidos</h2>
 <h3 id="gestión-de-datos-con-r">1. Gestión de Datos con R</h3>
 <ul>
-<li>Introducción a R y Rstudio</li>
-<li>Gestión de datos con tidyverse.</li>
-<li>Cálculo de estadísticos descriptivos.</li>
-<li>Visualización de datos con ggplot.</li>
+<li>Introducción a la manipulación de datos con tidyverse.</li>
+<li>Cálculo e interpretación de estadísticos descriptivos.</li>
+<li>Visualización de información con ggplot2.</li>
+<li>Elementos introductorios de investigación reproducible.</li>
 </ul>
-<h3 id="introducción-a-los-modelos-multivariados">2. Introducción a los Modelos Multivariados</h3>
+<h3 id="introducción-al-uso-de-muestras-complejas-en-r">2. Introducción al uso de muestras complejas en R</h3>
 <ul>
-<li>Uso de modelos en ciencias sociales</li>
-<li>Modelos exploratorios y modelos confirmatorios</li>
-<li>Repaso de conceptos estadísticos: covarianza, correlación e inferencia.</li>
-<li>Supuestos de análisis.</li>
-</ul>
-<h3 id="formas-funcionales-de-los-modelos-de-regresión">3. Formas Funcionales de los Modelos de Regresión</h3>
-<ul>
-<li>Introducción</li>
-<li>Modelo Logarítmico bivariado</li>
-<li>Modelo Logarítmico Multivariado</li>
-<li>Interpretación de los coeficientes</li>
-<li>Ejemplos de aplicación en R.</li>
+<li>Conceptos fundamentales de muestreo complejo.</li>
+<li>Diseño de encuestas y aplicación de ponderaciones.</li>
+<li>Inferencia estadística en muestras complejas.</li>
+<li>Manejo de encuestas con los paquetes survey y svyr.</li>
 </ul>
 </section>
 <section id="contenidos-1" class="slide level2 smaller dark-background">
 <h2>Contenidos</h2>
-<h3 id="análisis-factorial-exploratorio">4. Análisis Factorial Exploratorio</h3>
+<h3 id="introducción-a-los-modelos-multivariados">3. Introducción a los Modelos Multivariados</h3>
 <ul>
-<li>Análisis factorial exploratorio y su aplicación en la investigación sociológica. El concepto de varianza y covarianza.</li>
-<li>Diferencias entre el análisis de componente principal y de factor común. Supuestos de la técnica.</li>
-<li>La extracción de factores comunes. Métodos de extracción de factores, criterios de selección del número de factores y rotación.</li>
-<li>La matriz factorial y su interpretación. Evaluación del modelo factorial y cálculo de puntuaciones factoriales.</li>
+<li>Rol de los modelos en las ciencias sociales.</li>
+<li>Diferencias entre enfoques exploratorios y confirmatorios.</li>
+<li>Repaso de conceptos estadísticos clave: covarianza, correlación e inferencia.</li>
+<li>Supuestos del análisis multivariante y su importancia.</li>
 </ul>
-<h3 id="análisis-factorial-confirmatorio">5. Análisis Factorial Confirmatorio</h3>
+<h3 id="repaso-de-modelos-de-regresión">4. Repaso de modelos de regresión</h3>
 <ul>
-<li>Análisis factorial confirmatorio y su aplicación en la investigación sociológica. El análisis confirmatorio frente al análisis exploratorio. Supuestos de la técnica.</li>
-<li>Especificación e identificación del modelo. Estimación de parámetros, evaluación del ajuste y reespecificación.</li>
-<li>Fiabilidad y validez de los modelos de medida. Validez convergente y validez discriminante. Evaluación de la capacidad confirmatoria del modelo.</li>
-<li>Ejemplo de análisis factorial confirmatorio.</li>
+<li>Relevancia del control estadístico.</li>
+<li>Regresión lineal múltiple.</li>
+<li>Regresión logística binaria.</li>
 </ul>
 </section>
 <section id="contenidos-2" class="slide level2 smaller dark-background">
 <h2>Contenidos</h2>
-<h3 id="análisis-de-sendero">6. Análisis de Sendero</h3>
+<h3 id="análisis-factorial-exploratorio">5. Análisis Factorial Exploratorio</h3>
 <ul>
-<li>Análisis de sendero y su aplicación en la investigación sociológica. Supuestos de la técnica.</li>
-<li>Especificación del modelo.</li>
-<li>Evaluación del modelo de medición y de la capacidad confirmatoria del modelo.</li>
-<li>Ejemplo de análisis de sendero.</li>
+<li>Aplicación en la investigación sociológica.</li>
+<li>Comparación entre análisis de componentes principales y factor común; supuestos del método.</li>
+<li>Métodos de extracción de factores, criterios de selección y técnicas de rotación.</li>
+<li>Interpretación de la matriz factorial y evaluación del ajuste. Cálculo de puntuaciones factoriales.</li>
+<li>Introducción al paquete psych.</li>
 </ul>
-<h3 id="modelos-de-ecuaciones-estructurales">7. Modelos de Ecuaciones Estructurales</h3>
+</section>
+<section id="contenidos-3" class="slide level2 smaller dark-background">
+<h2>Contenidos</h2>
+<h3 id="análisis-factorial-confirmatorio">6. Análisis Factorial Confirmatorio</h3>
 <ul>
-<li>Análisis de ecuaciones estructurales y su aplicación en la investigación sociológica.</li>
-<li>La obtención de un modelo de ecuaciones estructurales: la estructura del modelo. Supuestos de la técnica.</li>
-<li>Estimación del modelo empírico.</li>
-<li>Evaluación del modelo.</li>
-<li>Introducción de modificaciones y/o conclusión del análisis. Evaluación de la capacidad confirmatoria del modelo.</li>
-<li>Ejemplos sobre modelamiento de ecuaciones estructurales.</li>
+<li>Diferencias principales con el análisis factorial exploratorio.</li>
+<li>Especificación e identificación del modelo, estimación de parámetros.</li>
+<li>Evaluación del ajuste, reespecificación y validez (convergente y discriminante).</li>
+<li>Ejemplo práctico de análisis confirmatorio.</li>
+<li>Introducción al paquete lavaan.</li>
+</ul>
+</section>
+<section id="contenidos-4" class="slide level2 smaller dark-background">
+<h2>Contenidos</h2>
+<h3 id="análisis-de-sendero">7. Análisis de Sendero</h3>
+<ul>
+<li>Fundamentos y aplicación en ciencias sociales.</li>
+<li>Especificación del modelo de sendero y verificación de supuestos.</li>
+<li>Evaluación de la medición y capacidad confirmatoria.</li>
+<li>Ejemplo aplicado en investigación sociológica.</li>
+</ul>
+<h3 id="modelos-de-ecuaciones-estructurales">8. Modelos de Ecuaciones Estructurales</h3>
+<ul>
+<li>Definición y aplicación de los SEM en ciencias sociales.</li>
+<li>Estructura del modelo y supuestos de la técnica.</li>
+<li>Estimación y evaluación del modelo, introducción de modificaciones.</li>
+<li>Ejemplos de modelamiento de ecuaciones estructurales.</li>
 </ul>
 </section>
 <section id="bibliografía" class="slide level2 smaller" data-background-color="white">
 <h2>Bibliografía</h2>
 <table>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 63%">
+<col style="width: 24%">
+<col style="width: 8%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">Analisis Estadistico Multivariante -<br>Un Enfoque Teorico y Practico</th>
-<th style="text-align: left;">De La Garza<br>Garcia, Jorge</th>
-<th style="text-align: left;">2013</th>
+<th style="text-align: left;">Ítem</th>
+<th style="text-align: left;">Título</th>
+<th style="text-align: left;">Autor</th>
+<th style="text-align: left;">Año</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Analisis Estadistico Multivariante -<br>Un Enfoque Teorico y Practico</td>
+<td style="text-align: left;">De La Garza<br>Garcia, Jorge</td>
+<td style="text-align: left;">2013</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
 <td style="text-align: left;">Análisis de datos multivariantes.</td>
 <td style="text-align: left;">Peña, Daniel</td>
 <td style="text-align: left;">2002</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><strong>3</strong></td>
+<tr class="odd">
+<td style="text-align: left;">3</td>
 <td style="text-align: left;">Análisis Multivariado Aplicado</td>
 <td style="text-align: left;">Uriel Y Aldas</td>
 <td style="text-align: left;">2005, 1ª Edición</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>4</strong></td>
+<tr class="even">
+<td style="text-align: left;">4</td>
 <td style="text-align: left;">Análisis Multivariante para las Ciencias Sociales</td>
-<td style="text-align: left;">Levi J.P. y<br>Varela J.;</td>
+<td style="text-align: left;">Levi J.P. y<br>Varela J.</td>
 <td style="text-align: left;">2001</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><strong>5</strong></td>
-<td style="text-align: left;">Modelos de Ecuaciones Estructurales Cuadernos de estadística</td>
-<td style="text-align: left;">Batista, J.M. y Coenders G.,</td>
-<td style="text-align: left;">2012,</td>
-</tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>6</strong></td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Modelos de Ecuaciones Estructurales Cuadernos de estadística</td>
+<td style="text-align: left;">Batista, J.M. y Coenders G.</td>
+<td style="text-align: left;">2012</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
 <td style="text-align: left;">Introducción al Análisis de Regresión Lineal</td>
 <td style="text-align: left;">Montgomery, Peck y Vining</td>
-<td style="text-align: left;">2006,</td>
+<td style="text-align: left;">2006</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><strong>7</strong></td>
+<tr class="odd">
+<td style="text-align: left;">7</td>
 <td style="text-align: left;">El análisis factorial como técnica de investigación en Psicología</td>
 <td style="text-align: left;">Ferrando, P. J., &amp; Anguiano-Carrasco, C.</td>
 <td style="text-align: left;">2010</td>
 </tr>
+</tbody>
+</table>
+</section>
+<section id="bibliografía-1" class="slide level2 smaller" data-background-color="white">
+<h2>Bibliografía</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Ítem</th>
+<th style="text-align: left;">Título</th>
+<th style="text-align: left;">Autor</th>
+<th style="text-align: left;">Año</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>8</strong></td>
+<td style="text-align: left;">8</td>
 <td style="text-align: left;">Análisis factorial confirmatorio. Su utilidad en la validación de cuestionarios relacionados con la salud.</td>
-<td style="text-align: left;">. Batista-Foguet, J.M., Coenders, G., &amp; Alonso, J.</td>
+<td style="text-align: left;">Batista-Foguet, J.M., Coenders, G., &amp; Alonso, J.</td>
 <td style="text-align: left;">2004</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>9</strong></td>
+<td style="text-align: left;">9</td>
 <td style="text-align: left;">El Path Analysis: conceptos básicos y ejemplos de aplicación.</td>
 <td style="text-align: left;">Pérez, E., Medrano, L. A., &amp; Rosas, J. S</td>
 <td style="text-align: left;">2013</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>10</strong></td>
+<td style="text-align: left;">10</td>
 <td style="text-align: left;">Modelos de ecuaciones estructurales</td>
-<td style="text-align: left;">Ruiz, M.A., Pardo, A., &amp; San Martín, R.</td>
+<td style="text-align: left;">Ruiz, M.A</td>
 <td style="text-align: left;">2010</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>11</strong></td>
+<td style="text-align: left;">11</td>
 <td style="text-align: left;">RStudio para Estadística Descriptiva en Ciencias Sociales. Manual de apoyo docente para la asignatura Estadística Descriptiva</td>
 <td style="text-align: left;">Boccardo, G. y Ruiz, F.</td>
 <td style="text-align: left;">2019</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>12</strong></td>
-<td style="text-align: left;">R para Ciencia de Datos <a href="https://es.r4ds.hadley.nz/index.html" class="uri">https://es.r4ds.hadley.nz/index.html</a></td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">R para Ciencia de Datos <a href="https://es.r4ds.hadley.nz/index.html">https://es.r4ds.hadley.nz/index.html</a></td>
 <td style="text-align: left;">Wickham, H</td>
 <td style="text-align: left;">2019</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">Exploring complex survey data analysis using R: A tidy introduction with {srvyr} and {survey}</td>
+<td style="text-align: left;">Zimmer, S. A</td>
+<td style="text-align: left;">2024</td>
 </tr>
 </tbody>
 </table>
@@ -506,9 +548,9 @@ Gabriel Sotomayor
 <h2>Evaluaciones</h2>
 <table>
 <colgroup>
-<col style="width: 34%">
-<col style="width: 41%">
-<col style="width: 23%">
+<col style="width: 37%">
+<col style="width: 36%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -519,17 +561,17 @@ Gabriel Sotomayor
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Evaluación de R</td>
-<td style="text-align: left;">25 de marzo<br>15 de abril<br>27 de mayo<br>17 de junio</td>
+<td style="text-align: left;">Tareas uso de R</td>
+<td style="text-align: left;">24 de marzo<br>28 de abril<br>2 de junio<br>16 de junio</td>
 <td style="text-align: left;">30%</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Prueba 1</td>
-<td style="text-align: left;">29 de abril</td>
+<td style="text-align: left;">Prueba</td>
+<td style="text-align: left;">19 de mayo</td>
 <td style="text-align: left;">35%</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Trabajo de Investigación</td>
+<td style="text-align: left;">Trabajo final</td>
 <td style="text-align: left;">1 de julio</td>
 <td style="text-align: left;">35%</td>
 </tr>
@@ -539,15 +581,15 @@ Gabriel Sotomayor
 <section id="ayudantías" class="slide level2" data-background-color="white">
 <h2>Ayudantías</h2>
 <p>El curso tiene dos ayudantes:</p>
-<p>Patrio Alarcón <a href="mailto:patricio.alarcon@mail.udp.cl">patricio.alarcon@mail.udp.cl</a></p>
 <p>Fernanda Hurtado <a href="mailto:fernanda.hurtado@mail.udp.cl">fernanda.hurtado@mail.udp.cl</a></p>
+<p>Francisca Hernández <a href="mailto:francisca.hernandez_c@mail.udp.cl">francisca.hernandez_c@mail.udp.cl</a></p>
 <p>Están disponibles para responder las dudas que puedan tener a lo largo del curso, tanto estadísticas como de uso de software.</p>
 <p>Habrá sesiones de ayudantía cada 2 semanas aproximadamente, centradas en la aplicación de las técnicas que revisaremos en R.</p>
 <p>También les acompañarán en la realización de tareas y trabajos de investigación.</p>
 </section>
 <section id="página-del-curso" class="slide level2" data-background-color="white">
 <h2>Página del Curso</h2>
-<p><a href="https://aadii2024.netlify.app/" data-preview-link="true">https://aadii2024.netlify.app/</a></p>
+<p><a href="https://aadii2025.netlify.app/" data-preview-link="true">https://aadii2025.netlify.app/</a></p>
 </section>
 <section id="delegado-de-curso" class="slide level2 dark-background">
 <h2>Delegado de Curso</h2>

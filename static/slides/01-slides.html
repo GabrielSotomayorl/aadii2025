@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="01-slides_files/libs/revealjs/dist/theme/quarto.css">
   <link href="01-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -434,10 +499,10 @@ Gabriel Sotomayor
 <h2>Bibliografía</h2>
 <table>
 <colgroup>
-<col style="width: 3%">
-<col style="width: 63%">
-<col style="width: 24%">
-<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 51%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -531,7 +596,7 @@ Gabriel Sotomayor
 </tr>
 <tr class="odd">
 <td style="text-align: left;">12</td>
-<td style="text-align: left;">R para Ciencia de Datos <a href="https://es.r4ds.hadley.nz/index.html">https://es.r4ds.hadley.nz/index.html</a></td>
+<td style="text-align: left;">R para Ciencia de Datos <a href="https://es.r4ds.hadley.nz/index.html" class="uri">https://es.r4ds.hadley.nz/index.html</a></td>
 <td style="text-align: left;">Wickham, H</td>
 <td style="text-align: left;">2019</td>
 </tr>
@@ -550,7 +615,7 @@ Gabriel Sotomayor
 <colgroup>
 <col style="width: 37%">
 <col style="width: 36%">
-<col style="width: 25%">
+<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -598,215 +663,202 @@ Gabriel Sotomayor
 </section>
 <section id="objetivos-de-la-sesión" class="slide level2" data-background-color="white">
 <h2>Objetivos de la Sesión</h2>
-<p>Reflexionar sobre el uso de software estadístico en ciencias sociales.</p>
-<p>Introducir el uso de R y Rstudio para ciencias sociales.</p>
+<p>Reflexionar sobre el proceso de análisis de datos (y uso de software).</p>
+<p>Introducir el concepto de tidy data y el tidyverse como herramienta de trabajo.</p>
 </section>
-<section id="donde-se-sitúa-la-estadística-y-el-uso-de-software-en-el-proceso-de-investigación" class="slide level2" data-background-color="white">
-<h2>¿Donde Se Sitúa La Estadística Y El Uso De Software En El Proceso De Investigación?</h2>
+<section id="donde-se-sitúa-la-estadística-en-el-proceso-de-investigación" class="slide level2" data-background-color="white">
+<h2>¿Donde se sitúa la estadística en el proceso de investigación?</h2>
 
-<img data-src="img/01/investigacion.png" class="r-stretch"></section>
-<section id="uso-de-software-en-ciencias-sociales" class="slide level2" data-background-color="white">
-<h2>Uso de Software en Ciencias Sociales</h2>
-<p>Progresivamente se ha generalizado el uso de software estadístico en ciencias sociales, abriendo grandes posibilidades de realizar análisis más complejos y facilitando su uso.</p>
-<p>Riesgo de falta de formación estadística y reflexividad (calidad del análisis)</p>
-<p>Dos niveles de manejo del software:</p>
-<ol type="1">
-<li>Ejecución básica y correcta interpretación de las salidas estadísticas (necesario mínimo para utilizar la herramienta e interpretar otras investigaciones).</li>
-<li>Manejo avanzado de software y procedimientos estadísticos. Nivel deseable para un uso reflexivo de las herramientas y lectura crítica de otras investigaciones.</li>
-</ol>
-</section>
-<section id="qué-software-existen-y-cuál-utilizar" class="slide level2" data-background-color="white">
-<h2>¿Qué Software Existen Y Cuál Utilizar?</h2>
-
-<img data-src="img/01/softwares.png" class="r-stretch"></section>
-<section id="qué-software-existen-y-cuál-utilizar-1" class="slide level2 smaller" data-background-color="white">
-<h2>¿Qué Software Existen Y Cuál Utilizar?</h2>
-<table style="width:100%;">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Dimensión / Lenguaje</th>
-<th style="text-align: left;">R</th>
-<th style="text-align: left;">Python</th>
-<th style="text-align: left;">SPSS</th>
-<th style="text-align: left;">Excel</th>
-<th style="text-align: left;">Stata</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Alcance</td>
-<td style="text-align: left;">General, orientación multidisciplinar</td>
-<td style="text-align: left;">General, orientación multidisciplinar</td>
-<td style="text-align: left;">Limitado, orientado a Ciencias Sociales</td>
-<td style="text-align: left;">Limitado, orientado a administración</td>
-<td style="text-align: left;">Limitado, orientado a Economía</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Licencia</td>
-<td style="text-align: left;">Libre (freeware)</td>
-<td style="text-align: left;">Libre (freeware)</td>
-<td style="text-align: left;">Pagada (versión de prueba limitada)</td>
-<td style="text-align: left;">Pagada (versión de prueba limitada)</td>
-<td style="text-align: left;">Pagada (versión de prueba limitada)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Aprendizaje</td>
-<td style="text-align: left;">Sintaxis, poco intuititvo</td>
-<td style="text-align: left;">Sintaxis, poco intuititvo</td>
-<td style="text-align: left;">Botones y sintaxis, intuitivo</td>
-<td style="text-align: left;">Botones y sintaxis, intuitivo</td>
-<td style="text-align: left;">Botones y sintaxis, intuitivo</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Visualización</td>
-<td style="text-align: left;">Avanzada</td>
-<td style="text-align: left;">Intermedia</td>
-<td style="text-align: left;">Básica</td>
-<td style="text-align: left;">Intermedia</td>
-<td style="text-align: left;">Intermedia</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Análisis de texto</td>
-<td style="text-align: left;">Intermedio, poca eficiencia</td>
-<td style="text-align: left;">Avanzado, amplia eficiencia</td>
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Minería Datos</td>
-<td style="text-align: left;">Intermedio, poca eficiencia</td>
-<td style="text-align: left;">Avanzado, amplia eficiencia</td>
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sistema operativo</td>
-<td style="text-align: left;">Windows, Mac OS, Linux</td>
-<td style="text-align: left;">Windows, Mac OS, Linux</td>
-<td style="text-align: left;">Windows, Mac OS</td>
-<td style="text-align: left;">Windows, Mac OS</td>
-<td style="text-align: left;">Windows, Mac OS</td>
-</tr>
-</tbody>
-</table>
-<p>(Boccardo y Ruiz, 2018)</p>
-</section>
-<section id="qué-es-r" class="slide level2" data-background-color="white">
-<h2>¿Qué Es R?</h2>
-<p>R es un software y un lenguaje de programación, ambos de carácter libre, enfocado principalmente en el análisis y visualización de datos. Es desarrollado por The R Foundation for Statistical Computing.</p>
-<p>Funciona con una lógica de objetos, sobre los que podemos trabajar con operadores y funciones.</p>
-<p>El hecho de que sea un lenguaje de programación nos permite <strong>programar funciones</strong>, por lo que es posible pasar de ser usuarios a programadores.</p>
-<p>Instalamos una versión básica y podemos agregar paquetes con nuevas funciones.</p>
-<p>Su interfaz es poco amigable, la solución: <strong>R Studio</strong>.</p>
-</section>
-<section id="porqué-aprender-y-usar-r-y-rstudio" class="slide level2" data-background-color="white">
-<h2>¿Porqué Aprender Y Usar R Y RStudio?</h2>
-
-<img data-src="img/01/r_vs_tiempo.png" class="r-stretch"></section>
-<section id="porqué-usar-r" class="slide level2" data-background-color="white">
-<h2>¿Porqué Usar R?</h2>
-<ol type="1">
-<li><strong>Es libre y gratis.</strong></li>
-<li>Por lo anterior ofrece grandes posibilidades de personalización de los análisis y amplitud de herramientas (en actualización).</li>
-<li>Amplia y creciente comunidad de usuarios desarrollando funciones y resolviendo problemas en internet (la mayoría en inglés).</li>
-<li>Su sintaxis es simple e intuitiva.</li>
-</ol>
-</section>
-<section id="porqué-trabajar-con-sintaxis" class="slide level2" data-background-color="white">
-<h2>¿Porqué Trabajar Con Sintaxis?</h2>
-<ol type="1">
-<li><strong>Replicabilidad:</strong> Permite a otros entender como construimos nuestros resultados y replicarlos, cada vez más importante en la ciencia.</li>
-<li><strong>Eficiencia:</strong> En condiciones “reales” de trabajo resulta más eficiente que trabajar con botones (aunque ahora pueda parecer contraintuitivo)</li>
-<li><strong>Control:</strong> Permite tener claridad de todas las etapas de nuestros análisis, cuestión que en otros software son realizadas por defecto.</li>
-</ol>
-<p>(Elousa, 2009 en Boccardo y Ruiz, 2018: 8-9)</p>
-</section>
-<section id="r-studio" class="slide level2" data-background-color="white">
-<h2>R Studio</h2>
-<p>Es una interfaz gráfica para R que nos permite tener mejor visualización y control de los procesos que realizamos.</p>
-<p>Tiene 4 partes principales:</p>
-<ol type="1">
-<li><strong>Editor de Sintaxis:</strong> formato de block de notas donde podemos construir nuestra sintaxis.</li>
-<li><strong>Ambiente de Trabajo (Environment):</strong> muestra los objetos que hemos creado (memoria temporal – RAM)</li>
-<li><strong>Consola de R:</strong> Aquí es donde podemos ver los resultados de nuestros análisis, las operaciones ejecutadas y mensajes de error.</li>
-<li><strong>Panel de Visualización:</strong> Aquí aparecen los gráficos que ejecutemos, además de tener la pestaña help y nuestro directorio de trabajo.</li>
-</ol>
-
-<img data-src="img/01/rstudio_parts.png" class="r-stretch"></section>
-<section id="instalar-r-y-rstudio" class="slide level2" data-background-color="white">
-<h2>Instalar R Y RStudio</h2>
-<p><strong>Instalar R</strong></p>
-<p>Podemos encontrar R para Windows, Linux y Mac en <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a></p>
-<p>Debemos descargar el paquete base, luego ejecutar el instalador, e instalarlo según las opciones predeterminadas</p>
-<p><strong>Instalar R Studio</strong></p>
-<p>Podemos encontrar R Studio en su sitio web, y bajar la versión gratis, que contiene todas las funciones <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></p>
-<p>Debemos fijarnos en elegir el sistema operativo correcto.</p>
-<p>Igualmente lo ejecutamos e instalamos según las opciones predeterminadas</p>
-</section>
-<section id="el-problema-de-java-x64" class="slide level2" data-background-color="white">
-<h2>El Problema De Java X64</h2>
-<p>Para algunos análisis R se basa en Java, el problema es que nuestros computadores suelen instalar de manera automática la versión de 32 bits, porque los navegadores de internet funcionan (o funcionaban) en esta arquitectura, pero nuestro computadores y R funcionan a 64 bits.</p>
-<p>Para resolverlo debemos descargar e instalar la versión offline de 64 bits de Java <a href="https://www.java.com/es/download/manual.jsp" class="uri">https://www.java.com/es/download/manual.jsp</a></p>
-
-<img data-src="img/01/java.png" class="r-stretch"></section>
-<section id="programación-por-objetos-y-funciones" class="slide level2" data-background-color="white">
-<h2>Programación Por Objetos Y Funciones</h2>
-<p><strong>Tipos de estructuras de datos en R</strong></p>
+<img data-src="img/01/inv.jpg" class="r-stretch"></section>
+<section id="dónde-se-sitúa-la-estadística-en-la-investigación" class="slide level2 smaller dark-background">
+<h2>¿Dónde se Sitúa la Estadística en la Investigación?</h2>
 <ul>
-<li><strong>Vector (vector):</strong> columna o fila de datos de un mismo tipo (una variable individual)</li>
-<li><strong>Listas (list):</strong> Nos permiten agrupar objetos de distinto tipo.</li>
-<li><strong>Matrices (matrix):</strong> arreglo de dos dimensiones de datos de un mismo tipo (conjunto de variables)</li>
-<li><strong>Data.frame (base de datos):</strong> Matriz de datos en el que las columnas tienen asignado nombres, y que permite usar todo tipo de datos.</li>
-</ul>
-<p><strong>Tipos de variables en R</strong></p>
+<li>La estadística es <strong>fundamental</strong> en todo el proceso de investigación en ciencias sociales.</li>
+<li>No se limita al análisis de datos, sino que <strong>guía</strong> cada etapa:
 <ul>
-<li><strong>Numérico (numeric; números con decimales)</strong></li>
-<li><strong>Números enteros (integer)</strong></li>
-<li><strong>Lógicos: Verdadero o Falso</strong></li>
-<li><strong>Variables cadena o texto (string / character)</strong></li>
-<li><strong>Factores (factor):</strong> para variables cualitativas (nominales)</li>
+<li><strong>Diseño de Investigación:</strong> Ayuda a definir la muestra, variables relevantes y métodos de recolección.</li>
+<li><strong>Recolección de Datos:</strong> Asegura la calidad y representatividad de la información.</li>
+<li><strong>Análisis de Datos:</strong> Permite extraer patrones, relaciones y conclusiones significativas.</li>
+<li><strong>Interpretación de Resultados:</strong> Facilita la comprensión de los hallazgos en el contexto teórico.</li>
+<li><strong>Comunicación de Resultados:</strong> Proporciona herramientas para presentar la evidencia de manera clara y rigurosa.</li>
+</ul></li>
+<li>El <strong>software estadístico</strong> (como R) es esencial para aplicar estas técnicas de manera eficiente y reproducible.</li>
 </ul>
 </section>
-<section id="como-continuar" class="slide level2 smaller" data-background-color="white">
-<h2>¿Como Continuar?</h2>
-<p>Dominar R es un camino de mediano plazo y es importante desarrollar habilidad de “hacking”, es decir:</p>
-<ol type="1">
-<li>estar dispuesto a buscar respuestas de manera autónoma</li>
-<li>saber donde buscar la información</li>
-<li>utilizar nuevos datos y paquetes por su cuenta</li>
-</ol>
-<p><strong>Donde buscar:</strong></p>
+<section id="proceso-de-análisis-de-datos" class="slide level2 smaller" data-background-color="white">
+<h2>Proceso de Análisis de Datos</h2>
+
+<img data-src="https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/data-science-explore.svg" class="r-stretch"></section>
+<section id="proceso-de-análisis-de-datos-1" class="slide level2 smaller" data-background-color="white">
+<h2>Proceso de Análisis de Datos</h2>
+<p>La ciencia de datos, y el análisis estadístico, es un proceso iterativo que puede ser resumido en los siguientes pasos:</p>
 <ul>
-<li><strong>GOOGLE!</strong> (preferentemente en inglés) y youtube</li>
-<li>Pedir ayuda a otros usuarios</li>
-<li>Pestaña “help”</li>
-<li><a href="https://www.rdocumentation.org/" class="uri">https://www.rdocumentation.org/</a></li>
-<li><a href="https://stackoverflow.com/" class="uri">https://stackoverflow.com/</a></li>
-<li>Chat GPT*</li>
+<li><strong>Importar:</strong> Traer los datos a R desde diversas fuentes (archivos, bases de datos, APIs).</li>
+<li><strong>Ordenar (Tidy):</strong> Estructurar los datos de manera consistente: cada variable en una columna, cada observación en una fila.</li>
+<li><strong>Transformar:</strong> Modificar los datos para responder preguntas específicas: seleccionar observaciones, crear nuevas variables, calcular resúmenes.</li>
+<li><strong>Visualizar:</strong> Explorar los datos gráficamente para descubrir patrones, tendencias y anomalías.</li>
+<li><strong>Modelar:</strong> Construir modelos estadísticos para confirmar patrones y realizar predicciones.</li>
+<li><strong>Comunicar:</strong> Presentar los resultados de manera efectiva a diferentes audiencias.</li>
+<li><strong>Programar:</strong> Utilizar la programación como herramienta transversal para automatizar tareas y resolver problemas en cada etapa.</li>
 </ul>
-<p>Además hay múltiples recursos web para aprender R de manera profunda y guiada.</p>
-<p>Cuestiones importantes que no revisamos: visualización de datos con ggplot2, el tidyverse (paquete dplyr), y profundizar en programación en R (loops y funciones), programación literada (Rmarkdown).</p>
 </section>
-<section id="bibliografía-y-otros-recursos-para-profundizar" class="slide level2 smaller" data-background-color="white">
-<h2>Bibliografía Y Otros Recursos Para Profundizar</h2>
-<p>Boccardo, Giorgio y Ruiz, Felipe. Uso de RStudio para Estadística Univariada en Ciencias Sociales. Manual de apoyo docente para la asignatura Estadística Descriptiva. Santiago: Departamento de Sociología, Facultad de Ciencias Sociales, Universidad de Chile. <a href="link-to-boccardo-ruiz">Disponible aquí</a>.</p>
-<p>Grolemund, Garrett y Wickham Hadley. R para Ciencia de Datos. <a href="https://es.r4ds.hadley.nz/" class="uri">https://es.r4ds.hadley.nz/</a></p>
-<p>Paradis, E. (2003). R para Principiantes. Francia: Institut des Sciences de l’Évolution. Disponible en: <a href="https://cran.r-project.org/doc/contrib/rdebuts_es.pdf" class="uri">https://cran.r-project.org/doc/contrib/rdebuts_es.pdf</a></p>
-<p><strong>Sitios web útiles</strong></p>
-<p><a href="http://www.sthda.com" class="uri">http://www.sthda.com</a></p>
-<p><strong>Cursos online (inglés)</strong></p>
-<p>Especialización en Ciencia de Datos Universidad John Hopkins <a href="https://www.coursera.org/specializations/jhu-data-science" class="uri">https://www.coursera.org/specializations/jhu-data-science</a></p>
-<p>Data Camp <a href="https://www.datacamp.com/courses/tech:r" class="uri">https://www.datacamp.com/courses/tech:r</a></p>
+<section id="el-tidyverse-un-ecosistema-para-la-ciencia-de-datos-en-r" class="slide level2 smaller">
+<h2>El Tidyverse: Un Ecosistema para la Ciencia de Datos en R</h2>
+<p>El <strong>tidyverse</strong> es una colección de paquetes de R diseñados para la ciencia de datos.</p>
+<ul>
+<li>Comparte una <strong>filosofía</strong> común y facilita el trabajo con datos de manera <strong>intuitiva y eficiente</strong>.</li>
+<li>El nombre “tidyverse” viene de “tidy data” (<strong>datos ordenados</strong>).</li>
+<li>Incluye paquetes esenciales como: <code>dplyr</code>, <code>ggplot2</code>, <code>tidyr</code>, <code>readr</code>, <code>purrr</code>, <code>stringr</code>, <code>forcats</code>, <code>lubridate</code>.</li>
+</ul>
+<p>Para instalar e iniciar el tidyverse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#install.packages("tidyverse") # Instalar el tidyverse</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse) <span class="co"># Cargar el tidyverse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Muestra los paquetes principales cargados.</li>
+<li>Indica posibles conflictos de funciones con otros paquetes (se pueden manejar con <code>conflicted</code>).</li>
+</ul>
+</section>
+<section id="datos-ordenados-tidy-data-una-introducción" class="slide level2 smaller" data-background-color="white">
+<h2>Datos Ordenados (Tidy Data): Una Introducción</h2>
+<p><strong>Datos ordenados (tidy data)</strong> es una manera consistente de organizar los datos.</p>
+<ul>
+<li>Facilita el análisis y la manipulación de datos con las herramientas del tidyverse.</li>
+<li>Aunque requiere un trabajo inicial de organización, <strong>ahorra tiempo a largo plazo</strong> al simplificar el análisis.</li>
+<li>Las encuestas suelen venir en este formato.</li>
+</ul>
+</section>
+<section id="reglas-de-los-datos-ordenados" class="slide level2 smaller" data-background-color="white">
+<h2>Reglas de los Datos Ordenados</h2>
+<p>Para que un conjunto de datos sea considerado <strong>ordenado</strong>, debe cumplir con tres reglas fundamentales:</p>
+<ol type="1">
+<li><strong>Cada variable debe tener su propia columna.</strong></li>
+<li><strong>Cada observación debe tener su propia fila.</strong></li>
+<li><strong>Cada valor debe tener su propia celda.</strong></li>
+</ol>
+<p>##Datos Ordenados {.smaller background-color=“white”}</p>
+
+<img data-src="https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/tidy-1.svg" class="r-stretch"></section>
+<section id="ventajas-de-los-datos-ordenados" class="slide level2 smaller" data-background-color="white">
+<h2>Ventajas de los Datos Ordenados</h2>
+<p>Trabajar con datos ordenados ofrece importantes ventajas:</p>
+<ul>
+<li><strong>Consistencia:</strong> Facilita el aprendizaje y uso de herramientas del tidyverse, ya que están diseñadas para trabajar con este formato.</li>
+<li><strong>Eficiencia en R:</strong> Permite aprovechar la naturaleza vectorizada de R, simplificando la manipulación y el análisis de datos.</li>
+<li><strong>Mayor Claridad:</strong> Estructura intuitiva que facilita la comprensión de los datos y la identificación de variables y observaciones.</li>
+</ul>
+<p>Al adoptar el formato tidy, optimizamos nuestro flujo de trabajo en R para el análisis de datos.</p>
+</section>
+<section id="proceso-de-análisis-de-datos-2" class="slide level2" data-background-color="white">
+<h2>Proceso de Análisis de Datos</h2>
+<p>El sentido de cada una de estas etapas debe estar guiada por una <strong>pregunta de investigación</strong>. Sin una pregunta no podemos determinar que datos necesitamos, en que forma, dodne explorar y visualziar y que modelar y comunicar.</p>
+<p>Tomemos un ejemplo simple: <strong>¿Cómo se relaciona la pobreza y la ruralidad en Chile?</strong></p>
+</section>
+<section id="importar-datos-a-r-ejemplo-con-casen-2022" class="slide level2 smaller" data-background-color="white">
+<h2>Importar Datos a R: Ejemplo con CASEN 2022</h2>
+<p>Para comenzar a trabajar con datos en R, el primer paso es <strong>importarlos</strong>.</p>
+<p>Veamos un ejemplo práctico descargando y cargando la base de datos CASEN 2022:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>() <span class="co"># Creamos un archivo temporal</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">download.file</span>(<span class="st">"https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2022/Base%20de%20datos%20Casen%202022%20SPSS.sav.zip"</span>,temp) <span class="co">#descargamos los datos</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>casen <span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="fu">unz</span>(temp, <span class="st">"Base de datos Casen 2022 SPSS.sav"</span>)) <span class="co">#cargamos los datos</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">unlink</span>(temp); <span class="fu">remove</span>(temp) <span class="co">#eliminamos el archivo temporal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>tempfile()</code>: Crea un archivo temporal para guardar la descarga.</li>
+<li><code>download.file()</code>: Descarga el archivo ZIP de la CASEN desde la URL.</li>
+<li><code>haven::read_sav(unz(...))</code>: Lee el archivo <code>.sav</code> (SPSS) dentro del ZIP descargado, utilizando el paquete <code>haven</code>.</li>
+<li><code>unlink(temp); remove(temp)</code>: Elimina el archivo temporal descargado para limpiar el</li>
+</ul>
+</section>
+<section id="ordenar-tidy" class="slide level2 smaller" data-background-color="white">
+<h2>Ordenar (Tidy)</h2>
+<p>Seleccionamos las variables de interés para este ejemplo: <code>folio</code> (identificador), <code>area</code> (urbana/rural), y <code>pobreza</code> (categorías de pobreza). Usamos <code>select()</code> de <code>dplyr</code> para elegir las columnas y <code>head()</code> para mostrar las primeras filas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>casen <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">select</span>(folio, area, pobreza) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+      folio area      pobreza               
+      &lt;dbl&gt; &lt;dbl+lbl&gt; &lt;dbl+lbl&gt;             
+1 100090101 2 [Rural] 3 [No pobreza]        
+2 100090101 2 [Rural] 3 [No pobreza]        
+3 100090101 2 [Rural] 3 [No pobreza]        
+4 100090201 2 [Rural] 2 [Pobreza no extrema]
+5 100090201 2 [Rural] 2 [Pobreza no extrema]
+6 100090201 2 [Rural] 2 [Pobreza no extrema]</code></pre>
+</div>
+</div>
+</section>
+<section id="transformar" class="slide level2 smaller" data-background-color="white">
+<h2>Transformar</h2>
+<p>Creamos una nueva variable dicotómica llamada <code>pobrezad</code> (pobreza dicotómica). Usamos <code>mutate()</code> de <code>dplyr</code> y <code>ifelse()</code> para asignar valor 1 si la variable <code>pobreza</code> original está en las categorías 1 o 2 (pobre o pobre extremo), y 0 en caso contrario.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>casen <span class="ot">&lt;-</span> casen <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(<span class="at">pobrezad =</span> <span class="fu">ifelse</span>(pobreza <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="visualizar" class="slide level2 smaller" data-background-color="white">
+<h2>Visualizar</h2>
+<p>Visualizamos la relación entre el área de residencia (<code>area</code>) y la pobreza dicotómica (<code>pobrezad</code>) usando un gráfico de barras.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>casen <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">mutate</span>(<span class="at">area_label =</span> <span class="fu">ifelse</span>(area <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"Urbana"</span>, <span class="st">"Rural"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Etiquetas para el área</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> area_label, <span class="at">fill =</span> <span class="fu">factor</span>(pobrezad))) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> <span class="co"># Barras proporcionales</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"lightgray"</span>, <span class="st">"steelblue"</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No Pobre"</span>, <span class="st">"Pobre"</span>), <span class="at">name =</span> <span class="st">"Pobreza"</span>) <span class="sc">+</span> <span class="co"># Colores y etiquetas</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proporción de Pobreza por Área de Residencia"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>       <span class="at">x =</span> <span class="st">"Área de Residencia"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>       <span class="at">y =</span> <span class="st">"Proporción"</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="01-slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="modelar" class="slide level2 smaller" data-background-color="white">
+<h2>Modelar</h2>
+<p>Modelamos la probabilidad de ser pobre (<code>pobrezad</code>) en función del área de residencia (<code>area</code>) utilizando una regresión logística. Calculamos el Odds Ratio para interpretar el efecto del área rural en comparación con el área urbana.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>modelo_logistico <span class="ot">&lt;-</span> <span class="fu">glm</span>(pobrezad <span class="sc">~</span> area, <span class="at">data =</span> casen, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">summary</span>(modelo_logistico)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = pobrezad ~ area, family = "binomial", data = casen)
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -3.08006    0.02554 -120.61   &lt;2e-16 ***
+area         0.46586    0.01898   24.55   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 108273  on 202230  degrees of freedom
+Residual deviance: 107705  on 202229  degrees of freedom
+AIC: 107709
+
+Number of Fisher Scoring iterations: 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(modelo_logistico)) <span class="co"># Odds Ratio</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)        area 
+ 0.04595649  1.59338703 </code></pre>
+</div>
+</div>
+<ul>
+<li><code>glm()</code> ajusta un modelo lineal generalizado. <code>family = "binomial"</code> especifica la regresión logística.</li>
+<li><code>summary(modelo_logistico)</code> muestra los resultados del modelo.</li>
+<li><code>exp(coef(modelo_logistico))</code> calcula el Odds Ratio, exponenciando los coeficientes del modelo. El Odds Ratio para <code>area</code> representa el cambio multiplicativo en las odds de ser pobre al pasar del área urbana (referencia) al área rural.</li>
+</ul>
+</section>
+<section id="comunicar" class="slide level2 smaller" data-background-color="white">
+<h2>Comunicar</h2>
+<p>La regresión logística revela una <strong>asociación significativa y positiva</strong> entre el área de residencia rural y la pobreza. Específicamente, las personas que residen en áreas rurales tienen <strong>odds de ser pobres 1.59 veces mayores</strong> que quienes viven en áreas urbanas (p &lt; 2e-16).</p>
+<p>Este resultado sugiere que el riesgo de pobreza es considerablemente mayor en zonas rurales de Chile, incluso en un modelo simple que solo considera el área de residencia. Este hallazgo destaca la necesidad de políticas públicas diferenciadas y focalizadas en áreas rurales para abordar eficazmente la problemática de la pobreza.</p>
 
 <img src="images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
@@ -1023,6 +1075,44 @@ Gabriel Sotomayor
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

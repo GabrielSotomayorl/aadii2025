@@ -6,18 +6,31 @@ $link-color: #E53935; /* Rojo vibrante */
 
 /*-- scss:rules --*/
 
-/* Fondo blanco para chunks de código */
+/* Fondo blanco y colores bien definidos para chunks de código */
 .reveal .slides pre code {
   background-color: #ffffff; /* Fondo blanco */
   color: #000000; /* Texto negro para asegurar legibilidad */
-  padding: 10px; /* Opcional: añade un poco de padding para mayor legibilidad */
-  border-radius: 5px; /* Opcional: esquinas redondeadas */
+  padding: 10px; /* Añade un poco de padding para mayor legibilidad */
+  border-radius: 5px; /* Esquinas redondeadas */
+  font-size: 0.9em; /* Ajuste de tamaño */
+  font-family: "Fira Code", monospace; /* Fuente más legible */
+  overflow-x: auto; /* Asegura scroll horizontal si es necesario */
 }
 
+/* Estilos para diferentes elementos dentro del código */
+.reveal .slides pre .hljs-comment { color: #666666 !important; } /* Comentarios en gris oscuro */
+.reveal .slides pre .hljs-keyword { color: #D73A49 !important; } /* Palabras clave en rojo oscuro */
+.reveal .slides pre .hljs-string { color: #22863A !important; } /* Strings en verde */
+.reveal .slides pre .hljs-number { color: #B392F0 !important; } /* Números en morado */
+.reveal .slides pre .hljs-function { color: #005CC5 !important; } /* Funciones en azul fuerte */
+.reveal .slides pre .hljs-operator { color: #E36209 !important; } /* Operadores en naranja */
+
+/* Justificación del texto en las diapositivas */
 .reveal .slides section {
   text-align: justify;
 }
 
+/* Alineación de encabezados */
 .reveal .slides h1, 
 .reveal .slides h2, 
 .reveal .slides h3, 
@@ -30,4 +43,11 @@ $link-color: #E53935; /* Rojo vibrante */
 /* Aplica el color rojo a los títulos h2 en diapositivas claras */
 .reveal .slides section:not(.dark-background) h2 {
   color: #C53030; /* Rojo medio */
+}
+
+/* Mejora la apariencia de los bloques de código en fondo oscuro */
+.reveal .slides section.dark-background pre code {
+  background-color: #1E1E1E !important; /* Fondo gris oscuro */
+  color: #FFFFFF !important; /* Texto blanco */
+  border: 1px solid #444444; /* Bordes sutiles */
 }

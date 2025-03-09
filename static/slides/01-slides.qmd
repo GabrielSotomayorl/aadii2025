@@ -226,8 +226,6 @@ Para que un conjunto de datos sea considerado **ordenado**, debe cumplir con tre
 2.  **Cada observación debe tener su propia fila.**
 3.  **Cada valor debe tener su propia celda.**
 
-##Datos Ordenados {.smaller background-color="white"}
-
 ![](https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/tidy-1.svg)
 
 ## Ventajas de los Datos Ordenados {.smaller background-color="white"}
@@ -309,17 +307,20 @@ casen %>%
 
 ## Modelar {.smaller background-color="white"}
 
-Modelamos la probabilidad de ser pobre (`pobrezad`) en función del área de residencia (`area`) utilizando una regresión logística. Calculamos el Odds Ratio para interpretar el efecto del área rural en comparación con el área urbana.
+Modelamos la probabilidad de ser pobre (`pobrezad`) en función del área de residencia (`area`) utilizando una regresión logística. Calculamos el Odds Ratio para interpretar el efecto del área rural en comparación con el área urbana.  
 
+-   `glm()` ajusta un modelo lineal generalizado. `family = "binomial"` especifica la regresión logística.  
+-   `summary(modelo_logistico)` muestra los resultados del modelo.  
+-   `exp(coef(modelo_logistico))` calcula el Odds Ratio, exponenciando los coeficientes del modelo. El Odds Ratio para `area` representa el cambio multiplicativo en las odds de ser pobre al pasar del área urbana (referencia) al área rural.  
+
+## Modelar {.smaller background-color="white"}
 ```{r echo=TRUE, eval=TRUE}
 modelo_logistico <- glm(pobrezad ~ area, data = casen, family = "binomial")
 summary(modelo_logistico)
 exp(coef(modelo_logistico)) # Odds Ratio
 ```
 
--   `glm()` ajusta un modelo lineal generalizado. `family = "binomial"` especifica la regresión logística.
--   `summary(modelo_logistico)` muestra los resultados del modelo.
--   `exp(coef(modelo_logistico))` calcula el Odds Ratio, exponenciando los coeficientes del modelo. El Odds Ratio para `area` representa el cambio multiplicativo en las odds de ser pobre al pasar del área urbana (referencia) al área rural.
+
 
 ## Comunicar {.smaller background-color="white"}
 

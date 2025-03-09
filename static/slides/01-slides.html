@@ -737,7 +737,6 @@ Gabriel Sotomayor
 <li><strong>Cada observación debe tener su propia fila.</strong></li>
 <li><strong>Cada valor debe tener su propia celda.</strong></li>
 </ol>
-<p>##Datos Ordenados {.smaller background-color=“white”}</p>
 
 <img data-src="https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/tidy-1.svg" class="r-stretch"></section>
 <section id="ventajas-de-los-datos-ordenados" class="slide level2 smaller" data-background-color="white">
@@ -823,6 +822,16 @@ Gabriel Sotomayor
 <section id="modelar" class="slide level2 smaller" data-background-color="white">
 <h2>Modelar</h2>
 <p>Modelamos la probabilidad de ser pobre (<code>pobrezad</code>) en función del área de residencia (<code>area</code>) utilizando una regresión logística. Calculamos el Odds Ratio para interpretar el efecto del área rural en comparación con el área urbana.</p>
+<ul>
+<li><code>glm()</code> ajusta un modelo lineal generalizado. <code>family = "binomial"</code> especifica la regresión logística.<br>
+</li>
+<li><code>summary(modelo_logistico)</code> muestra los resultados del modelo.<br>
+</li>
+<li><code>exp(coef(modelo_logistico))</code> calcula el Odds Ratio, exponenciando los coeficientes del modelo. El Odds Ratio para <code>area</code> representa el cambio multiplicativo en las odds de ser pobre al pasar del área urbana (referencia) al área rural.</li>
+</ul>
+</section>
+<section id="modelar-1" class="slide level2 smaller" data-background-color="white">
+<h2>Modelar</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>modelo_logistico <span class="ot">&lt;-</span> <span class="fu">glm</span>(pobrezad <span class="sc">~</span> area, <span class="at">data =</span> casen, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="fu">summary</span>(modelo_logistico)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -852,11 +861,6 @@ Number of Fisher Scoring iterations: 5</code></pre>
  0.04595649  1.59338703 </code></pre>
 </div>
 </div>
-<ul>
-<li><code>glm()</code> ajusta un modelo lineal generalizado. <code>family = "binomial"</code> especifica la regresión logística.</li>
-<li><code>summary(modelo_logistico)</code> muestra los resultados del modelo.</li>
-<li><code>exp(coef(modelo_logistico))</code> calcula el Odds Ratio, exponenciando los coeficientes del modelo. El Odds Ratio para <code>area</code> representa el cambio multiplicativo en las odds de ser pobre al pasar del área urbana (referencia) al área rural.</li>
-</ul>
 </section>
 <section id="comunicar" class="slide level2 smaller" data-background-color="white">
 <h2>Comunicar</h2>

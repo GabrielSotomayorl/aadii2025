@@ -702,7 +702,7 @@ Gabriel Sotomayor
 <li><strong>Programar:</strong> Utilizar la programación como herramienta transversal para automatizar tareas y resolver problemas en cada etapa.</li>
 </ul>
 </section>
-<section id="el-tidyverse-un-ecosistema-para-la-ciencia-de-datos-en-r" class="slide level2 smaller">
+<section id="el-tidyverse-un-ecosistema-para-la-ciencia-de-datos-en-r" class="slide level2 smaller dark-background">
 <h2>El Tidyverse: Un Ecosistema para la Ciencia de Datos en R</h2>
 <p>El <strong>tidyverse</strong> es una colección de paquetes de R diseñados para la ciencia de datos.</p>
 <ul>
@@ -759,12 +759,11 @@ Gabriel Sotomayor
 <h2>Importar Datos a R: Ejemplo con CASEN 2022</h2>
 <p>Para comenzar a trabajar con datos en R, el primer paso es <strong>importarlos</strong>.</p>
 <p>Veamos un ejemplo práctico descargando y cargando la base de datos CASEN 2022:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>() <span class="co"># Creamos un archivo temporal</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">download.file</span>(<span class="st">"https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2022/Base%20de%20datos%20Casen%202022%20SPSS.sav.zip"</span>,temp) <span class="co">#descargamos los datos</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>casen <span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="fu">unz</span>(temp, <span class="st">"Base de datos Casen 2022 SPSS.sav"</span>)) <span class="co">#cargamos los datos</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">unlink</span>(temp); <span class="fu">remove</span>(temp) <span class="co">#eliminamos el archivo temporal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01-slides_cache/revealjs/unnamed-chunk-3_ab4e79d5e8679f3074c5d807daf6394f">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>() <span class="co"># Creamos un archivo temporal</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">download.file</span>(<span class="st">"https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2022/Base%20de%20datos%20Casen%202022%20SPSS.sav.zip"</span>,temp) <span class="co">#descargamos los datos</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>casen <span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="fu">unz</span>(temp, <span class="st">"Base de datos Casen 2022 SPSS.sav"</span>)) <span class="co">#cargamos los datos</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">unlink</span>(temp); <span class="fu">remove</span>(temp) <span class="co">#eliminamos el archivo temporal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>tempfile()</code>: Crea un archivo temporal para guardar la descarga.</li>
@@ -806,17 +805,21 @@ Gabriel Sotomayor
 <p>Visualizamos la relación entre el área de residencia (<code>area</code>) y la pobreza dicotómica (<code>pobrezad</code>) usando un gráfico de barras.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>casen <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">mutate</span>(<span class="at">area_label =</span> <span class="fu">ifelse</span>(area <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"Urbana"</span>, <span class="st">"Rural"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Etiquetas para el área</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> area_label, <span class="at">fill =</span> <span class="fu">factor</span>(pobrezad))) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> <span class="co"># Barras proporcionales</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"lightgray"</span>, <span class="st">"steelblue"</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No Pobre"</span>, <span class="st">"Pobre"</span>), <span class="at">name =</span> <span class="st">"Pobreza"</span>) <span class="sc">+</span> <span class="co"># Colores y etiquetas</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proporción de Pobreza por Área de Residencia"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7"></a>       <span class="at">x =</span> <span class="st">"Área de Residencia"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8"></a>       <span class="at">y =</span> <span class="st">"Proporción"</span>) <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">mutate</span>(<span class="at">area_label =</span> <span class="fu">ifelse</span>(area <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"Urbana"</span>, <span class="st">"Rural"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">group_by</span>(area_label) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">summarise</span>(<span class="at">porcentaje_pobre =</span> <span class="fu">mean</span>(pobrezad, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> area_label, <span class="at">y =</span> porcentaje_pobre, <span class="at">fill =</span> area_label)) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(porcentaje_pobre, <span class="dv">1</span>), <span class="st">"%"</span>)), </span>
+<span id="cb6-8"><a href="#cb6-8"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Rural"</span> <span class="ot">=</span> <span class="st">"#FF6F61"</span>, <span class="st">"Urbana"</span> <span class="ot">=</span> <span class="st">"#5B84B1"</span>)) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Porcentaje de pobreza según área de residencia"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11"></a>       <span class="at">x =</span> <span class="st">"Área de Residencia"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12"></a>       <span class="at">y =</span> <span class="st">"Porcentaje de Pobreza (%)"</span>) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="01-slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<img data-src="01-slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
 <section id="modelar" class="slide level2 smaller" data-background-color="white">
 <h2>Modelar</h2>
 <p>Modelamos la probabilidad de ser pobre (<code>pobrezad</code>) en función del área de residencia (<code>area</code>) utilizando una regresión logística. Calculamos el Odds Ratio para interpretar el efecto del área rural en comparación con el área urbana.</p>

@@ -192,7 +192,7 @@ La ciencia de datos, y el análisis estadístico, es un proceso iterativo que pu
 -   **Comunicar:** Presentar los resultados de manera efectiva a diferentes audiencias.
 -   **Programar:** Utilizar la programación como herramienta transversal para automatizar tareas y resolver problemas en cada etapa.
 
-## El Tidyverse: Un Ecosistema para la Ciencia de Datos en R {.smaller}
+## El Tidyverse: Un Ecosistema para la Ciencia de Datos en R  {.smaller .dark-background}
 
 El **tidyverse** es una colección de paquetes de R diseñados para la ciencia de datos.
 
@@ -251,9 +251,11 @@ Tomemos un ejemplo simple: **¿Cómo se relaciona la pobreza y la ruralidad en C
 Para comenzar a trabajar con datos en R, el primer paso es **importarlos**.
 
 Veamos un ejemplo práctico descargando y cargando la base de datos CASEN 2022:
-
-```{r echo=TRUE, eval=TRUE}
+```{r echo=FALSE, eval=TRUE}
 library(haven)
+```
+
+```{r echo=TRUE, eval=TRUE, cache=TRUE}
 temp <- tempfile() # Creamos un archivo temporal
 download.file("https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2022/Base%20de%20datos%20Casen%202022%20SPSS.sav.zip",temp) #descargamos los datos
 casen <- haven::read_sav(unz(temp, "Base de datos Casen 2022 SPSS.sav")) #cargamos los datos
@@ -291,14 +293,18 @@ Visualizamos la relación entre el área de residencia (`area`) y la pobreza dic
 
 ```{r echo=TRUE, eval=TRUE}
 casen %>%
-  mutate(area_label = ifelse(area == 1, "Urbana", "Rural")) %>% # Etiquetas para el área
-  ggplot(aes(x = area_label, fill = factor(pobrezad))) +
-  geom_bar(position = "fill") + # Barras proporcionales
-  scale_fill_manual(values = c("lightgray", "steelblue"), labels = c("No Pobre", "Pobre"), name = "Pobreza") + # Colores y etiquetas
-  labs(title = "Proporción de Pobreza por Área de Residencia",
+  mutate(area_label = ifelse(area == 1, "Urbana", "Rural")) %>% 
+  group_by(area_label) %>% 
+  summarise(porcentaje_pobre = mean(pobrezad, na.rm = TRUE) * 100) %>%
+  ggplot(aes(x = area_label, y = porcentaje_pobre, fill = area_label)) +
+  geom_col(width = 0.5, show.legend = FALSE) +
+  geom_text(aes(label = paste0(round(porcentaje_pobre, 1), "%")), 
+            vjust = -0.5, size = 5, fontface = "bold") +
+  scale_fill_manual(values = c("Rural" = "#FF6F61", "Urbana" = "#5B84B1")) +
+  labs(title = "Porcentaje de pobreza según área de residencia",
        x = "Área de Residencia",
-       y = "Proporción") +
-  theme_minimal()
+       y = "Porcentaje de Pobreza (%)") +
+  theme_minimal(base_size = 15)
 ```
 
 ## Modelar {.smaller background-color="white"}

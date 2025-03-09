@@ -8,13 +8,15 @@ $link-color: #E53935; /* Rojo vibrante */
 
 /* Fondo blanco y colores bien definidos para chunks de código */
 .reveal .slides pre code {
-  background-color: #ffffff; /* Fondo blanco */
-  color: #000000; /* Texto negro para asegurar legibilidad */
+  /* background-color: #ffffff;  Fondo blanco -  **LINEA PROBLEMÁTICA - COMENTADA** */
+  background-color: #1E1E1E !important; /* Fondo gris oscuro -  **NUEVA LINEA - FONDO OSCURO CONSISTENTE** */
+  color: #FFFFFF !important; /* Texto blanco - **NUEVA LINEA - TEXTO CLARO CONSISTENTE** */
   padding: 10px; /* Añade un poco de padding para mayor legibilidad */
   border-radius: 5px; /* Esquinas redondeadas */
   font-size: 0.9em; /* Ajuste de tamaño */
   font-family: "Fira Code", monospace; /* Fuente más legible */
   overflow-x: auto; /* Asegura scroll horizontal si es necesario */
+  border: 1px solid #444444; /* Bordes sutiles - **NUEVA LINEA - BORDES PARA MEJORAR CONTRASTE** */
 }
 
 /* Estilos para diferentes elementos dentro del código */
@@ -31,11 +33,11 @@ $link-color: #E53935; /* Rojo vibrante */
 }
 
 /* Alineación de encabezados */
-.reveal .slides h1, 
-.reveal .slides h2, 
-.reveal .slides h3, 
-.reveal .slides h4, 
-.reveal .slides h5, 
+.reveal .slides h1,
+.reveal .slides h2,
+.reveal .slides h3,
+.reveal .slides h4,
+.reveal .slides h5,
 .reveal .slides h6 {
   text-align: left; /* Para que los encabezados no se justifiquen */
 }
@@ -45,9 +47,9 @@ $link-color: #E53935; /* Rojo vibrante */
   color: #C53030; /* Rojo medio */
 }
 
-/* Mejora la apariencia de los bloques de código en fondo oscuro */
-.reveal .slides section.dark-background pre code {
-  background-color: #1E1E1E !important; /* Fondo gris oscuro */
-  color: #FFFFFF !important; /* Texto blanco */
-  border: 1px solid #444444; /* Bordes sutiles */
-}
+/* Mejora la apariencia de los bloques de código en fondo oscuro - **ESTOS ESTILOS YA NO SON NECESARIOS AQUÍ, SE HAN MOVIDO ARRIBA PARA APLICARSE A TODOS LOS BLOQUES DE CÓDIGO** */
+/*.reveal .slides section.dark-background pre code {
+  background-color: #1E1E1E !important; /* Fondo gris oscuro
+  color: #FFFFFF !important; /* Texto blanco
+  border: 1px solid #444444; /* Bordes sutiles
+}*/

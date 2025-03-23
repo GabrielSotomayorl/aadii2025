@@ -1,9 +1,9 @@
 ---
-title: "Introducción a los modelos multivariados"
-linktitle: "3. Introducción a los modelos multivariados"
-date: "2023-03-27"
-start_date: "2024-04-08"
-end_date: "2024-04-08"
+title: "Investigación Reproducible en R"
+linktitle: "3. Investigación Reproducible en R"
+date: "2025-03-24"
+start_date: "2025-03-24"
+end_date: "2025-03-24"
 menu:
   content:
     parent: Contenido
@@ -20,7 +20,7 @@ source(here::here("R", "slide-tabs.R"))
 
 slide_details <- tibble::tribble(
   ~title, ~slide, ~active,
-  "Regersión Lineal Múltiple", "1", TRUE
+  "Investigación Reproducible en R", "0", TRUE
 )
 ```
 

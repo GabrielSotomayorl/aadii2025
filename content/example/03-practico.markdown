@@ -1,0 +1,33 @@
+---
+title: "3. Ejemplo básico de Investigación Reproducible en R"
+linktitle: "3. Ejemplo básico de Investigación Reproducible en R"
+date: "2025-03-24"
+menu:
+  example:
+    parent: Ejemplos
+    weight: 3
+type: docs
+toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+# 0. Objetivo del Práctico
+
+El objetivo de este práctico es mostrar, de manera sencilla, cómo estructurar un proyecto reproducible en R, integrando análisis de datos, visualización y documentación. Se enfatizan buenas prácticas en el manejo de rutas relativas, modularidad en el código y generación de reportes reproducibles.
+
+# 1. Proyecto de Ejemplo
+
+Este proyecto de ejemplo está organizado siguiendo el protocolo IPO-R (Input, Procesamiento, Output). Los principales componentes son:
+
+Este proyecto sigue el protocolo **IPO-R** (Input, Procesamiento, Output), con:
+- **Input:** Carpeta que contiene los datos originales.
+- **Procesamiento:** Scripts que preparan y analizan la información.
+- **Output:** Resultados generados (tablas y gráficos).
+
+Puedes descargar el archivo completo del proyecto en el siguiente enlace:
+
+[Descargar Proyecto Reproducible](/IPO-R.rar)
+
+Para revisar un proyecto real de mayor complejidad, utilizando todos los componentes el protocolo pueden consultar el ejemplo provisto por LISA https://lisa-coes.netlify.app/ipo-repro/   
+[Ejemplo completo](https://lisa-coes.github.io/ipo/IPO_miniex/IPO_miniex.tar.gz)

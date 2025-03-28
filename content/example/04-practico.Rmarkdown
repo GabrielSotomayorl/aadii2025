@@ -33,9 +33,6 @@ Antes de empezar, necesitamos asegurarnos de tener las herramientas adecuadas en
 *   **Paquetes:** Cargaremos los paquetes `tidyverse` (para manipulación general de datos), `haven` (para leer archivos de SPSS/Stata/SAS) y `survey` (para análisis de encuestas complejas).
 *   **RProject:** Es una buena práctica trabajar dentro de un RStudio Project para mantener todo organizado y facilitar el manejo de rutas de archivos. Si no tienes uno para este curso, considera crearlo.
 
-
-
-
 ```{r}
 # Si no tienes instalados los paquetes, ejecuta primero estas líneas (quitando el #):
 # install.packages("tidyverse")
@@ -80,7 +77,7 @@ Ahora que tenemos la base `casen` en nuestro entorno, vamos a explorarla un poco
 
 ```{r}
 # Vistazo rápido a la estructura y tipos de variables
-#glimpse(casen)
+#glimpse(casen) # Comentado para brevedad
 
 # Ver las primeras filas de la base
 head(casen)
@@ -93,39 +90,48 @@ summary(casen$ytotcorh) # Ingreso total corregido del hogar
 summary(casen$pobreza) # Situación de pobreza
 ```
 
-**Reflexiona:** Observa la cantidad de variables y casos. ¿Qué tipo de datos contienen las variables que resumiste? ¿Hay valores perdidos (`NA`)?
+**Interpretación de la Exploración:**
+*   La base tiene muchísimas variables (`r ncol(casen)`) y un gran número de casos (`r nrow(casen)`), correspondientes a personas.
+*   La **edad** va de 0 a 120 años, con una media muestral (aún no ponderada) de 39.3 años.
+*   El **sexo** está codificado (probablemente 1=Hombre, 2=Mujer), con una leve mayoría de mujeres en la muestra (media de 1.53).
+*   La **escolaridad** (`esc`) tiene un rango amplio y presenta valores perdidos (`NA's`). La media muestral es de 11.2 años.
+*   El **ingreso del hogar** (`ytotcorh`) muestra una gran dispersión (comparar mediana y media, y el máximo valor) y también tiene algunos `NA`.
+*   La variable **pobreza** (probablemente 1=extrema, 2=no extrema, 3=no pobre) muestra que la mayoría de la muestra se clasifica como no pobre (media cercana a 3).
+
+**Reflexión:** Esta exploración inicial nos da una idea general de los datos, pero recordamos que estas son estadísticas *de la muestra*, no necesariamente representativas de la población chilena todavía.
 
 ### Identificando las Variables del Diseño Muestral
 
 Como vimos en la clase, para analizar correctamente esta encuesta, necesitamos identificar las variables que definen su diseño complejo. Basándonos en la documentación oficial de CASEN (que siempre deberías consultar), estas variables suelen ser:
 
-1.  **Ponderador / Factor de Expansión:** Representa a cuántas personas de la población representa cada encuestado. Busca variables con nombres como `expr`, `expc`, `exph`. Usaremos el ponderador regional `expr`.
-2.  **Estrato:** Define los subgrupos creados antes del muestreo (ej. por zona geográfica, NSE). En CASEN 2022, se llama `varstrat`.
-3.  **Conglomerado / UPM:** Identifica la unidad primaria de muestreo (ej. la manzana o sector censal). En CASEN 2022, se llama `varunit`.
+1.  **Ponderador / Factor de Expansión:** `expr` (regional).
+2.  **Estrato:** `varstrat`.
+3.  **Conglomerado / UPM:** `varunit`.
 
 Veamos cómo lucen estas variables en nuestros datos:
 
 ```{r}
 # Resumen del factor de expansión regional (ponderador)
 summary(casen$expr)
-# Nota: ¡Los pesos no son todos iguales! Esto confirma que no es MAS.
+# Nota: ¡Los pesos varían mucho! Van desde 2 hasta 5222, con una media de 98.3. 
+# Esto confirma que las probabilidades de selección fueron muy desiguales.
 
-# Resumen (o tabla de frecuencias) de la variable de estrato
-# Es un código, así que un summary no es tan útil como ver cuántos hay
+# Cantidad de estratos únicos definidos para la varianza
 length(unique(casen$varstrat)) 
 head(casen$varstrat)
 
-# Resumen (o tabla de frecuencias) de la variable de conglomerado (UPM)
+# Cantidad de conglomerados (UPMs) únicos definidos para la varianza
 length(unique(casen$varunit))
 head(casen$varunit)
-# Nota: Los IDs de conglomerado (varunit) probablemente se repiten entre estratos (varstrat).
+# Nota: Hay muchos menos estratos (755) que conglomerados (12062), 
+# y los IDs de conglomerado (varunit) se repiten, confirmando la estructura anidada.
 ```
 
 **Importante:** Hemos localizado las variables `expr`, `varstrat`, y `varunit`. ¡Estas son las llaves para decirle a R cómo fue diseñada la muestra!
 
 ## 3. El Error Común: Análisis Ingenuo
 
-Antes de usar las herramientas correctas, hagamos un ejercicio: calculemos algunas estadísticas como si CASEN fuera una muestra aleatoria simple (MAS), ignorando los ponderadores, estratos y conglomerados. Esto nos dará un punto de comparación.
+Antes de usar las herramientas correctas, calculemos estadísticas como si CASEN fuera una muestra aleatoria simple (MAS), ignorando el diseño.
 
 ```{r}
 # Media de edad simple (ignorando el diseño)
@@ -142,9 +148,7 @@ prop_sexo_ingenua <- prop.table(tabla_sexo_ingenua)
 print("Proporción por sexo (ingenua):")
 print(round(prop_sexo_ingenua, 3))
 
-# Proporción de pobreza simple
-# (Recodificamos pobreza: 1=pobre extremo, 2=pobre no extremo, 3=no pobre)
-# Crearemos una variable dicotómica: 1 si es pobre (1 o 2), 0 si no es pobre (3)
+# Proporción de pobreza simple (variable dicotómica pobre_dic)
 casen <- casen %>% 
   mutate(pobre_dic = ifelse(pobreza %in% c(1, 2), 1, 0))
 
@@ -152,22 +156,20 @@ tabla_pobreza_ingenua <- table(casen$pobre_dic)
 prop_pobreza_ingenua <- prop.table(tabla_pobreza_ingenua)
 print("Proporción de pobreza (ingenua):")
 print(round(prop_pobreza_ingenua, 3)) 
-# Mostramos la proporción de '1' (pobres)
 ```
 
-**Guarda estos resultados ingenuos.** Los usaremos para comparar en el último paso.
+**Resultados Ingenuos:**
+*   Edad media (ingenua): 39.32 años.
+*   Escolaridad media (ingenua): 11.17 años.
+*   Proporción de Hombres (ingenua): 47.3%.
+*   Proporción de Mujeres (ingenua): 52.7%.
+*   Proporción de Pobreza (ingenua): 7.6%.
+
+**Guarda estos números.** Los usaremos para comparar.
 
 ## 4. Declarando el Diseño Muestral con `survey`
 
-Ahora, vamos a enseñarle a R cómo está estructurada realmente la muestra de CASEN. Usaremos la función `svydesign()` del paquete `survey`.
-
-Los argumentos clave son:
-
-*   `ids = ~varunit`: Especifica la variable que contiene los identificadores de las UPM (conglomerados). El `~` es importante.
-*   `strata = ~varstrat`: Especifica la variable que contiene los identificadores de los estratos.
-*   `weights = ~expr`: Especifica la variable que contiene los ponderadores (factores de expansión). Usaremos `expr` (ponderador regional).
-*   `data = casen`: El data frame que contiene los datos.
-*   `nest = TRUE`: Argumento importante. Se usa cuando los IDs de las UPM (`varunit`) pueden repetirse entre diferentes estratos (`varstrat`), lo cual es común. Le dice a `survey` que trate, por ejemplo, `varunit = 1` en `varstrat = A` como diferente de `varunit = 1` en `varstrat = B`.
+Ahora, le enseñamos a R la "receta" de la muestra CASEN usando `svydesign()`.
 
 ```{r}
 # Crear el objeto que describe el diseño muestral de CASEN
@@ -182,41 +184,44 @@ print("Objeto de diseño muestral 'casen_design' creado.")
 
 # Inspeccionar el objeto creado
 print(casen_design)
-#summary(casen_design) 
+#summary(casen_design) # Comentado para brevedad
 ```
 
-**Observa la salida:** ¿Qué información te entrega R sobre el diseño que acabas de declarar? Te dice el número de estratos, el número de UPMs (PSUs), el número de observaciones y la variable de ponderación utilizada. ¡Ahora R "sabe" que esta no es una muestra simple!
+**Interpretación de la Salida `print(casen_design)`:**
+R nos confirma que ha creado un objeto de diseño muestral. Nos indica que es un diseño "Stratified 1-level Cluster Sampling design" (Muestreo por Conglomerados Estratificado de 1 nivel - aunque sabemos que es bietápico, `survey` a menudo simplifica la descripción si solo se especifican las UPMs). Crucialmente, identifica:
+*   Que hay 12062 clusters (UPMs únicas definidas en `varunit`).
+*   Que la estratificación está dada por `varstrat`.
+*   Que los ponderadores son `expr`.
+*   Que los datos provienen de `casen`.
+
+¡Ahora R "sabe" que esta no es una muestra simple y cómo está estructurada!
 
 ## 5. Primer Cálculo Respetando el Diseño
 
-Vamos a recalcular la **media de edad** y la **proporción de pobreza**, pero esta vez usando nuestro objeto `casen_design` y una función del paquete `survey`: `svymean()`.
-
-`svymean()` calcula medias ponderadas y correctamente ajustadas para diseños complejos. También calcula el error estándar (SE) correcto.
-
-*   Para variables continuas (como `edad`), calcula la media ponderada.
-*   Para variables categóricas (como `pobre_dic` que es 0/1), calcula la proporción ponderada de la categoría 1.
+Vamos a recalcular la **media de edad** y la **proporción de pobreza** usando el objeto `casen_design` y la función `svymean()`.
 
 ```{r}
 # Media de edad PONDERADA
 media_edad_ponderada <- svymean(~edad, design = casen_design, na.rm = TRUE)
 print("Media de edad (ponderada y con diseño complejo):")
 print(media_edad_ponderada)
-# Fíjate que ahora también obtenemos el Error Estándar (SE)
 
-# Proporción de pobreza PONDERADA
-# Usamos la variable dicotómica pobre_dic (1=pobre, 0=no pobre)
+# Proporción de pobreza PONDERADA (usando pobre_dic)
 prop_pobreza_ponderada <- svymean(~pobre_dic, design = casen_design, na.rm = TRUE)
 print("Proporción de pobreza (ponderada y con diseño complejo):")
 print(prop_pobreza_ponderada) 
-# El 'mean' aquí es la proporción de '1' (pobres)
 ```
 
 **¡Ahora compara!**
 
-1.  Compara la `media_edad_ponderada` (el valor `mean` de la salida) con la `media_edad_ingenua` que calculaste antes. ¿Son iguales o diferentes?
-2.  Compara la `prop_pobreza_ponderada` (el valor `mean` de la salida) con la `prop_pobreza_ingenua` (la proporción de '1') que calculaste antes. ¿Son iguales o diferentes?
+1.  **Edad:** La media ingenua fue **39.32 años**. La media ponderada es **37.2 años** (SE=0.098). ¡Son diferentes! La media ponderada, que representa mejor a la población, es menor.
+2.  **Pobreza:** La proporción ingenua de pobreza fue **7.6%** (0.076). La proporción ponderada es **6.5%** (0.065, SE=0.0014). ¡También es diferente! La estimación que considera el diseño muestral es más baja.
 
-**Pregunta de Reflexión:** ¿Por qué crees que los resultados ponderados difieren de los resultados ingenuos? ¿Qué implica esto para nuestras conclusiones si solo hubiéramos usado los cálculos ingenuos?
+**Pregunta de Reflexión:** ¿Por qué crees que los resultados ponderados difieren de los resultados ingenuos? 
+*Respuesta posible:* Los ponderadores corrigen el hecho de que algunas personas (quizás más jóvenes o no pobres en este caso) tuvieron mayor probabilidad de ser seleccionadas o respondieron más que otras. Al aplicar los pesos, ajustamos esas diferencias para que la muestra refleje mejor la estructura real de la población. Ignorar los pesos nos daría una imagen distorsionada.
+
+¿Qué implica esto para nuestras conclusiones si solo hubiéramos usado los cálculos ingenuos?
+*Respuesta posible:* Hubiéramos sobreestimado la edad promedio de la población y también la tasa de pobreza. Nuestras conclusiones sobre la sociedad chilena habrían sido incorrectas.
 
 ## 6. Conclusión
 
@@ -225,6 +230,7 @@ print(prop_pobreza_ponderada)
 *   Aprendiste a cargar datos de CASEN.
 *   Identificaste las variables cruciales del diseño muestral (`expr`, `varstrat`, `varunit`).
 *   Declaraste este diseño a R usando `svydesign()`.
-*   Viste empíricamente cómo los **ponderadores cambian las estimaciones** puntuales usando `svymean()`.
+*   **Comprobaste empíricamente** que ignorar los ponderadores lleva a **estimaciones diferentes (y probablemente sesgadas)**, comparando los resultados ingenuos con los obtenidos usando `svymean()`.
+*   Notaste que `svymean` también entrega un **Error Estándar (SE)**, que mide la incertidumbre de la estimación considerando el diseño.
 
-En la próxima sesión, profundizaremos en cómo realizar más análisis (proporciones por grupo, totales) de manera más fácil usando el paquete `srvyr` y cómo interpretar los errores estándar que R calcula para nosotros.
+En la próxima sesión, profundizaremos en cómo realizar más análisis (proporciones por grupo, totales) de manera más fácil usando el paquete `srvyr` y cómo interpretar estos errores estándar.

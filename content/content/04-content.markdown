@@ -1,9 +1,9 @@
 ---
-title: "Muestreo y Encuestas Complejas en R"
+title: "Muestreo y Encuestas Complejas en R I"
 linktitle: "4: Muestreo y Encuestas Complejas en R"
-date: "2024-04-31"
-start_date: "2024-04-31"
-end_date: "2024-04-31"
+date: "2024-03-31"
+start_date: "2024-03-31"
+end_date: "2024-03-31"
 menu:
   content:
     parent: Contenido

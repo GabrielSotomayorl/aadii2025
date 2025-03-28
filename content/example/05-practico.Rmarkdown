@@ -72,7 +72,7 @@ casen_design_srvyr <- as_survey_design(casen,
                                        nest = TRUE)       # IDs de UPM se repiten entre estratos
 
 # Inspeccionar el objeto creado con srvyr
-print(casen_design_srvyr)
+#print(casen_design_srvyr) # Comentado para no alargar el output renderizado
 ```
 
 ## 2. Análisis Descriptivo con `srvyr`
@@ -94,7 +94,10 @@ medias_ci <- casen_design_srvyr %>%
 print(medias_ci)
 ```
 
-**Interpretación:** Observa la estimación puntual (`_media`), el límite inferior (`_low`) y superior (`_upp`) del IC 95% para edad y escolaridad.
+**Interpretación:** 
+La salida muestra las estimaciones ponderadas y sus intervalos de confianza al 95%.
+-   **Edad:** La edad promedio estimada para la población cubierta por CASEN 2022 es **37.2 años**. Con un 95% de confianza, la verdadera edad promedio poblacional se encuentra entre **37.0 y 37.4 años**.
+-   **Escolaridad:** La escolaridad promedio estimada es de **12.0 años**. El intervalo de confianza (95%) es muy estrecho, yendo de **11.9 a 12.0 años**, lo que indica una alta precisión en esta estimación.
 
 ### Proporciones Ponderadas
 
@@ -117,7 +120,9 @@ prop_sexo <- casen_design_srvyr %>%
 print(prop_sexo)
 ```
 
-**Interpretación:** Interpreta la tasa de pobreza y su IC. Luego, observa las proporciones estimadas para hombres y mujeres y sus ICs.
+**Interpretación:**
+-   **Tasa de Pobreza:** Se estima que el **6.5%** de la población se encuentra en situación de pobreza (extrema o no extrema). El intervalo de confianza del 95% para esta estimación va de **6.2% a 6.8%**.
+-   **Distribución por Sexo:** La población estimada se distribuye en un **49.3% de hombres** (IC 95%: 49.1% - 49.6%) y un **50.7% de mujeres** (IC 95%: 50.4% - 50.9%). Los intervalos estrechos reflejan una división muy cercana a la mitad en la población.
 
 ### Totales Poblacionales Estimados (Opcional)
 
@@ -134,6 +139,10 @@ total_pobres <- casen_design_srvyr %>%
   
 print(total_pobres)
 ```
+
+**Interpretación:**
+-   **Población Total:** CASEN 2022 estima una población total (cubierta por la encuesta y usando el ponderador regional `expr`) de aproximadamente **19.9 millones de personas**. El IC 95% sugiere que el valor real está entre 19.6 y 20.1 millones.
+-   **Total Personas Pobres:** De esa población, se estima que **1,291,824 personas** están en situación de pobreza. El IC 95% para este total va desde 1,234,083 hasta 1,349,565 personas.
 
 ## 3. Análisis por Subgrupos (`group_by`)
 
@@ -152,7 +161,7 @@ head(ingreso_x_region)
 
 # Tasa de pobreza (proporción de pobre_dic == 1) por zona (urbana/rural)
 pobreza_x_zona <- casen_design_srvyr %>%
-  mutate(zona_factor = haven::as_factor(area)) %>% # Usar etiquetas
+  mutate(zona_factor = haven::as_factor(area)) %>% # Usar etiquetas ('area' es la variable original)
   filter(!is.na(area)) %>%
   group_by(zona_factor) %>%
   summarise(tasa_pobreza = survey_mean(pobre_dic, na.rm = TRUE, vartype = "ci"))
@@ -171,41 +180,36 @@ print(esc_x_sexo)
 
 **Interpretación y Reflexión:**
 
-*   Observa las diferencias en ingreso medio por región. ¿Son grandes? ¿Qué indican los errores estándar?
-*   Compara la tasa de pobreza entre zona urbana y rural. ¿Se solapan los intervalos de confianza?
-*   Analiza la escolaridad media por sexo. ¿Hay diferencias aparentes?
+*   **Ingreso por Región:** La salida `head(ingreso_x_region)` muestra el ingreso medio estimado y su error estándar (SE) para las primeras regiones. Vemos diferencias: Antofagasta tiene un ingreso medio estimado más alto (\$1,819,321, SE \$46,307) que, por ejemplo, Coquimbo (\$1,438,892, SE \$39,039). Errores estándar más pequeños indican mayor precisión en la estimación para esa región específica. (Para una comparación completa, deberías mirar la tabla completa `ingreso_x_region`).
+*   **Pobreza por Zona:** La tasa de pobreza estimada es notablemente más alta en la zona **Rural (9.9%)** que en la zona **Urbana (6.1%)**. Crucialmente, los intervalos de confianza **no se solapan** (Rural: 9.2%-10.7%; Urbana: 5.8%-6.4%). Esto nos da una fuerte evidencia de que la pobreza es significativamente mayor en zonas rurales según esta encuesta.
+*   **Escolaridad por Sexo:** La escolaridad media estimada es casi idéntica: **12.0 años para hombres** (IC 95%: 12.0 - 12.1) y **11.9 años para mujeres** (IC 95%: 11.8 - 11.9). Los intervalos de confianza **se solapan**, lo que sugiere que la diferencia observada es muy pequeña y probablemente no sea estadísticamente significativa (aunque para confirmarlo necesitaríamos una prueba formal).
 
 ## 4. Visualización de Resultados Ponderados con `ggplot2`
 
-Un error común es intentar usar `ggplot2` directamente con la base de datos original (`casen`) o incluso con el objeto `casen_design_srvyr` esperando que "mágicamente" aplique los ponderadores y calcule los errores correctamente. **¡Esto no funciona!**
+Recordatorio importante: `ggplot2` no aplica automáticamente ponderadores ni calcula errores complejos. Necesita un data frame resumen con las estadísticas ya calculadas correctamente.
 
-`ggplot2` necesita un **data frame resumen** que ya contenga las **estadísticas ponderadas** (medias, proporciones, etc.) y, si queremos graficar la incertidumbre, los **límites de los intervalos de confianza** o los **errores estándar**.
-
-**El flujo correcto es:**
-
-1.  Usar `srvyr` (con `group_by` y `summarise`) para calcular las estadísticas deseadas (ej. proporciones y sus ICs). Guardar este resultado en un **nuevo tibble**.
-2.  Usar ese **nuevo tibble** como el argumento `data` en `ggplot()`.
-3.  Mapear las estadísticas calculadas (ej. proporción, límite inferior, límite superior) a las estéticas (`aes`) de `ggplot` (ej. `y`, `ymin`, `ymax`).
+**El flujo correcto:**
+1.  **Calcular con `srvyr`:** Usa `group_by` y `summarise` para obtener las medias/proporciones y sus ICs/SEs. Guarda esto en un **nuevo tibble**.
+2.  **Visualizar con `ggplot2`:** Usa ese **nuevo tibble** como input para `ggplot`.
 
 **Ejemplo: Graficar la tasa de pobreza por zona**
 
-Primero, volvemos a calcular la tasa de pobreza por zona, asegurándonos de guardar el resultado.
+Reutilizamos el cálculo anterior, asegurándonos de tener el tibble.
 
 ```{r}
-# 1. Calcular estadísticas ponderadas con srvyr
+# 1. Calcular estadísticas ponderadas con srvyr (ya lo hicimos antes, verificamos)
 pobreza_x_zona_data <- casen_design_srvyr %>%
   mutate(zona_factor = haven::as_factor(area)) %>% 
   filter(!is.na(area)) %>%
   group_by(zona_factor) %>%
   summarise(
     tasa_pobreza = survey_mean(pobre_dic, na.rm = TRUE, vartype = "ci") 
-    # pedimos el IC directamente (obtendremos _low y _upp)
   )
 
-print(pobreza_x_zona_data) # Verificamos el tibble resultante
+print(pobreza_x_zona_data) # Tibble listo para ggplot
 ```
 
-Ahora, usamos `pobreza_x_zona_data` (¡NO `casen` ni `casen_design_srvyr`!) en `ggplot`.
+Ahora, graficamos usando `pobreza_x_zona_data`.
 
 ```{r}
 # 2. Crear el gráfico con ggplot2 usando el tibble resumen
@@ -214,22 +218,24 @@ ggplot(pobreza_x_zona_data, aes(x = zona_factor, y = tasa_pobreza, fill = zona_f
   geom_errorbar(
     aes(ymin = tasa_pobreza_low, ymax = tasa_pobreza_upp), # Usamos los límites del IC
     width = 0.2, # Ancho de las barras de error
-    linewidth = 0.8 # Grosor de la línea (ajustar si es necesario)
+    linewidth = 0.8 # Grosor de la línea
   ) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) + # Eje Y en porcentaje
-  scale_fill_viridis_d(option = "E", begin = 0.3, end = 0.8) + # Paleta de colores accesible
+  # Usaremos colores específicos para Urbano/Rural si lo deseamos
+  # scale_fill_manual(values = c("Urbano" = "lightblue", "Rural" = "darkgreen")) + 
+  scale_fill_viridis_d(option = "D", begin = 0.2, end = 0.7) + # Paleta Viridis (accesible)
   labs(
     title = "Tasa de Pobreza Estimada por Zona",
     subtitle = "Encuesta CASEN 2022 (con IC 95%)",
     x = "Zona Geográfica",
     y = "Tasa de Pobreza Estimada",
-    fill = "Zona" # Etiqueta para la leyenda
+    fill = "Zona" 
   ) +
   theme_minimal(base_size = 14) +
   theme(legend.position = "bottom") 
 ```
 
-**Interpretación del Gráfico:** Este gráfico muestra la tasa de pobreza estimada para las zonas urbana y rural, basada en los cálculos ponderados de CASEN 2022. Las barras representan la estimación puntual, y las líneas negras indican el intervalo de confianza del 95%. Podemos ver claramente que la tasa de pobreza estimada es más alta en la zona rural y que los intervalos de confianza no se solapan, sugiriendo una diferencia estadísticamente significativa.
+**Interpretación del Gráfico:** Este gráfico visualiza claramente las estimaciones de pobreza por zona calculadas previamente. Las barras muestran las tasas puntuales (mayor en Rural) y las barras de error (Intervalos de Confianza al 95%) confirman visualmente que la diferencia es significativa, ya que no hay solapamiento entre ellas. El uso de colores distintos ayuda a diferenciar las categorías.
 
 **Recuerda:** Siempre calcula primero con `srvyr`/`survey`, luego visualiza con `ggplot2`.
 
@@ -244,3 +250,4 @@ ggplot(pobreza_x_zona_data, aes(x = zona_factor, y = tasa_pobreza, fill = zona_f
 *   **Visualizar correctamente** los resultados ponderados usando `ggplot2` después de calcular las estadísticas necesarias.
 
 Ahora tienes las herramientas fundamentales para empezar a analizar datos de encuestas complejas como CASEN de manera rigurosa y eficiente en R, incluyendo la capacidad de crear visualizaciones informativas y correctas. ¡El siguiente paso es practicar con diferentes variables y preguntas de investigación!
+

@@ -1,6 +1,6 @@
 ---
 title: "Muestreo y Encuestas Complejas en R"
-linktitle: "5: Muestreo y Encuestas Complejas en R"
+linktitle: "5: Muestreo y Encuestas Complejas en R II"
 date: "2024-04-07"
 start_date: "2024-04-07"
 end_date: "2024-04-07"

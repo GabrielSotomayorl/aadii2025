@@ -8,7 +8,7 @@
 <link href="05-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="05-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="05-slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.3.353">
 
   <meta name="author" content="Gabriel Sotomayor">
   <meta name="dcterms.date" content="2025-04-07">
@@ -32,7 +32,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -43,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -222,8 +222,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -461,13 +460,13 @@ Gabriel Sotomayor
 <h2>Declarando el Diseño: <code>survey::svydesign()</code> (Repaso)</h2>
 <p>Recordemos cómo creamos este objeto “receta” para CASEN en el práctico anterior:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>casen_design <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(</span>
-<span id="cb1-2"><a href=""></a>  <span class="at">ids =</span> <span class="sc">~</span>varunit,      <span class="co"># Le dice a R cuál es la variable de UPMs/Conglomerados</span></span>
-<span id="cb1-3"><a href=""></a>  <span class="at">strata =</span> <span class="sc">~</span>varstrat,   <span class="co"># Le dice a R cuál es la variable de Estratos</span></span>
-<span id="cb1-4"><a href=""></a>  <span class="at">weights =</span> <span class="sc">~</span>expr,     <span class="co"># Le dice a R cuál es la variable de Ponderadores</span></span>
-<span id="cb1-5"><a href=""></a>  <span class="at">data =</span> casen,        <span class="co"># Le dice a R dónde están los datos crudos</span></span>
-<span id="cb1-6"><a href=""></a>  <span class="at">nest =</span> <span class="cn">TRUE</span>          <span class="co"># Le dice a R que los IDs de UPMs pueden repetirse entre estratos</span></span>
-<span id="cb1-7"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>casen_design <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="at">ids =</span> <span class="sc">~</span>varunit,      <span class="co"># Le dice a R cuál es la variable de UPMs/Conglomerados</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="at">strata =</span> <span class="sc">~</span>varstrat,   <span class="co"># Le dice a R cuál es la variable de Estratos</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="at">weights =</span> <span class="sc">~</span>expr,     <span class="co"># Le dice a R cuál es la variable de Ponderadores</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="at">data =</span> casen,        <span class="co"># Le dice a R dónde están los datos crudos</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="at">nest =</span> <span class="cn">TRUE</span>          <span class="co"># Le dice a R que los IDs de UPMs pueden repetirse entre estratos</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><strong>Cada argumento</strong> (<code>ids</code>, <code>strata</code>, <code>weights</code>) le da una pieza clave de la “receta” a R.</li>
@@ -521,14 +520,14 @@ Gabriel Sotomayor
 <section id="análisis-por-subgrupos-con-survey-svyby" class="slide level2 smaller" data-background-color="white">
 <h2>Análisis por Subgrupos con <code>survey</code>: <code>svyby()</code></h2>
 <p>Para calcular estadísticas por grupo (ej. media de ingreso por región), <code>survey</code> ofrece <code>svyby()</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># Calcular la media de 'edad' para cada nivel de la variable 'sexo'</span></span>
-<span id="cb2-2"><a href=""></a><span class="fu">svyby</span>(</span>
-<span id="cb2-3"><a href=""></a>  <span class="at">formula =</span> <span class="sc">~</span>edad,      <span class="co"># La variable a analizar</span></span>
-<span id="cb2-4"><a href=""></a>  <span class="at">by =</span> <span class="sc">~</span>sexo,           <span class="co"># La variable que define los grupos</span></span>
-<span id="cb2-5"><a href=""></a>  <span class="at">design =</span> casen_design, <span class="co"># El objeto de diseño</span></span>
-<span id="cb2-6"><a href=""></a>  <span class="at">FUN =</span> svymean,        <span class="co"># ¡La función que queremos aplicar a cada grupo!</span></span>
-<span id="cb2-7"><a href=""></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span>          <span class="co"># Argumento para pasar a svymean</span></span>
-<span id="cb2-8"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Calcular la media de 'edad' para cada nivel de la variable 'sexo'</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">svyby</span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">formula =</span> <span class="sc">~</span>edad,      <span class="co"># La variable a analizar</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">by =</span> <span class="sc">~</span>sexo,           <span class="co"># La variable que define los grupos</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">design =</span> casen_design, <span class="co"># El objeto de diseño</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="at">FUN =</span> svymean,        <span class="co"># ¡La función que queremos aplicar a cada grupo!</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span>          <span class="co"># Argumento para pasar a svymean</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Lógica Funcional:</strong> <code>svyby</code> es interesante porque toma <em>otra función</em> (<code>svymean</code> en este caso) como argumento (<code>FUN</code>).</li>
 <li><strong>¿Qué hace?</strong> Divide internamente el <code>design</code> según los niveles de <code>by</code> y aplica <code>FUN</code> (<code>svymean</code>) a cada subconjunto, luego junta los resultados.</li>
@@ -538,13 +537,13 @@ Gabriel Sotomayor
 <section id="modelos-estadísticos-con-survey-svyglm" class="slide level2 smaller" data-background-color="white">
 <h2>Modelos Estadísticos con <code>survey</code>: <code>svyglm()</code></h2>
 <p>Para regresión lineal, logística, etc., que consideren el diseño:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Modelo lineal: predecir 'esc' (escolaridad) usando 'edad' y 'sexo'</span></span>
-<span id="cb3-2"><a href=""></a>modelo_complejo <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(esc <span class="sc">~</span> edad <span class="sc">+</span> <span class="fu">factor</span>(sexo), </span>
-<span id="cb3-3"><a href=""></a>                          <span class="at">design =</span> casen_design, </span>
-<span id="cb3-4"><a href=""></a>                          <span class="at">family =</span> <span class="fu">gaussian</span>()) <span class="co"># Para regresión lineal</span></span>
-<span id="cb3-5"><a href=""></a></span>
-<span id="cb3-6"><a href=""></a><span class="fu">summary</span>(modelo_complejo) </span>
-<span id="cb3-7"><a href=""></a><span class="co"># OJO: Los errores estándar y p-valores serán diferentes a un lm()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Modelo lineal: predecir 'esc' (escolaridad) usando 'edad' y 'sexo'</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>modelo_complejo <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(esc <span class="sc">~</span> edad <span class="sc">+</span> <span class="fu">factor</span>(sexo), </span>
+<span id="cb3-3"><a href="#cb3-3"></a>                          <span class="at">design =</span> casen_design, </span>
+<span id="cb3-4"><a href="#cb3-4"></a>                          <span class="at">family =</span> <span class="fu">gaussian</span>()) <span class="co"># Para regresión lineal</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">summary</span>(modelo_complejo) </span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># OJO: Los errores estándar y p-valores serán diferentes a un lm()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Sintaxis:</strong> Similar a <code>glm()</code> o <code>lm()</code>, pero requiere el argumento <code>design</code>.</li>
 <li><strong>Resultado Clave:</strong> Los <strong>errores estándar</strong> de los coeficientes (β) se calculan <strong>correctamente</strong>, usando la información de estratos, conglomerados y pesos. Esto afecta directamente los <strong>p-valores</strong> y las conclusiones sobre la significancia estadística.</li>
@@ -563,14 +562,14 @@ Gabriel Sotomayor
 <section id="srvyr-creando-el-objeto-tbl_svy" class="slide level2 smaller" data-background-color="white">
 <h2><code>srvyr</code>: Creando el Objeto <code>tbl_svy</code></h2>
 <p>El primer paso con <code>srvyr</code> es crear un objeto especial <code>tbl_svy</code>, análogo al <code>survey.design</code>. Se usa <code>as_survey_design()</code> (o simplemente <code>as_survey</code>).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Usando los mismos argumentos que svydesign, pero estilo tidyverse</span></span>
-<span id="cb4-2"><a href=""></a>casen_design_srvyr <span class="ot">&lt;-</span> <span class="fu">as_survey_design</span>(casen, </span>
-<span id="cb4-3"><a href=""></a>                                       <span class="at">ids =</span> varunit,    <span class="co"># Sin tilde, nombre directo</span></span>
-<span id="cb4-4"><a href=""></a>                                       <span class="at">strata =</span> varstrat, <span class="co"># Sin tilde</span></span>
-<span id="cb4-5"><a href=""></a>                                       <span class="at">weights =</span> expr,    <span class="co"># Sin tilde</span></span>
-<span id="cb4-6"><a href=""></a>                                       <span class="at">nest =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-7"><a href=""></a></span>
-<span id="cb4-8"><a href=""></a><span class="fu">print</span>(casen_design_srvyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Usando los mismos argumentos que svydesign, pero estilo tidyverse</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>casen_design_srvyr <span class="ot">&lt;-</span> <span class="fu">as_survey_design</span>(casen, </span>
+<span id="cb4-3"><a href="#cb4-3"></a>                                       <span class="at">ids =</span> varunit,    <span class="co"># Sin tilde, nombre directo</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>                                       <span class="at">strata =</span> varstrat, <span class="co"># Sin tilde</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>                                       <span class="at">weights =</span> expr,    <span class="co"># Sin tilde</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>                                       <span class="at">nest =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">print</span>(casen_design_srvyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Notar que ahora pasamos los nombres de las variables <strong>directamente</strong>, sin la tilde (<code>~</code>), como es usual en <code>dplyr</code>.</li>
 <li>El objeto <code>casen_design_srvyr</code> ahora puede ser usado en un <strong>pipeline <code>%&gt;%</code></strong>.</li>
@@ -579,20 +578,20 @@ Gabriel Sotomayor
 <section id="srvyr-el-flujo-group_by-summarise" class="slide level2 smaller" data-background-color="white">
 <h2><code>srvyr</code>: El Flujo <code>group_by %&gt;% summarise</code></h2>
 <p>La gran mayoría de los análisis descriptivos con <code>srvyr</code> siguen este patrón:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>objeto_srvyr <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href=""></a>  <span class="co"># Opcional: Filtrar casos si es necesario ANTES de agrupar/resumir</span></span>
-<span id="cb5-3"><a href=""></a>  <span class="co"># filter(condicion) %&gt;% </span></span>
-<span id="cb5-4"><a href=""></a>  </span>
-<span id="cb5-5"><a href=""></a>  <span class="co"># Agrupar por las variables deseadas (si aplica)</span></span>
-<span id="cb5-6"><a href=""></a>  <span class="fu">group_by</span>(variable_grupo1, variable_grupo2) <span class="sc">%&gt;%</span></span>
-<span id="cb5-7"><a href=""></a>  </span>
-<span id="cb5-8"><a href=""></a>  <span class="co"># Calcular las estadísticas deseadas DENTRO de summarise</span></span>
-<span id="cb5-9"><a href=""></a>  <span class="fu">summarise</span>(</span>
-<span id="cb5-10"><a href=""></a>    <span class="at">nombre_stat1 =</span> <span class="fu">survey_mean</span>(variable1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="st">"ci"</span>),</span>
-<span id="cb5-11"><a href=""></a>    <span class="at">nombre_stat2 =</span> <span class="fu">survey_total</span>(variable2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb5-12"><a href=""></a>    <span class="at">nombre_stat3 =</span> <span class="fu">survey_quantile</span>(variable1, <span class="at">quantiles =</span> <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb5-13"><a href=""></a>    <span class="co"># etc.</span></span>
-<span id="cb5-14"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>objeto_srvyr <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="co"># Opcional: Filtrar casos si es necesario ANTES de agrupar/resumir</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="co"># filter(condicion) %&gt;% </span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  </span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="co"># Agrupar por las variables deseadas (si aplica)</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">group_by</span>(variable_grupo1, variable_grupo2) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  </span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="co"># Calcular las estadísticas deseadas DENTRO de summarise</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="at">nombre_stat1 =</span> <span class="fu">survey_mean</span>(variable1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="st">"ci"</span>),</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="at">nombre_stat2 =</span> <span class="fu">survey_total</span>(variable2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="at">nombre_stat3 =</span> <span class="fu">survey_quantile</span>(variable1, <span class="at">quantiles =</span> <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="co"># etc.</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>¡Igual que <code>dplyr</code>!</strong> Pero usando las funciones <code>survey_*()</code> dentro de <code>summarise</code>.</li>
 </ul>
@@ -621,13 +620,13 @@ Gabriel Sotomayor
 <h2>Comparación Final: <code>survey</code> vs <code>srvyr</code> (Media edad por sexo)</h2>
 <p><strong>Usando <code>survey</code> (<code>svyby</code>):</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">svyby</span>(<span class="sc">~</span>edad, <span class="at">by =</span> <span class="sc">~</span>sexo, <span class="at">design =</span> casen_design, <span class="at">FUN =</span> svymean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">svyby</span>(<span class="sc">~</span>edad, <span class="at">by =</span> <span class="sc">~</span>sexo, <span class="at">design =</span> casen_design, <span class="at">FUN =</span> svymean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Usando <code>srvyr</code>:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>casen_design_srvyr <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href=""></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">edad_media =</span> <span class="fu">survey_mean</span>(edad, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>casen_design_srvyr <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">summarise</span>(<span class="at">edad_media =</span> <span class="fu">survey_mean</span>(edad, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ambos dan el mismo resultado numérico, pero <code>srvyr</code> se integra más fluidamente en un flujo de trabajo <code>tidyverse</code>. <strong>¡En el práctico usaremos principalmente <code>srvyr</code>!</strong></p>
 </section>
@@ -653,14 +652,12 @@ Gabriel Sotomayor
 <li>Calcularemos <strong>medias, proporciones y totales</strong> ponderados con <code>srvyr</code>.</li>
 <li>Practicaremos la obtención e interpretación de <strong>errores estándar e intervalos de confianza</strong>.</li>
 <li>Realizaremos <strong>análisis por subgrupos</strong> usando <code>group_by</code>.</li>
-<li>(Opcional) Ejecutaremos una <strong>regresión lineal</strong> simple con <code>svyglm</code>.</li>
+<li>Construcción de gráficos integrando ggplot.</li>
 </ol>
 <p><strong>¡Volvamos a RStudio!</strong></p>
-<div class="quarto-auto-generated-content">
-<p><img src="images/logo.png" class="slide-logo"></p>
-<div class="footer footer-default">
 
-</div>
+<img src="images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+
 </div>
 </section>
     </div>
@@ -689,6 +686,7 @@ Gabriel Sotomayor
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -943,7 +941,18 @@ Gabriel Sotomayor
         }
         return false;
       }
-      const onCopySuccess = function(e) {
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -975,50 +984,11 @@ Gabriel Sotomayor
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1028,17 +998,8 @@ Gabriel Sotomayor
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1052,11 +1013,7 @@ Gabriel Sotomayor
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {

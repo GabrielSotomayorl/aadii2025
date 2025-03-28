@@ -25,9 +25,9 @@ En esta segunda sesión, nos enfocaremos en **aplicar** lo aprendido:
 
 ## Recordando: ¿Por Qué Análisis Especiales? {.smaller .dark-background}
 
-*   Las encuestas reales (como CASEN) **no usan Muestreo Aleatorio Simple (MAS)**.
-*   Usan diseños **complejos** (estratos, conglomerados, ponderadores) por razones prácticas (costos, logística, representatividad).
-*   Esto **viola los supuestos** de las funciones estadísticas estándar de R (`mean`, `lm`, `t.test`...).
+-   Las encuestas reales (como CASEN) **no usan Muestreo Aleatorio Simple (MAS)**.
+-   Usan diseños **complejos** (estratos, conglomerados, ponderadores) por razones prácticas (costos, logística, representatividad).
+-   Esto **viola los supuestos** de las funciones estadísticas estándar de R (`mean`, `lm`, `t.test`...).
 
 **Consecuencias de Ignorar el Diseño:**
 
@@ -49,15 +49,15 @@ La idea central de `survey` es:
 
 ## El Corazón de `survey`: El Objeto de Diseño Muestral {.smaller background-color="white"}
 
-*   Piensa en este objeto como una **"receta"** o un **"manual de instrucciones"** para R sobre tu muestra.
-*   **NO** es solo la tabla de datos. Es un objeto más complejo que **contiene**:
-    *   Los **datos** mismos.
-    *   La información sobre los **conglomerados** (UPMs, variable `ids`).
-    *   La información sobre los **estratos** (variable `strata`).
-    *   La información sobre los **ponderadores** (variable `weights`).
-    *   (Opcional) Información sobre población finita (FPC), etapas de muestreo, etc.
-*   Este objeto es creado **UNA VEZ** (generalmente al inicio del análisis) usando `survey::svydesign()` (o `srvyr::as_survey_design()`).
-*   **TODAS** las funciones de análisis posteriores (`svymean`, `svytotal`, `svyglm`...) **necesitan** este objeto como argumento para funcionar correctamente.
+-   Piensa en este objeto como una **"receta"** o un **"manual de instrucciones"** para R sobre tu muestra.
+-   **NO** es solo la tabla de datos. Es un objeto más complejo que **contiene**:
+    -   Los **datos** mismos.
+    -   La información sobre los **conglomerados** (UPMs, variable `ids`).
+    -   La información sobre los **estratos** (variable `strata`).
+    -   La información sobre los **ponderadores** (variable `weights`).
+    -   (Opcional) Información sobre población finita (FPC), etapas de muestreo, etc.
+-   Este objeto es creado **UNA VEZ** (generalmente al inicio del análisis) usando `survey::svydesign()` (o `srvyr::as_survey_design()`).
+-   **TODAS** las funciones de análisis posteriores (`svymean`, `svytotal`, `svyglm`...) **necesitan** este objeto como argumento para funcionar correctamente.
 
 ## Declarando el Diseño: `survey::svydesign()` (Repaso) {.smaller background-color="white"}
 
@@ -73,19 +73,19 @@ casen_design <- svydesign(
 )
 ```
 
-*   **Cada argumento** (`ids`, `strata`, `weights`) le da una pieza clave de la "receta" a R.
-*   El resultado (`casen_design`) **encapsula** toda esta información.
+-   **Cada argumento** (`ids`, `strata`, `weights`) le da una pieza clave de la "receta" a R.
+-   El resultado (`casen_design`) **encapsula** toda esta información.
 
 ## Entendiendo la Tilde (`~`) en R {.smaller background-color="white"}
 
-*   Han visto la tilde (`~`) antes, probablemente en modelos como `lm(y ~ x, data=...)`.
-*   **Función Clave:** La tilde en R se usa para crear **fórmulas**. Una fórmula **describe una relación o especifica variables** *sin* evaluarlas inmediatamente.
-*   **En `svydesign` (`ids = ~varunit`):**
-    *   No queremos que R calcule algo con `varunit` en ese momento.
-    *   Queremos decirle a `svydesign`: "La variable que identifica los conglomerados *se llama* `varunit` y está *dentro* de los datos que te pasé en `data=casen`".
-    *   El `~` logra esto: **nombra la variable dentro del contexto del data frame**.
-*   **En `svymean` (`svymean(~edad, ...)`):**
-    *   Similarmente, le dice a `svymean`: "Calcula la media de la variable que *se llama* `edad` que se encuentra *dentro* del objeto `design` que te estoy pasando".
+-   Han visto la tilde (`~`) antes, probablemente en modelos como `lm(y ~ x, data=...)`.
+-   **Función Clave:** La tilde en R se usa para crear **fórmulas**. Una fórmula **describe una relación o especifica variables** *sin* evaluarlas inmediatamente.
+-   **En `svydesign` (`ids = ~varunit`):**
+    -   No queremos que R calcule algo con `varunit` en ese momento.
+    -   Queremos decirle a `svydesign`: "La variable que identifica los conglomerados *se llama* `varunit` y está *dentro* de los datos que te pasé en `data=casen`".
+    -   El `~` logra esto: **nombra la variable dentro del contexto del data frame**.
+-   **En `svymean` (`svymean(~edad, ...)`):**
+    -   Similarmente, le dice a `svymean`: "Calcula la media de la variable que *se llama* `edad` que se encuentra *dentro* del objeto `design` que te estoy pasando".
 
 Es la forma estándar en R para referirse a variables dentro de funciones que operan sobre data frames o entornos específicos.
 
@@ -93,25 +93,24 @@ Es la forma estándar en R para referirse a variables dentro de funciones que op
 
 Una vez creado el `casen_design`, podemos usar las funciones de `survey`. Todas ellas toman el objeto `design` como argumento principal.
 
-*   **`svymean(~variable, design, na.rm=T)`:**
-    *   Calcula la media (si `variable` es numérica) o proporciones (si `variable` es factor/categórica/dummy).
-    *   **Importante:** Usa los `weights` del `design` para la ponderación y los `strata` e `ids` para calcular el **error estándar (SE) correcto**.
+-   **`svymean(~variable, design, na.rm=T)`:**
+    -   Calcula la media (si `variable` es numérica) o proporciones (si `variable` es factor/categórica/dummy).
+    -   **Importante:** Usa los `weights` del `design` para la ponderación y los `strata` e `ids` para calcular el **error estándar (SE) correcto**.
 
 ## Usando el Objeto de Diseño: Funciones de `survey` {.smaller background-color="white"}
 
-*   **`svytotal(~variable, design, na.rm=T)`:**
-    *   Estima el total poblacional de `variable` (ej. suma ponderada de ingresos para estimar el ingreso total del país).
-    *   También calcula el SE correcto.
-
-*   **`svyquantile(~variable, design, quantiles=..., na.rm=T)`:**
-    *   Calcula cuantiles ponderados (mediana, percentiles).
-    *   El cálculo del SE para cuantiles es más complejo, pero `survey` lo maneja.
+-   **`svytotal(~variable, design, na.rm=T)`:**
+    -   Estima el total poblacional de `variable` (ej. suma ponderada de ingresos para estimar el ingreso total del país).
+    -   También calcula el SE correcto.
+-   **`svyquantile(~variable, design, quantiles=..., na.rm=T)`:**
+    -   Calcula cuantiles ponderados (mediana, percentiles).
+    -   El cálculo del SE para cuantiles es más complejo, pero `survey` lo maneja.
 
 ## Análisis por Subgrupos con `survey`: `svyby()` {.smaller background-color="white"}
 
 Para calcular estadísticas por grupo (ej. media de ingreso por región), `survey` ofrece `svyby()`.
 
-```r
+``` r
 # Calcular la media de 'edad' para cada nivel de la variable 'sexo'
 svyby(
   formula = ~edad,      # La variable a analizar
@@ -122,15 +121,15 @@ svyby(
 )
 ```
 
-*   **Lógica Funcional:** `svyby` es interesante porque toma *otra función* (`svymean` en este caso) como argumento (`FUN`).
-*   **¿Qué hace?** Divide internamente el `design` según los niveles de `by` y aplica `FUN` (`svymean`) a cada subconjunto, luego junta los resultados.
-*   Es potente pero la sintaxis (`FUN = ...`) puede ser menos familiar que el `group_by %>% summarise` de `dplyr`.
+-   **Lógica Funcional:** `svyby` es interesante porque toma *otra función* (`svymean` en este caso) como argumento (`FUN`).
+-   **¿Qué hace?** Divide internamente el `design` según los niveles de `by` y aplica `FUN` (`svymean`) a cada subconjunto, luego junta los resultados.
+-   Es potente pero la sintaxis (`FUN = ...`) puede ser menos familiar que el `group_by %>% summarise` de `dplyr`.
 
 ## Modelos Estadísticos con `survey`: `svyglm()` {.smaller background-color="white"}
 
 Para regresión lineal, logística, etc., que consideren el diseño:
 
-```r
+``` r
 # Modelo lineal: predecir 'esc' (escolaridad) usando 'edad' y 'sexo'
 modelo_complejo <- svyglm(esc ~ edad + factor(sexo), 
                           design = casen_design, 
@@ -140,8 +139,8 @@ summary(modelo_complejo)
 # OJO: Los errores estándar y p-valores serán diferentes a un lm()
 ```
 
-*   **Sintaxis:** Similar a `glm()` o `lm()`, pero requiere el argumento `design`.
-*   **Resultado Clave:** Los **errores estándar** de los coeficientes (β) se calculan **correctamente**, usando la información de estratos, conglomerados y pesos. Esto afecta directamente los **p-valores** y las conclusiones sobre la significancia estadística.
+-   **Sintaxis:** Similar a `glm()` o `lm()`, pero requiere el argumento `design`.
+-   **Resultado Clave:** Los **errores estándar** de los coeficientes (β) se calculan **correctamente**, usando la información de estratos, conglomerados y pesos. Esto afecta directamente los **p-valores** y las conclusiones sobre la significancia estadística.
 
 ## Entra `srvyr`: El Puente hacia el Tidyverse {.smaller .dark-background}
 
@@ -149,15 +148,15 @@ Si bien `survey` es completo y fundamental, su sintaxis (especialmente para subg
 
 **El paquete `srvyr` actúa como un "traductor" o "adaptador":**
 
-*   Permite usar la **sintaxis familiar de `dplyr`** (verbos como `group_by`, `summarise`, `mutate`) para realizar análisis de encuestas complejas.
-*   **Internamente, `srvyr` llama a las funciones de `survey`**, asegurando que los cálculos sean correctos.
-*   Hace el código a menudo **más legible y fácil de escribir** para operaciones comunes.
+-   Permite usar la **sintaxis familiar de `dplyr`** (verbos como `group_by`, `summarise`, `mutate`) para realizar análisis de encuestas complejas.
+-   **Internamente, `srvyr` llama a las funciones de `survey`**, asegurando que los cálculos sean correctos.
+-   Hace el código a menudo **más legible y fácil de escribir** para operaciones comunes.
 
 ## `srvyr`: Creando el Objeto `tbl_svy` {.smaller background-color="white"}
 
 El primer paso con `srvyr` es crear un objeto especial `tbl_svy`, análogo al `survey.design`. Se usa `as_survey_design()` (o simplemente `as_survey`).
 
-```r
+``` r
 # Usando los mismos argumentos que svydesign, pero estilo tidyverse
 casen_design_srvyr <- as_survey_design(casen, 
                                        ids = varunit,    # Sin tilde, nombre directo
@@ -168,14 +167,14 @@ casen_design_srvyr <- as_survey_design(casen,
 print(casen_design_srvyr)
 ```
 
-*   Notar que ahora pasamos los nombres de las variables **directamente**, sin la tilde (`~`), como es usual en `dplyr`.
-*   El objeto `casen_design_srvyr` ahora puede ser usado en un **pipeline `%>%`**.
+-   Notar que ahora pasamos los nombres de las variables **directamente**, sin la tilde (`~`), como es usual en `dplyr`.
+-   El objeto `casen_design_srvyr` ahora puede ser usado en un **pipeline `%>%`**.
 
 ## `srvyr`: El Flujo `group_by %>% summarise` {.smaller background-color="white"}
 
 La gran mayoría de los análisis descriptivos con `srvyr` siguen este patrón:
 
-```r
+``` r
 objeto_srvyr %>%
   # Opcional: Filtrar casos si es necesario ANTES de agrupar/resumir
   # filter(condicion) %>% 
@@ -192,29 +191,26 @@ objeto_srvyr %>%
   )
 ```
 
-*   **¡Igual que `dplyr`!** Pero usando las funciones `survey_*()` dentro de `summarise`.
+-   **¡Igual que `dplyr`!** Pero usando las funciones `survey_*()` dentro de `summarise`.
 
 ## `srvyr`: Funciones Espejo `survey_*()` {.smaller background-color="white"}
 
 Dentro de `summarise`, usamos las funciones de `srvyr` que "imitan" a las de `survey`:
 
-*   `survey_mean()`: Medias (continuas) y proporciones (categóricas/dummies).
-*   `survey_total()`: Totales poblacionales.
-*   `survey_quantile()`: Cuantiles (incluye mediana si `quantiles=0.5`).
-*   `survey_median()`: Atajo para la mediana.
-*   `survey_ratio(num, den)`: Ratios.
-*   `survey_var()` / `survey_sd()`: Varianza / Desv. Estándar poblacional (menos común).
+-   `survey_mean()`: Medias (continuas) y proporciones (categóricas/dummies).
+-   `survey_total()`: Totales poblacionales.
+-   `survey_quantile()`: Cuantiles (incluye mediana si `quantiles=0.5`).
+-   `survey_median()`: Atajo para la mediana.
+-   `survey_ratio(num, den)`: Ratios.
+-   `survey_var()` / `survey_sd()`: Varianza / Desv. Estándar poblacional (menos común).
 
 ## `srvyr`: Funciones Espejo `survey_*()` {.smaller background-color="white"}
 
 **Fuera de `summarise`:**
 
-*   `survey_count(...)` / `survey_tally()`: Conteos poblacionales estimados (similares a `dplyr::count`).
+-   `survey_count(...)` / `survey_tally()`: Conteos poblacionales estimados (similares a `dplyr::count`).
 
-**Argumentos Importantes:**
-*   `na.rm = TRUE`: ¡Fundamental para manejar valores perdidos!
-*   `vartype = c("se", "ci", "var", "cv")`: Para pedir el tipo de medida de variabilidad (error estándar, intervalo confianza, varianza, coef. variación). Por defecto es "se".
-*   `level = 0.95`: Para cambiar el nivel de confianza del IC.
+**Argumentos Importantes:** \* `na.rm = TRUE`: ¡Fundamental para manejar valores perdidos! \* `vartype = c("se", "ci", "var", "cv")`: Para pedir el tipo de medida de variabilidad (error estándar, intervalo confianza, varianza, coef. variación). Por defecto es "se". \* `level = 0.95`: Para cambiar el nivel de confianza del IC.
 
 ## Comparación Final: `survey` vs `srvyr` (Media edad por sexo) {.smaller background-color="white"}
 
@@ -243,12 +239,11 @@ No importa si usas `survey` o `srvyr`, el resultado siempre incluirá:
 
 Recuerda:
 
-*   El SE suele ser **mayor** que en MAS debido al **Efecto de Diseño (DEFF)**, especialmente por los **conglomerados**.
-*   Usa el SE para construir **Intervalos de Confianza (ICs)** (`vartype="ci"` lo hace por ti) que te dan un rango plausible para el valor poblacional.
-*   **Reporta siempre la incertidumbre (SE o IC)** junto a tus estimaciones.
+-   El SE suele ser **mayor** que en MAS debido al **Efecto de Diseño (DEFF)**, especialmente por los **conglomerados**.
+-   Usa el SE para construir **Intervalos de Confianza (ICs)** (`vartype="ci"` lo hace por ti) que te dan un rango plausible para el valor poblacional.
+-   **Reporta siempre la incertidumbre (SE o IC)** junto a tus estimaciones.
 
 ## Próximos Pasos: ¡A Practicar con `srvyr`! {.smaller background-color="white"}
-
 
 En el bloque práctico de hoy:
 
@@ -256,6 +251,6 @@ En el bloque práctico de hoy:
 2.  Calcularemos **medias, proporciones y totales** ponderados con `srvyr`.
 3.  Practicaremos la obtención e interpretación de **errores estándar e intervalos de confianza**.
 4.  Realizaremos **análisis por subgrupos** usando `group_by`.
-5.  (Opcional) Ejecutaremos una **regresión lineal** simple con `svyglm`.
+5.  Construcción de gráficos integrando ggplot.
 
 **¡Volvamos a RStudio!**

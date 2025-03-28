@@ -1,9 +1,9 @@
 ---
-title: "Regresión Lineal Múltiple"
-linktitle: "4: Regresión Lineal Múltiple"
-date: "2024-04-14"
-start_date: "2024-04-14"
-end_date: "2024-04-14"
+title: "Muestreo y Encuestas Complejas en R"
+linktitle: "4: Muestreo y Encuestas Complejas en R"
+date: "2024-04-31"
+start_date: "2024-04-31"
+end_date: "2024-04-31"
 menu:
   content:
     parent: Contenido
@@ -20,7 +20,7 @@ source(here::here("R", "slide-tabs.R"))
 
 slide_details <- tibble::tribble(
   ~title, ~slide, ~active,
-  "Regresión Logística Binaria", "1", TRUE
+  "Muestreo y Encuestas Complejas en R", "0", TRUE
 )
 ```
 

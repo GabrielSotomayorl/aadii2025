@@ -1,9 +1,9 @@
 ---
-title: "Análisis de regresión logística"
-linktitle: "5: Análisis de regresión logística"
-date: "2024-04-21"
-start_date: "2024-04-21"
-end_date: "2024-04-21"
+title: "Muestreo y Encuestas Complejas en R"
+linktitle: "5: Muestreo y Encuestas Complejas en R"
+date: "2024-04-07"
+start_date: "2024-04-07"
+end_date: "2024-04-07"
 menu:
   content:
     parent: Contenido
@@ -20,7 +20,7 @@ source(here::here("R", "slide-tabs.R"))
 
 slide_details <- tibble::tribble(
   ~title, ~slide, ~active,
-  "Análisis de regresión logística", "1", TRUE
+  "Muestreo y Encuestas Complejas en R", "0", TRUE
 )
 ```
 

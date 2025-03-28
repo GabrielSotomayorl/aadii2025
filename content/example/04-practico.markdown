@@ -12,9 +12,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-```
+
 
 ## 0. Objetivos del Práctico
 
@@ -36,7 +34,8 @@ Antes de empezar, necesitamos asegurarnos de tener las herramientas adecuadas en
 
 
 
-```{r}
+
+``` r
 # Si no tienes instalados los paquetes, ejecuta primero estas líneas (quitando el #):
 # install.packages("tidyverse")
 # install.packages("haven")
@@ -56,7 +55,8 @@ La Encuesta de Caracterización Socioeconómica Nacional (CASEN) es una de las e
 
 Usaremos un código para descargarla directamente desde la web del ministerio y cargarla en R.
 
-```{r}
+
+``` r
 # Crear un archivo temporal para la descarga
 temp <- tempfile() 
 
@@ -76,21 +76,84 @@ remove(temp)
 print("Base de datos CASEN 2022 cargada exitosamente.")
 ```
 
+```
+## [1] "Base de datos CASEN 2022 cargada exitosamente."
+```
+
 Ahora que tenemos la base `casen` en nuestro entorno, vamos a explorarla un poco.
 
-```{r}
+
+``` r
 # Vistazo rápido a la estructura y tipos de variables
 #glimpse(casen)
 
 # Ver las primeras filas de la base
 head(casen)
+```
 
+```
+## # A tibble: 6 × 917
+##   id_vivienda    folio id_persona region   area    cod_upm nse     estrato hogar
+##         <dbl>    <dbl>      <dbl> <dbl+lb> <dbl+l>   <dbl> <dbl+l>   <dbl> <dbl>
+## 1     1000901   1.00e8          1 16 [Reg… 2 [Rur…   10009 4 [Baj… 1630324     1
+## 2     1000901   1.00e8          2 16 [Reg… 2 [Rur…   10009 4 [Baj… 1630324     1
+## 3     1000901   1.00e8          3 16 [Reg… 2 [Rur…   10009 4 [Baj… 1630324     1
+## 4     1000902   1.00e8          1 16 [Reg… 2 [Rur…   10009 4 [Baj… 1630324     1
+## 5     1000902   1.00e8          2 16 [Reg… 2 [Rur…   10009 4 [Baj… 1630324     1
+## 6     1000902   1.00e8          3 16 [Reg… 2 [Rur…   10009 4 [Baj… 1630324     1
+## # ℹ 908 more variables: expr <dbl>, expr_osig <dbl>, varstrat <dbl>,
+## #   varunit <dbl>, fecha_entrev <date>, p1 <dbl+lbl>, p2 <dbl+lbl>,
+## #   p3 <dbl+lbl>, p4 <dbl+lbl>, p9 <dbl>, p10 <dbl+lbl>, p11 <dbl>,
+## #   tot_per_h <dbl>, h1 <dbl+lbl>, edad <dbl>, mes_nac_nna <dbl+lbl>,
+## #   ano_nac_nna <dbl+lbl>, sexo <dbl+lbl>, pco1_a <dbl+lbl>, pco1_b <dbl+lbl>,
+## #   pco1 <dbl+lbl>, h5_cp <dbl+lbl>, h5_sp <dbl+lbl>, h5_b1_1 <dbl>,
+## #   h5_b1_2 <dbl>, h5a_2 <dbl+lbl>, h5_b2_1 <dbl>, h5_b2_2 <dbl>, …
+```
+
+``` r
 # Resumen de algunas variables sociodemográficas clave
 summary(casen$edad) 
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.00   20.00   38.00   39.32   58.00  120.00
+```
+
+``` r
 summary(casen$sexo) # Veremos las etiquetas si haven las cargó bien
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   1.000   2.000   1.527   2.000   2.000
+```
+
+``` r
 summary(casen$esc) # Años de escolaridad
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+##    0.00    8.00   12.00   11.17   14.00   29.00   36983
+```
+
+``` r
 summary(casen$ytotcorh) # Ingreso total corregido del hogar
+```
+
+```
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+##        0   750000  1121667  1476989  1728370 77300000      120
+```
+
+``` r
 summary(casen$pobreza) # Situación de pobreza
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+##   1.000   3.000   3.000   2.901   3.000   3.000     120
 ```
 
 **Reflexiona:** Observa la cantidad de variables y casos. ¿Qué tipo de datos contienen las variables que resumiste? ¿Hay valores perdidos (`NA`)?
@@ -105,19 +168,55 @@ Como vimos en la clase, para analizar correctamente esta encuesta, necesitamos i
 
 Veamos cómo lucen estas variables en nuestros datos:
 
-```{r}
+
+``` r
 # Resumen del factor de expansión regional (ponderador)
 summary(casen$expr)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     2.0    44.0    75.0    98.3   118.0  5222.0
+```
+
+``` r
 # Nota: ¡Los pesos no son todos iguales! Esto confirma que no es MAS.
 
 # Resumen (o tabla de frecuencias) de la variable de estrato
 # Es un código, así que un summary no es tan útil como ver cuántos hay
 length(unique(casen$varstrat)) 
-head(casen$varstrat)
+```
 
+```
+## [1] 755
+```
+
+``` r
+head(casen$varstrat)
+```
+
+```
+## [1] 751 751 751 751 751 751
+```
+
+``` r
 # Resumen (o tabla de frecuencias) de la variable de conglomerado (UPM)
 length(unique(casen$varunit))
+```
+
+```
+## [1] 12062
+```
+
+``` r
 head(casen$varunit)
+```
+
+```
+## [1] 12041 12041 12041 12041 12041 12041
+```
+
+``` r
 # Nota: Los IDs de conglomerado (varunit) probablemente se repiten entre estratos (varstrat).
 ```
 
@@ -127,21 +226,49 @@ head(casen$varunit)
 
 Antes de usar las herramientas correctas, hagamos un ejercicio: calculemos algunas estadísticas como si CASEN fuera una muestra aleatoria simple (MAS), ignorando los ponderadores, estratos y conglomerados. Esto nos dará un punto de comparación.
 
-```{r}
+
+``` r
 # Media de edad simple (ignorando el diseño)
 media_edad_ingenua <- mean(casen$edad, na.rm = TRUE)
 print(paste("Media de edad (ingenua):", round(media_edad_ingenua, 2)))
+```
 
+```
+## [1] "Media de edad (ingenua): 39.32"
+```
+
+``` r
 # Media de escolaridad simple
 media_esc_ingenua <- mean(casen$esc, na.rm = TRUE)
 print(paste("Media de escolaridad (ingenua):", round(media_esc_ingenua, 2)))
+```
 
+```
+## [1] "Media de escolaridad (ingenua): 11.17"
+```
+
+``` r
 # Proporción de sexo simple (usando table y prop.table)
 tabla_sexo_ingenua <- table(casen$sexo)
 prop_sexo_ingenua <- prop.table(tabla_sexo_ingenua)
 print("Proporción por sexo (ingenua):")
-print(round(prop_sexo_ingenua, 3))
+```
 
+```
+## [1] "Proporción por sexo (ingenua):"
+```
+
+``` r
+print(round(prop_sexo_ingenua, 3))
+```
+
+```
+## 
+##     1     2 
+## 0.473 0.527
+```
+
+``` r
 # Proporción de pobreza simple
 # (Recodificamos pobreza: 1=pobre extremo, 2=pobre no extremo, 3=no pobre)
 # Crearemos una variable dicotómica: 1 si es pobre (1 o 2), 0 si no es pobre (3)
@@ -151,7 +278,23 @@ casen <- casen %>%
 tabla_pobreza_ingenua <- table(casen$pobre_dic)
 prop_pobreza_ingenua <- prop.table(tabla_pobreza_ingenua)
 print("Proporción de pobreza (ingenua):")
+```
+
+```
+## [1] "Proporción de pobreza (ingenua):"
+```
+
+``` r
 print(round(prop_pobreza_ingenua, 3)) 
+```
+
+```
+## 
+##     0     1 
+## 0.924 0.076
+```
+
+``` r
 # Mostramos la proporción de '1' (pobres)
 ```
 
@@ -169,7 +312,8 @@ Los argumentos clave son:
 *   `data = casen`: El data frame que contiene los datos.
 *   `nest = TRUE`: Argumento importante. Se usa cuando los IDs de las UPM (`varunit`) pueden repetirse entre diferentes estratos (`varstrat`), lo cual es común. Le dice a `survey` que trate, por ejemplo, `varunit = 1` en `varstrat = A` como diferente de `varunit = 1` en `varstrat = B`.
 
-```{r}
+
+``` r
 # Crear el objeto que describe el diseño muestral de CASEN
 casen_design <- svydesign(ids = ~varunit,      # Conglomerados (UPM)
                           strata = ~varstrat,   # Estratos
@@ -179,9 +323,25 @@ casen_design <- svydesign(ids = ~varunit,      # Conglomerados (UPM)
 
 # Mensaje de confirmación
 print("Objeto de diseño muestral 'casen_design' creado.")
+```
 
+```
+## [1] "Objeto de diseño muestral 'casen_design' creado."
+```
+
+``` r
 # Inspeccionar el objeto creado
 print(casen_design)
+```
+
+```
+## Stratified 1 - level Cluster Sampling design (with replacement)
+## With (12062) clusters.
+## svydesign(ids = ~varunit, strata = ~varstrat, weights = ~expr, 
+##     data = casen, nest = TRUE)
+```
+
+``` r
 #summary(casen_design) 
 ```
 
@@ -196,18 +356,49 @@ Vamos a recalcular la **media de edad** y la **proporción de pobreza**, pero es
 *   Para variables continuas (como `edad`), calcula la media ponderada.
 *   Para variables categóricas (como `pobre_dic` que es 0/1), calcula la proporción ponderada de la categoría 1.
 
-```{r}
+
+``` r
 # Media de edad PONDERADA
 media_edad_ponderada <- svymean(~edad, design = casen_design, na.rm = TRUE)
 print("Media de edad (ponderada y con diseño complejo):")
+```
+
+```
+## [1] "Media de edad (ponderada y con diseño complejo):"
+```
+
+``` r
 print(media_edad_ponderada)
+```
+
+```
+##      mean    SE
+## edad 37.2 0.098
+```
+
+``` r
 # Fíjate que ahora también obtenemos el Error Estándar (SE)
 
 # Proporción de pobreza PONDERADA
 # Usamos la variable dicotómica pobre_dic (1=pobre, 0=no pobre)
 prop_pobreza_ponderada <- svymean(~pobre_dic, design = casen_design, na.rm = TRUE)
 print("Proporción de pobreza (ponderada y con diseño complejo):")
+```
+
+```
+## [1] "Proporción de pobreza (ponderada y con diseño complejo):"
+```
+
+``` r
 print(prop_pobreza_ponderada) 
+```
+
+```
+##               mean     SE
+## pobre_dic 0.064986 0.0014
+```
+
+``` r
 # El 'mean' aquí es la proporción de '1' (pobres)
 ```
 

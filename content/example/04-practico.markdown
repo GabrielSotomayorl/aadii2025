@@ -118,12 +118,12 @@ summary(casen$edad)
 ```
 
 ``` r
-summary(casen$sexo) # Veremos las etiquetas si haven las cargó bien
+summary(as_factor(casen$sexo)) 
 ```
 
 ```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   1.000   1.000   2.000   1.527   2.000   2.000
+## 1. Hombre  2. Mujer 
+##     95656    106575
 ```
 
 ``` r
@@ -145,21 +145,21 @@ summary(casen$ytotcorh) # Ingreso total corregido del hogar
 ```
 
 ``` r
-summary(casen$pobreza) # Situación de pobreza
+summary(as_factor(casen$pobreza)) # Situación de pobreza
 ```
 
 ```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-##   1.000   3.000   3.000   2.901   3.000   3.000     120
+##    Pobreza extrema Pobreza no extrema         No pobreza               NA's 
+##               4657              10616             186838                120
 ```
 
 **Interpretación de la Exploración:**
 *   La base tiene muchísimas variables (917) y un gran número de casos (202231), correspondientes a personas.
 *   La **edad** va de 0 a 120 años, con una media muestral (aún no ponderada) de 39.3 años.
-*   El **sexo** está codificado (probablemente 1=Hombre, 2=Mujer), con una leve mayoría de mujeres en la muestra (media de 1.53).
+*   El **sexo** está codificado (1=Hombre, 2=Mujer), con una leve mayoría de mujeres en la muestra.
 *   La **escolaridad** (`esc`) tiene un rango amplio y presenta valores perdidos (`NA's`). La media muestral es de 11.2 años.
 *   El **ingreso del hogar** (`ytotcorh`) muestra una gran dispersión (comparar mediana y media, y el máximo valor) y también tiene algunos `NA`.
-*   La variable **pobreza** (probablemente 1=extrema, 2=no extrema, 3=no pobre) muestra que la mayoría de la muestra se clasifica como no pobre (media cercana a 3).
+*   La variable **pobreza** (1=extrema, 2=no extrema, 3=no pobre) muestra que la mayoría de la muestra se clasifica como no pobre.
 
 **Reflexión:** Esta exploración inicial nos da una idea general de los datos, pero recordamos que estas son estadísticas *de la muestra*, no necesariamente representativas de la población chilena todavía.
 
@@ -185,7 +185,7 @@ summary(casen$expr)
 ```
 
 ``` r
-# Nota: ¡Los pesos varían mucho! Van desde 2 hasta 5222, con una media de 98.3. 
+# ¡Los pesos varían mucho! Van desde 2 hasta 5222, con una media de 98.3. 
 # Esto confirma que las probabilidades de selección fueron muy desiguales.
 
 # Cantidad de estratos únicos definidos para la varianza
@@ -223,7 +223,6 @@ head(casen$varunit)
 
 ``` r
 # Nota: Hay muchos menos estratos (755) que conglomerados (12062), 
-# y los IDs de conglomerado (varunit) se repiten, confirmando la estructura anidada.
 ```
 
 **Importante:** Hemos localizado las variables `expr`, `varstrat`, y `varunit`. ¡Estas son las llaves para decirle a R cómo fue diseñada la muestra!
@@ -317,8 +316,8 @@ Ahora, le enseñamos a R la "receta" de la muestra CASEN usando `svydesign()`.
 casen_design <- svydesign(ids = ~varunit,      # Conglomerados (UPM)
                           strata = ~varstrat,   # Estratos
                           weights = ~expr,     # Ponderador regional
-                          data = casen,        # Base de datos
-                          nest = TRUE)         # IDs de UPM se repiten entre estratos
+                          data = casen        # Base de datos
+                          )       
 
 # Mensaje de confirmación
 print("Objeto de diseño muestral 'casen_design' creado.")
@@ -337,7 +336,7 @@ print(casen_design)
 ## Stratified 1 - level Cluster Sampling design (with replacement)
 ## With (12062) clusters.
 ## svydesign(ids = ~varunit, strata = ~varstrat, weights = ~expr, 
-##     data = casen, nest = TRUE)
+##     data = casen)
 ```
 
 ``` r
@@ -402,7 +401,6 @@ print(prop_pobreza_ponderada)
 2.  **Pobreza:** La proporción ingenua de pobreza fue **7.6%** (0.076). La proporción ponderada es **6.5%** (0.065, SE=0.0014). ¡También es diferente! La estimación que considera el diseño muestral es más baja.
 
 **Pregunta de Reflexión:** ¿Por qué crees que los resultados ponderados difieren de los resultados ingenuos? 
-*Respuesta posible:* Los ponderadores corrigen el hecho de que algunas personas (quizás más jóvenes o no pobres en este caso) tuvieron mayor probabilidad de ser seleccionadas o respondieron más que otras. Al aplicar los pesos, ajustamos esas diferencias para que la muestra refleje mejor la estructura real de la población. Ignorar los pesos nos daría una imagen distorsionada.
 
 ¿Qué implica esto para nuestras conclusiones si solo hubiéramos usado los cálculos ingenuos?
 *Respuesta posible:* Hubiéramos sobreestimado la edad promedio de la población y también la tasa de pobreza. Nuestras conclusiones sobre la sociedad chilena habrían sido incorrectas.

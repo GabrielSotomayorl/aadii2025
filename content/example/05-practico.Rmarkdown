@@ -68,8 +68,8 @@ Ahora, creamos el objeto de diseño `tbl_svy` usando `srvyr::as_survey_design()`
 casen_design_srvyr <- as_survey_design(casen, 
                                        ids = varunit,    # Variable de conglomerados (UPM)
                                        strata = varstrat, # Variable de estratos
-                                       weights = expr,    # Variable de ponderador regional
-                                       nest = TRUE)       # IDs de UPM se repiten entre estratos
+                                       weights = expr )   # Variable de ponderador regional
+                                          
 
 # Inspeccionar el objeto creado con srvyr
 #print(casen_design_srvyr) # Comentado para no alargar el output renderizado
@@ -124,7 +124,7 @@ print(prop_sexo)
 -   **Tasa de Pobreza:** Se estima que el **6.5%** de la población se encuentra en situación de pobreza (extrema o no extrema). El intervalo de confianza del 95% para esta estimación va de **6.2% a 6.8%**.
 -   **Distribución por Sexo:** La población estimada se distribuye en un **49.3% de hombres** (IC 95%: 49.1% - 49.6%) y un **50.7% de mujeres** (IC 95%: 50.4% - 50.9%). Los intervalos estrechos reflejan una división muy cercana a la mitad en la población.
 
-### Totales Poblacionales Estimados (Opcional)
+### Totales Poblacionales Estimados
 
 ```{r}
 # Estimar el número total de personas 
@@ -152,17 +152,16 @@ Usemos `group_by()` para calcular estadísticas para diferentes subgrupos.
 # Media de ingreso del hogar (ytotcorh) por región
 ingreso_x_region <- casen_design_srvyr %>%
   mutate(region_factor = haven::as_factor(region)) %>% # Usar etiquetas
-  filter(!is.na(region)) %>% 
+    filter(pco1== 1) %>% #filtramos por jefe de hogar
   group_by(region_factor) %>%
   summarise(ingreso_medio_hogar = survey_mean(ytotcorh, na.rm = TRUE, vartype = "se"))
 
-# Mostramos solo las primeras filas por brevedad
-head(ingreso_x_region) 
+
+print(ingreso_x_region)
 
 # Tasa de pobreza (proporción de pobre_dic == 1) por zona (urbana/rural)
 pobreza_x_zona <- casen_design_srvyr %>%
   mutate(zona_factor = haven::as_factor(area)) %>% # Usar etiquetas ('area' es la variable original)
-  filter(!is.na(area)) %>%
   group_by(zona_factor) %>%
   summarise(tasa_pobreza = survey_mean(pobre_dic, na.rm = TRUE, vartype = "ci"))
 
@@ -171,7 +170,6 @@ print(pobreza_x_zona)
 # Media de escolaridad por sexo
 esc_x_sexo <- casen_design_srvyr %>%
   mutate(sexo_factor = haven::as_factor(sexo)) %>% # Usar etiquetas
-  filter(!is.na(sexo)) %>%
   group_by(sexo_factor) %>%
   summarise(esc_media = survey_mean(esc, na.rm = TRUE, vartype = "ci"))
 
@@ -180,7 +178,7 @@ print(esc_x_sexo)
 
 **Interpretación y Reflexión:**
 
-*   **Ingreso por Región:** La salida `head(ingreso_x_region)` muestra el ingreso medio estimado y su error estándar (SE) para las primeras regiones. Vemos diferencias: Antofagasta tiene un ingreso medio estimado más alto (\$1,819,321, SE \$46,307) que, por ejemplo, Coquimbo (\$1,438,892, SE \$39,039). Errores estándar más pequeños indican mayor precisión en la estimación para esa región específica. (Para una comparación completa, deberías mirar la tabla completa `ingreso_x_region`).
+*   **Ingreso por Región:** La salida `head(ingreso_x_region)` muestra el ingreso medio estimado y su error estándar (SE) para las regiones. Vemos diferencias: Antofagasta tiene un ingreso medio estimado más alto (\$1,679,243, SE \$46,577) que, por ejemplo, Ñuble (\$1,014,487, SE \$18,562). Errores estándar más pequeños indican mayor precisión en la estimación para esa región específica.  
 *   **Pobreza por Zona:** La tasa de pobreza estimada es notablemente más alta en la zona **Rural (9.9%)** que en la zona **Urbana (6.1%)**. Crucialmente, los intervalos de confianza **no se solapan** (Rural: 9.2%-10.7%; Urbana: 5.8%-6.4%). Esto nos da una fuerte evidencia de que la pobreza es significativamente mayor en zonas rurales según esta encuesta.
 *   **Escolaridad por Sexo:** La escolaridad media estimada es casi idéntica: **12.0 años para hombres** (IC 95%: 12.0 - 12.1) y **11.9 años para mujeres** (IC 95%: 11.8 - 11.9). Los intervalos de confianza **se solapan**, lo que sugiere que la diferencia observada es muy pequeña y probablemente no sea estadísticamente significativa (aunque para confirmarlo necesitaríamos una prueba formal).
 
@@ -200,7 +198,6 @@ Reutilizamos el cálculo anterior, asegurándonos de tener el tibble.
 # 1. Calcular estadísticas ponderadas con srvyr (ya lo hicimos antes, verificamos)
 pobreza_x_zona_data <- casen_design_srvyr %>%
   mutate(zona_factor = haven::as_factor(area)) %>% 
-  filter(!is.na(area)) %>%
   group_by(zona_factor) %>%
   summarise(
     tasa_pobreza = survey_mean(pobre_dic, na.rm = TRUE, vartype = "ci") 

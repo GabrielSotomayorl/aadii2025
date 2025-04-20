@@ -12,9 +12,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-```
+
 
 ## 0. Objetivos del Práctico
 
@@ -30,7 +28,8 @@ En este práctico, aplicaremos la **Regresión Lineal Múltiple (RLM)** a datos 
 
 Primero, cargamos los paquetes necesarios y preparamos los datos de CASEN 2022.
 
-```{r load_packages}
+
+```r
 # Cargar paquetes necesarios. Pacman los instala si no están presentes.
 if (!require("pacman")) install.packages("pacman")
 
@@ -42,13 +41,21 @@ pacman::p_load(tidyverse,
                car)    # Para VIF
 ```
 
-```{r load_data}
+
+```r
 # --- Código para cargar CASEN 2022 ---
 temp <- tempfile() 
 download.file("https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2022/Base%20de%20datos%20Casen%202022%20SPSS.sav.zip", temp, mode = "wb") 
 casen <- haven::read_sav(unz(temp, "Base de datos Casen 2022 SPSS.sav")) 
 unlink(temp); remove(temp) 
 print("Datos CASEN 2022 cargados.")
+```
+
+```
+## [1] "Datos CASEN 2022 cargados."
+```
+
+```r
 # --- Fin código carga ---
 
 # Seleccionar variables de interés y preparar
@@ -83,12 +90,20 @@ casen_model_data <- casen %>%
 
 # Verificar dimensiones y estructura final
 print(paste("Número de casos completos y con ingreso positivo:", nrow(casen_model_data)))
+```
+
+```
+## [1] "Número de casos completos y con ingreso positivo: 88391"
+```
+
+```r
 # glimpse(casen_model_data) # Comentado para brevedad
 ```
 
 Ahora, **declaramos el diseño muestral complejo** usando `survey::svydesign()`.
 
-```{r declare_design}
+
+```r
 # Declarar el diseño muestral complejo
 casen_design <- svydesign(
   ids = ~varunit,      
@@ -99,6 +114,13 @@ casen_design <- svydesign(
 )
 
 print("Objeto de diseño muestral 'casen_design' creado.")
+```
+
+```
+## [1] "Objeto de diseño muestral 'casen_design' creado."
+```
+
+```r
 # print(casen_design) # Comentado para brevedad
 ```
 
@@ -106,7 +128,8 @@ print("Objeto de diseño muestral 'casen_design' creado.")
 
 Ajustemos un modelo simple de ingresos (`ytrabajocor`) predichos solo por años de escolaridad (`esc`).
 
-```{r rls_model, results='asis'}
+
+```r
 # Modelo RLS con diseño complejo
 modelo_rls_svy <- svyglm(ytrabajocor ~ esc, design = casen_design)
 
@@ -115,7 +138,54 @@ htmlreg(modelo_rls_svy,
         custom.coef.names = c("Intercepto", "Años de Escolaridad"),
         caption = "Tabla 1: RLS de Ingreso del Trabajo por Escolaridad (CASEN 2022, Diseño Complejo)",
         caption.above = TRUE) 
+```
 
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;">
+<caption>Tabla 1: RLS de Ingreso del Trabajo por Escolaridad (CASEN 2022, Diseño Complejo)</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Model 1</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Intercepto</td>
+<td style="padding-left: 5px;padding-right: 5px;">-537674.57<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(24195.72)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Años de Escolaridad</td>
+<td style="padding-left: 5px;padding-right: 5px;">102894.88<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(2268.17)</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Deviance</td>
+<td style="padding-left: 5px;padding-right: 5px;">72982731141452448.00</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Dispersion</td>
+<td style="padding-left: 5px;padding-right: 5px;">825689909961.00</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">88391</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+
+```r
 # --- Para visualización directa en consola (opcional) ---
 # Nota: screenreg muestra los resultados directamente en la consola de R.
 # screenreg(modelo_rls_svy, 
@@ -132,7 +202,8 @@ htmlreg(modelo_rls_svy,
 
 Añadimos `edad` al modelo para estimar su efecto neto y ver cómo impacta en el coeficiente de `esc`.
 
-```{r rlm_cont_model, results='asis'}
+
+```r
 # Modelo RLM con predictores continuos (esc y edad)
 modelo_rlm_cont_svy <- svyglm(ytrabajocor ~ esc + edad, design = casen_design)
 
@@ -142,7 +213,72 @@ htmlreg(list(modelo_rls_svy, modelo_rlm_cont_svy),
         custom.coef.names = c("Intercepto", "Años de Escolaridad", "Edad"),
         caption = "Tabla 2: Comparación RLS y RLM (Continuas)",
         caption.above = TRUE)
+```
 
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;">
+<caption>Tabla 2: Comparación RLS y RLM (Continuas)</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Modelo 1: RLS (Esc)</th>
+<th style="padding-left: 5px;padding-right: 5px;">Modelo 2: RLM (Esc + Edad)</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Intercepto</td>
+<td style="padding-left: 5px;padding-right: 5px;">-537674.57<sup>&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1151194.26<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(24195.72)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(55376.26)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Años de Escolaridad</td>
+<td style="padding-left: 5px;padding-right: 5px;">102894.88<sup>&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">115244.37<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(2268.17)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(2773.41)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Edad</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">10712.36<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(626.86)</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Deviance</td>
+<td style="padding-left: 5px;padding-right: 5px;">72982731141452448.00</td>
+<td style="padding-left: 5px;padding-right: 5px;">71314604607645056.00</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Dispersion</td>
+<td style="padding-left: 5px;padding-right: 5px;">825689909961.00</td>
+<td style="padding-left: 5px;padding-right: 5px;">806817565421.94</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">88391</td>
+<td style="padding-left: 5px;padding-right: 5px;">88391</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="3"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+
+```r
 # --- Para visualización directa en consola (opcional) ---
 # screenreg(list(modelo_rls_svy, modelo_rlm_cont_svy), 
 #         custom.model.names = c("Modelo 1: RLS (Esc)", "Modelo 2: RLM (Esc + Edad)"),
@@ -162,7 +298,8 @@ htmlreg(list(modelo_rls_svy, modelo_rlm_cont_svy),
 
 Añadimos `sexo_factor`. "Hombre" es la referencia.
 
-```{r rlm_sexo_model, results='asis'}
+
+```r
 # Modelo RLM con predictores continuos y dicotómico (sexo)
 modelo_rlm_sexo_svy <- svyglm(ytrabajocor ~ esc + edad + sexo_factor, design = casen_design)
 
@@ -172,7 +309,82 @@ htmlreg(list(modelo_rlm_cont_svy, modelo_rlm_sexo_svy),
         custom.coef.names = c("Intercepto", "Años de Escolaridad", "Edad", "Sexo: Mujer (ref. Hombre)"),
         caption = "Tabla 3: RLM Añadiendo Sexo",
         caption.above = TRUE)
+```
 
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;">
+<caption>Tabla 3: RLM Añadiendo Sexo</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Modelo 2: Esc + Edad</th>
+<th style="padding-left: 5px;padding-right: 5px;">Modelo 3: Esc + Edad + Sexo</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Intercepto</td>
+<td style="padding-left: 5px;padding-right: 5px;">-1151194.26<sup>&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">-1065119.36<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(55376.26)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(53223.20)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Años de Escolaridad</td>
+<td style="padding-left: 5px;padding-right: 5px;">115244.37<sup>&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">118138.76<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(2773.41)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(2762.97)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Edad</td>
+<td style="padding-left: 5px;padding-right: 5px;">10712.36<sup>&#42;&#42;&#42;</sup></td>
+<td style="padding-left: 5px;padding-right: 5px;">10503.55<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(626.86)</td>
+<td style="padding-left: 5px;padding-right: 5px;">(617.04)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Sexo: Mujer (ref. Hombre)</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">-270920.69<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(8468.38)</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Deviance</td>
+<td style="padding-left: 5px;padding-right: 5px;">71314604607645056.00</td>
+<td style="padding-left: 5px;padding-right: 5px;">69743849066064120.00</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Dispersion</td>
+<td style="padding-left: 5px;padding-right: 5px;">806817565421.94</td>
+<td style="padding-left: 5px;padding-right: 5px;">789046827311.51</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">88391</td>
+<td style="padding-left: 5px;padding-right: 5px;">88391</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="3"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+
+```r
 # --- Para visualización directa en consola (opcional) ---
 # screenreg(list(modelo_rlm_cont_svy, modelo_rlm_sexo_svy), 
 #         custom.model.names = c("Modelo 2: Esc + Edad", "Modelo 3: Esc + Edad + Sexo"),
@@ -189,7 +401,8 @@ htmlreg(list(modelo_rlm_cont_svy, modelo_rlm_sexo_svy),
 
 Incluimos `macrozona`, con "Metropolitana" como referencia.
 
-```{r rlm_macro_model, results='asis'}
+
+```r
 # Modelo RLM con predictores continuos y politómico (macrozona)
 modelo_rlm_macro_svy <- svyglm(ytrabajocor ~ esc + edad + macrozona, design = casen_design)
 
@@ -201,7 +414,86 @@ htmlreg(modelo_rlm_macro_svy,
                               "Macrozona: Sur (ref. Metro)"),
         caption = "Tabla 4: RLM con Macrozona",
         caption.above = TRUE)
+```
 
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;">
+<caption>Tabla 4: RLM con Macrozona</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Model 1</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Intercepto</td>
+<td style="padding-left: 5px;padding-right: 5px;">-1027205.67<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(49868.30)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Años de Escolaridad</td>
+<td style="padding-left: 5px;padding-right: 5px;">111942.81<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(2563.75)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Edad</td>
+<td style="padding-left: 5px;padding-right: 5px;">10717.07<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(622.13)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Macrozona: Norte (ref. Metro)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-72809.82<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(15644.48)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Macrozona: Centro (ref. Metro)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-183479.29<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(12435.26)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Macrozona: Sur (ref. Metro)</td>
+<td style="padding-left: 5px;padding-right: 5px;">-156936.01<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(12855.89)</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Deviance</td>
+<td style="padding-left: 5px;padding-right: 5px;">70755152152847824.00</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Dispersion</td>
+<td style="padding-left: 5px;padding-right: 5px;">800488201751.87</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">88391</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+
+```r
 # --- Para visualización directa en consola (opcional) ---
 # screenreg(modelo_rlm_macro_svy,
 #         custom.coef.names = c("Intercepto", "Años de Escolaridad", "Edad", 
@@ -225,7 +517,8 @@ Comparamos la "fuerza" relativa de `esc` y `edad` en el `modelo_rlm_cont_svy` (M
 
 **Paso 1: Estandarizar las variables.**
 
-```{r standardize_vars}
+
+```r
 casen_model_data_z <- casen_model_data %>%
   mutate(
     # Estandarizar VD y VIs continuas (media 0, DE 1)
@@ -240,7 +533,8 @@ casen_model_data_z <- casen_model_data %>%
 
 **Paso 2: Re-declarar el diseño y correr `svyglm` con variables Z.**
 
-```{r beta_model, results='asis'}
+
+```r
 # RE-Declarar diseño con datos que incluyen variables Z
 casen_design_z <- svydesign(
   ids = ~varunit, strata = ~varstrat, weights = ~expr, 
@@ -254,7 +548,62 @@ htmlreg(modelo_beta_svy,
         custom.coef.names = c("Intercepto (Z)", "Beta Escolaridad (Z)", "Beta Edad (Z)"),
         caption = "Tabla 5: RLM con Variables Estandarizadas (Betas)",
         caption.above = TRUE)
+```
 
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;">
+<caption>Tabla 5: RLM con Variables Estandarizadas (Betas)</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">&nbsp;</th>
+<th style="padding-left: 5px;padding-right: 5px;">Model 1</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Intercepto (Z)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.07<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.01)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Beta Escolaridad (Z)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.55<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.01)</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Beta Edad (Z)</td>
+<td style="padding-left: 5px;padding-right: 5px;">0.19<sup>&#42;&#42;&#42;</sup></td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">&nbsp;</td>
+<td style="padding-left: 5px;padding-right: 5px;">(0.01)</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Deviance</td>
+<td style="padding-left: 5px;padding-right: 5px;">106830.21</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">Dispersion</td>
+<td style="padding-left: 5px;padding-right: 5px;">1.21</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">Num. obs.</td>
+<td style="padding-left: 5px;padding-right: 5px;">88391</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2"><sup>&#42;&#42;&#42;</sup>p &lt; 0.001; <sup>&#42;&#42;</sup>p &lt; 0.01; <sup>&#42;</sup>p &lt; 0.05</td>
+</tr>
+</tfoot>
+</table>
+
+```r
 # --- Para visualización directa en consola (opcional) ---
 # screenreg(modelo_beta_svy,
 #         custom.coef.names = c("Intercepto (Z)", "Beta Escolaridad (Z)", "Beta Edad (Z)"),
@@ -273,25 +622,34 @@ Revisemos visualmente los supuestos del modelo `modelo_rlm_sexo_svy` (Modelo 3).
 
 ### Linealidad (Residuos vs. Ajustados)
 
-```{r diag_linearity}
+
+```r
 plot(modelo_rlm_sexo_svy, which = 1)
 ```
+
+<img src="/example/06-practico_files/figure-html/diag_linearity-1.png" width="672" />
 
 **Interpretación:** El gráfico de residuos versus valores ajustados muestra una nube de puntos bastante dispersa alrededor de la línea horizontal cero. La línea roja suavizada (LOESS) es relativamente plana, aunque quizás con una ligera tendencia ascendente al final. No se observan patrones curvos fuertes, lo que sugiere que el supuesto de **linealidad es razonablemente cumplido**, aunque podría haber alguna no linealidad leve no capturada.
 
 ### Homocedasticidad (Scale-Location)
 
-```{r diag_homoscedasticity}
+
+```r
 plot(modelo_rlm_sexo_svy, which = 3) 
 ```
+
+<img src="/example/06-practico_files/figure-html/diag_homoscedasticity-1.png" width="672" />
 
 **Interpretación:** Este gráfico (raíz cuadrada de residuos estandarizados vs. ajustados) muestra una tendencia clara: la línea roja sube y la dispersión de los puntos aumenta a medida que los valores ajustados son mayores. Esto indica **heterocedasticidad**, es decir, la varianza de los errores no es constante. Los errores son más grandes para predicciones de ingresos más altos. Esto **afecta la eficiencia** de las estimaciones OLS y la **validez de los errores estándar y p-valores** calculados por defecto (aunque `svyglm` ya usa métodos que son algo robustos). En un análisis más avanzado, se podrían usar errores estándar robustos a la heterocedasticidad.
 
 ### Normalidad de Residuos (Q-Q Plot)
 
-```{r diag_normality}
+
+```r
 plot(modelo_rlm_sexo_svy, which = 2)
 ```
+
+<img src="/example/06-practico_files/figure-html/diag_normality-1.png" width="672" />
 
 **Interpretación:** Los puntos se desvían marcadamente de la línea diagonal, especialmente en la cola superior. La distribución de los residuos tiene una **cola derecha mucho más larga** que una distribución normal (hay residuos positivos mucho más grandes de lo esperado). Esto indica que los **residuos no son normales**. Dado el gran tamaño muestral (N=88391), la inferencia sobre los coeficientes tiende a ser robusta a esta violación, pero sugiere que el modelo podría mejorarse (quizás transformando la VD, como usando log(ingreso)).
 
@@ -299,20 +657,36 @@ plot(modelo_rlm_sexo_svy, which = 2)
 
 Evaluamos si los predictores están demasiado correlacionados entre sí en el Modelo 3.
 
-```{r diag_vif}
+
+```r
 # Calcular VIF para el modelo con sexo
 vif_values_sexo <- car::vif(modelo_rlm_sexo_svy) 
 print("VIFs para modelo con Esc, Edad, Sexo:")
+```
+
+```
+## [1] "VIFs para modelo con Esc, Edad, Sexo:"
+```
+
+```r
 print(vif_values_sexo)
+```
+
+```
+##         esc        edad sexo_factor 
+##    3.715365    3.203374    1.395069
 ```
 
 **Interpretación:** Los valores VIF para `esc` (3.72), `edad` (3.20) y `sexo_factor` (1.40) están **todos por debajo del umbral problemático** (usualmente 5 o 10). Esto indica que la multicolinealidad **no es un problema serio** en este modelo específico. Podemos interpretar los efectos parciales de cada predictor con relativa confianza.
 
 ### Casos Influyentes (Residuos vs. Leverage - Mención)
 
-```{r diag_influence}
+
+```r
 plot(modelo_rlm_sexo_svy, which = 5)
 ```
+
+<img src="/example/06-practico_files/figure-html/diag_influence-1.png" width="672" />
 
 **Interpretación:** El gráfico muestra varios puntos con residuos estandarizados altos (lejanos a cero en el eje Y), y algunos con leverage moderado (eje X). Los puntos etiquetados (como 48766, 48765) y otros en la esquina superior derecha podrían ser **potencialmente influyentes**, ya que combinan residuos grandes con cierto leverage. No hay puntos extremadamente alejados en ambas dimensiones simultáneamente, pero valdría la pena investigar los casos con residuos muy grandes en un análisis más profundo.
 

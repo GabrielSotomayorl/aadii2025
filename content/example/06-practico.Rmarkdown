@@ -95,7 +95,6 @@ casen_design <- svydesign(
   strata = ~varstrat,   
   weights = ~expr,     
   data = casen_model_data, # ¡Usamos la base filtrada!
-  nest = TRUE          # Importante si IDs de UPM se repiten entre estratos
 )
 
 print("Objeto de diseño muestral 'casen_design' creado.")
@@ -326,3 +325,17 @@ plot(modelo_rlm_sexo_svy, which = 5)
 *   Realizaste **diagnósticos visuales básicos** e interpretaste VIFs, identificando **heterocedasticidad** y **no normalidad de residuos** como posibles problemas en estos modelos, y confirmando **baja multicolinealidad** en el modelo con sexo.
 
 Ahora estás mejor equipado para construir, interpretar y evaluar modelos de regresión con datos de encuestas, reconociendo tanto el poder del control estadístico como la importancia de verificar los supuestos y usar las herramientas adecuadas (`svyglm`) para la inferencia correcta.
+
+
+## Gráfico interactivo de correlación y regresión
+
+A continuación se presenta una herramienta que podrán usar para visualizar de mejor manera como se calcula una correlación o se ajusta una recta de regresión a partir de una nube de puntos.
+
+Para acceder de mejor manera a la aplicación pueden acceder a este enlace: <https://gabriel-sotomayor.shinyapps.io/rls_aad/>.
+
+<iframe src="https://gabriel-sotomayor.shinyapps.io/rls_aad/" 
+        width="100%" 
+        height="600px" 
+        frameborder="0">
+
+</iframe>

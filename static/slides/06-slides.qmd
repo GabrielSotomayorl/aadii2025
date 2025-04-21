@@ -12,7 +12,7 @@ format:
 ---
 ## Objetivos de la Sesión {.smaller background-color="white"}
 
-En esta (potencialmente larga) sesión, construiremos las bases para el análisis multivariado:
+En esta sesión, construiremos las bases para el análisis multivariado:
 
 1.  **Entender** por qué usamos **modelos multivariados** en sociología y sus funciones principales.
 2.  **Diferenciar** entre enfoques **exploratorios** y **confirmatorios**, y entre modelos de **medición** y **relacionales**.
@@ -61,14 +61,14 @@ Podemos organizar los modelos que veremos en el curso (y otros) según dos ejes 
 *   **Análisis Factorial Exploratorio (AFE):**
     *   **Objetivo:** Identificar factores o dimensiones latentes comunes que explican las correlaciones entre un conjunto de variables observadas (ítems de una escala, indicadores).
     *   **Pregunta:** ¿Cuántas dimensiones subyacen a estos 20 ítems sobre bienestar? ¿Qué ítems cargan en qué dimensión?
-    *   **Naturaleza:** Guiado por los datos, busca descubrir estructura.
+    *   Guiado por los datos, busca descubrir estructura.
 
 ## Eje 1: Exploratorio vs. Confirmatorio  {.smaller background-color="white"}
 
 *   **Análisis Factorial Confirmatorio (AFC), Análisis de Senderos, Modelos de Ecuaciones Estructurales (SEM):**
     *   **Objetivo:** Testear si una estructura de relaciones (entre ítems y factores, o entre diferentes factores/variables) definida *previamente* por la teoría se ajusta bien a los datos observados.
     *   **Pregunta:** ¿Confirman los datos que la "autoeficacia" (medida por 4 ítems) predice el "rendimiento académico" (medido por notas), controlando por "apoyo familiar" (medido por 3 ítems)?
-    *   **Naturaleza:** Guiado por la teoría, busca validar un modelo específico.
+    *   Guiado por la teoría, busca validar un modelo específico.
 
 ## Eje 2: Medición vs. Relacional {.smaller background-color="white"}
 
@@ -79,7 +79,7 @@ Podemos organizar los modelos que veremos en el curso (y otros) según dos ejes 
 *   **Modelos Relacionales / Estructurales:**
     *   Se enfocan en las **relaciones entre variables** (sean observadas o latentes).
     *   **Regresión Lineal Múltiple (RLM):** Relaciona variables observadas.
-    *   **Análisis de Senderos:** Modela relaciones causales hipotetizadas entre variables *observadas*.
+    *   **Análisis de Senderos:** Modela relaciones más complejas hipotetizadas entre variables *observadas*.
     *   **Modelos de Ecuaciones Estructurales (SEM):** El más general. Modela relaciones entre variables *latentes* y/o *observadas*, combinando modelos de medición y modelos relacionales.
 
 *(Estos ejes no son excluyentes, SEM por ejemplo, incluye ambos tipos de modelos).*
@@ -88,7 +88,7 @@ Podemos organizar los modelos que veremos en el curso (y otros) según dos ejes 
 
 ## Variabilidad y Dispersión {.smaller background-color="white"}
 
-Recordatorio rápido: Para entender relaciones, primero necesitamos entender cómo varían las variables por sí solas.
+Para entender relaciones, primero necesitamos entender cómo varían las variables por sí solas.
 
 *   **Varianza ($s^2$):** Promedio de las distancias al cuadrado de cada dato respecto a la media. Mide la dispersión total, pero en unidades al cuadrado (difícil interpretación directa).
     $$ s^2 = \frac{\sum (x_i - \bar{x})^2}{n-1} $$
@@ -96,6 +96,49 @@ Recordatorio rápido: Para entender relaciones, primero necesitamos entender có
     $$ s = \sqrt{s^2} $$
 
 **Mayor $s$ -> Mayor heterogeneidad / dispersión.**
+
+## Variabilidad y Dispersión {.smaller background-color="white"}
+
+```{r echo=F}
+library(gridExtra)
+library(ggplot2)
+library(dplyr)
+library(dplyr)
+
+
+datos <- readRDS("data/datos.rds") %>% 
+  filter(brecha<40 & brecha > -20 & !is.na(brecha))
+datos <- datos %>%
+  mutate(escolaridad_cat = cut(promedio_anios_escolaridad25_2017, 
+                               breaks = seq(floor(min(promedio_anios_escolaridad25_2017, na.rm = TRUE)), 
+                                            ceiling(max(promedio_anios_escolaridad25_2017, na.rm = TRUE)), 
+                                            by = 1), 
+                               include.lowest = TRUE))
+
+# Calcular la media de la brecha salarial
+mean_brecha <- mean(datos$brecha, na.rm = TRUE)
+
+ggplot(datos[order(datos$brecha), ], aes(x = seq_along(brecha), y = brecha)) +
+  geom_point(color = "#42affa", size = 3) +  # Puntos de datos
+  geom_hline(yintercept = mean_brecha, color = "red", linetype = "dashed", size = 1) +  # Línea de la media
+  geom_segment(aes(xend = seq_along(brecha), yend = mean_brecha), color = "#ffa500", size = 0.5) +  # Líneas desde cada punto hasta la media
+  labs(
+    x = "Índice",
+    y = "Brecha Salarial de Género (%)",
+    title = "Distancia de cada punto a la Media de la Brecha Salarial"
+  ) +
+  theme_minimal(base_size = 14) +  # Tamaño de fuente base
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),  # Centra y pone en negrita el título
+    axis.title = element_text(face = "bold"),  # Negrita para los títulos de los ejes
+    axis.text = element_text(color = "#333333"),  # Color del texto en los ejes
+    panel.grid.major = element_line(color = "#d3d3d3"),  # Color de las líneas de la cuadrícula mayor
+    panel.grid.minor = element_blank()  # Elimina las líneas de la cuadrícula menor
+  )
+
+
+```
+
 
 ## Co-Variación: Covarianza y Correlación {.smaller background-color="white"}
 
@@ -121,9 +164,7 @@ Recordatorio rápido: Para entender relaciones, primero necesitamos entender có
 ## Graficos de dispersión y correlación {background-color="white"}
 
 ```{r echo=F}
-library(gridExtra)
-library(ggplot2)
-library(dplyr)
+
 # Función para crear un conjunto de datos con una correlación específica
 crear_datos <- function(n, cor) {
   x <- rnorm(n)
@@ -200,14 +241,7 @@ La recta de regresión busca ser la línea que "mejor representa" la tendencia l
 
 ```{r}
 # Crear categorías de escolaridad para calcular medias condicionales
-datos <- readRDS("data/datos.rds") %>% 
-  filter(brecha<40 & brecha > -20 & !is.na(brecha))
-datos <- datos %>%
-  mutate(escolaridad_cat = cut(promedio_anios_escolaridad25_2017, 
-                               breaks = seq(floor(min(promedio_anios_escolaridad25_2017, na.rm = TRUE)), 
-                                            ceiling(max(promedio_anios_escolaridad25_2017, na.rm = TRUE)), 
-                                            by = 1), 
-                               include.lowest = TRUE))
+
 
 # Calcular medias condicionales
 medias_condicionales <- datos %>%

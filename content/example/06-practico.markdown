@@ -29,7 +29,7 @@ En este práctico, aplicaremos la **Regresión Lineal Múltiple (RLM)** a datos 
 Primero, cargamos los paquetes necesarios y preparamos los datos de CASEN 2022.
 
 
-```r
+``` r
 # Cargar paquetes necesarios. Pacman los instala si no están presentes.
 if (!require("pacman")) install.packages("pacman")
 
@@ -42,7 +42,7 @@ pacman::p_load(tidyverse,
 ```
 
 
-```r
+``` r
 # --- Código para cargar CASEN 2022 ---
 temp <- tempfile() 
 download.file("https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2022/Base%20de%20datos%20Casen%202022%20SPSS.sav.zip", temp, mode = "wb") 
@@ -55,7 +55,7 @@ print("Datos CASEN 2022 cargados.")
 ## [1] "Datos CASEN 2022 cargados."
 ```
 
-```r
+``` r
 # --- Fin código carga ---
 
 # Seleccionar variables de interés y preparar
@@ -96,21 +96,20 @@ print(paste("Número de casos completos y con ingreso positivo:", nrow(casen_mod
 ## [1] "Número de casos completos y con ingreso positivo: 88391"
 ```
 
-```r
+``` r
 # glimpse(casen_model_data) # Comentado para brevedad
 ```
 
 Ahora, **declaramos el diseño muestral complejo** usando `survey::svydesign()`.
 
 
-```r
+``` r
 # Declarar el diseño muestral complejo
 casen_design <- svydesign(
   ids = ~varunit,      
   strata = ~varstrat,   
   weights = ~expr,     
   data = casen_model_data, # ¡Usamos la base filtrada!
-  nest = TRUE          # Importante si IDs de UPM se repiten entre estratos
 )
 
 print("Objeto de diseño muestral 'casen_design' creado.")
@@ -120,7 +119,7 @@ print("Objeto de diseño muestral 'casen_design' creado.")
 ## [1] "Objeto de diseño muestral 'casen_design' creado."
 ```
 
-```r
+``` r
 # print(casen_design) # Comentado para brevedad
 ```
 
@@ -129,7 +128,7 @@ print("Objeto de diseño muestral 'casen_design' creado.")
 Ajustemos un modelo simple de ingresos (`ytrabajocor`) predichos solo por años de escolaridad (`esc`).
 
 
-```r
+``` r
 # Modelo RLS con diseño complejo
 modelo_rls_svy <- svyglm(ytrabajocor ~ esc, design = casen_design)
 
@@ -185,7 +184,7 @@ htmlreg(modelo_rls_svy,
 </tfoot>
 </table>
 
-```r
+``` r
 # --- Para visualización directa en consola (opcional) ---
 # Nota: screenreg muestra los resultados directamente en la consola de R.
 # screenreg(modelo_rls_svy, 
@@ -203,7 +202,7 @@ htmlreg(modelo_rls_svy,
 Añadimos `edad` al modelo para estimar su efecto neto y ver cómo impacta en el coeficiente de `esc`.
 
 
-```r
+``` r
 # Modelo RLM con predictores continuos (esc y edad)
 modelo_rlm_cont_svy <- svyglm(ytrabajocor ~ esc + edad, design = casen_design)
 
@@ -278,7 +277,7 @@ htmlreg(list(modelo_rls_svy, modelo_rlm_cont_svy),
 </tfoot>
 </table>
 
-```r
+``` r
 # --- Para visualización directa en consola (opcional) ---
 # screenreg(list(modelo_rls_svy, modelo_rlm_cont_svy), 
 #         custom.model.names = c("Modelo 1: RLS (Esc)", "Modelo 2: RLM (Esc + Edad)"),
@@ -299,7 +298,7 @@ htmlreg(list(modelo_rls_svy, modelo_rlm_cont_svy),
 Añadimos `sexo_factor`. "Hombre" es la referencia.
 
 
-```r
+``` r
 # Modelo RLM con predictores continuos y dicotómico (sexo)
 modelo_rlm_sexo_svy <- svyglm(ytrabajocor ~ esc + edad + sexo_factor, design = casen_design)
 
@@ -384,7 +383,7 @@ htmlreg(list(modelo_rlm_cont_svy, modelo_rlm_sexo_svy),
 </tfoot>
 </table>
 
-```r
+``` r
 # --- Para visualización directa en consola (opcional) ---
 # screenreg(list(modelo_rlm_cont_svy, modelo_rlm_sexo_svy), 
 #         custom.model.names = c("Modelo 2: Esc + Edad", "Modelo 3: Esc + Edad + Sexo"),
@@ -402,7 +401,7 @@ htmlreg(list(modelo_rlm_cont_svy, modelo_rlm_sexo_svy),
 Incluimos `macrozona`, con "Metropolitana" como referencia.
 
 
-```r
+``` r
 # Modelo RLM con predictores continuos y politómico (macrozona)
 modelo_rlm_macro_svy <- svyglm(ytrabajocor ~ esc + edad + macrozona, design = casen_design)
 
@@ -493,7 +492,7 @@ htmlreg(modelo_rlm_macro_svy,
 </tfoot>
 </table>
 
-```r
+``` r
 # --- Para visualización directa en consola (opcional) ---
 # screenreg(modelo_rlm_macro_svy,
 #         custom.coef.names = c("Intercepto", "Años de Escolaridad", "Edad", 
@@ -518,7 +517,7 @@ Comparamos la "fuerza" relativa de `esc` y `edad` en el `modelo_rlm_cont_svy` (M
 **Paso 1: Estandarizar las variables.**
 
 
-```r
+``` r
 casen_model_data_z <- casen_model_data %>%
   mutate(
     # Estandarizar VD y VIs continuas (media 0, DE 1)
@@ -534,7 +533,7 @@ casen_model_data_z <- casen_model_data %>%
 **Paso 2: Re-declarar el diseño y correr `svyglm` con variables Z.**
 
 
-```r
+``` r
 # RE-Declarar diseño con datos que incluyen variables Z
 casen_design_z <- svydesign(
   ids = ~varunit, strata = ~varstrat, weights = ~expr, 
@@ -603,7 +602,7 @@ htmlreg(modelo_beta_svy,
 </tfoot>
 </table>
 
-```r
+``` r
 # --- Para visualización directa en consola (opcional) ---
 # screenreg(modelo_beta_svy,
 #         custom.coef.names = c("Intercepto (Z)", "Beta Escolaridad (Z)", "Beta Edad (Z)"),
@@ -623,7 +622,7 @@ Revisemos visualmente los supuestos del modelo `modelo_rlm_sexo_svy` (Modelo 3).
 ### Linealidad (Residuos vs. Ajustados)
 
 
-```r
+``` r
 plot(modelo_rlm_sexo_svy, which = 1)
 ```
 
@@ -634,7 +633,7 @@ plot(modelo_rlm_sexo_svy, which = 1)
 ### Homocedasticidad (Scale-Location)
 
 
-```r
+``` r
 plot(modelo_rlm_sexo_svy, which = 3) 
 ```
 
@@ -645,7 +644,7 @@ plot(modelo_rlm_sexo_svy, which = 3)
 ### Normalidad de Residuos (Q-Q Plot)
 
 
-```r
+``` r
 plot(modelo_rlm_sexo_svy, which = 2)
 ```
 
@@ -658,7 +657,7 @@ plot(modelo_rlm_sexo_svy, which = 2)
 Evaluamos si los predictores están demasiado correlacionados entre sí en el Modelo 3.
 
 
-```r
+``` r
 # Calcular VIF para el modelo con sexo
 vif_values_sexo <- car::vif(modelo_rlm_sexo_svy) 
 print("VIFs para modelo con Esc, Edad, Sexo:")
@@ -668,7 +667,7 @@ print("VIFs para modelo con Esc, Edad, Sexo:")
 ## [1] "VIFs para modelo con Esc, Edad, Sexo:"
 ```
 
-```r
+``` r
 print(vif_values_sexo)
 ```
 
@@ -682,7 +681,7 @@ print(vif_values_sexo)
 ### Casos Influyentes (Residuos vs. Leverage - Mención)
 
 
-```r
+``` r
 plot(modelo_rlm_sexo_svy, which = 5)
 ```
 
@@ -700,3 +699,17 @@ plot(modelo_rlm_sexo_svy, which = 5)
 *   Realizaste **diagnósticos visuales básicos** e interpretaste VIFs, identificando **heterocedasticidad** y **no normalidad de residuos** como posibles problemas en estos modelos, y confirmando **baja multicolinealidad** en el modelo con sexo.
 
 Ahora estás mejor equipado para construir, interpretar y evaluar modelos de regresión con datos de encuestas, reconociendo tanto el poder del control estadístico como la importancia de verificar los supuestos y usar las herramientas adecuadas (`svyglm`) para la inferencia correcta.
+
+
+## Gráfico interactivo de correlación y regresión
+
+A continuación se presenta una herramienta que podrán usar para visualizar de mejor manera como se calcula una correlación o se ajusta una recta de regresión a partir de una nube de puntos.
+
+Para acceder de mejor manera a la aplicación pueden acceder a este enlace: <https://gabriel-sotomayor.shinyapps.io/rls_aad/>.
+
+<iframe src="https://gabriel-sotomayor.shinyapps.io/rls_aad/" 
+        width="100%" 
+        height="600px" 
+        frameborder="0">
+
+</iframe>

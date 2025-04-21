@@ -8,7 +8,7 @@
 <link href="06-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="06-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="06-slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.3.353">
 
   <meta name="author" content="Gabriel Sotomayor">
   <meta name="dcterms.date" content="2025-04-21">
@@ -157,8 +157,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -342,7 +341,7 @@ Gabriel Sotomayor
 </section>
 <section id="objetivos-de-la-sesión" class="slide level2 smaller" data-background-color="white">
 <h2>Objetivos de la Sesión</h2>
-<p>En esta (potencialmente larga) sesión, construiremos las bases para el análisis multivariado:</p>
+<p>En esta sesión, construiremos las bases para el análisis multivariado:</p>
 <ol type="1">
 <li><strong>Entender</strong> por qué usamos <strong>modelos multivariados</strong> en sociología y sus funciones principales.</li>
 <li><strong>Diferenciar</strong> entre enfoques <strong>exploratorios</strong> y <strong>confirmatorios</strong>, y entre modelos de <strong>medición</strong> y <strong>relacionales</strong>.</li>
@@ -401,7 +400,7 @@ Gabriel Sotomayor
 <ul>
 <li><strong>Objetivo:</strong> Identificar factores o dimensiones latentes comunes que explican las correlaciones entre un conjunto de variables observadas (ítems de una escala, indicadores).</li>
 <li><strong>Pregunta:</strong> ¿Cuántas dimensiones subyacen a estos 20 ítems sobre bienestar? ¿Qué ítems cargan en qué dimensión?</li>
-<li><strong>Naturaleza:</strong> Guiado por los datos, busca descubrir estructura.</li>
+<li>Guiado por los datos, busca descubrir estructura.</li>
 </ul></li>
 </ul>
 </section>
@@ -412,7 +411,7 @@ Gabriel Sotomayor
 <ul>
 <li><strong>Objetivo:</strong> Testear si una estructura de relaciones (entre ítems y factores, o entre diferentes factores/variables) definida <em>previamente</em> por la teoría se ajusta bien a los datos observados.</li>
 <li><strong>Pregunta:</strong> ¿Confirman los datos que la “autoeficacia” (medida por 4 ítems) predice el “rendimiento académico” (medido por notas), controlando por “apoyo familiar” (medido por 3 ítems)?</li>
-<li><strong>Naturaleza:</strong> Guiado por la teoría, busca validar un modelo específico.</li>
+<li>Guiado por la teoría, busca validar un modelo específico.</li>
 </ul></li>
 </ul>
 </section>
@@ -428,7 +427,7 @@ Gabriel Sotomayor
 <ul>
 <li>Se enfocan en las <strong>relaciones entre variables</strong> (sean observadas o latentes).</li>
 <li><strong>Regresión Lineal Múltiple (RLM):</strong> Relaciona variables observadas.</li>
-<li><strong>Análisis de Senderos:</strong> Modela relaciones causales hipotetizadas entre variables <em>observadas</em>.</li>
+<li><strong>Análisis de Senderos:</strong> Modela relaciones más complejas hipotetizadas entre variables <em>observadas</em>.</li>
 <li><strong>Modelos de Ecuaciones Estructurales (SEM):</strong> El más general. Modela relaciones entre variables <em>latentes</em> y/o <em>observadas</em>, combinando modelos de medición y modelos relacionales.</li>
 </ul></li>
 </ul>
@@ -441,13 +440,17 @@ Gabriel Sotomayor
 </section>
 <section id="variabilidad-y-dispersión" class="slide level2 smaller" data-background-color="white">
 <h2>Variabilidad y Dispersión</h2>
-<p>Recordatorio rápido: Para entender relaciones, primero necesitamos entender cómo varían las variables por sí solas.</p>
+<p>Para entender relaciones, primero necesitamos entender cómo varían las variables por sí solas.</p>
 <ul>
 <li><strong>Varianza (<span class="math inline">\(s^2\)</span>):</strong> Promedio de las distancias al cuadrado de cada dato respecto a la media. Mide la dispersión total, pero en unidades al cuadrado (difícil interpretación directa). <span class="math display">\[ s^2 = \frac{\sum (x_i - \bar{x})^2}{n-1} \]</span></li>
 <li><strong>Desviación Estándar (<span class="math inline">\(s\)</span>):</strong> Raíz cuadrada de la varianza. Vuelve a las unidades originales de la variable. Es la medida de dispersión más usada e interpretable. <span class="math display">\[ s = \sqrt{s^2} \]</span></li>
 </ul>
 <p><strong>Mayor <span class="math inline">\(s\)</span> -&gt; Mayor heterogeneidad / dispersión.</strong></p>
 </section>
+<section id="variabilidad-y-dispersión-1" class="slide level2 smaller" data-background-color="white">
+<h2>Variabilidad y Dispersión</h2>
+
+<img data-src="06-slides_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
 <section id="co-variación-covarianza-y-correlación" class="slide level2 smaller" data-background-color="white">
 <h2>Co-Variación: Covarianza y Correlación</h2>
 <p>¿Cómo varían <em>dos variables juntas</em>?</p>
@@ -477,7 +480,7 @@ Gabriel Sotomayor
 <section id="graficos-de-dispersión-y-correlación" class="slide level2" data-background-color="white">
 <h2>Graficos de dispersión y correlación</h2>
 
-<img data-src="06-slides_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<img data-src="06-slides_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
 <section id="correlaciones-para-datos-no-continuos" class="slide level2 smaller" data-background-color="white">
 <h2>Correlaciones para Datos No Continuos</h2>
 <p>¿Qué hacemos si nuestras variables son <strong>ordinales</strong> (ej. escalas Likert: “Muy en desacuerdo” a “Muy de acuerdo”) o <strong>dicotómicas</strong> (ej. Sí/No, Hombre/Mujer)? Pearson no es ideal.</p>
@@ -513,7 +516,7 @@ Gabriel Sotomayor
 <h2>Visualizando la RLS</h2>
 <p>La recta de regresión busca ser la línea que “mejor representa” la tendencia lineal en la nube de puntos de un diagrama de dispersión. La recta resume la relación lineal promedio.</p>
 
-<img data-src="06-slides_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<img data-src="06-slides_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
 <section id="cómo-encontrar-la-mejor-recta-mínimos-cuadrados-ols" class="slide level2 smaller" data-background-color="white">
 <h2>¿Cómo Encontrar la “Mejor” Recta? Mínimos Cuadrados (OLS)</h2>
 <p>Hay infinitas rectas posibles. OLS (Ordinary Least Squares) es el método estándar para elegir la “mejor”:</p>
@@ -526,7 +529,7 @@ Gabriel Sotomayor
 <section id="visualización-de-la-distancia-entre-la-recta-y-los-casos" class="slide level2" data-background-color="white">
 <h2>Visualización de la distancia entre la recta y los casos</h2>
 
-<img data-src="img/06/resid.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="img/06/resid.jpg" class="r-stretch quarto-figure-center"></section>
 <section id="fórmulas-para-ols-rls" class="slide level2 smaller" data-background-color="white">
 <h2>Fórmulas para OLS (RLS)</h2>
 <p>Para calcular la pendiente 𝑏y la ordenada en el origen 𝑎, se utilizan las siguientes fórmulas: <span class="math display">\[
@@ -546,7 +549,7 @@ a = \bar{y} - b \bar{x}
 <li><strong>Gráfico de Residuos:</strong> Se grafica cada residuo (<span class="math inline">\(e_i\)</span>) contra el valor predicho correspondiente (<span class="math inline">\(\hat{y}_i\)</span>).</li>
 </ul>
 
-<img data-src="06-slides_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<img data-src="06-slides_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section id="interpretando-el-gráfico-de-residuos" class="slide level2 smaller" data-background-color="white">
 <h2>Interpretando el Gráfico de Residuos</h2>
 <p><strong>¿Qué buscamos en el gráfico de residuos vs.&nbsp;predichos?</strong></p>
@@ -716,11 +719,9 @@ a = \bar{y} - b \bar{x}
 <li>Interpretación de la salida de <code>summary(lm())</code>, incluyendo p-valores…</li>
 <li>Cálculo de regresiones usando muestras complejas.</li>
 </ol>
-<div class="quarto-auto-generated-content">
-<p><img src="images/logo.png" class="slide-logo"></p>
-<div class="footer footer-default">
 
-</div>
+<img src="images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+
 </div>
 </section></section>
     </div>
@@ -749,6 +750,7 @@ a = \bar{y} - b \bar{x}
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -934,80 +936,42 @@ a = \bar{y} - b \bar{x}
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1041,7 +1005,18 @@ a = \bar{y} - b \bar{x}
         }
         return false;
       }
-      const onCopySuccess = function(e) {
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1073,50 +1048,11 @@ a = \bar{y} - b \bar{x}
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1126,17 +1062,8 @@ a = \bar{y} - b \bar{x}
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1150,11 +1077,7 @@ a = \bar{y} - b \bar{x}
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {

@@ -8,11 +8,11 @@
 <link href="07-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="07-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="07-slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Gabriel Sotomayor">
   <meta name="dcterms.date" content="2025-05-12">
-  <title>Análisis Factorial Exploratorio I</title>
+  <title>Análisis Factorial Exploratorio (AFE)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -157,7 +157,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -326,8 +327,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Análisis Factorial Exploratorio I</h1>
-  <p class="subtitle">Sesión 7</p>
+  <h1 class="title">Análisis Factorial Exploratorio (AFE)</h1>
+  <p class="subtitle">Sesión 7: Descubriendo Dimensiones Latentes</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -339,139 +340,288 @@ Gabriel Sotomayor
 
   <p class="date">2025-05-12</p>
 </section>
-<section id="contenidos-de-la-sesión" class="slide level2 smaller" data-background-color="white">
-<h2>Contenidos de la sesión</h2>
-<ul>
-<li><strong>Análisis Factorial Exploratorio (y Análisis de Componentes Principales)</strong></li>
-<li><strong>Etapas del análisis factorial</strong></li>
-<li><strong>Preparación de los datos y evaluación de supuestos</strong></li>
-<li><strong>Extracción de factores iniciales</strong></li>
-<li><strong>Obtención e interpretación de la matriz factorial</strong></li>
-<li><strong>Evaluación del modelo factorial</strong></li>
-<li><strong>Cálculo de las puntuaciones factoriales</strong></li>
-</ul>
-</section>
-<section id="variables-latentes-en-ciencias-sociales" class="slide level2 smaller" data-background-color="white">
-<h2>Variables latentes en Ciencias Sociales</h2>
-<p>En ciencias sociales muchos de los conceptos que usamos no pueden medirse directamente: <strong>autoritarismo</strong>, <strong>conciencia de clase</strong>, <strong>capital cultural</strong>, etc. Estos conceptos corresponden a <strong>variables latentes</strong>, las cuales no pueden ser observadas o medidas directamente, pero pueden inferirse a través de otras variables relacionadas, asumiendo que están influyendo en los datos observados.</p>
-<ul>
-<li>Una <strong>variable latente</strong> es una construcción teórica o abstracta.</li>
-<li>Su medición requiere de un <strong>modelo de medición</strong> que evalúe la relación entre variables observadas.</li>
-<li><strong>Técnicas utilizadas</strong>: <strong>Análisis Factorial Exploratorio (AFE)</strong> y <strong>Análisis Factorial Confirmatorio</strong>.</li>
-</ul>
-</section>
-<section id="análisis-factorial-exploratorio" class="slide level2 smaller" data-background-color="white">
-<h2>Análisis Factorial Exploratorio</h2>
-<p>Conjunto de técnicas de análisis. <strong>Se busca la síntesis de la información proporcionada por “p” variables observadas (o indicadores), con la menor pérdida posible de información, en un número inferior de “k” variables no observadas</strong> (<strong>factores comunes</strong>). Esta serie menor de <strong>variables latentes</strong> ha de caracterizarse por aglutinar <strong>variables empíricas</strong> que estén bastante correlacionadas entre sí y escasamente correlacionadas con aquellas variables empíricas que conforman otra estructura latente (o dimensión del concepto que se analice).</p>
-</section>
-<section id="análisis-factorial-exploratorio-1" class="slide level2 smaller" data-background-color="white">
-<h2>Análisis Factorial Exploratorio</h2>
-<p>Tiene dos <strong>objetivos principales</strong>:</p>
+<section id="objetivos-de-la-sesión" class="slide level2 smaller" data-background-color="white">
+<h2>Objetivos de la Sesión</h2>
+<p>En esta primera parte sobre Análisis Factorial Exploratorio (AFE), nos enfocaremos en:</p>
 <ol type="1">
-<li><p>Analizar la <strong>correlación</strong> existente en una serie de variables, con el propósito de descubrir si comparten alguna <strong>estructura latente</strong> (no directamente observable).</p></li>
-<li><p>La obtención de <strong>puntuaciones factoriales</strong>, variables típicas o, en su caso, <strong>variables sucedáneas</strong>, para cada factor. Estas actuarán en representación de los factores o componentes en análisis posteriores.</p></li>
+<li><strong>Comprender</strong> qué son las <strong>variables latentes</strong> y por qué son cruciales en Ciencias Sociales.</li>
+<li><strong>Definir</strong> el Análisis Factorial Exploratorio (AFE): sus objetivos y lógica fundamental.</li>
+<li><strong>Diferenciar</strong> brevemente AFE del Análisis de Componentes Principales (ACP).</li>
+<li>Detallar las <strong>etapas clave</strong> del proceso de AFE.</li>
+<li>Profundizar en la <strong>preparación de los datos</strong> y la <strong>evaluación de supuestos</strong> necesarios para un AFE robusto.</li>
+<li>Entender cómo se <strong>extraen los factores iniciales</strong> y se interpreta la <strong>matriz factorial</strong>.</li>
 </ol>
 </section>
-<section id="análisis-factorial-exploratorio-2" class="slide level2 smaller" data-background-color="white">
-<h2>Análisis Factorial Exploratorio</h2>
-<p>Cada variable observada <strong>X¡</strong> se expresa mediante una combinación lineal de un número pequeño de <strong>factores comunes latentes</strong> y un <strong>factor único</strong>, también latente. Estos últimos representan la parte de la <strong>varianza</strong> de la variable observada que “no” es explicada por los <strong>factores comunes</strong>. La elección de la letra “e” para denotar al <strong>factor único</strong> procede de su consideración como <strong>“término de error”</strong>.</p>
-</section>
-<section id="section" class="slide level2">
-<h2><img data-src="https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/05/ecua.png"></h2>
-</section>
-<section id="afe-y-acp" class="slide level2 smaller" data-background-color="white">
-<h2>AFE y ACP</h2>
-<p>Además del análisis factorial, otra técnica que se usa frecuentemente para la reducción de dimensiones de conjuntos de variables es el <strong>Análisis de Componentes Principales (ACP)</strong>.</p>
+<section id="variables-latentes-en-sociología" class="slide level2 smaller dark-background">
+<h2>Variables Latentes en Sociología</h2>
+<p>Muchos conceptos centrales en sociología no son directamente observables ni medibles con una sola pregunta.</p>
 <ul>
-<li>El <strong>ACP</strong> trabaja con la <strong>varianza total</strong> de las variables.</li>
-<li>El <strong>AFE</strong> utiliza solo la <strong>varianza común</strong> o <strong>comunalidad</strong>.</li>
+<li><strong>Ejemplos:</strong> Autoritarismo, Anomia, Capital Cultural, Bienestar Subjetivo, Alienación, Conciencia de Clase…</li>
 </ul>
+<p>Estos son <strong>CONCEPTOS ABSTRACTOS</strong> o <strong>CONSTRUCTOS TEÓRICOS</strong>.</p>
+<p>En estadística, los llamamos <strong>VARIABLES LATENTES</strong>: * No se miden directamente. * Se infieren a partir de un conjunto de <strong>variables observadas (indicadores)</strong> que <em>creemos</em> que reflejan o son causadas por esa variable latente.</p>
+</section>
+<section id="el-rol-del-afe" class="slide level2 smaller" data-background-color="white">
+<h2>El Rol del AFE</h2>
+<p>Si una variable latente (ej. “Satisfacción Laboral”) no es visible, ¿cómo la estudiamos?</p>
+<ol type="1">
+<li>Diseñamos <strong>múltiples preguntas (ítems o indicadores)</strong> que intentan capturar diferentes facetas de ese concepto.
+<ul>
+<li>“¿Está ud. satisfecho con su salario?”</li>
+<li>“¿Siente que su trabajo es reconocido?”</li>
+<li>“¿Tiene buenas relaciones con sus colegas?”</li>
+</ul></li>
+<li>Aplicamos estas preguntas a una muestra.</li>
+<li><strong>Análisis Factorial Exploratorio (AFE):</strong> Una técnica estadística que nos ayuda a determinar si las respuestas a estos ítems se agrupan de manera coherente, sugiriendo que están midiendo una (o varias) dimensiones subyacentes (los factores latentes).</li>
+</ol>
+<p><img data-src="img/placeholder_latente_observada.png" class="quarto-figure quarto-figure-center" style="width:65.0%"> <em>Placeholder: Diagrama conceptual mostrando una variable latente (círculo) con flechas hacia varias variables observadas (cuadrados).</em></p>
+</section>
+<section id="qué-es-el-análisis-factorial-exploratorio-afe" class="slide level2 smaller dark-background">
+<h2>¿Qué es el Análisis Factorial Exploratorio (AFE)?</h2>
+<p>El AFE es un conjunto de técnicas estadísticas multivariadas cuyo objetivo principal es:</p>
+<blockquote>
+<p><strong>Reducir la dimensionalidad</strong> de un conjunto de <em>p</em> variables observadas (correlacionadas entre sí) a un número menor de <em>k</em> <strong>factores latentes no observados (factores comunes)</strong>, con la menor pérdida de información posible.</p>
+</blockquote>
+<p><strong>En esencia:</strong> Busca identificar la <strong>estructura subyacente</strong> en las relaciones (correlaciones) entre las variables observadas.</p>
+<ul>
+<li>Si varias variables están altamente correlacionadas entre sí, es probable que estén midiendo un mismo concepto o factor latente.</li>
+<li>El AFE intenta descubrir estos “grupos” de variables y los factores que representan.</li>
+</ul>
+</section>
+<section id="objetivos-específicos-del-afe" class="slide level2 smaller" data-background-color="white">
+<h2>Objetivos Específicos del AFE</h2>
+<ol type="1">
+<li><strong>Analizar la Estructura de Correlaciones:</strong>
+<ul>
+<li>Determinar si las variables observadas comparten suficiente varianza común como para justificar la existencia de factores latentes.</li>
+<li>Identificar cuántos factores latentes son necesarios para explicar adecuadamente las correlaciones observadas.</li>
+</ul></li>
+<li><strong>Identificar el Significado de los Factores:</strong>
+<ul>
+<li>Interpretar qué representa cada factor latente, examinando qué variables observadas “cargan” o se asocian fuertemente con él.</li>
+</ul></li>
+<li><strong>Obtener Puntuaciones Factoriales (Factor Scores):</strong>
+<ul>
+<li>Calcular un valor estimado para cada individuo en cada uno de los factores latentes identificados.</li>
+<li>Estas puntuaciones pueden usarse luego como variables en otros análisis (regresión, ANOVA, etc.), representando de forma sintética las dimensiones encontradas.</li>
+</ul></li>
+</ol>
+</section>
+<section id="el-modelo-matemático-del-afe" class="slide level2 smaller" data-background-color="white">
+<h2>El Modelo Matemático del AFE</h2>
+<p>La idea básica es que cada <strong>variable observada (<span class="math inline">\(X_i\)</span>)</strong> puede ser expresada como una combinación lineal de:</p>
+<ul>
+<li>Un conjunto de <strong>factores comunes (<span class="math inline">\(F_1, F_2, ..., F_k\)</span>)</strong> que son compartidos por múltiples variables observadas.</li>
+<li>Un <strong>factor único (<span class="math inline">\(e_i\)</span>)</strong> que es específico para esa variable <span class="math inline">\(X_i\)</span> y representa la parte de su varianza que <strong>no</strong> es compartida con otros ítems (error de medida + varianza específica).</li>
+</ul>
+<p><span class="math display">\[ X_1 = \lambda_{11}F_1 + \lambda_{12}F_2 + ... + \lambda_{1k}F_k + e_1 \]</span> <span class="math display">\[ X_2 = \lambda_{21}F_1 + \lambda_{22}F_2 + ... + \lambda_{2k}F_k + e_2 \]</span> <span class="math display">\[ ... \]</span> <span class="math display">\[ X_p = \lambda_{p1}F_1 + \lambda_{p2}F_2 + ... + \lambda_{pk}F_k + e_p \]</span></p>
+<ul>
+<li><span class="math inline">\(\lambda_{ij}\)</span> (lambda): Es la <strong>carga factorial</strong> de la variable <span class="math inline">\(X_i\)</span> en el factor <span class="math inline">\(F_j\)</span>. Indica la fuerza y dirección de la relación entre el ítem y el factor.</li>
+</ul>
+</section>
+<section id="afe-vs.-análisis-de-componentes-principales-acp" class="slide level2 smaller dark-background">
+<h2>AFE vs.&nbsp;Análisis de Componentes Principales (ACP)</h2>
+<p>Son técnicas similares (ambas buscan reducir dimensiones) pero conceptualmente diferentes:</p>
+<ul>
+<li><strong>Análisis de Componentes Principales (ACP):</strong>
+<ul>
+<li><strong>Objetivo:</strong> Crear un conjunto más pequeño de variables (componentes) que capturen la <strong>máxima varianza total</strong> posible de las variables originales.</li>
+<li>Asume que toda la varianza de cada variable es “común” (no distingue varianza común de única/error).</li>
+<li>Los componentes son combinaciones lineales de las variables observadas.</li>
+<li>Es más una técnica de <strong>transformación y resumen de datos</strong>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="afe-vs.-análisis-de-componentes-principales-acp-1" class="slide level2 smaller dark-background">
+<h2>AFE vs.&nbsp;Análisis de Componentes Principales (ACP)</h2>
+<ul>
+<li><strong>Análisis Factorial Exploratorio (AFE) (específicamente de Factor Común):</strong>
+<ul>
+<li><strong>Objetivo:</strong> Identificar <strong>factores latentes</strong> que expliquen las <strong>correlaciones (varianza común)</strong> entre las variables observadas.</li>
+<li>Asume un modelo donde la varianza de cada variable se divide en <strong>varianza común (comunalidad)</strong> y <strong>varianza única</strong>.</li>
+<li>Los factores latentes se postulan como “causas” de las variables observadas.</li>
+<li>Es más una técnica de <strong>modelado de la estructura subyacente</strong>.</li>
+</ul></li>
+</ul>
+<p><strong>En la práctica:</strong> A menudo dan resultados similares, especialmente con muchas variables y altas comunalidades. ACP se usa a veces como un método de extracción en AFE.</p>
 </section>
 <section id="etapas-del-análisis-factorial-exploratorio" class="slide level2 smaller" data-background-color="white">
 <h2>Etapas del Análisis Factorial Exploratorio</h2>
+<p>El proceso de AFE suele seguir una serie de pasos definidos:</p>
 
-<img data-src="https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/05/esquema.png" class="r-stretch quarto-figure-center"></section>
-<section id="preparación-de-los-datos-y-evaluación-de-supuestos" class="slide level2 smaller" data-background-color="white">
-<h2>Preparación de los datos y evaluación de supuestos</h2>
-<ul>
-<li><strong>Nivel de medición</strong>.</li>
-<li><strong>Tamaño muestral</strong>.</li>
-<li><strong>Normalidad multivariante</strong>.</li>
-<li><strong>Colinealidad y multicolinealidad</strong>.</li>
-<li><strong>Tratamiento de casos perdidos y casos atípicos</strong>.</li>
-</ul>
+<img data-src="https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/05/esquema.png" style="width:90.0%" class="r-stretch"></section>
+<section>
+<section id="preparación-de-datos-y-supuestos" class="title-slide slide level1 center">
+<h1>Preparación de Datos y Supuestos</h1>
+
+</section>
+<section id="antes-de-empezar-chequeos-esenciales" class="slide level2 smaller dark-background">
+<h2>Antes de Empezar: Chequeos Esenciales</h2>
+<p>Como toda técnica estadística, el AFE tiene requisitos y supuestos sobre los datos:</p>
+<ol type="1">
+<li><strong>Nivel de Medición de las Variables.</strong></li>
+<li><strong>Tamaño Muestral Adecuado.</strong></li>
+<li><strong>Colinealidad (¡Necesaria!) y Ausencia de Multicolinealidad Extrema.</strong></li>
+<li><strong>(Idealmente) Normalidad Multivariante.</strong></li>
+<li><strong>Tratamiento de Casos Perdidos y Atípicos.</strong></li>
+<li><strong>Estandarización (Opcional pero Recomendada).</strong></li>
+</ol>
 </section>
 <section id="nivel-de-medición" class="slide level2 smaller" data-background-color="white">
-<h2>Nivel de medición</h2>
-<p>El <strong>AFE</strong> requiere que las variables sean <strong>continuas</strong> o al menos <strong>ordinales</strong>. Esto puede resolverse con el tipo de <strong>matriz de correlaciones</strong> utilizada.</p>
-
-<img data-src="https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/05/Medida.png" style="width:70.0%" class="r-stretch quarto-figure-center"></section>
-<section id="tamaño-muestral" class="slide level2 smaller" data-background-color="white">
-<h2>Tamaño muestral</h2>
-<p>Como piso mínimo se requieren <strong>5 casos por cada variable</strong> que se incluya en el análisis, sin embargo, es preferible contar con al menos <strong>20 casos</strong> por variable. Tamaños muestrales mayores ayudarán a obtener estimaciones muestrales estables.</p>
-<p>Como mínimo se esperan unos <strong>200 o 300 casos en total</strong>.</p>
-<p>Debe considerarse los <strong>casos perdidos</strong> y aquellos que puedan ser eliminados por ser <strong>casos atípicos</strong>.</p>
+<h2>1. Nivel de Medición</h2>
+<ul>
+<li>Tradicionalmente, el AFE se desarrolló para variables <strong>continuas (intervalares o de razón)</strong>.</li>
+<li>Sin embargo, es muy común usarlo con variables <strong>ordinales</strong> (ej. escalas Likert).
+<ul>
+<li><strong>Si son ordinales:</strong> Es crucial usar la <strong>matriz de correlaciones adecuada</strong>.
+<ul>
+<li>Si las variables ordinales tienen pocas categorías (ej. &lt; 5-7) o distribuciones muy asimétricas, la <strong>correlación de Pearson puede subestimar la verdadera asociación</strong>.</li>
+<li>En estos casos, se prefiere una <strong>matriz de correlaciones POLICÓRICAS</strong>.</li>
+</ul></li>
+<li>Si son <strong>dicotómicas</strong>, se usarían correlaciones <strong>TETRACÓRICAS</strong>.</li>
+</ul></li>
+</ul>
 </section>
-<section id="normalidad-multivariante" class="slide level2 smaller" data-background-color="white">
-<h2>Normalidad multivariante</h2>
-<p>Todas las <strong>variables observadas</strong> y sus combinaciones lineales han de estar distribuidas normalmente. Es decir, se espera que exista <strong>normalidad univariada</strong> en cada variable y <strong>normalidad multivariante</strong>.</p>
-<p>El uso de procedimientos de extracción habituales en <strong>AFC</strong>, como los llamados <strong>“máxima verosimilitud (ML)”</strong> o <strong>“mínimos cuadrados”</strong> exige el cumplimiento del supuesto de <strong>normalidad multivariable</strong>.</p>
-<p>Cuando no se cumple, habrá que buscar que cada variable no sea <strong>extremadamente asimétrica</strong> (se sugiere coeficientes de <strong>asimetría</strong> que se encuentren dentro de un intervalo de <strong>±2</strong>).</p>
+<section id="nivel-de-medición-1" class="slide level2 smaller" data-background-color="white">
+<h2>1. Nivel de Medición</h2>
+
+<img data-src="https://raw.githubusercontent.com/Clases-GabrielSotomayor/pruebapagina/master/static/slides/img/05/Medida.png" class="r-stretch"></section>
+<section id="tamaño-muestral" class="slide level2 smaller" data-background-color="white">
+<h2>2. Tamaño Muestral</h2>
+<p>No hay reglas únicas, pero sí recomendaciones generales:</p>
+<ul>
+<li><strong>Mínimo Absoluto:</strong> Al menos 5 casos <em>por cada variable</em> incluida en el análisis. Es mejor si son 10-20 casos por variable.</li>
+<li><strong>Tamaño Total Mínimo:</strong> Generalmente se recomienda un N &gt; 100. Idealmente N &gt; 200 o 300 para obtener soluciones factoriales más estables.</li>
+<li><strong>Relación con Comunalidades y Número de Factores:</strong>
+<ul>
+<li>Si las <strong>comunalidades</strong> (proporción de varianza de un ítem explicada por los factores) son <strong>altas</strong> (ej. &gt; 0.6-0.7) y hay <strong>pocos factores bien definidos</strong>, se pueden obtener resultados estables con muestras más pequeñas (ej. N=100-150).</li>
+<li>Si las comunalidades son bajas y/o se esperan muchos factores o factores débiles, se necesitan muestras más grandes.</li>
+</ul></li>
+<li><strong>¡Considerar Casos Perdidos y Atípicos!</strong> El N efectivo puede disminuir después de la limpieza de datos.</li>
+</ul>
 </section>
 <section id="colinealidad" class="slide level2 smaller" data-background-color="white">
-<h2>Colinealidad</h2>
-<p>Para la extracción de <strong>factores comunes</strong> debe existir <strong>varianza común</strong> entre las variables, de lo contrario es poco probable encontrar <strong>estructuras latentes</strong> relevantes.</p>
-<p>Como mínimo, se espera la existencia de <strong>correlaciones</strong> de al menos <strong>0,3</strong> entre las variables.</p>
-<p>Según el nivel de medida pueden utilizarse <strong>correlaciones de Pearson</strong> (variables continuas o ordinales de suficientes categorías) o <strong>policóricas</strong> (variables ordinales).</p>
-</section>
-<section id="correlaciones-policóricas" class="slide level2 smaller" data-background-color="white">
-<h2>Correlaciones policóricas</h2>
-<p>Las <strong>correlaciones policóricas</strong> son una medida de asociación entre <strong>variables ordinales</strong> que se basa en la teoría de <strong>correlación de Pearson</strong> y tiene en cuenta la naturaleza <strong>discreta</strong> de los datos.</p>
-<p>Supone una <strong>variable subyacente continua</strong> y teóricamente <strong>normal</strong>.</p>
-<p>Se recomienda un mínimo de <strong>50 observaciones</strong>.</p>
-<p>Sólo se interpreta <strong>sentido</strong> y <strong>fuerza</strong>, no un <strong>p</strong> de significación.</p>
-<p>En el caso de variables <strong>dicotómicas</strong> se utilizan <strong>correlaciones tetracóricas</strong>.</p>
-</section>
-<section id="multicolinealidad" class="slide level2 smaller" data-background-color="white">
-<h2>Multicolinealidad</h2>
-<p>Además de las <strong>correlaciones bivariadas</strong> existen pruebas estadísticas que nos permiten establecer la existencia de <strong>multicolinealidad</strong> en el conjunto de variables.</p>
-<p><strong>Test de esfericidad de Barlett</strong>: Esta prueba se utiliza para determinar la existencia de <strong>multicolinealidad</strong> en un conjunto de datos. Si el valor-p es significativo (generalmente &lt;0,05), entonces se rechaza la <strong>hipótesis nula</strong> de que la matriz de correlación es igual a una <strong>matriz de identidad</strong>, lo que indica la presencia de <strong>multicolinealidad</strong>. <strong>Su correcta interpretación requiere de la existencia de normalidad multivariante</strong>, por lo que en caso de que esta no exista, debe priorizarse la interpretación de la <strong>prueba KMO</strong>.</p>
-</section>
-<section id="multicolinealidad-kmo" class="slide level2 smaller" data-background-color="white">
-<h2>Multicolinealidad: KMO</h2>
-<p>La <strong>prueba KMO (Kaiser-Meyer-Olkin)</strong> se utiliza para evaluar la presencia de <strong>multicolinealidad</strong> en un conjunto de variables. La prueba produce un valor de <strong>MSA (Medida de adecuación de la muestra)</strong> para el conjunto de datos y para cada variable individual en el conjunto de datos.</p>
-<p>Existen diferentes criterios para interpretar los valores del <strong>índice KMO</strong> en el <strong>AFE</strong>, pero algunos de los umbrales comúnmente utilizados son: - <strong>Excelente adecuación</strong>: KMO mayor que <strong>0,9</strong>. - <strong>Buena adecuación</strong>: KMO entre <strong>0,8</strong> y <strong>0,9</strong>. - <strong>Adecuación aceptable</strong>: KMO entre <strong>0,7</strong> y <strong>0,8</strong>. - <strong>Inadecuada adecuación</strong>: KMO menor que <strong>0,7</strong>.</p>
-<p>Es importante tener en cuenta que estos umbrales son solo una <strong>guía general</strong> y que la interpretación de los resultados del <strong>AFE</strong> debe basarse en varios criterios, incluyendo el <strong>juicio del investigador</strong>, la coherencia con la <strong>teoría</strong> y la interpretación de los <strong>patrones de carga factorial</strong>.</p>
-</section>
-<section id="tratamiento-de-variables" class="slide level2 smaller" data-background-color="white">
-<h2>Tratamiento de variables</h2>
-<p>Antes de realizar un <strong>AFE</strong> debemos revisar dos decisiones respecto a los datos: la existencia de <strong>casos atípicos</strong> y de <strong>casos perdidos</strong>.</p>
-<p><strong>Casos perdidos</strong>:</p>
+<h2>3. Colinealidad</h2>
+<p>A diferencia de la regresión donde la multicolinealidad es un problema, en AFE <strong>necesitamos que las variables estén correlacionadas</strong>.</p>
 <ul>
-<li>Proporción de <strong>casos perdidos</strong> (10% aprox)</li>
-<li>Distribución <strong>aleatoria</strong> o no de los casos perdidos</li>
-<li><strong>Imputación de datos</strong>: media, regresión lineal, criterio de investigación, <strong>imputación múltiple</strong></li>
+<li><strong>Lógica:</strong> Si las variables no se correlacionan entre sí, no pueden estar compartiendo varianza común, y por lo tanto, no habrá factores latentes que las agrupen.</li>
+<li><strong>Evaluación Inicial:</strong>
+<ul>
+<li><strong>Inspeccionar la matriz de correlaciones:</strong> Buscar correlaciones significativas (ej. |r| &gt; 0.30). Si la mayoría son cercanas a cero, el AFE no es apropiado.</li>
+<li><strong>Test de Esfericidad de Bartlett:</strong>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: La matriz de correlaciones es una matriz identidad (variables no correlacionadas).</li>
+<li><span class="math inline">\(H_1\)</span>: La matriz de correlaciones NO es una matriz identidad.</li>
+<li><strong>Resultado deseado:</strong> Rechazar <span class="math inline">\(H_0\)</span> (p-valor &lt; 0.05). Indica que hay suficiente correlación para proceder.</li>
+<li><em>Precaución:</em> Este test es sensible al tamaño muestral (con N grande, casi siempre es significativo) y asume normalidad multivariante.</li>
+</ul></li>
+</ul></li>
 </ul>
 </section>
-<section id="tratamiento-de-variables-1" class="slide level2 smaller" data-background-color="white">
-<h2>Tratamiento de variables</h2>
-<p>Antes de realizar un <strong>AFE</strong> debemos revisar dos decisiones respecto a los datos: la existencia de <strong>casos atípicos</strong> y de <strong>casos perdidos</strong>.</p>
-<p><strong>Casos atípicos</strong>:</p>
-<p>Debe realizarse un <strong>diagnóstico de casos atípicos multivariantes</strong>, es decir, aquellos que se alejan del <strong>centro medio</strong> de las observaciones en un <strong>espacio multidimensional</strong>. Esto se mide con la <strong>distancia de Mahalanobis</strong> (distancias mayores a <strong>0,001</strong> se consideran atípicas).</p>
-</section>
-<section id="tratamiento-de-variables-estandarización" class="slide level2 smaller" data-background-color="white">
-<h2>Tratamiento de variables: estandarización</h2>
+<section id="multicolinealidad-el-test-kmo" class="slide level2 smaller" data-background-color="white">
+<h2>3. Multicolinealidad: El Test KMO</h2>
+<p>Además de que haya correlación, necesitamos que esta correlación sea “factorizable”, es decir, que forme patrones que sugieran factores comunes.</p>
 <ul>
-<li>La <strong>estandarización</strong> favorece la <strong>comparabilidad</strong> de variables y es comúnmente utilizada en <strong>análisis factorial</strong>.</li>
-<li>Se realiza mediante la <strong>transformación de las variables a puntajes Z</strong>.</li>
-<li>La <strong>varianza</strong> de las variables depende de su unidad de medida, por lo que la <strong>estandarización</strong> permite comparar variables con diferentes grados de <strong>heterogeneidad</strong>.</li>
-<li>La elección de la <strong>matriz de entrada</strong> para obtener un modelo factorial depende de si las variables están en su unidad original o <strong>estandarizadas</strong>.</li>
+<li><strong>Medida de Adecuación Muestral de Kaiser-Meyer-Olkin (KMO):</strong>
+<ul>
+<li>Compara la magnitud de las correlaciones observadas con la magnitud de las correlaciones parciales (correlación entre dos variables controlando el efecto de las demás).</li>
+<li><strong>Si las correlaciones parciales son pequeñas</strong>, sugiere que la correlación entre pares de variables se debe a factores comunes subyacentes.</li>
+</ul></li>
 </ul>
-
-<img src="images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+</section>
+<section id="multicolinealidad-el-test-kmo-1" class="slide level2 smaller" data-background-color="white">
+<h2>3. Multicolinealidad: El Test KMO</h2>
+<ul>
+<li>Valores de KMO varían de 0 a 1. Se interpreta como:<br>
+* &gt; 0.90: Excelente<br>
+* 0.80 - 0.89: Bueno * 0.70 - 0.79: Aceptable<br>
+* 0.60 - 0.69: Mediocre<br>
+* 0.50 - 0.59: Malo<br>
+* &lt; 0.50: Inaceptable<br>
+</li>
+<li>Se calcula un KMO <strong>global</strong> y KMOs <strong>individuales</strong> para cada variable (MSA - Measure of Sampling Adequacy). Variables con MSA bajo (&lt;0.50) podrían ser candidatas a eliminarse del análisis.</li>
+</ul>
+<p><strong>El KMO es preferible al test de Bartlett si no se cumple la normalidad multivariante.</strong></p>
+</section>
+<section id="normalidad-multivariante" class="slide level2 smaller" data-background-color="white">
+<h2>4. Normalidad Multivariante</h2>
+<ul>
+<li><strong>Idealmente:</strong> El AFE (especialmente con métodos de extracción como Máxima Verosimilitud - ML) asume <strong>normalidad multivariante</strong> (todas las variables y todas sus combinaciones lineales siguen una distribución normal).</li>
+<li><strong>En la práctica:</strong> Es un supuesto difícil de cumplir estrictamente en ciencias sociales.</li>
+<li><strong>Consecuencias de la No Normalidad:</strong>
+<ul>
+<li>Puede afectar la precisión de los tests de significancia (ej. Test de Bartlett, tests de bondad de ajuste del modelo factorial).</li>
+<li>Puede sesgar la estimación de las cargas factoriales si se usa ML.</li>
+</ul></li>
+</ul>
+</section>
+<section id="normalidad-multivariante-1" class="slide level2 smaller" data-background-color="white">
+<h2>4. Normalidad Multivariante</h2>
+<ul>
+<li><strong>¿Qué hacer?</strong>
+<ul>
+<li><strong>Evaluar normalidad univariada:</strong> Revisar asimetría y curtosis de cada variable. Valores de asimetría entre <span class="math inline">\(\pm 2\)</span> (o <span class="math inline">\(\pm 1\)</span>) suelen considerarse aceptables.</li>
+<li><strong>Si hay no normalidad severa:</strong>
+<ul>
+<li>Considerar transformar variables (con cautela).</li>
+<li>Usar métodos de extracción más robustos a la no normalidad (ej. Mínimos Cuadrados Ordinarios (OLS), Ejes Principales (PAF), Mínimos Cuadrados No Ponderados (ULS)).</li>
+<li>Privilegiar KMO sobre Bartlett para evaluar factorabilidad.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="casos-perdidos-y-atípicos" class="slide level2 smaller" data-background-color="white">
+<h2>5. Casos Perdidos y Atípicos</h2>
+<ul>
+<li><strong>Casos Perdidos (Missing Data):</strong>
+<ul>
+<li><strong>Evaluar:</strong> Proporción de NAs por variable y por caso. Patrón de missing (aleatorio o sistemático).</li>
+<li><strong>Opciones (orden de preferencia general):</strong>
+<ol type="1">
+<li><strong>Imputación Múltiple:</strong> Generalmente la mejor opción si los datos son MCAR o MAR.</li>
+<li>Estimación por Máxima Verosimilitud con Información Completa (FIML): Maneja NAs directamente en algunos software (no tan simple en AFE con R base).</li>
+<li>Imputación Simple (media, mediana, regresión): Puede sesgar varianzas y correlaciones. Usar con mucha cautela.</li>
+<li>Eliminación por lista (listwise deletion): Elimina cualquier caso con <em>algún</em> NA. Puede reducir drásticamente el N y sesgar si los NAs no son MCAR.</li>
+<li>Eliminación por pares (pairwise deletion): Calcula cada correlación usando todos los casos disponibles para ese par. Puede llevar a matrices de correlación no definidas positivas (problemático).</li>
+</ol></li>
+</ul></li>
+<li><strong>Casos Atípicos (Outliers):</strong>
+<ul>
+<li><strong>Univariados:</strong> Valores extremos en una sola variable (Boxplots, Z-scores).</li>
+<li><strong>Multivariados:</strong> Combinaciones inusuales de valores en múltiples variables. Se detectan con la <strong>Distancia de Mahalanobis (<span class="math inline">\(D^2\)</span>)</strong>. Valores de <span class="math inline">\(D^2\)</span> con p-valor &lt; 0.001 suelen considerarse atípicos multivariantes.</li>
+<li><strong>Impacto:</strong> Pueden distorsionar gravemente las correlaciones y, por ende, la solución factorial.</li>
+<li><strong>Tratamiento:</strong> Investigar si son errores. Si son válidos pero extremos, considerar transformaciones, winsorización o eliminación (justificando).</li>
+</ul></li>
+</ul>
+</section>
+<section id="estandarización-de-variables" class="slide level2 smaller" data-background-color="white">
+<h2>6. Estandarización de Variables</h2>
+<ul>
+<li><strong>¿Cuándo es relevante?</strong> Si las variables originales tienen escalas muy diferentes (ej. una va de 1 a 5, otra de 0 a 1000).</li>
+<li><strong>Problema:</strong> Variables con mayor varianza pueden dominar la solución factorial si se usa la matriz de covarianzas.</li>
+<li><strong>Solución Común:</strong> Trabajar con la <strong>matriz de correlaciones</strong> en lugar de la matriz de covarianzas. Esto es equivalente a <strong>estandarizar las variables</strong> (convertirlas a puntajes Z: media 0, DE 1) antes del análisis. <span class="math display">\[ Z_i = \frac{X_i - \bar{X}}{s_X} \]</span></li>
+<li>La mayoría de los software de AFE usan la matriz de correlaciones por defecto, lo que implica una estandarización implícita.</li>
+<li><strong>Ventaja:</strong> Todas las variables contribuyen de forma equitativa a la determinación de los factores, independientemente de su escala original.</li>
+</ul>
+</section>
+<section id="próximos-pasos" class="slide level2 smaller" data-background-color="white">
+<h2>Próximos Pasos</h2>
+<p>Una vez que los datos están preparados y se ha verificado la adecuación para el AFE:</p>
+<ol type="1">
+<li><strong>Elegir un Método de Extracción de Factores</strong> (ACP, Ejes Principales, Máxima Verosimilitud, etc.).</li>
+<li><strong>Determinar el Número de Factores a Retener</strong>.</li>
+<li><strong>(Si es necesario) Rotar la Solución Factorial</strong> para mejorar la interpretabilidad.</li>
+<li><strong>Interpretar los Factores</strong>.</li>
+<li><strong>Evaluar la Bondad de Ajuste del Modelo Factorial</strong>.</li>
+<li><strong>(Opcional) Calcular Puntuaciones Factoriales</strong>.</li>
+</ol>
+<div class="quarto-auto-generated-content">
+<p><img src="images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 
 </div>
-</section>
+</div>
+</section></section>
     </div>
   </div>
 
@@ -498,7 +648,6 @@ Gabriel Sotomayor
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -715,18 +864,7 @@ Gabriel Sotomayor
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -758,11 +896,50 @@ Gabriel Sotomayor
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -772,8 +949,17 @@ Gabriel Sotomayor
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -787,7 +973,11 @@ Gabriel Sotomayor
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

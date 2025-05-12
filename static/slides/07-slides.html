@@ -8,7 +8,7 @@
 <link href="07-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="07-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="07-slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.3.353">
 
   <meta name="author" content="Gabriel Sotomayor">
   <meta name="dcterms.date" content="2025-05-12">
@@ -157,8 +157,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -359,7 +358,11 @@ Gabriel Sotomayor
 <li><strong>Ejemplos:</strong> Autoritarismo, Anomia, Capital Cultural, Bienestar Subjetivo, Alienación, Conciencia de Clase…</li>
 </ul>
 <p>Estos son <strong>CONCEPTOS ABSTRACTOS</strong> o <strong>CONSTRUCTOS TEÓRICOS</strong>.</p>
-<p>En estadística, los llamamos <strong>VARIABLES LATENTES</strong>: * No se miden directamente. * Se infieren a partir de un conjunto de <strong>variables observadas (indicadores)</strong> que <em>creemos</em> que reflejan o son causadas por esa variable latente.</p>
+<p>En estadística, los llamamos <strong>VARIABLES LATENTES</strong>:</p>
+<ul>
+<li>No se miden directamente.</li>
+<li>Se infieren a partir de un conjunto de <strong>variables observadas (indicadores)</strong> que <em>creemos</em> que reflejan o son causadas por esa variable latente.</li>
+</ul>
 </section>
 <section id="el-rol-del-afe" class="slide level2 smaller" data-background-color="white">
 <h2>El Rol del AFE</h2>
@@ -374,10 +377,9 @@ Gabriel Sotomayor
 <li>Aplicamos estas preguntas a una muestra.</li>
 <li><strong>Análisis Factorial Exploratorio (AFE):</strong> Una técnica estadística que nos ayuda a determinar si las respuestas a estos ítems se agrupan de manera coherente, sugiriendo que están midiendo una (o varias) dimensiones subyacentes (los factores latentes).</li>
 </ol>
-<p><img data-src="img/placeholder_latente_observada.png" class="quarto-figure quarto-figure-center" style="width:65.0%"> <em>Placeholder: Diagrama conceptual mostrando una variable latente (círculo) con flechas hacia varias variables observadas (cuadrados).</em></p>
 </section>
-<section id="qué-es-el-análisis-factorial-exploratorio-afe" class="slide level2 smaller dark-background">
-<h2>¿Qué es el Análisis Factorial Exploratorio (AFE)?</h2>
+<section id="nálisis-factorial-exploratorio-afe" class="slide level2 smaller dark-background">
+<h2>nálisis Factorial Exploratorio (AFE)?</h2>
 <p>El AFE es un conjunto de técnicas estadísticas multivariadas cuyo objetivo principal es:</p>
 <blockquote>
 <p><strong>Reducir la dimensionalidad</strong> de un conjunto de <em>p</em> variables observadas (correlacionadas entre sí) a un número menor de <em>k</em> <strong>factores latentes no observados (factores comunes)</strong>, con la menor pérdida de información posible.</p>
@@ -407,8 +409,8 @@ Gabriel Sotomayor
 </ul></li>
 </ol>
 </section>
-<section id="el-modelo-matemático-del-afe" class="slide level2 smaller" data-background-color="white">
-<h2>El Modelo Matemático del AFE</h2>
+<section id="el-modelo-matemático-del-afe-conceptual" class="slide level2 smaller" data-background-color="white">
+<h2>El Modelo Matemático del AFE (Conceptual)</h2>
 <p>La idea básica es que cada <strong>variable observada (<span class="math inline">\(X_i\)</span>)</strong> puede ser expresada como una combinación lineal de:</p>
 <ul>
 <li>Un conjunto de <strong>factores comunes (<span class="math inline">\(F_1, F_2, ..., F_k\)</span>)</strong> que son compartidos por múltiples variables observadas.</li>
@@ -510,9 +512,9 @@ Gabriel Sotomayor
 <li><strong>Inspeccionar la matriz de correlaciones:</strong> Buscar correlaciones significativas (ej. |r| &gt; 0.30). Si la mayoría son cercanas a cero, el AFE no es apropiado.</li>
 <li><strong>Test de Esfericidad de Bartlett:</strong>
 <ul>
-<li><span class="math inline">\(H_0\)</span>: La matriz de correlaciones es una matriz identidad (variables no correlacionadas).</li>
-<li><span class="math inline">\(H_1\)</span>: La matriz de correlaciones NO es una matriz identidad.</li>
-<li><strong>Resultado deseado:</strong> Rechazar <span class="math inline">\(H_0\)</span> (p-valor &lt; 0.05). Indica que hay suficiente correlación para proceder.</li>
+<li><em>H</em><sub>0</sub>: La matriz de correlaciones es una matriz identidad (variables no correlacionadas).</li>
+<li><em>H</em><sub>1</sub>: La matriz de correlaciones NO es una matriz identidad.</li>
+<li><strong>Resultado deseado:</strong> Rechazar <em>H</em><sub>0</sub> (p-valor &lt; 0.05). Indica que hay suficiente correlación para proceder.</li>
 <li><em>Precaución:</em> Este test es sensible al tamaño muestral (con N grande, casi siempre es significativo) y asume normalidad multivariante.</li>
 </ul></li>
 </ul></li>
@@ -560,7 +562,7 @@ Gabriel Sotomayor
 <ul>
 <li><strong>¿Qué hacer?</strong>
 <ul>
-<li><strong>Evaluar normalidad univariada:</strong> Revisar asimetría y curtosis de cada variable. Valores de asimetría entre <span class="math inline">\(\pm 2\)</span> (o <span class="math inline">\(\pm 1\)</span>) suelen considerarse aceptables.</li>
+<li><strong>Evaluar normalidad univariada:</strong> Revisar asimetría y curtosis de cada variable. Valores de asimetría entre  ± 2 (o  ± 1) suelen considerarse aceptables.</li>
 <li><strong>Si hay no normalidad severa:</strong>
 <ul>
 <li>Considerar transformar variables (con cautela).</li>
@@ -588,7 +590,7 @@ Gabriel Sotomayor
 <li><strong>Casos Atípicos (Outliers):</strong>
 <ul>
 <li><strong>Univariados:</strong> Valores extremos en una sola variable (Boxplots, Z-scores).</li>
-<li><strong>Multivariados:</strong> Combinaciones inusuales de valores en múltiples variables. Se detectan con la <strong>Distancia de Mahalanobis (<span class="math inline">\(D^2\)</span>)</strong>. Valores de <span class="math inline">\(D^2\)</span> con p-valor &lt; 0.001 suelen considerarse atípicos multivariantes.</li>
+<li><strong>Multivariados:</strong> Combinaciones inusuales de valores en múltiples variables. Se detectan con la <strong>Distancia de Mahalanobis (</strong><em>D</em><sup>2</sup>). Valores de <em>D</em><sup>2</sup> con p-valor &lt; 0.001 suelen considerarse atípicos multivariantes.</li>
 <li><strong>Impacto:</strong> Pueden distorsionar gravemente las correlaciones y, por ende, la solución factorial.</li>
 <li><strong>Tratamiento:</strong> Investigar si son errores. Si son válidos pero extremos, considerar transformaciones, winsorización o eliminación (justificando).</li>
 </ul></li>
@@ -615,11 +617,9 @@ Gabriel Sotomayor
 <li><strong>Evaluar la Bondad de Ajuste del Modelo Factorial</strong>.</li>
 <li><strong>(Opcional) Calcular Puntuaciones Factoriales</strong>.</li>
 </ol>
-<div class="quarto-auto-generated-content">
-<p><img src="images/logo.png" class="slide-logo"></p>
-<div class="footer footer-default">
 
-</div>
+<img src="images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+
 </div>
 </section></section>
     </div>
@@ -648,6 +648,7 @@ Gabriel Sotomayor
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -864,7 +865,18 @@ Gabriel Sotomayor
         }
         return false;
       }
-      const onCopySuccess = function(e) {
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -896,50 +908,11 @@ Gabriel Sotomayor
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -949,17 +922,8 @@ Gabriel Sotomayor
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -973,11 +937,7 @@ Gabriel Sotomayor
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {

@@ -47,7 +47,7 @@ Si una variable latente (ej. "Satisfacción Laboral") no es visible, ¿cómo la 
 2.  Aplicamos estas preguntas a una muestra.
 3.  **Análisis Factorial Exploratorio (AFE):** Una técnica estadística que nos ayuda a determinar si las respuestas a estos ítems se agrupan de manera coherente, sugiriendo que están midiendo una (o varias) dimensiones subyacentes (los factores latentes).
 
-## nálisis Factorial Exploratorio (AFE)? {.smaller .dark-background}
+## Análisis Factorial Exploratorio (AFE)? {.smaller .dark-background}
 
 El AFE es un conjunto de técnicas estadísticas multivariadas cuyo objetivo principal es:
 
@@ -69,22 +69,16 @@ El AFE es un conjunto de técnicas estadísticas multivariadas cuyo objetivo pri
     -   Calcular un valor estimado para cada individuo en cada uno de los factores latentes identificados.
     -   Estas puntuaciones pueden usarse luego como variables en otros análisis (regresión, ANOVA, etc.), representando de forma sintética las dimensiones encontradas.
 
-
 ## El Modelo Matemático del AFE (Conceptual) {.smaller background-color="white"}
 
-La idea básica es que cada **variable observada ($X_i$)** puede ser expresada como una combinación lineal de:
+La idea básica es que cada **variable observada (**$X_i$) puede ser expresada como una combinación lineal de:
 
-*   Un conjunto de **factores comunes ($F_1, F_2, ..., F_k$)** que son compartidos por múltiples variables observadas.
-*   Un **factor único ($e_i$)** que es específico para esa variable $X_i$ y representa la parte de su varianza que **no** es compartida con otros ítems (error de medida + varianza específica).
+-   Un conjunto de **factores comunes (**$F_1, F_2, ..., F_k$) que son compartidos por múltiples variables observadas.
+-   Un **factor único (**$e_i$) que es específico para esa variable $X_i$ y representa la parte de su varianza que **no** es compartida con otros ítems (error de medida + varianza específica).
 
-$$ X_1 = \lambda_{11}F_1 + \lambda_{12}F_2 + ... + \lambda_{1k}F_k + e_1 $$
-$$ X_2 = \lambda_{21}F_1 + \lambda_{22}F_2 + ... + \lambda_{2k}F_k + e_2 $$
-$$ ... $$
-$$ X_p = \lambda_{p1}F_1 + \lambda_{p2}F_2 + ... + \lambda_{pk}F_k + e_p $$
+$$ X_1 = \lambda_{11}F_1 + \lambda_{12}F_2 + ... + \lambda_{1k}F_k + e_1 $$ $$ X_2 = \lambda_{21}F_1 + \lambda_{22}F_2 + ... + \lambda_{2k}F_k + e_2 $$ $$ ... $$ $$ X_p = \lambda_{p1}F_1 + \lambda_{p2}F_2 + ... + \lambda_{pk}F_k + e_p $$
 
-*   $\lambda_{ij}$ (lambda): Es la **carga factorial** de la variable $X_i$ en el factor $F_j$. Indica la fuerza y dirección de la relación entre el ítem y el factor.
-
-
+-   $\lambda_{ij}$ (lambda): Es la **carga factorial** de la variable $X_i$ en el factor $F_j$. Indica la fuerza y dirección de la relación entre el ítem y el factor.
 
 ## AFE vs. Análisis de Componentes Principales (ACP) {.smaller .dark-background}
 
@@ -172,12 +166,12 @@ Además de que haya correlación, necesitamos que esta correlación sea "factori
 
 ## 3. Multicolinealidad: El Test KMO {.smaller background-color="white"}
 
--   Valores de KMO varían de 0 a 1. Se interpreta como:  
-    \* \> 0.90: Excelente  
-    \* 0.80 - 0.89: Bueno \* 0.70 - 0.79: Aceptable  
-    \* 0.60 - 0.69: Mediocre  
-    \* 0.50 - 0.59: Malo  
-    \* \< 0.50: Inaceptable  
+-   Valores de KMO varían de 0 a 1. Se interpreta como:\
+    \* \> 0.90: Excelente\
+    \* 0.80 - 0.89: Bueno \* 0.70 - 0.79: Aceptable\
+    \* 0.60 - 0.69: Mediocre\
+    \* 0.50 - 0.59: Malo\
+    \* \< 0.50: Inaceptable\
 -   Se calcula un KMO **global** y KMOs **individuales** para cada variable (MSA - Measure of Sampling Adequacy). Variables con MSA bajo (\<0.50) podrían ser candidatas a eliminarse del análisis.
 
 **El KMO es preferible al test de Bartlett si no se cumple la normalidad multivariante.**
@@ -219,8 +213,7 @@ Además de que haya correlación, necesitamos que esta correlación sea "factori
 
 -   **¿Cuándo es relevante?** Si las variables originales tienen escalas muy diferentes (ej. una va de 1 a 5, otra de 0 a 1000).
 -   **Problema:** Variables con mayor varianza pueden dominar la solución factorial si se usa la matriz de covarianzas.
--   **Solución Común:** Trabajar con la **matriz de correlaciones** en lugar de la matriz de covarianzas. Esto es equivalente a **estandarizar las variables** (convertirlas a puntajes Z: media 0, DE 1) antes del análisis.
-    $$ Z_i = \frac{X_i - \bar{X}}{s_X} $$
+-   **Solución Común:** Trabajar con la **matriz de correlaciones** en lugar de la matriz de covarianzas. Esto es equivalente a **estandarizar las variables** (convertirlas a puntajes Z: media 0, DE 1) antes del análisis. $$ Z_i = \frac{X_i - \bar{X}}{s_X} $$
 -   La mayoría de los software de AFE usan la matriz de correlaciones por defecto, lo que implica una estandarización implícita.
 -   **Ventaja:** Todas las variables contribuyen de forma equitativa a la determinación de los factores, independientemente de su escala original.
 

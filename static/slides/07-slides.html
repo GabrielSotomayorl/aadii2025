@@ -8,7 +8,7 @@
 <link href="07-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="07-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="07-slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Gabriel Sotomayor">
   <meta name="dcterms.date" content="2025-05-12">
@@ -157,7 +157,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -378,8 +379,8 @@ Gabriel Sotomayor
 <li><strong>Análisis Factorial Exploratorio (AFE):</strong> Una técnica estadística que nos ayuda a determinar si las respuestas a estos ítems se agrupan de manera coherente, sugiriendo que están midiendo una (o varias) dimensiones subyacentes (los factores latentes).</li>
 </ol>
 </section>
-<section id="nálisis-factorial-exploratorio-afe" class="slide level2 smaller dark-background">
-<h2>nálisis Factorial Exploratorio (AFE)?</h2>
+<section id="análisis-factorial-exploratorio-afe" class="slide level2 smaller dark-background">
+<h2>Análisis Factorial Exploratorio (AFE)?</h2>
 <p>El AFE es un conjunto de técnicas estadísticas multivariadas cuyo objetivo principal es:</p>
 <blockquote>
 <p><strong>Reducir la dimensionalidad</strong> de un conjunto de <em>p</em> variables observadas (correlacionadas entre sí) a un número menor de <em>k</em> <strong>factores latentes no observados (factores comunes)</strong>, con la menor pérdida de información posible.</p>
@@ -411,10 +412,10 @@ Gabriel Sotomayor
 </section>
 <section id="el-modelo-matemático-del-afe-conceptual" class="slide level2 smaller" data-background-color="white">
 <h2>El Modelo Matemático del AFE (Conceptual)</h2>
-<p>La idea básica es que cada <strong>variable observada (<span class="math inline">\(X_i\)</span>)</strong> puede ser expresada como una combinación lineal de:</p>
+<p>La idea básica es que cada <strong>variable observada (</strong><span class="math inline">\(X_i\)</span>) puede ser expresada como una combinación lineal de:</p>
 <ul>
-<li>Un conjunto de <strong>factores comunes (<span class="math inline">\(F_1, F_2, ..., F_k\)</span>)</strong> que son compartidos por múltiples variables observadas.</li>
-<li>Un <strong>factor único (<span class="math inline">\(e_i\)</span>)</strong> que es específico para esa variable <span class="math inline">\(X_i\)</span> y representa la parte de su varianza que <strong>no</strong> es compartida con otros ítems (error de medida + varianza específica).</li>
+<li>Un conjunto de <strong>factores comunes (</strong><span class="math inline">\(F_1, F_2, ..., F_k\)</span>) que son compartidos por múltiples variables observadas.</li>
+<li>Un <strong>factor único (</strong><span class="math inline">\(e_i\)</span>) que es específico para esa variable <span class="math inline">\(X_i\)</span> y representa la parte de su varianza que <strong>no</strong> es compartida con otros ítems (error de medida + varianza específica).</li>
 </ul>
 <p><span class="math display">\[ X_1 = \lambda_{11}F_1 + \lambda_{12}F_2 + ... + \lambda_{1k}F_k + e_1 \]</span> <span class="math display">\[ X_2 = \lambda_{21}F_1 + \lambda_{22}F_2 + ... + \lambda_{2k}F_k + e_2 \]</span> <span class="math display">\[ ... \]</span> <span class="math display">\[ X_p = \lambda_{p1}F_1 + \lambda_{p2}F_2 + ... + \lambda_{pk}F_k + e_p \]</span></p>
 <ul>
@@ -617,9 +618,11 @@ Gabriel Sotomayor
 <li><strong>Evaluar la Bondad de Ajuste del Modelo Factorial</strong>.</li>
 <li><strong>(Opcional) Calcular Puntuaciones Factoriales</strong>.</li>
 </ol>
+<div class="quarto-auto-generated-content">
+<p><img src="images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 
-<img src="images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
-
+</div>
 </div>
 </section></section>
     </div>
@@ -648,7 +651,6 @@ Gabriel Sotomayor
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -865,18 +867,7 @@ Gabriel Sotomayor
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -908,11 +899,50 @@ Gabriel Sotomayor
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -922,8 +952,17 @@ Gabriel Sotomayor
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -937,7 +976,11 @@ Gabriel Sotomayor
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

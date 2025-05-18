@@ -1,9 +1,9 @@
 ---
-title: "Análisis Factorial Confirmatorio I"
-linktitle: "8: Análisis Factorial Confirmatorio I"
-date: "2024-05-26"
-start_date: "2024-05-26"
-end_date: "2024-05-26"
+title: "Análisis Factorial Exploratorio II"
+linktitle: "8: Análisis Factorial Exploratorio II"
+date: "2025-05-19"
+start_date: "2025-05-19"
+end_date: "2025-05-19"
 menu:
   content:
     parent: Contenido
@@ -12,7 +12,7 @@ type: docs
 toc: true
 bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
-slides: "clase-8"
+slides: "08-slides"
 ---
 
 ```{r slides-videos, echo=FALSE, include=FALSE}
@@ -20,7 +20,7 @@ source(here::here("R", "slide-tabs.R"))
 
 slide_details <- tibble::tribble(
   ~title, ~slide, ~active,
-  "Análisis Factorial Confirmatorio I", "1", TRUE)
+  "Análisis Factorial Exploratorio II", "0", TRUE)
 ```
 
 # Slides
@@ -28,7 +28,7 @@ slide_details <- tibble::tribble(
 `r blogdown::shortcode("slide-buttons")`
 
 ```{r show-slide-tabs, echo=FALSE, results="asis"}
-slide_tabs(slide_details, "/slides/clase-8.html")
+slide_tabs(slide_details, "/slides/08-slides.html")
 ```
 
 {{% div fyi %}}

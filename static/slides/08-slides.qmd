@@ -127,18 +127,18 @@ Una vez decidido el número de factores, se elige un método para "extraerlos" (
         *   Si no hay normalidad, los SE y tests pueden ser incorrectos.
     *   Otros: Mínimos Cuadrados Generalizados (GLS), Alfa Factoring, Imagen Factoring.
 
-## 4. Rotación Factorial: Hacia la Simplicidad {.smaller .dark-background}
+## 4. Rotación Factorial: Hacia la Simplicidad  {.smaller background-color="white"}
 
-La solución factorial inicial (matriz de cargas sin rotar) a menudo es **difícil de interpretar**:
-*   Muchas variables pueden tener cargas moderadas en múltiples factores.
-*   Es difícil ver qué variables definen claramente cada factor.
+La solución factorial inicial (matriz de cargas sin rotar) a menudo es **difícil de interpretar**:  
+*   Muchas variables pueden tener cargas moderadas en múltiples factores.  
+*   Es difícil ver qué variables definen claramente cada factor.  
 
-**Objetivo de la Rotación:** Transformar matemáticamente los ejes de los factores en el espacio multidimensional para obtener una **estructura más simple e interpretable**, donde:
-*   Cada variable cargue **alto** en **un solo factor** (o muy pocos).
-*   Cada variable cargue **bajo** (cercano a cero) en los **demás factores**.
-*   Cada factor esté definido por un conjunto claro de variables.
+**Objetivo de la Rotación:** Transformar matemáticamente los ejes de los factores en el espacio multidimensional para obtener una **estructura más simple e interpretable**, donde:  
+*   Cada variable cargue **alto** en **un solo factor** (o muy pocos).  
+*   Cada variable cargue **bajo** (cercano a cero) en los **demás factores**.  
+*   Cada factor esté definido por un conjunto claro de variables.  
 
-**Importante:** La rotación **no cambia la cantidad total de varianza explicada** por la solución factorial ni las comunalidades de las variables. Solo **redistribuye** la varianza entre los factores rotados.
+**Importante:** La rotación **no cambia la cantidad total de varianza explicada** por la solución factorial ni las comunalidades de las variables. Solo **redistribuye** la varianza entre los factores rotados.  
 
 ## Tipos de Rotación Factorial {.smaller background-color="white"}
 

@@ -20,9 +20,12 @@ slides: "08-slides"
 {{% slide-buttons %}}
 
 <ul class="nav nav-tabs" id="slide-tabs" role="tablist">
+
 <li class="nav-item">
+
 <a class="nav-link active" id="análisis-factorial-exploratorio-ii-tab" data-toggle="tab" href="#análisis-factorial-exploratorio-ii" role="tab" aria-controls="análisis-factorial-exploratorio-ii" aria-selected="true">Análisis Factorial Exploratorio II</a>
 </li>
+
 </ul>
 
 <div id="slide-tabs" class="tab-content">
@@ -32,6 +35,7 @@ slides: "08-slides"
 <div class="embed-responsive embed-responsive-16by9">
 
 <iframe class="embed-responsive-item" src="/slides/08-slides.html#0">
+
 </iframe>
 
 </div>

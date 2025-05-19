@@ -29,7 +29,7 @@ Este práctico es la continuación del anterior sobre Análisis Factorial Explor
 Cargamos los paquetes necesarios y preparamos la base de datos PNUD, aplicando los mismos pasos de limpieza (valores perdidos y atípicos) que en el práctico anterior.
 
 
-```r
+``` r
 # Cargar paquetes
 library(psych) # Para AFE (fa, scree, fa.parallel, KMO, etc.)
 library(GPArotation) # Para rotaciones, a menudo cargado con psych
@@ -75,7 +75,7 @@ print(paste("Dimensiones de la base de datos final para AFE (datoslw):",
 ### Gráfico de Sedimentación (Scree Plot)
 
 
-```r
+``` r
 scree(datoslw, factors = TRUE, pc = TRUE)
 ```
 
@@ -88,7 +88,7 @@ Si nos guiamos *solo* por el criterio del codo, especialmente para FA, podría s
 ### Análisis Paralelo
 
 
-```r
+``` r
 set.seed(231) # Para reproducibilidad
 analisis_paralelo <- fa.parallel(datoslw, fa = "fa") 
 ```
@@ -99,7 +99,7 @@ analisis_paralelo <- fa.parallel(datoslw, fa = "fa")
 ## Parallel analysis suggests that the number of factors =  4  and the number of components =  NA
 ```
 
-```r
+``` r
 #print(analisis_paralelo$fa.values) # Comentado, ya que el gráfico es más informativo y el texto lo resume
 ```
 **Interpretación del Análisis Paralelo:**
@@ -119,7 +119,7 @@ Con 4 factores a extraer y sabiendo que nuestras variables son ordinales, explor
 Usaremos `cor = "poly"` y `fm="minres"` (mínimos cuadrados residuales, no asume normalidad). La opción `rotate="none"` nos muestra la solución inicial, útil para ver la estructura antes de simplificarla.
 
 
-```r
+``` r
 fa(datoslw, nfactors = 4, fm = "minres", rotate = "none", cor = "poly")
 ```
 
@@ -182,7 +182,7 @@ Para mejorar la interpretabilidad, aplicaremos rotaciones.
 Asume que los factores son independientes (no correlacionados).
 
 
-```r
+``` r
 fa(datoslw, nfactors = 4, fm = "minres", rotate = "varimax", cor = "poly")
 ```
 
@@ -246,7 +246,7 @@ fa(datoslw, nfactors = 4, fm = "minres", rotate = "varimax", cor = "poly")
 Permite que los factores estén correlacionados, lo cual suele ser más realista en ciencias sociales.
 
 
-```r
+``` r
 # Ejecutamos el AFE con Promax y lo guardamos como 'modelofinal'
 modelofinal <- fa(datoslw, nfactors = 4, fm = "minres", rotate = "promax", cor = "poly")
 print(modelofinal) # Imprimimos el resultado completo
@@ -324,7 +324,7 @@ print(modelofinal) # Imprimimos el resultado completo
 ## 4. Visualización de la Estructura Factorial
 
 
-```r
+``` r
 fa.diagram(modelofinal, main = "Diagrama Factorial (4 Factores, Promax, Policórica)")
 ```
 
@@ -342,7 +342,7 @@ Las correlaciones (ej. 0.79 entre MR2 y MR1; 0.83 entre MR1 y MR4) son evidentes
 Calculamos una puntuación para cada individuo en cada uno de los 4 factores.
 
 
-```r
+``` r
 # Extraer las puntuaciones factoriales del objeto 'modelofinal'
 puntuaciones_factoriales <- factor.scores(datoslw, modelofinal, method = "Thurstone") 
 # $scores contiene las puntuaciones. Es mejor usar factor.scores() para más control y consistencia
@@ -361,7 +361,7 @@ summary(puntuaciones_factoriales$scores)
 ##  Max.   : 1.8247   Max.   : 2.02736   Max.   : 2.13972   Max.   : 2.21424
 ```
 
-```r
+``` r
 # Unir las puntuaciones factoriales a la base de datos original (que tiene el ID)
 # para análisis posteriores, como comparar por GSE.
 

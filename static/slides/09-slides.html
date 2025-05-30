@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="09-slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="09-slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="09-slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="09-slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="09-slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="09-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="09-slides_files/libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton">
+  <meta name="dcterms.date" content="2025-06-02">
+  <title>Análisis Factorial Confirmatorio</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="09-slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="09-slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="09-slides_files/libs/revealjs/dist/theme/quarto-c28becbeb98f505b7a2cf590aee817de.css">
+  <link href="09-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="09-slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="09-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="09-slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Análisis Factorial Confirmatorio</h1>
+  <p class="subtitle">Análisis Avanzado de Datos II</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-06-02</p>
+</section>
+<section id="medición-en-ciencias-sociales" class="slide level2 smaller" data-background-color="white">
+<h2>Medición en Ciencias Sociales</h2>
+<ul>
+<li>En ocasiones un indicador puede ser suficiente para capturar el concepto que se quiere medir
+<ul>
+<li>Variables observadas (ej. edad, sexo)</li>
+</ul></li>
+<li>Pero algunos conceptos no pueden ser medidos directamente, para lo cual requerimos distintos indicadores
+<ul>
+<li>Variables latentes (ej. Actitudes machistas, clase social)</li>
+</ul></li>
+</ul>
+</section>
+<section id="medición-en-ciencias-sociales-1" class="slide level2 smaller" data-background-color="white">
+<h2>Medición en Ciencias Sociales</h2>
+<p><strong>Ejemplo de medición de una variable latente (unidimensional):</strong> Escala de Machismo Sexual (Díaz, Rosas &amp; González, 2010).</p>
+<ul>
+<li><p>Expresa en tu opinión tu grado de acuerdo o desacuerdo con las siguientes frases. Por favor responde honestamente utilizando estas opciones: (1) Totalmente en desacuerdo; (2) En desacuerdo; (3) Sin opinión; (4) De acuerdo; (5) Totalmente de acuerdo</p>
+<ul>
+<li>Una mujer debe aceptar las infidelidades de su pareja</li>
+<li>El hombre necesita tener varias parejas sexuales</li>
+<li>Sin importar la situación o el estado de ánimo, la mujer debe tener relaciones sexuales cuando su pareja quiera tenerlas</li>
+<li>El hombre debe iniciar su vida sexual en la adolescencia</li>
+<li>El hombre debe hacer que su hijo hombre inicie su vida sexual</li>
+</ul></li>
+</ul>
+</section>
+<section id="medición-en-ciencias-sociales-2" class="slide level2 smaller" data-background-color="white">
+<h2>Medición en Ciencias Sociales</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 421.00 327.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 323)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-323 417,-323 417,4 -4,4"></polygon>
+<!-- Machismo Sexual -->
+<g id="node1" class="node">
+<title>Machismo Sexual</title>
+<ellipse fill="#b71c1c" stroke="#b71c1c" cx="80.5" cy="-159.5" rx="80.5" ry="18"></ellipse>
+<text text-anchor="middle" x="80.5" y="-155.3" font-family="Times,serif" font-size="14.00" fill="white">Machismo Sexual</text>
+</g>
+<!-- item1 -->
+<g id="node2" class="node">
+<title>item1</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="413,-319 197,-319 197,-276 413,-276 413,-319"></polygon>
+<text text-anchor="middle" x="305" y="-301.7" font-family="Times,serif" font-size="14.00">Una mujer debe aceptar las</text>
+<text text-anchor="middle" x="305" y="-284.9" font-family="Times,serif" font-size="14.00">infidelidades de su pareja</text>
+</g>
+<!-- Machismo Sexual&#45;&#45;item1 -->
+<g id="edge1" class="edge">
+<title>Machismo Sexual--item1</title>
+<path fill="none" stroke="black" d="M95.61,-177.2C115.65,-201.16 154.66,-243.67 197,-267.5 202.55,-270.62 208.45,-273.44 214.51,-275.98"></path>
+</g>
+<!-- item2 -->
+<g id="node3" class="node">
+<title>item2</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="413,-258 197,-258 197,-215 413,-215 413,-258"></polygon>
+<text text-anchor="middle" x="305" y="-240.7" font-family="Times,serif" font-size="14.00">El hombre necesita tener varias</text>
+<text text-anchor="middle" x="305" y="-223.9" font-family="Times,serif" font-size="14.00">parejas sexuales</text>
+</g>
+<!-- Machismo Sexual&#45;&#45;item2 -->
+<g id="edge2" class="edge">
+<title>Machismo Sexual--item2</title>
+<path fill="none" stroke="black" d="M117.78,-175.49C140.33,-185.13 170.07,-197.28 197,-206.5 205.49,-209.41 214.43,-212.25 223.37,-214.95"></path>
+</g>
+<!-- item3 -->
+<g id="node4" class="node">
+<title>item3</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="413,-197.2 197,-197.2 197,-121.8 413,-121.8 413,-197.2"></polygon>
+<text text-anchor="middle" x="305" y="-180.5" font-family="Times,serif" font-size="14.00">Sin importar la situación o el</text>
+<text text-anchor="middle" x="305" y="-163.7" font-family="Times,serif" font-size="14.00">estado de ánimo, la mujer debe</text>
+<text text-anchor="middle" x="305" y="-146.9" font-family="Times,serif" font-size="14.00">tener relaciones sexuales</text>
+<text text-anchor="middle" x="305" y="-130.1" font-family="Times,serif" font-size="14.00">cuando su pareja quiera tenerlas</text>
+</g>
+<!-- Machismo Sexual&#45;&#45;item3 -->
+<g id="edge3" class="edge">
+<title>Machismo Sexual--item3</title>
+<path fill="none" stroke="black" d="M161.2,-159.5C172.8,-159.5 184.89,-159.5 196.92,-159.5"></path>
+</g>
+<!-- item4 -->
+<g id="node5" class="node">
+<title>item4</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="413,-104 197,-104 197,-61 413,-61 413,-104"></polygon>
+<text text-anchor="middle" x="305" y="-86.7" font-family="Times,serif" font-size="14.00">El hombre debe iniciar su vida</text>
+<text text-anchor="middle" x="305" y="-69.9" font-family="Times,serif" font-size="14.00">sexual en la adolescencia</text>
+</g>
+<!-- Machismo Sexual&#45;&#45;item4 -->
+<g id="edge4" class="edge">
+<title>Machismo Sexual--item4</title>
+<path fill="none" stroke="black" d="M117.78,-143.51C140.33,-133.87 170.07,-121.72 197,-112.5 205.49,-109.59 214.43,-106.75 223.37,-104.05"></path>
+</g>
+<!-- item5 -->
+<g id="node6" class="node">
+<title>item5</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="413,-43 197,-43 197,0 413,0 413,-43"></polygon>
+<text text-anchor="middle" x="305" y="-25.7" font-family="Times,serif" font-size="14.00">El hombre debe hacer que su hijo</text>
+<text text-anchor="middle" x="305" y="-8.9" font-family="Times,serif" font-size="14.00">hombre inicie su vida sexual</text>
+</g>
+<!-- Machismo Sexual&#45;&#45;item5 -->
+<g id="edge5" class="edge">
+<title>Machismo Sexual--item5</title>
+<path fill="none" stroke="black" d="M96.02,-141.62C116.24,-117.87 155.13,-76.18 197,-52.5 203.23,-48.98 209.9,-45.83 216.74,-43.01"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="medición-en-ciencias-sociales-3" class="slide level2 smaller" data-background-color="white">
+<h2>Medición en Ciencias Sociales</h2>
+<p><strong>Ejemplos de variables latentes (con más de una dimensión)</strong></p>
+<ul>
+<li>Actitudes meritocráticas
+<ul>
+<li>Percepciones meritocráticas</li>
+<li>Preferencias meritocráticas</li>
+</ul></li>
+<li>Actitudes hacia la violencia de carabineros
+<ul>
+<li>Justificación uso de violencia para disolver marchas</li>
+<li>Justificación uso de violencia al allanar comunidades mapuche</li>
+</ul></li>
+<li>Inteligencia
+<ul>
+<li>Habilidades verbales</li>
+<li>Habilidades matemáticas</li>
+</ul></li>
+</ul>
+</section>
+<section id="medición-en-ciencias-sociales-4" class="slide level2 smaller" data-background-color="white">
+<h2>Medición en Ciencias Sociales</h2>
+<p><strong>Ejemplos de variables latentes (con más de una dimensión):</strong> Actitudes meritocráticas (Castillo, Iturra, Meneses &amp; Maldonado, 2021)</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 13%">
+<col style="width: 77%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dimensión</th>
+<th style="text-align: left;">Subdimensión</th>
+<th style="text-align: left;">Indicador</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Percepción</td>
+<td style="text-align: left;">Meritocrática</td>
+<td style="text-align: left;">Quienes más se esfuerzan logran obtener mayores recompensas que quienes se esfuerzan menos.(i1)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Quienes poseen más talento logran obtener mayores recompensas que quienes poseen menos talento. (i2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">No meritocrática</td>
+<td style="text-align: left;">Quienes tienen padres ricos logran salir adelante. (i3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Quienes tienen buenos contactos logran salir adelante. (i4)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Preferencia</td>
+<td style="text-align: left;">Meritocrática</td>
+<td style="text-align: left;">Quienes más se esfuerzan deberían obtener mayores recompensas que quienes se esfuerzan menos. (i5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Quienes poseen más talento deberían obtener mayores recompensas que quienes poseen menos talento. (i6)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">No meritocrática</td>
+<td style="text-align: left;">Está bien que quienes tienen padres ricos salgan adelante. (i7)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Está bien que quienes tienen buenos contactos salgan adelante (i8)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="medición-en-ciencias-sociales-5" class="slide level2 smaller" data-background-color="white">
+<h2>Medición en Ciencias Sociales</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 620.00 292.50" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 288.5)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-288.5 616,-288.5 616,4 -4,4"></polygon>
+<!-- Actitudes Meritocráticas -->
+<g id="node1" class="node">
+<title>Actitudes Meritocráticas</title>
+<ellipse fill="#b71c1c" stroke="#b71c1c" cx="306" cy="-266.5" rx="106.54" ry="18"></ellipse>
+<text text-anchor="middle" x="306" y="-262.3" font-family="Times,serif" font-size="14.00" fill="white">Actitudes Meritocráticas</text>
+</g>
+<!-- Percepciones Meritocráticas -->
+<g id="node2" class="node">
+<title>Percepciones Meritocráticas</title>
+<ellipse fill="#e53935" stroke="#e53935" cx="126" cy="-122.5" rx="120.91" ry="18"></ellipse>
+<text text-anchor="middle" x="126" y="-118.3" font-family="Times,serif" font-size="14.00" fill="white">Percepciones Meritocráticas</text>
+</g>
+<!-- Actitudes Meritocráticas&#45;&#45;Percepciones Meritocráticas -->
+<g id="edge1" class="edge">
+<title>Actitudes Meritocráticas--Percepciones Meritocráticas</title>
+<path fill="none" stroke="#e53935" d="M283.93,-248.84C249.38,-221.21 182.91,-168.03 148.25,-140.3"></path>
+</g>
+<!-- Preferencias Meritocráticas -->
+<g id="node3" class="node">
+<title>Preferencias Meritocráticas</title>
+<ellipse fill="#e53935" stroke="#e53935" cx="486" cy="-122.5" rx="117.46" ry="18"></ellipse>
+<text text-anchor="middle" x="486" y="-118.3" font-family="Times,serif" font-size="14.00" fill="white">Preferencias Meritocráticas</text>
+</g>
+<!-- Actitudes Meritocráticas&#45;&#45;Preferencias Meritocráticas -->
+<g id="edge2" class="edge">
+<title>Actitudes Meritocráticas--Preferencias Meritocráticas</title>
+<path fill="none" stroke="#e53935" d="M328.07,-248.84C362.62,-221.21 429.09,-168.03 463.75,-140.3"></path>
+</g>
+<!-- i1 -->
+<g id="node4" class="node">
+<title>i1</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="36,-29 0,-29 0,0 36,0 36,-29"></polygon>
+<text text-anchor="middle" x="18" y="-10.3" font-family="Times,serif" font-size="14.00">i1</text>
+</g>
+<!-- Percepciones Meritocráticas&#45;&#45;i1 -->
+<g id="edge3" class="edge">
+<title>Percepciones Meritocráticas--i1</title>
+<path fill="none" stroke="#e53935" d="M108.17,-104.67C89.47,-85.97 60.06,-56.56 39.95,-36.45"></path>
+<polygon fill="#e53935" stroke="#e53935" points="42.28,-33.83 32.73,-29.23 37.33,-38.78 42.28,-33.83"></polygon>
+</g>
+<!-- i2 -->
+<g id="node5" class="node">
+<title>i2</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="108,-29 72,-29 72,0 108,0 108,-29"></polygon>
+<text text-anchor="middle" x="90" y="-10.3" font-family="Times,serif" font-size="14.00">i2</text>
+</g>
+<!-- Percepciones Meritocráticas&#45;&#45;i2 -->
+<g id="edge4" class="edge">
+<title>Percepciones Meritocráticas--i2</title>
+<path fill="none" stroke="#e53935" d="M119.89,-104.18C113.88,-86.14 104.66,-58.49 98.05,-38.66"></path>
+<polygon fill="#e53935" stroke="#e53935" points="101.35,-37.47 94.86,-29.09 94.71,-39.69 101.35,-37.47"></polygon>
+</g>
+<!-- i3 -->
+<g id="node6" class="node">
+<title>i3</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="180,-29 144,-29 144,0 180,0 180,-29"></polygon>
+<text text-anchor="middle" x="162" y="-10.3" font-family="Times,serif" font-size="14.00">i3</text>
+</g>
+<!-- Percepciones Meritocráticas&#45;&#45;i3 -->
+<g id="edge5" class="edge">
+<title>Percepciones Meritocráticas--i3</title>
+<path fill="none" stroke="#e53935" d="M132.11,-104.18C138.12,-86.14 147.34,-58.49 153.95,-38.66"></path>
+<polygon fill="#e53935" stroke="#e53935" points="157.29,-39.69 157.14,-29.09 150.65,-37.47 157.29,-39.69"></polygon>
+</g>
+<!-- i4 -->
+<g id="node7" class="node">
+<title>i4</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="252,-29 216,-29 216,0 252,0 252,-29"></polygon>
+<text text-anchor="middle" x="234" y="-10.3" font-family="Times,serif" font-size="14.00">i4</text>
+</g>
+<!-- Percepciones Meritocráticas&#45;&#45;i4 -->
+<g id="edge6" class="edge">
+<title>Percepciones Meritocráticas--i4</title>
+<path fill="none" stroke="#e53935" d="M143.83,-104.67C162.53,-85.97 191.94,-56.56 212.05,-36.45"></path>
+<polygon fill="#e53935" stroke="#e53935" points="214.67,-38.78 219.27,-29.23 209.72,-33.83 214.67,-38.78"></polygon>
+</g>
+<!-- i5 -->
+<g id="node8" class="node">
+<title>i5</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="396,-29 360,-29 360,0 396,0 396,-29"></polygon>
+<text text-anchor="middle" x="378" y="-10.3" font-family="Times,serif" font-size="14.00">i5</text>
+</g>
+<!-- Preferencias Meritocráticas&#45;&#45;i5 -->
+<g id="edge7" class="edge">
+<title>Preferencias Meritocráticas--i5</title>
+<path fill="none" stroke="#e53935" d="M468.17,-104.67C449.47,-85.97 420.06,-56.56 399.95,-36.45"></path>
+<polygon fill="#e53935" stroke="#e53935" points="402.28,-33.83 392.73,-29.23 397.33,-38.78 402.28,-33.83"></polygon>
+</g>
+<!-- i6 -->
+<g id="node9" class="node">
+<title>i6</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="468,-29 432,-29 432,0 468,0 468,-29"></polygon>
+<text text-anchor="middle" x="450" y="-10.3" font-family="Times,serif" font-size="14.00">i6</text>
+</g>
+<!-- Preferencias Meritocráticas&#45;&#45;i6 -->
+<g id="edge8" class="edge">
+<title>Preferencias Meritocráticas--i6</title>
+<path fill="none" stroke="#e53935" d="M479.89,-104.18C473.88,-86.14 464.66,-58.49 458.05,-38.66"></path>
+<polygon fill="#e53935" stroke="#e53935" points="461.35,-37.47 454.86,-29.09 454.71,-39.69 461.35,-37.47"></polygon>
+</g>
+<!-- i7 -->
+<g id="node10" class="node">
+<title>i7</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="540,-29 504,-29 504,0 540,0 540,-29"></polygon>
+<text text-anchor="middle" x="522" y="-10.3" font-family="Times,serif" font-size="14.00">i7</text>
+</g>
+<!-- Preferencias Meritocráticas&#45;&#45;i7 -->
+<g id="edge9" class="edge">
+<title>Preferencias Meritocráticas--i7</title>
+<path fill="none" stroke="#e53935" d="M492.11,-104.18C498.12,-86.14 507.34,-58.49 513.95,-38.66"></path>
+<polygon fill="#e53935" stroke="#e53935" points="517.29,-39.69 517.14,-29.09 510.65,-37.47 517.29,-39.69"></polygon>
+</g>
+<!-- i8 -->
+<g id="node11" class="node">
+<title>i8</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="612,-29 576,-29 576,0 612,0 612,-29"></polygon>
+<text text-anchor="middle" x="594" y="-10.3" font-family="Times,serif" font-size="14.00">i8</text>
+</g>
+<!-- Preferencias Meritocráticas&#45;&#45;i8 -->
+<g id="edge10" class="edge">
+<title>Preferencias Meritocráticas--i8</title>
+<path fill="none" stroke="#e53935" d="M503.83,-104.67C522.53,-85.97 551.94,-56.56 572.05,-36.45"></path>
+<polygon fill="#e53935" stroke="#e53935" points="574.67,-38.78 579.27,-29.23 569.72,-33.83 574.67,-38.78"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="medición-en-ciencias-sociales-6" class="slide level2 smaller" data-background-color="white">
+<h2>Medición en Ciencias Sociales</h2>
+<ul>
+<li>Los conceptos complejos no se pueden medir directamente, por lo que se realiza una operacionalización
+<ul>
+<li>Variable latente o factor</li>
+</ul></li>
+<li>Generamos mediciones que se aproximan a medir lo que representa el concepto
+<ul>
+<li>Variables observadas, indicadores o ítems</li>
+</ul></li>
+<li>No observamos directamente la variable latente, si no que esta es deducida a partir de las correlaciones entre las variables observadas</li>
+</ul>
+</section>
+<section id="medición-de-variables-latentes" class="slide level2 smaller" data-background-color="white">
+<h2>Medición de variables latentes</h2>
+<ul>
+<li>Podemos utilizar modelos estadísticos para entender constructos sociales y responder preguntas cómo
+<ul>
+<li>¿Cómo se relacionan entre sí distintos indicadores de un mismo concepto?</li>
+<li>¿Son las variables adecuadas para capturar un determinado concepto?</li>
+<li>¿Cuántas dimensiones tiene un concepto?</li>
+</ul></li>
+<li>Análisis factorial (variables continuas)
+<ul>
+<li>Permite estudiar la interrelación (o interdependencia) de variables observadas</li>
+<li>Se agrupan las variables en un factor o en un número reducido de factores</li>
+<li>Cada indicador tiene una varianza común que es explicada por el factor latente y una varianza única</li>
+</ul></li>
+</ul>
+</section>
+<section id="análisis-factorial" class="slide level2 smaller dark-background">
+<h2>Análisis factorial</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Análisis Factorial Exploratorio (AFE o EFA)</th>
+<th style="text-align: left;">Análisis Factorial Confirmatorio (AFC o CFA)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Cuando no hay un modelo teórico que sustenta la manera en que las variables observadas se relacionan entre sí</td>
+<td style="text-align: left;">Un modelo teórico especifica qué variables observadas se relacionan con qué variable(s) latente(s)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Busca identificar las variables latentes que subyacen a un conjunto de indicadores correlacionados entre sí</td>
+<td style="text-align: left;">Generalmente, cada variable observada se relaciona solamente con una variable latente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">El modelo plantea que cada variable observada se relaciona con todas las variables latentes</td>
+<td style="text-align: left;">Podemos evaluar si el modelo planteado se ajusta a los datos observados</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="análisis-factorial-exploratorio" class="slide level2 smaller" data-background-color="white">
+<h2>Análisis factorial: Exploratorio</h2>
+<p><strong>¿Corresponden autoritarismo y dominancia a dos dimensiones distintas del conservadurismo?</strong></p>
+<p><strong>Enfoque Exploratorio (AFE):</strong></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 205.85 272.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 268)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-268 201.85,-268 201.85,4 -4,4"></polygon>
+<!-- F1 -->
+<g id="node1" class="node">
+<title>F1</title>
+<ellipse fill="#e53935" stroke="#e53935" cx="59.43" cy="-171.5" rx="59.35" ry="31.23"></ellipse>
+<text text-anchor="middle" x="59.43" y="-180.5" font-family="Times,serif" font-size="10.00" fill="white">f1</text>
+<text text-anchor="middle" x="59.43" y="-168.5" font-family="Times,serif" font-size="10.00" fill="white">Autoritarismo de</text>
+<text text-anchor="middle" x="59.43" y="-156.5" font-family="Times,serif" font-size="10.00" fill="white">derechas</text>
+</g>
+<!-- F2 -->
+<g id="node2" class="node">
+<title>F2</title>
+<ellipse fill="#e53935" stroke="#e53935" cx="59.43" cy="-91.5" rx="45.74" ry="31.23"></ellipse>
+<text text-anchor="middle" x="59.43" y="-100.5" font-family="Times,serif" font-size="10.00" fill="white">f2</text>
+<text text-anchor="middle" x="59.43" y="-88.5" font-family="Times,serif" font-size="10.00" fill="white">Dominancia</text>
+<text text-anchor="middle" x="59.43" y="-76.5" font-family="Times,serif" font-size="10.00" fill="white">social</text>
+</g>
+<!-- F1&#45;&#45;F2 -->
+<g id="edge1" class="edge">
+<title>F1--F2</title>
+<path fill="none" stroke="#b71c1c" stroke-dasharray="5,2" d="M59.43,-140.27C59.43,-134.43 59.43,-128.59 59.43,-122.75"></path>
+</g>
+<!-- X1 -->
+<g id="node3" class="node">
+<title>X1</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="197.85,-264 154.85,-264 154.85,-235 197.85,-235 197.85,-264"></polygon>
+<text text-anchor="middle" x="176.35" y="-246.5" font-family="Times,serif" font-size="10.00">X1</text>
+</g>
+<!-- F1&#45;&#45;X1 -->
+<g id="edge2" class="edge">
+<title>F1--X1</title>
+<path fill="none" stroke="#e53935" d="M96.47,-195.97C115.7,-209.01 138.65,-224.59 154.83,-235.57"></path>
+</g>
+<!-- X2 -->
+<g id="node4" class="node">
+<title>X2</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="197.85,-217 154.85,-217 154.85,-188 197.85,-188 197.85,-217"></polygon>
+<text text-anchor="middle" x="176.35" y="-199.5" font-family="Times,serif" font-size="10.00">X2</text>
+</g>
+<!-- F1&#45;&#45;X2 -->
+<g id="edge3" class="edge">
+<title>F1--X2</title>
+<path fill="none" stroke="#e53935" d="M112.51,-185.55C127.48,-189.59 142.93,-193.76 154.77,-196.95"></path>
+</g>
+<!-- X3 -->
+<g id="node5" class="node">
+<title>X3</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="197.85,-170 154.85,-170 154.85,-141 197.85,-141 197.85,-170"></polygon>
+<text text-anchor="middle" x="176.35" y="-152.5" font-family="Times,serif" font-size="10.00">X3</text>
+</g>
+<!-- F1&#45;&#45;X3 -->
+<g id="edge4" class="edge">
+<title>F1--X3</title>
+<path fill="none" stroke="#e53935" d="M117.22,-163.59C130.68,-161.72 144.18,-159.84 154.79,-158.36"></path>
+</g>
+<!-- X4 -->
+<g id="node6" class="node">
+<title>X4</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="197.85,-123 154.85,-123 154.85,-94 197.85,-94 197.85,-123"></polygon>
+<text text-anchor="middle" x="176.35" y="-105.5" font-family="Times,serif" font-size="10.00">X4</text>
+</g>
+<!-- F1&#45;&#45;X4 -->
+<g id="edge5" class="edge">
+<title>F1--X4</title>
+<path fill="none" stroke="#e53935" d="M101.27,-149.11C119.33,-139.21 139.8,-127.99 154.63,-119.86"></path>
+</g>
+<!-- X5 -->
+<g id="node7" class="node">
+<title>X5</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="197.85,-76 154.85,-76 154.85,-47 197.85,-47 197.85,-76"></polygon>
+<text text-anchor="middle" x="176.35" y="-58.5" font-family="Times,serif" font-size="10.00">X5</text>
+</g>
+<!-- F1&#45;&#45;X5 -->
+<g id="edge6" class="edge">
+<title>F1--X5</title>
+<path fill="none" stroke="#e53935" d="M98.51,-147.94C105.57,-142.88 112.67,-137.3 118.85,-131.5 137.79,-113.74 138.42,-105.6 154.85,-85.5 157.35,-82.45 160.07,-79.21 162.68,-76.14"></path>
+</g>
+<!-- X6 -->
+<g id="node8" class="node">
+<title>X6</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="197.85,-29 154.85,-29 154.85,0 197.85,0 197.85,-29"></polygon>
+<text text-anchor="middle" x="176.35" y="-11.5" font-family="Times,serif" font-size="10.00">X6</text>
+</g>
+<!-- F1&#45;&#45;X6 -->
+<g id="edge7" class="edge">
+<title>F1--X6</title>
+<path fill="none" stroke="#e53935" d="M100.58,-148.84C107.3,-143.77 113.74,-137.96 118.85,-131.5 146.37,-96.76 132.14,-76.56 154.85,-38.5 156.76,-35.3 159.1,-32.11 161.51,-29.14"></path>
+</g>
+<!-- F2&#45;&#45;X1 -->
+<g id="edge8" class="edge">
+<title>F2--X1</title>
+<path fill="none" stroke="#e53935" d="M95.77,-110.62C104.19,-116.46 112.55,-123.48 118.85,-131.5 146.76,-166.99 131.44,-187.89 154.85,-226.5 156.57,-229.34 158.66,-232.15 160.84,-234.78"></path>
+</g>
+<!-- F2&#45;&#45;X2 -->
+<g id="edge9" class="edge">
+<title>F2--X2</title>
+<path fill="none" stroke="#e53935" d="M94.32,-111.94C102.75,-117.76 111.48,-124.44 118.85,-131.5 138.11,-149.94 137.97,-158.86 154.85,-179.5 157.02,-182.15 159.39,-184.91 161.71,-187.56"></path>
+</g>
+<!-- F2&#45;&#45;X3 -->
+<g id="edge10" class="edge">
+<title>F2--X3</title>
+<path fill="none" stroke="#e53935" d="M95.53,-111.05C114.94,-121.86 138.38,-134.91 154.82,-144.07"></path>
+</g>
+<!-- F2&#45;&#45;X4 -->
+<g id="edge11" class="edge">
+<title>F2--X4</title>
+<path fill="none" stroke="#e53935" d="M104.53,-98.02C121.75,-100.57 140.66,-103.37 154.61,-105.43"></path>
+</g>
+<!-- F2&#45;&#45;X5 -->
+<g id="edge12" class="edge">
+<title>F2--X5</title>
+<path fill="none" stroke="#e53935" d="M102.57,-80.5C120.38,-75.85 140.31,-70.65 154.8,-66.87"></path>
+</g>
+<!-- F2&#45;&#45;X6 -->
+<g id="edge13" class="edge">
+<title>F2--X6</title>
+<path fill="none" stroke="#e53935" d="M92.75,-69.85C112.66,-56.5 137.6,-39.79 154.84,-28.25"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><em>Relaciona todos los indicadores con todos los factores</em></p>
+</section>
+<section id="análisis-factorial-confirmatorio" class="slide level2 smaller" data-background-color="white">
+<h2>Análisis factorial: Confirmatorio</h2>
+<p><strong>¿Corresponden autoritarismo y dominancia a dos dimensiones distintas del conservadurismo?</strong></p>
+<p><strong>Enfoque Confirmatorio (AFC):</strong></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 255.34 314.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 310)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-310 251.34,-310 251.34,4 -4,4"></polygon>
+<!-- F1 -->
+<g id="node1" class="node">
+<title>F1</title>
+<ellipse fill="#e53935" stroke="#e53935" cx="78.67" cy="-234" rx="78.84" ry="41.09"></ellipse>
+<text text-anchor="middle" x="78.67" y="-246.6" font-family="Times,serif" font-size="14.00" fill="white">f1</text>
+<text text-anchor="middle" x="78.67" y="-229.8" font-family="Times,serif" font-size="14.00" fill="white">Autoritarismo de</text>
+<text text-anchor="middle" x="78.67" y="-213" font-family="Times,serif" font-size="14.00" fill="white">derechas</text>
+</g>
+<!-- F2 -->
+<g id="node2" class="node">
+<title>F2</title>
+<ellipse fill="#e53935" stroke="#e53935" cx="78.67" cy="-72" rx="59.89" ry="41.09"></ellipse>
+<text text-anchor="middle" x="78.67" y="-84.6" font-family="Times,serif" font-size="14.00" fill="white">f2</text>
+<text text-anchor="middle" x="78.67" y="-67.8" font-family="Times,serif" font-size="14.00" fill="white">Dominancia</text>
+<text text-anchor="middle" x="78.67" y="-51" font-family="Times,serif" font-size="14.00" fill="white">social</text>
+</g>
+<!-- F1&#45;&#45;F2 -->
+<g id="edge1" class="edge">
+<title>F1--F2</title>
+<path fill="none" stroke="#e53935" stroke-dasharray="5,2" d="M78.67,-192.56C78.67,-166.19 78.67,-139.82 78.67,-113.45"></path>
+</g>
+<!-- X1 -->
+<g id="node3" class="node">
+<title>X1</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="247.34,-306 193.34,-306 193.34,-270 247.34,-270 247.34,-306"></polygon>
+<text text-anchor="middle" x="220.34" y="-283.8" font-family="Times,serif" font-size="14.00">X1</text>
+</g>
+<!-- F1&#45;&#45;X1 -->
+<g id="edge2" class="edge">
+<title>F1--X1</title>
+<path fill="none" stroke="#e53935" d="M142.56,-258.31C160.37,-265.2 178.79,-272.32 193.13,-277.86"></path>
+</g>
+<!-- X2 -->
+<g id="node4" class="node">
+<title>X2</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="247.34,-252 193.34,-252 193.34,-216 247.34,-216 247.34,-252"></polygon>
+<text text-anchor="middle" x="220.34" y="-229.8" font-family="Times,serif" font-size="14.00">X2</text>
+</g>
+<!-- F1&#45;&#45;X2 -->
+<g id="edge3" class="edge">
+<title>F1--X2</title>
+<path fill="none" stroke="#e53935" d="M157.68,-234C170.42,-234 182.8,-234 193.08,-234"></path>
+</g>
+<!-- X3 -->
+<g id="node5" class="node">
+<title>X3</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="247.34,-198 193.34,-198 193.34,-162 247.34,-162 247.34,-198"></polygon>
+<text text-anchor="middle" x="220.34" y="-175.8" font-family="Times,serif" font-size="14.00">X3</text>
+</g>
+<!-- F1&#45;&#45;X3 -->
+<g id="edge4" class="edge">
+<title>F1--X3</title>
+<path fill="none" stroke="#e53935" d="M142.56,-209.69C160.37,-202.8 178.79,-195.68 193.13,-190.14"></path>
+</g>
+<!-- X4 -->
+<g id="node6" class="node">
+<title>X4</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="247.34,-144 193.34,-144 193.34,-108 247.34,-108 247.34,-144"></polygon>
+<text text-anchor="middle" x="220.34" y="-121.8" font-family="Times,serif" font-size="14.00">X4</text>
+</g>
+<!-- F2&#45;&#45;X4 -->
+<g id="edge5" class="edge">
+<title>F2--X4</title>
+<path fill="none" stroke="#e53935" d="M131.28,-91.95C152.27,-100.07 175.61,-109.09 192.98,-115.81"></path>
+</g>
+<!-- X5 -->
+<g id="node7" class="node">
+<title>X5</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="247.34,-90 193.34,-90 193.34,-54 247.34,-54 247.34,-90"></polygon>
+<text text-anchor="middle" x="220.34" y="-67.8" font-family="Times,serif" font-size="14.00">X5</text>
+</g>
+<!-- F2&#45;&#45;X5 -->
+<g id="edge6" class="edge">
+<title>F2--X5</title>
+<path fill="none" stroke="#e53935" d="M138.5,-72C157.59,-72 177.8,-72 193.24,-72"></path>
+</g>
+<!-- X6 -->
+<g id="node8" class="node">
+<title>X6</title>
+<polygon fill="#ffcdd2" stroke="#ffcdd2" points="247.34,-36 193.34,-36 193.34,0 247.34,0 247.34,-36"></polygon>
+<text text-anchor="middle" x="220.34" y="-13.8" font-family="Times,serif" font-size="14.00">X6</text>
+</g>
+<!-- F2&#45;&#45;X6 -->
+<g id="edge7" class="edge">
+<title>F2--X6</title>
+<path fill="none" stroke="#e53935" d="M131.28,-52.05C152.27,-43.93 175.61,-34.91 192.98,-28.19"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><em>Restringe relaciones indicadores y factores</em></p>
+</section>
+<section id="términos-relevantes" class="slide level2 smaller" data-background-color="white">
+<h2>Términos relevantes</h2>
+<ul>
+<li><strong>Factores:</strong> variables latentes a la base de las correlaciones entre los indicadores</li>
+<li><strong>Cargas factoriales:</strong> medida estandarizada de asociación entre el indicador y la variable latente</li>
+<li><strong>Comunalidad:</strong> proporción del indicador que se asocia a factor(es) comun(es)</li>
+</ul>
+</section>
+<section id="supuestos-análisis-factorial-confirmatorio" class="slide level2 smaller" data-background-color="white">
+<h2>Supuestos Análisis Factorial Confirmatorio</h2>
+<ul>
+<li>Un número importante de variables observadas de nivel de medición intervalo/razón (mínimo 5 categorías de respuesta en escala).</li>
+<li>Base de datos suficientemente grande. Esto depende de la calidad de los datos, de las correlaciones y del número de ítems. Existen distintos criterios. En general, utilizar bases de al menos 200 casos.</li>
+<li>El modelo está correctamente especificado</li>
+<li>Relación lineal entre variables</li>
+<li>Ausencia de multicolinealidad</li>
+<li>Normalidad multivariante en las variables (al usar el método de estimación de máxima verosimilitud)</li>
+</ul>
+</section>
+<section id="pasos-afc" class="slide level2 smaller" data-background-color="white">
+<h2>Pasos AFC</h2>
+<ol type="1">
+<li>Identificación modelo</li>
+<li>Evaluación ajuste del modelo</li>
+<li>Cargas factoriales y comunalidades</li>
+<li>Comparación modelos</li>
+<li>Reespecificar modelo (si es necesario)</li>
+</ol>
+</section>
+<section id="identificación-del-modelo" class="slide level2 smaller" data-background-color="white">
+<h2>Identificación del modelo</h2>
+<ul>
+<li>Un requisito para poder realizar el AFC es que el modelo se encuentre “identificado”, es decir, que exista una solución única para todos los parámetros del modelo, es decir, contamos con información suficiente para estimarlo.</li>
+<li>Esto depende de la relación entre la cantidad de variables que utilizamos y la cantidad de parámetros a estimar.</li>
+<li>Los grados de libertad del modelo deben ser mayores a 0.</li>
+<li>En caso de que no se cumpla con esto, el software nos los hará saber, debemos cambiar la especificación del modelo.</li>
+</ul>
+</section>
+<section id="identificación-del-modelo-1" class="slide level2 smaller" data-background-color="white">
+<h2>Identificación del modelo</h2>
+<ul>
+<li>En caso de que el modelo no se encuentre identificado debemos chequear ciertas condiciones necesarias, pero no suficientes (es decir, que pueden cumplirse y aun así el modelo no se encontrará identificado).</li>
+<li>Regla t: condición necesaria pero no suficiente <span class="math display">\[ t \leq \frac{1}{2} \cdot p(p + 1) \]</span></li>
+<li>Donde: t = número total de parámetros a ser estimados (coeficientes de regresión, varianzas de los errores y correlaciones) y p = número de variables observadas</li>
+<li>La escala de las variables latentes debe estar fijada (ya sea fijando una de las cargas factoriales para cada variable latente en 1 o asignando una varianza de 1 a la variable latente).</li>
+</ul>
+</section>
+<section id="identificación-del-modelo-2" class="slide level2 smaller" data-background-color="white">
+<h2>Identificación del modelo</h2>
+<ul>
+<li>Deben haber suficientes indicadores para cada variable latente:
+<ul>
+<li>Al menos 2 indicadores por variable latente cuando el modelo tiene al menos 2 variables latentes</li>
+<li>Al menos 3 indicadores por variable latente cuando el modelo tiene solamente 1 variable latente</li>
+</ul></li>
+</ul>
+</section>
+<section id="especificación-y-estimación-del-modelo" class="slide level2 smaller" data-background-color="white">
+<h2>Especificación y estimación del modelo</h2>
+<ul>
+<li>Utilizaremos el paquete <code>{lavaan}</code> (Rosseel, 2012)</li>
+<li>Comenzamos especificando el modelo en un objeto:<br>
+<code>r     mod_conf &lt;- 'autoritarismo =~ aut1 + aut2 + aut3                  dominancia =~ dom1 + dom2 + dom3'</code></li>
+<li>El símbolo <code>=~</code> significa que la variable latente (izquierda) es medida por los indicadores (derecha)</li>
+<li>La función <code>cfa()</code> se usa para estimar el modelo<br>
+<code>r     mod_conf_cfa &lt;- cfa(mod_conf, # modelo especificado                         data = datos) # base de datos con ítems</code></li>
+<li><code>mod_conf_cfa</code> es un objeto con los resultados del modelo ajustado</li>
+</ul>
+</section>
+<section id="evaluación-ajuste-del-modelo" class="slide level2 smaller" data-background-color="white">
+<h2>Evaluación ajuste del modelo</h2>
+<p><strong>Prueba de Chi-Cuadrado</strong></p>
+<ul>
+<li>Evalúa si existen discrepancias significativas entre la matriz de covarianza observada y la que es estimada por el modelo</li>
+<li>La hipótesis nula plantea que no son significativamente distintas
+<ul>
+<li>En este caso, p &gt; 0,05 indica un buen ajuste del modelo con 95% de confianza</li>
+<li>Buscamos mantener la hipótesis nula</li>
+</ul></li>
+<li>Sin embargo, es sensible al tamaño de la muestra
+<ul>
+<li>Con muestras grande (n &gt; 400) es muy difícil encontrar un buen ajuste</li>
+</ul></li>
+<li>Criterio menos estricto: Chi2/ grados de libertad &lt; 2
+<ul>
+<li>Aunque hay autores que proponen que si el valor es igual o menor a 4 el ajuste es adecuado</li>
+</ul></li>
+</ul>
+</section>
+<section id="evaluación-ajuste-del-modelo-1" class="slide level2 smaller" data-background-color="white">
+<h2>Evaluación ajuste del modelo</h2>
+<p><strong>RMSEA (Root Mean Square Error of Approximation)</strong></p>
+<ul>
+<li>Evalúa el ajuste del modelo considerando el tamaño de la muestra y la complejidad del modelo.</li>
+<li>Valores menores a 0,05 indican un buen ajuste</li>
+<li>Valores entre 0,05 y 0,08 indican un ajuste razonable</li>
+<li>Valores sobre 0,10 indican un mal ajuste</li>
+</ul>
+</section>
+<section id="evaluación-ajuste-del-modelo-2" class="slide level2 smaller" data-background-color="white">
+<h2>Evaluación ajuste del modelo</h2>
+<p><strong>CFI (Comparative Fit Index)</strong></p>
+<ul>
+<li>Índice que compara el ajuste del modelo con un modelo base o nulo (modelo sin covarianzas entre las variables)</li>
+<li>Da cuenta del incremento en el ajuste al pasar de un modelo base al modelo propuesto</li>
+<li>Es menos sensible al tamaño de la muestra</li>
+<li>Obtiene valores entre 0 y 1. Mientras más cercano a 1, mejor es el ajuste</li>
+<li>En general, se considera que un modelo tiene un ajuste razonable si CFI &gt; 0,90 y que tiene un ajuste bueno si CFI &gt; 0,95.</li>
+</ul>
+</section>
+<section id="cargas-factoriales-y-comunalidades" class="slide level2 smaller" data-background-color="white">
+<h2>Cargas factoriales y comunalidades</h2>
+<ul>
+<li>Estimamos el modelo y obtenemos cargas para cada variable en su factor correspondiente</li>
+<li>Obtenemos soluciones estandarizadas y no estandarizadas</li>
+<li>Un buen modelo tiene cargas factoriales estandarizadas sobre 0,7 (o al menos sobre 0,5)</li>
+<li><strong>Recordatorio:</strong> las cargas factoriales son una medida estandarizada de asociación entre el indicador y la variable latente</li>
+<li>Las comunalidades corresponden al R-cuadrado, esto es, el porcentaje de varianza de una variable que es explicado por la variable latente (carga estandarizada al cuadrado).</li>
+<li>Las cargas (y comunalidades) más altas implican que las variables son más relevantes a la hora de definir un factor (mediciones más “puras” de este)</li>
+<li>La información de las cargas sirve para determinar eventualmente que ítem sería mejor eliminar (si es que es necesario eliminar algún ítem), pudiéndose descartar la(s) variable(s) con la(s) carga(s) más baja(s).</li>
+</ul>
+</section>
+<section id="cargas-factoriales-y-comunalidades-1" class="slide level2 smaller" data-background-color="white">
+<h2>Cargas factoriales y comunalidades</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>Latent Variables:</span>
+<span id="cb1-2"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb1-3"><a href=""></a>  autoritarismo =~                                                  </span>
+<span id="cb1-4"><a href=""></a>    aut1              1.000                             1.646   0.907</span>
+<span id="cb1-5"><a href=""></a>    aut2              0.921    0.060   15.457    0.000   1.517   0.887</span>
+<span id="cb1-6"><a href=""></a>    aut3              0.929    0.069   13.502    0.000   1.530   0.803</span>
+<span id="cb1-7"><a href=""></a>  dominancia =~                                                   </span>
+<span id="cb1-8"><a href=""></a>    dom1              1.000                             1.201   0.919</span>
+<span id="cb1-9"><a href=""></a>    dom2              1.096    0.080   13.729    0.000   1.316   0.882</span>
+<span id="cb1-10"><a href=""></a>    dom3              0.861    0.084   10.298    0.000   1.034   0.685</span>
+<span id="cb1-11"><a href=""></a></span>
+<span id="cb1-12"><a href=""></a>Covariances:</span>
+<span id="cb1-13"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb1-14"><a href=""></a>  autoritarismo ~~                                                  </span>
+<span id="cb1-15"><a href=""></a>    dominancia        0.678    0.174    3.891    0.000   0.343   0.343</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:40%;">
+<ul>
+<li><strong>Estimate:</strong> cargas no estandarizadas</li>
+<li><code>aut1</code> y <code>dom1</code> igual a 1
+<ul>
+<li>Fijado así para dar escala de los factores</li>
+<li><code>lavaan</code> asume que el primer indicador de un factor se fija en 1</li>
+</ul></li>
+<li><strong>Std.lv:</strong> solución con factores estandarizados</li>
+<li><strong>Std.all:</strong> solución con factores e indicadores estandarizados</li>
+</ul>
+</div></div>
+</section>
+<section id="cargas-factoriales-y-comunalidades-2" class="slide level2 smaller" data-background-color="white">
+<h2>Cargas factoriales y comunalidades</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>Latent Variables:</span>
+<span id="cb2-2"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb2-3"><a href=""></a>  autoritarismo =~                                                  </span>
+<span id="cb2-4"><a href=""></a>    aut1              1.000                             1.646   0.907</span>
+<span id="cb2-5"><a href=""></a>    aut2              0.921    0.060   15.457    0.000   1.517   0.887</span>
+<span id="cb2-6"><a href=""></a>    aut3              0.929    0.069   13.502    0.000   1.530   0.803</span>
+<span id="cb2-7"><a href=""></a>  dominancia =~                                                   </span>
+<span id="cb2-8"><a href=""></a>    dom1              1.000                             1.201   0.919</span>
+<span id="cb2-9"><a href=""></a>    dom2              1.096    0.080   13.729    0.000   1.316   0.882</span>
+<span id="cb2-10"><a href=""></a>    dom3              0.861    0.084   10.298    0.000   1.034   0.685</span>
+<span id="cb2-11"><a href=""></a></span>
+<span id="cb2-12"><a href=""></a>Covariances:</span>
+<span id="cb2-13"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb2-14"><a href=""></a>  autoritarismo ~~                                                  </span>
+<span id="cb2-15"><a href=""></a>    dominancia        0.678    0.174    3.891    0.000   0.343   0.343</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:40%;">
+<ul>
+<li>Todos los indicadores p&lt;0,05
+<ul>
+<li>Su relación con los factores es significativa al 95% de confianza</li>
+</ul></li>
+<li><code>aut1</code> y <code>dom1</code> no tienen valor p porque fueron fijados</li>
+<li>Los coeficientes estandarizados (Std.all) &gt; 0,5</li>
+<li><code>aut1</code> y <code>dom1</code> son los indicadores más puros de sus factores</li>
+</ul>
+</div></div>
+</section>
+<section id="cargas-factoriales-y-comunalidades-3" class="slide level2 smaller" data-background-color="white">
+<h2>Cargas factoriales y comunalidades</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a>Latent Variables:</span>
+<span id="cb3-2"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb3-3"><a href=""></a>  autoritarismo =~                                                  </span>
+<span id="cb3-4"><a href=""></a>    aut1              1.000                             1.646   0.907</span>
+<span id="cb3-5"><a href=""></a>    aut2              0.921    0.060   15.457    0.000   1.517   0.887</span>
+<span id="cb3-6"><a href=""></a>    aut3              0.929    0.069   13.502    0.000   1.530   0.803</span>
+<span id="cb3-7"><a href=""></a>  dominancia =~                                                   </span>
+<span id="cb3-8"><a href=""></a>    dom1              1.000                             1.201   0.919</span>
+<span id="cb3-9"><a href=""></a>    dom2              1.096    0.080   13.729    0.000   1.316   0.882</span>
+<span id="cb3-10"><a href=""></a>    dom3              0.861    0.084   10.298    0.000   1.034   0.685</span>
+<span id="cb3-11"><a href=""></a></span>
+<span id="cb3-12"><a href=""></a>Covariances:</span>
+<span id="cb3-13"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb3-14"><a href=""></a>  autoritarismo ~~                                                  </span>
+<span id="cb3-15"><a href=""></a>    dominancia        0.678    0.174    3.891    0.000   0.343   0.343</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:40%;">
+<ul>
+<li>La covarianza entre ambos factores es significativa al 95% de confianza, p&lt;0,05</li>
+<li>La correlación entre ambas variables es positiva (Std.all = 0,343)</li>
+</ul>
+</div></div>
+</section>
+<section id="cargas-factoriales-y-comunalidades-4" class="slide level2 smaller" data-background-color="white">
+<h2>Cargas factoriales y comunalidades</h2>
+<ul>
+<li>Las comunalidades están expresadas como R cuadrado (R-Square)</li>
+<li>Estas se calculan como la carga factorial estandarizada al cuadrado</li>
+<li>En general, observamos comunalidades altas.</li>
+<li>El ítem <code>dom3</code> tiene la comunalidad más baja: el factor “dominancia” explica el 46,9% de la varianza de <code>dom3</code>.
+<ul>
+<li>Podríamos evaluar si sacar este ítem del modelo, en caso de querer reducir la escala</li>
+</ul></li>
+</ul>
+</section>
+<section id="reespecificar-modelo" class="slide level2 smaller" data-background-color="white">
+<h2>Reespecificar modelo</h2>
+<ul>
+<li>Eventualmente, si el modelo no ajusta adecuadamente, se recomienda considerar índices de modificación</li>
+<li>En general, se proponen cambios relativos a la especificación de:
+<ul>
+<li><strong>Correlaciones entre los errores de indicadores</strong>
+<ul>
+<li>Implica una asociación entre indicadores que no es explicada por la asociación con el factor, ej.: (a) Indicadores medidos en un mismo momento en el tiempo o (b) Indicadores medidos utilizando pruebas parecidas</li>
+</ul></li>
+<li><strong>Cargas cruzadas:</strong> un indicador carga en más de un factor
+<ul>
+<li>En caso de realizarse, debiera ser justificado teóricamente</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="reespecificar-modelo-1" class="slide level2 smaller" data-background-color="white">
+<h2>Reespecificar modelo</h2>
+<ul>
+<li>Observamos una lista de sugerencias de modificación bajo <code>Modification Indices</code></li>
+<li>Mayores <code>mi</code> indican que este cambio significará un mayor cambio en la bondad de ajuste del modelo</li>
+<li><code>=~</code>: indica agregar un efecto de una variable observada en una variable latente</li>
+<li><code>~~</code>: indica agregar una correlación entre los errores de dos variables observadas</li>
+<li>En este caso, los índices de modificación más altos se relacionan con el <code>dom3</code>, se sugiere:
+<ul>
+<li>Agregar <code>dom3</code> como un indicador de autoritarismo (mi = 6,437)</li>
+<li>Agregar una correlación entre los errores de <code>dom1</code> y <code>dom2</code> (mi = 6,437)</li>
+<li>Agregar una correlación entre los errores de <code>aut2</code> y <code>dom3</code> (mi = 4,180)</li>
+</ul></li>
+</ul>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="09-slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="09-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="09-slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="09-slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="09-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="09-slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="09-slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="09-slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="09-slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="09-slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

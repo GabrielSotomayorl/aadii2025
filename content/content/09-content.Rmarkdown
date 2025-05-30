@@ -1,9 +1,9 @@
 ---
-title: "Análisis Factorial Confirmatorio II"
-linktitle: "9: Análisis Factorial Confirmatorio II"
-date: "2024-08-03"
-start_date: "2024-08-03"
-end_date: "2024-08-03"
+title: "Análisis Factorial Confirmatorio I"
+linktitle: "9: Análisis Factorial Confirmatorio I"
+date: "2025-06-02"
+start_date: "2025-06-02"
+end_date: "2025-06-02"
 menu:
   content:
     parent: Contenido
@@ -20,7 +20,7 @@ source(here::here("R", "slide-tabs.R"))
 
 slide_details <- tibble::tribble(
   ~title, ~slide, ~active,
-  "Análisis Factorial Confirmatorio II", "1", TRUE,
+  "Análisis Factorial Confirmatorio I", "0'", TRUE,
    "", "14", FALSE,
    "", "29", FALSE
 )

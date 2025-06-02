@@ -54,6 +54,16 @@ library(texreg)   # Para tablas de resultados bien formateadas
 
 A continuación, importamos los datos. Usaremos una base de ejemplo sobre ideología que contiene ítems para medir "autoritarismo" y "dominancia social".
 
+| Item | Etiqueta                                                                                                                                  |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| dom1 | Los grupos inferiores debieran quedarse en su lugar                                                                                       |
+| dom2 | Si algunos grupos se mantuvieran en su lugar, tendríamos menos problemas                                                                  |
+| dom3 | A veces es necesario pasar por encima de algunos grupos para surgir en la vida                                                            |
+| aut1 | Las formas y valores tradicionales aún son la mejor manera de vivir                                                                       |
+| aut2 | Es importante que mantengamos los valores y estándares morales tradicionales                                                              |
+| aut3 | Este país va a prosperar si los jóvenes dejan de experimentar con drogas, alcohol y sexo, y prestan más atención a los valores familiares |
+
+
 ```{r load_data}
 # Importar datos desde una URL (GitHub)
 datos <- read_sav(url("https://github.com/Clases-GabrielSotomayor/pruebapagina/raw/master/content/example/input/data/base_ideologia_afc.sav"))
@@ -62,6 +72,8 @@ datos <- read_sav(url("https://github.com/Clases-GabrielSotomayor/pruebapagina/r
 # glimpse(datos) # Comentado para brevedad
 # head(datos)    # Comentado para brevedad
 ```
+
+
 
 ## 2. Especificación del Modelo de Medición
 

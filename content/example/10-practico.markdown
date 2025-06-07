@@ -12,9 +12,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
-```
+
 
 ## 0. Objetivos del Práctico
 
@@ -35,7 +33,8 @@ Antes de comenzar, es crucial abordar el estado del paquete `lavaan.survey`. Est
 
 Este es un ejemplo real y práctico de los desafíos del software de código abierto: los paquetes pueden quedar sin mantenimiento. Para este curso, seguiremos usándolo por su gran valor pedagógico para enseñar el flujo de trabajo con encuestas complejas. Lo instalaremos desde un "espejo" en GitHub, pero es importante que seas consciente de que para futuros proyectos de investigación, deberías verificar el estado del paquete y considerar las alternativas mencionadas en el texto de la clase.
 
-```{r install_survey_lavaan_10, eval=FALSE}
+
+```r
 # Como lavaan.survey fue archivado de CRAN, lo instalamos desde un mirror en GitHub
 # Esto podría requerir el paquete 'remotes'. Si no lo tienes, instálalo primero.
 # install.packages("remotes")
@@ -44,7 +43,8 @@ remotes::install_github("cran/lavaan.survey")
 
 Ahora, cargamos todos los paquetes que usaremos en este práctico.
 
-```{r load_packages_10}
+
+```r
 # Cargar paquetes necesarios. Pacman los instala si no están presentes.
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(haven, survey, lavaan, lavaan.survey, dplyr, texreg, semPlot)
@@ -63,7 +63,8 @@ La escala PHQ-4 consta de 4 ítems: dos para depresión y dos para ansiedad.
 | `ss7_c` | Ansiedad | ¿Se ha sentido nervioso(a), ansioso(a) o con los nervios de punta? | 1-4 (Nunca a Casi todos los días) |
 | `ss7_d` | Ansiedad | ¿No ha sido capaz de parar o controlar su preocupación? | 1-4 (Nunca a Casi todos los días) |
 
-```{r load_data_10}
+
+```r
 # Cargar datos de la EBS 2023 desde la URL
 tmp <- tempfile(fileext = ".RData")
 download.file(
@@ -82,7 +83,8 @@ El trabajo con datos reales casi siempre requiere una fase de limpieza. Nuestros
 3.  **Recodificar los ítems** de 1-4 a 0-3 para facilitar la interpretación.
 4.  **Gestionar los casos perdidos** (usaremos análisis de casos completos con `na.omit()`).
 
-```{r prepare_data_10}
+
+```r
 # 1. Nombres de las variables de interés
 phq4_vars <- c("ss7_a", "ss7_b", "ss7_c", "ss7_d")
 design_vars <- c("varunit", "estrato_ebs", "fexp")
@@ -99,7 +101,18 @@ ebs_limpia <- ebs %>%
 
 # Verificar cantidad de datos perdidos eliminados
 cat("Número de casos originales:", nrow(ebs), "\n")
+```
+
+```
+## Número de casos originales: 11234
+```
+
+```r
 cat("Número de casos completos para el análisis:", nrow(ebs_limpia), "\n")
+```
+
+```
+## Número de casos completos para el análisis: 11215
 ```
 Observamos que solo se perdieron 19 casos (11234 - 11215), por lo que proceder con casos completos es una estrategia razonable aquí.
 
@@ -107,7 +120,8 @@ Observamos que solo se perdieron 19 casos (11234 - 11215), por lo que proceder c
 
 Nuestra pregunta teórica es: ¿la escala PHQ-4 mide un único constructo de "malestar psicológico" o dos constructos distintos pero relacionados de "depresión" y "ansiedad"? Para responder, especificaremos y compararemos dos modelos.
 
-```{r define_phq_models_10}
+
+```r
 # Modelo 1: Un solo factor de malestar psicológico
 mod_phq4_1f <- '
   malestar =~ ss7_a + ss7_b + ss7_c + ss7_d
@@ -122,7 +136,8 @@ mod_phq4_2f <- '
 
 Estimaremos ambos modelos usando el estimador **WLSMV**, adecuado para variables ordinales, e incorporando los pesos muestrales (`fexp`).
 
-```{r fit_phq_models_10}
+
+```r
 # Vector con los nombres de los ítems a tratar como ordinales
 items_ordinales <- c("ss7_a", "ss7_b", "ss7_c", "ss7_d")
 
@@ -143,9 +158,26 @@ fit_2f <- cfa(mod_phq4_2f,
 
 Ahora, comparamos formalmente ambos modelos.
 
-```{r compare_models_10}
+
+```r
 # Comparar los dos modelos
 anova(fit_1f, fit_2f)
+```
+
+```
+## 
+## Scaled Chi-Squared Difference Test (method = "satorra.2000")
+## 
+## lavaan NOTE:
+##     The "Chisq" column contains standard test statistics, not the
+##     robust test that should be reported per model. A robust difference
+##     test is a function of two standard (not robust) statistics.
+##  
+##        Df AIC BIC    Chisq Chisq diff Df diff Pr(>Chisq)    
+## fit_2f  1           4.2477                                  
+## fit_1f  2         106.3918     217.58       1  < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 **Interpretación de la Comparación:**
@@ -159,7 +191,8 @@ La prueba de diferencia de Chi-cuadrado escalada nos permite decidir qué modelo
 
 Habiendo elegido el modelo de dos factores, ahora debemos corregir sus errores estándar e índices de ajuste para reflejar el diseño muestral completo de la EBS.
 
-```{r survey_design_ebs_10}
+
+```r
 # 1. Crear el objeto de diseño de encuesta con los datos limpios
 diseno_ebs <- svydesign(
   id = ~varunit, 
@@ -175,12 +208,118 @@ fit_2f_complejo <- lavaan.survey(
 
 Ahora sí, solicitamos el resumen final y definitivo.
 
-```{r summary_final_model_10}
+
+```r
 # 3. Obtener el resumen completo y corregido
 summary(fit_2f_complejo, 
         standardized = TRUE, 
         fit.measures = TRUE, 
         rsquare = TRUE)
+```
+
+```
+## lavaan 0.6.15 ended normally after 24 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        13
+## 
+##   Number of observations                         11215
+## 
+## Model Test User Model:
+##                                               Standard      Scaled
+##   Test Statistic                                31.575      11.367
+##   Degrees of freedom                                 1           1
+##   P-value (Chi-square)                           0.000       0.001
+##   Scaling correction factor                                  2.778
+##     Satorra-Bentler correction                                    
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                             16100.926    4583.320
+##   Degrees of freedom                                 6           6
+##   P-value                                        0.000       0.000
+##   Scaling correction factor                                  3.513
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    0.998       0.998
+##   Tucker-Lewis Index (TLI)                       0.989       0.986
+##                                                                   
+##   Robust Comparative Fit Index (CFI)                         0.998
+##   Robust Tucker-Lewis Index (TLI)                            0.989
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)             -52539.298  -52539.298
+##   Loglikelihood unrestricted model (H1)     -52523.510  -52523.510
+##                                                                   
+##   Akaike (AIC)                              105104.595  105104.595
+##   Bayesian (BIC)                            105199.821  105199.821
+##   Sample-size adjusted Bayesian (SABIC)     105158.508  105158.508
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.052       0.030
+##   90 Percent confidence interval - lower         0.038       0.021
+##   90 Percent confidence interval - upper         0.069       0.040
+##   P-value H_0: RMSEA <= 0.050                    0.373       1.000
+##   P-value H_0: RMSEA >= 0.080                    0.002       0.000
+##                                                                   
+##   Robust RMSEA                                               0.051
+##   90 Percent confidence interval - lower                     0.027
+##   90 Percent confidence interval - upper                     0.079
+##   P-value H_0: Robust RMSEA <= 0.050                         0.423
+##   P-value H_0: Robust RMSEA >= 0.080                         0.043
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.006       0.006
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                           Robust.sem
+##   Information                                 Expected
+##   Information saturated (h1) model          Structured
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+##   depresion =~                                                          
+##     ss7_a             1.000                               0.663    0.713
+##     ss7_b             1.190    0.030   39.316    0.000    0.789    0.875
+##   ansiedad =~                                                           
+##     ss7_c             1.000                               0.779    0.805
+##     ss7_d             0.810    0.020   41.159    0.000    0.631    0.673
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+##   depresion ~~                                                          
+##     ansiedad          0.449    0.015   30.302    0.000    0.870    0.870
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+##    .ss7_a             0.928    0.013   73.871    0.000    0.928    0.999
+##    .ss7_b             0.825    0.012   67.857    0.000    0.825    0.916
+##    .ss7_c             0.947    0.013   73.194    0.000    0.947    0.979
+##    .ss7_d             0.663    0.013   51.899    0.000    0.663    0.707
+##     depresion         0.000                               0.000    0.000
+##     ansiedad          0.000                               0.000    0.000
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+##    .ss7_a             0.424    0.016   26.747    0.000    0.424    0.491
+##    .ss7_b             0.190    0.014   13.408    0.000    0.190    0.234
+##    .ss7_c             0.330    0.016   20.770    0.000    0.330    0.352
+##    .ss7_d             0.481    0.019   25.665    0.000    0.481    0.547
+##     depresion         0.439    0.019   23.191    0.000    1.000    1.000
+##     ansiedad          0.607    0.021   28.985    0.000    1.000    1.000
+## 
+## R-Square:
+##                    Estimate
+##     ss7_a             0.509
+##     ss7_b             0.766
+##     ss7_c             0.648
+##     ss7_d             0.453
 ```
 
 **Interpretación de los Resultados del Modelo Final:**
@@ -207,7 +346,8 @@ summary(fit_2f_complejo,
 
 ## 6. Visualización del Modelo Final
 
-```{r plot_final_model_10, fig.width=10, fig.height=6}
+
+```r
 # Graficar el modelo original (fit_2f). Los valores de los parámetros son los correctos.
 semPlot::semPaths(fit_2f, 
                   what = "std",
@@ -217,6 +357,8 @@ semPlot::semPaths(fit_2f,
                   edge.color = "black",
                   layout = "tree2")
 ```
+
+<img src="/example/10-practico_files/figure-html/plot_final_model_10-1.png" width="960" />
 
 **Interpretación del Gráfico:**
 El diagrama visualiza claramente la estructura del modelo. Vemos los dos factores latentes (círculos) y sus respectivos indicadores (rectángulos). Las flechas muestran las cargas estandarizadas, confirmando visualmente que `ss7_b` (0.875) y `ss7_c` (0.805) son los indicadores más fuertes. Lo más destacable es la línea curva gruesa entre `depresion` y `ansiedad` con el valor **0.87**, ilustrando la altísima correlación entre ambos constructos.

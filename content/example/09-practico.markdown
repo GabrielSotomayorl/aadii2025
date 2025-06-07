@@ -30,7 +30,7 @@ En este práctico, aprenderemos a realizar un Análisis Factorial Confirmatorio 
 Primero, cargamos los paquetes necesarios. `lavaan` es el paquete central para AFC y SEM. `semPlot` (si está disponible) nos permitirá visualizar el modelo.
 
 
-``` r
+```r
 # Carga paquetes
 # install.packages(c("haven", "lavaan", "dplyr", "semPlot", "texreg")) # Descomentar si es necesario
 
@@ -64,7 +64,7 @@ A continuación, importamos los datos. Usaremos una base de ejemplo sobre ideolo
 
 
 
-``` r
+```r
 # Importar datos desde una URL (GitHub)
 datos <- read_sav(url("https://github.com/Clases-GabrielSotomayor/pruebapagina/raw/master/content/example/input/data/base_ideologia_afc.sav"))
 
@@ -84,7 +84,7 @@ Definimos nuestro modelo teórico. Hipotetizamos dos factores latentes:
 En la sintaxis de `lavaan`, el operador `=~` ("es medido por") define esta relación.
 
 
-``` r
+```r
 # Definir el modelo de medición para el AFC
 mod_conf <- '
   # Factor latente de Autoritarismo y sus indicadores
@@ -104,7 +104,7 @@ mod_conf <- '
 Con el modelo especificado, usamos la función `cfa()` de `lavaan` para estimar los parámetros.
 
 
-``` r
+```r
 # Ajustar el modelo AFC a los datos
 mod_conf_afc <- cfa(model = mod_conf, data = datos)
 ```
@@ -115,7 +115,7 @@ El objeto `mod_conf_afc` ahora contiene todos los resultados de la estimación.
 Usamos `summary()` para obtener un resumen completo, solicitando medidas de ajuste y soluciones estandarizadas.
 
 
-``` r
+```r
 # Obtener un resumen completo del modelo ajustado
 summary_output <- summary(mod_conf_afc,
                           standardized = TRUE, # Mostrar cargas estandarizadas (Std.all)
@@ -126,7 +126,7 @@ print(summary_output)
 ```
 
 ```
-## lavaan 0.6-19 ended normally after 29 iterations
+## lavaan 0.6.15 ended normally after 29 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -246,7 +246,7 @@ print(summary_output)
 Podemos solicitar un conjunto específico de índices de ajuste.
 
 
-``` r
+```r
 # Ver solo los índices de ajuste seleccionados
 fitMeasures(mod_conf_afc,
             fit.measures = c("chisq", "df", "pvalue", # Prueba Chi-cuadrado
@@ -270,7 +270,7 @@ fitMeasures(mod_conf_afc,
 *   **`cfi` = 0.993:** Valor muy cercano a 1 (y > 0.95), indica un **excelente ajuste comparativo**.
 *   **`tli` = 0.987:** También muy cercano a 1 (y > 0.95), indica un **excelente ajuste comparativo**.
 *   **`rmsea` = 0.055:**
-    *   Este valor está en el límite entre "buen ajuste" (`\(\leq 0.05\)`) y "ajuste razonable" (0.05-0.08).
+    *   Este valor está en el límite entre "buen ajuste" ($\leq 0.05$) y "ajuste razonable" (0.05-0.08).
     *   **IC 90% para RMSEA (`rmsea.ci.lower`, `rmsea.ci.upper`): 0.000 - 0.113.** El intervalo es algo amplio e incluye valores por encima de 0.08 (incluso 0.10), lo que modera un poco el optimismo. El límite inferior en 0 es bueno. La prueba de que RMSEA `\(\leq 0.05\)` tiene un p-valor de 0.384 (no podemos rechazar que sea `\(\leq 0.05\)`).
 *   **`srmr` = 0.049:** Este valor es **menor que 0.08 (e incluso < 0.05)**, lo que indica un **muy buen ajuste** en términos de los residuos estandarizados promedio.
 
@@ -281,7 +281,7 @@ fitMeasures(mod_conf_afc,
 `semPaths` puede graficar el modelo, mostrando las cargas estandarizadas.
 
 
-``` r
+```r
 # Diagrama del modelo con cargas estandarizadas
 semPlot::semPaths(mod_conf_afc, 
                     what = "std",  # Mostrar cargas estandarizadas (Std.all)
@@ -301,7 +301,7 @@ El diagrama visualiza el modelo teórico. Las flechas desde los óvalos (factore
 Las comunalidades indican qué proporción de la varianza de cada ítem es explicada por el factor latente en el que carga.
 
 
-``` r
+```r
 # Obtener R-cuadrado (comunalidades) para las variables observadas
 inspect(mod_conf_afc, what = "rsquare") 
 ```
@@ -324,7 +324,7 @@ Todas las comunalidades son buenas (mayores a 0.40, y la mayoría > 0.60). El í
 Los índices de modificación (IM) sugieren cambios al modelo que podrían mejorar significativamente su ajuste. Deben usarse con **mucha cautela y siempre con justificación teórica.**
 
 
-``` r
+```r
 # Mostrar los IM más altos, ordenados (IM > 3.84 es aprox. p<0.05 con 1gl)
 mod_indices <- modificationindices(mod_conf_afc, sort. = TRUE, minimum.value = 3.84) 
 print(head(mod_indices, 10)) 

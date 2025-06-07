@@ -544,9 +544,9 @@ Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton
 <p><strong>Ejemplos de variables latentes (con más de una dimensión):</strong> Actitudes meritocráticas (Castillo, Iturra, Meneses &amp; Maldonado, 2021)</p>
 <table class="caption-top">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 58%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 55%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -584,9 +584,9 @@ Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton
 <p><strong>Ejemplos de variables latentes (con más de una dimensión):</strong> Actitudes meritocráticas (Castillo, Iturra, Meneses &amp; Maldonado, 2021)</p>
 <table class="caption-top">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 58%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 55%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1127,13 +1127,23 @@ Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton
 <section id="especificación-y-estimación-del-modelo" class="slide level2 smaller" data-background-color="white">
 <h2>Especificación y estimación del modelo</h2>
 <ul>
-<li>Utilizaremos el paquete <code>{lavaan}</code> (Rosseel, 2012)</li>
-<li>Comenzamos especificando el modelo en un objeto:<br>
-<code>r     mod_conf &lt;- 'autoritarismo =~ aut1 + aut2 + aut3                  dominancia =~ dom1 + dom2 + dom3'</code></li>
-<li>El símbolo <code>=~</code> significa que la variable latente (izquierda) es medida por los indicadores (derecha)</li>
-<li>La función <code>cfa()</code> se usa para estimar el modelo<br>
-<code>r     mod_conf_cfa &lt;- cfa(mod_conf, # modelo especificado                         data = datos) # base de datos con ítems</code></li>
-<li><code>mod_conf_cfa</code> es un objeto con los resultados del modelo ajustado</li>
+<li>Utilizaremos el paquete <code>{lavaan}</code> (Rosseel, 2012).</li>
+<li>Comenzamos especificando el modelo en un objeto:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>mod_conf <span class="ot">&lt;-</span> <span class="st">'autoritarismo =~ aut1 + aut2 + aut3</span></span>
+<span id="cb1-2"><a href=""></a><span class="st">             dominancia =~ dom1 + dom2 + dom3'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>El símbolo <code>=~</code> significa que la variable latente (izquierda) es medida por los indicadores (derecha).</li>
+<li>La función <code>cfa()</code> se usa para estimar el modelo:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>mod_conf_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_conf,   <span class="co"># modelo especificado</span></span>
+<span id="cb2-2"><a href=""></a>                    <span class="at">data =</span> datos) <span class="co"># base de datos con ítems</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>mod_conf_cfa</code> es un objeto con los resultados del modelo ajustado.</li>
 </ul>
 </section>
 <section id="evaluación-ajuste-del-modelo" class="slide level2 smaller" data-background-color="white">
@@ -1193,21 +1203,21 @@ Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton
 <h2>Cargas factoriales y comunalidades</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>Latent Variables:</span>
-<span id="cb1-2"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
-<span id="cb1-3"><a href=""></a>  autoritarismo =~                                                  </span>
-<span id="cb1-4"><a href=""></a>    aut1              1.000                             1.646   0.907</span>
-<span id="cb1-5"><a href=""></a>    aut2              0.921    0.060   15.457    0.000   1.517   0.887</span>
-<span id="cb1-6"><a href=""></a>    aut3              0.929    0.069   13.502    0.000   1.530   0.803</span>
-<span id="cb1-7"><a href=""></a>  dominancia =~                                                   </span>
-<span id="cb1-8"><a href=""></a>    dom1              1.000                             1.201   0.919</span>
-<span id="cb1-9"><a href=""></a>    dom2              1.096    0.080   13.729    0.000   1.316   0.882</span>
-<span id="cb1-10"><a href=""></a>    dom3              0.861    0.084   10.298    0.000   1.034   0.685</span>
-<span id="cb1-11"><a href=""></a></span>
-<span id="cb1-12"><a href=""></a>Covariances:</span>
-<span id="cb1-13"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
-<span id="cb1-14"><a href=""></a>  autoritarismo ~~                                                  </span>
-<span id="cb1-15"><a href=""></a>    dominancia        0.678    0.174    3.891    0.000   0.343   0.343</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a>Latent Variables:</span>
+<span id="cb3-2"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb3-3"><a href=""></a>  autoritarismo =~                                                  </span>
+<span id="cb3-4"><a href=""></a>    aut1              1.000                             1.646   0.907</span>
+<span id="cb3-5"><a href=""></a>    aut2              0.921    0.060   15.457    0.000   1.517   0.887</span>
+<span id="cb3-6"><a href=""></a>    aut3              0.929    0.069   13.502    0.000   1.530   0.803</span>
+<span id="cb3-7"><a href=""></a>  dominancia =~                                                   </span>
+<span id="cb3-8"><a href=""></a>    dom1              1.000                             1.201   0.919</span>
+<span id="cb3-9"><a href=""></a>    dom2              1.096    0.080   13.729    0.000   1.316   0.882</span>
+<span id="cb3-10"><a href=""></a>    dom3              0.861    0.084   10.298    0.000   1.034   0.685</span>
+<span id="cb3-11"><a href=""></a></span>
+<span id="cb3-12"><a href=""></a>Covariances:</span>
+<span id="cb3-13"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb3-14"><a href=""></a>  autoritarismo ~~                                                  </span>
+<span id="cb3-15"><a href=""></a>    dominancia        0.678    0.174    3.891    0.000   0.343   0.343</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:40%;">
 <ul>
 <li><strong>Estimate:</strong> cargas no estandarizadas</li>
@@ -1225,21 +1235,21 @@ Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton
 <h2>Cargas factoriales y comunalidades</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>Latent Variables:</span>
-<span id="cb2-2"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
-<span id="cb2-3"><a href=""></a>  autoritarismo =~                                                  </span>
-<span id="cb2-4"><a href=""></a>    aut1              1.000                             1.646   0.907</span>
-<span id="cb2-5"><a href=""></a>    aut2              0.921    0.060   15.457    0.000   1.517   0.887</span>
-<span id="cb2-6"><a href=""></a>    aut3              0.929    0.069   13.502    0.000   1.530   0.803</span>
-<span id="cb2-7"><a href=""></a>  dominancia =~                                                   </span>
-<span id="cb2-8"><a href=""></a>    dom1              1.000                             1.201   0.919</span>
-<span id="cb2-9"><a href=""></a>    dom2              1.096    0.080   13.729    0.000   1.316   0.882</span>
-<span id="cb2-10"><a href=""></a>    dom3              0.861    0.084   10.298    0.000   1.034   0.685</span>
-<span id="cb2-11"><a href=""></a></span>
-<span id="cb2-12"><a href=""></a>Covariances:</span>
-<span id="cb2-13"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
-<span id="cb2-14"><a href=""></a>  autoritarismo ~~                                                  </span>
-<span id="cb2-15"><a href=""></a>    dominancia        0.678    0.174    3.891    0.000   0.343   0.343</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href=""></a>Latent Variables:</span>
+<span id="cb4-2"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb4-3"><a href=""></a>  autoritarismo =~                                                  </span>
+<span id="cb4-4"><a href=""></a>    aut1              1.000                             1.646   0.907</span>
+<span id="cb4-5"><a href=""></a>    aut2              0.921    0.060   15.457    0.000   1.517   0.887</span>
+<span id="cb4-6"><a href=""></a>    aut3              0.929    0.069   13.502    0.000   1.530   0.803</span>
+<span id="cb4-7"><a href=""></a>  dominancia =~                                                   </span>
+<span id="cb4-8"><a href=""></a>    dom1              1.000                             1.201   0.919</span>
+<span id="cb4-9"><a href=""></a>    dom2              1.096    0.080   13.729    0.000   1.316   0.882</span>
+<span id="cb4-10"><a href=""></a>    dom3              0.861    0.084   10.298    0.000   1.034   0.685</span>
+<span id="cb4-11"><a href=""></a></span>
+<span id="cb4-12"><a href=""></a>Covariances:</span>
+<span id="cb4-13"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb4-14"><a href=""></a>  autoritarismo ~~                                                  </span>
+<span id="cb4-15"><a href=""></a>    dominancia        0.678    0.174    3.891    0.000   0.343   0.343</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:40%;">
 <ul>
 <li>Todos los indicadores p&lt;0,05
@@ -1256,21 +1266,21 @@ Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton
 <h2>Cargas factoriales y comunalidades</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a>Latent Variables:</span>
-<span id="cb3-2"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
-<span id="cb3-3"><a href=""></a>  autoritarismo =~                                                  </span>
-<span id="cb3-4"><a href=""></a>    aut1              1.000                             1.646   0.907</span>
-<span id="cb3-5"><a href=""></a>    aut2              0.921    0.060   15.457    0.000   1.517   0.887</span>
-<span id="cb3-6"><a href=""></a>    aut3              0.929    0.069   13.502    0.000   1.530   0.803</span>
-<span id="cb3-7"><a href=""></a>  dominancia =~                                                   </span>
-<span id="cb3-8"><a href=""></a>    dom1              1.000                             1.201   0.919</span>
-<span id="cb3-9"><a href=""></a>    dom2              1.096    0.080   13.729    0.000   1.316   0.882</span>
-<span id="cb3-10"><a href=""></a>    dom3              0.861    0.084   10.298    0.000   1.034   0.685</span>
-<span id="cb3-11"><a href=""></a></span>
-<span id="cb3-12"><a href=""></a>Covariances:</span>
-<span id="cb3-13"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
-<span id="cb3-14"><a href=""></a>  autoritarismo ~~                                                  </span>
-<span id="cb3-15"><a href=""></a>    dominancia        0.678    0.174    3.891    0.000   0.343   0.343</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href=""></a>Latent Variables:</span>
+<span id="cb5-2"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb5-3"><a href=""></a>  autoritarismo =~                                                  </span>
+<span id="cb5-4"><a href=""></a>    aut1              1.000                             1.646   0.907</span>
+<span id="cb5-5"><a href=""></a>    aut2              0.921    0.060   15.457    0.000   1.517   0.887</span>
+<span id="cb5-6"><a href=""></a>    aut3              0.929    0.069   13.502    0.000   1.530   0.803</span>
+<span id="cb5-7"><a href=""></a>  dominancia =~                                                   </span>
+<span id="cb5-8"><a href=""></a>    dom1              1.000                             1.201   0.919</span>
+<span id="cb5-9"><a href=""></a>    dom2              1.096    0.080   13.729    0.000   1.316   0.882</span>
+<span id="cb5-10"><a href=""></a>    dom3              0.861    0.084   10.298    0.000   1.034   0.685</span>
+<span id="cb5-11"><a href=""></a></span>
+<span id="cb5-12"><a href=""></a>Covariances:</span>
+<span id="cb5-13"><a href=""></a>                   Estimate  Std.Err  z-value  P(&gt;|z|) Std.lv Std.all</span>
+<span id="cb5-14"><a href=""></a>  autoritarismo ~~                                                  </span>
+<span id="cb5-15"><a href=""></a>    dominancia        0.678    0.174    3.891    0.000   0.343   0.343</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:40%;">
 <ul>
 <li>La covarianza entre ambos factores es significativa al 95% de confianza, p&lt;0,05</li>
@@ -1321,6 +1331,166 @@ Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton
 <li>Agregar una correlación entre los errores de <code>aut2</code> y <code>dom3</code> (mi = 4,180)</li>
 </ul></li>
 </ul>
+</section>
+<section id="repaso-de-conceptos-centrales-de-análisis-factorial-confirmatorio" class="slide level2 smaller" data-background-color="white">
+<h2>Repaso de conceptos centrales de análisis factorial confirmatorio</h2>
+<ul>
+<li>Evaluación formativa con el objetivo de hacer un repaso de los contenidos revisados en la sesión anterior sobre Análisis Factorial Confirmatorio a partir de los resultados de esta encuesta</li>
+</ul>
+<p><a href="https://forms.gle/hx3zXjGUu7iEJg886" class="uri">https://forms.gle/hx3zXjGUu7iEJg886</a></p>
+
+<img data-src="img/09/QR.jpg" class="r-stretch"></section>
+<section id="tratamiento-de-ítems-ordinales" class="slide level2 smaller" data-background-color="white">
+<h2>Tratamiento de Ítems Ordinales</h2>
+<ul>
+<li>En las diapositivas anteriores asumimos que los indicadores son continuos. Sin embargo, en ciencias sociales es muy común usar escalas tipo Likert (ej. 1 a 5), que son inherentemente <strong>ordinales</strong>.</li>
+<li>Cuando los ítems tienen menos de 5 categorías, o cuando se viola fuertemente el supuesto de normalidad, tratarlos como continuos puede sesgar los resultados.</li>
+<li><strong>Solución:</strong> Tratar las variables como ordinales. Esto cambia dos cosas:
+<ul>
+<li><strong>Matriz de Correlación:</strong> En lugar de una matriz de Pearson (para variables continuas), el modelo se basa en una <strong>matriz de correlación policórica</strong>, que estima la correlación entre las variables latentes continuas que se asumen subyacen a las respuestas ordinales observadas.</li>
+<li><strong>Método de Estimación:</strong> El estimador de Máxima Verosimilitud (ML) no es adecuado. Se utiliza un estimador robusto como el de <strong>Mínimos Cuadrados Ponderados Diagonalmente (WLSMV)</strong>, que está diseñado para datos categóricos.</li>
+</ul></li>
+</ul>
+</section>
+<section id="tratamiento-de-ítems-ordinales-en-lavaan" class="slide level2 smaller" data-background-color="white">
+<h2>Tratamiento de Ítems Ordinales en <code>lavaan</code></h2>
+<ul>
+<li>En lugar de modificar el dataframe previamente, <code>lavaan</code> permite declarar las variables como ordinales directamente dentro de la función <code>cfa()</code>.</li>
+<li>Este método es más directo y no altera el objeto de datos original. Se logra usando el argumento <code>ordered</code>.</li>
+<li>Al especificar variables ordinales, es crucial usar un estimador robusto como <strong>WLSMV (Mínimos Cuadrados Ponderados Diagonalmente)</strong>, el cual se especifica con el argumento <code>estimator</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Modelo sigue siendo el mismo</span></span>
+<span id="cb6-2"><a href=""></a>mod_conf <span class="ot">&lt;-</span> <span class="st">'autoritarismo =~ aut1 + aut2 + aut3</span></span>
+<span id="cb6-3"><a href=""></a><span class="st">             dominancia =~ dom1 + dom2 + dom3'</span></span>
+<span id="cb6-4"><a href=""></a></span>
+<span id="cb6-5"><a href=""></a><span class="co"># Vector con los nombres de los ítems a tratar como ordinales</span></span>
+<span id="cb6-6"><a href=""></a>items_ordinales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"aut1"</span>, <span class="st">"aut2"</span>, <span class="st">"aut3"</span>, <span class="st">"dom1"</span>, <span class="st">"dom2"</span>, <span class="st">"dom3"</span>)</span>
+<span id="cb6-7"><a href=""></a></span>
+<span id="cb6-8"><a href=""></a><span class="co"># Ajustar el modelo especificando las variables ordinales y el estimador</span></span>
+<span id="cb6-9"><a href=""></a>mod_conf_ord <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_conf, </span>
+<span id="cb6-10"><a href=""></a>                      <span class="at">data =</span> datos, </span>
+<span id="cb6-11"><a href=""></a>                      <span class="at">ordered =</span> items_ordinales, <span class="co"># ¡Argumento clave!</span></span>
+<span id="cb6-12"><a href=""></a>                      <span class="at">estimator =</span> <span class="st">"WLSMV"</span>)       <span class="co"># Estimador para datos categóricos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="inferencia-y-comparación-de-modelos" class="slide level2 smaller" data-background--color="white">
+<h2>Inferencia y Comparación de Modelos</h2>
+<ul>
+<li>El AFC es una herramienta de <strong>testeo de hipótesis</strong>. A menudo, no solo evaluamos un modelo, sino que comparamos modelos alternativos que representan teorías rivales.</li>
+<li><strong>Ejemplos de comparación:</strong>
+<ul>
+<li>Modelo de 1 factor vs.&nbsp;Modelo de 2 factores.</li>
+<li>Modelo donde dos factores correlacionan vs.&nbsp;Modelo donde no correlacionan.</li>
+<li>Modelo original vs.&nbsp;Modelo reespecificado (ej. con una carga cruzada).</li>
+</ul></li>
+<li>Para comparar <strong>modelos anidados</strong> (un modelo es una versión más simple y restringida del otro), se utiliza la <strong>Prueba de Diferencia de Chi-cuadrado</strong>.
+<ul>
+<li><strong>H0:</strong> El modelo más simple (con más restricciones) se ajusta igual de bien que el modelo más complejo.</li>
+<li>Un p-valor significativo (&lt; 0.05) sugiere que el modelo más complejo ofrece una mejora sustancial en el ajuste.</li>
+</ul></li>
+</ul>
+</section>
+<section id="inferencia-y-comparación-de-modelos-1" class="slide level2 smaller" data-background--color="white">
+<h2>Inferencia y Comparación de Modelos</h2>
+<ul>
+<li>En <code>lavaan</code>, se usa la función <code>anova()</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># Modelo 1: Un solo factor general</span></span>
+<span id="cb7-2"><a href=""></a>mod1 <span class="ot">&lt;-</span> <span class="st">'general =~ aut1+aut2+aut3+dom1+dom2+dom3'</span></span>
+<span id="cb7-3"><a href=""></a>fit1 <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod1, <span class="at">data =</span> datos)</span>
+<span id="cb7-4"><a href=""></a></span>
+<span id="cb7-5"><a href=""></a><span class="co"># Modelo 2: Dos factores correlacionados (el original)</span></span>
+<span id="cb7-6"><a href=""></a>mod2 <span class="ot">&lt;-</span> <span class="st">'autoritarismo =~ aut1+aut2+aut3</span></span>
+<span id="cb7-7"><a href=""></a><span class="st">         dominancia =~ dom1+dom2+dom3'</span></span>
+<span id="cb7-8"><a href=""></a>fit2 <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod2, <span class="at">data =</span> datos)</span>
+<span id="cb7-9"><a href=""></a></span>
+<span id="cb7-10"><a href=""></a><span class="co"># Comparar los dos modelos anidados</span></span>
+<span id="cb7-11"><a href=""></a><span class="fu">anova</span>(fit1, fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="uso-de-ponderadores-pesos-muestrales" class="slide level2 smaller" data-background-color="white">
+<h2>Uso de Ponderadores (Pesos Muestrales)</h2>
+<ul>
+<li>Cuando trabajamos con datos de encuestas, es común que las muestras no sean perfectamente representativas de la población.</li>
+<li>Los <strong>ponderadores</strong> o <strong>pesos muestrales</strong> (<code>weights</code>) se utilizan para corregir el desbalance en la muestra, permitiendo que las estimaciones de los parámetros (cargas, covarianzas) sean generalizables a la población de interés.</li>
+<li><code>lavaan</code> <strong>sí puede</strong> incorporar pesos muestrales directamente para obtener estimaciones de parámetros correctas.
+<ul>
+<li>Esto se hace a través del argumento <code>sampling.weights</code> en la función <code>cfa()</code>.</li>
+</ul></li>
+<li><strong>Importante:</strong> Usar solo los pesos <strong>no es suficiente</strong> si la encuesta tiene un diseño complejo (estratificación, conglomerados).</li>
+</ul>
+</section>
+<section id="más-allá-de-los-pesos-el-diseño-muestral-complejo" class="slide level2 smaller" data-background-color="white">
+<h2>Más Allá de los Pesos: El Diseño Muestral Complejo</h2>
+<ul>
+<li>Muchos diseños de encuesta son <strong>complejos</strong>: incluyen <strong>estratificación</strong> y <strong>conglomerados (clusters)</strong>.</li>
+<li>Ignorar esta estructura viola el supuesto de independencia de las observaciones.</li>
+<li><strong>Consecuencias:</strong>
+<ul>
+<li>Los <strong>errores estándar</strong> de las estimaciones serán incorrectos (generalmente subestimados).</li>
+<li>Los <strong>p-valores</strong> y las pruebas de hipótesis no serán confiables.</li>
+<li>Los <strong>índices de ajuste</strong> (Chi-cuadrado, CFI, RMSEA) serán inválidos.</li>
+</ul></li>
+<li><strong>Solución:</strong> Un proceso de dos pasos que combina <code>lavaan</code> y <code>lavaan.survey</code>.</li>
+</ul>
+</section>
+<section id="implementación-correcta-en-dos-pasos" class="slide level2 smaller" data-background-color="white">
+<h2>Implementación Correcta en Dos Pasos</h2>
+<ol type="1">
+<li><strong>Estimar el modelo en <code>lavaan</code> incluyendo los pesos muestrales.</strong>
+<ul>
+<li>Se usa el argumento <code>sampling.weights = "nombre_del_ponderador"</code>.</li>
+<li>Esto nos da las <strong>estimaciones de los coeficientes (cargas, etc.) correctas</strong>. Sin embargo, los errores estándar y los índices de ajuste aún son incorrectos si hay estratos/conglomerados.</li>
+</ul></li>
+<li><strong>Corregir los resultados con <code>lavaan.survey</code></strong>.
+<ul>
+<li>Se crea un objeto de diseño de encuesta con el paquete <code>survey</code> que especifica los <strong>estratos, conglomerados y pesos</strong>.</li>
+<li>Se usa la función <code>lavaan.survey()</code> para tomar el modelo del Paso 1 y el objeto de diseño para recalcular los <strong>errores estándar</strong> y los <strong>índices de ajuste</strong> correctamente.</li>
+</ul></li>
+</ol>
+</section>
+<section id="paso-1-modelo-cfa-con-pesos-en-lavaan" class="slide level2 smaller" data-background-color="white">
+<h2>Paso 1: Modelo CFA con Pesos en <code>lavaan</code></h2>
+<ul>
+<li>Primero, ajustamos el modelo con <code>cfa()</code>, pasando el nombre de la variable de ponderación al argumento <code>sampling.weights</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># Ajustar el modelo CFA especificando la variable de ponderación</span></span>
+<span id="cb8-2"><a href=""></a>mod_conf_cfa_pesos <span class="ot">&lt;-</span> <span class="fu">cfa</span>(mod_conf, </span>
+<span id="cb8-3"><a href=""></a>                          <span class="at">data =</span> datos,</span>
+<span id="cb8-4"><a href=""></a>                          <span class="at">sampling.weights =</span> <span class="st">"ponderador"</span>)</span>
+<span id="cb8-5"><a href=""></a></span>
+<span id="cb8-6"><a href=""></a><span class="co"># AVISO: En este punto, los `Estimate` del summary son correctos y ponderados,</span></span>
+<span id="cb8-7"><a href=""></a><span class="co"># pero los Std.Err, z-value, P(&gt;|z|) y los índices de ajuste NO son</span></span>
+<span id="cb8-8"><a href=""></a><span class="co"># confiables si el diseño es complejo.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="paso-2-corrección-del-diseño-complejo-con-lavaan.survey" class="slide level2 smaller" data-background-color="white">
+<h2>Paso 2: Corrección del Diseño Complejo con <code>lavaan.survey</code></h2>
+<ul>
+<li>Ahora, usamos el resultado del paso anterior (<code>mod_conf_cfa_pesos</code>) y un objeto de diseño de encuesta para obtener los errores estándar e índices de ajuste correctos.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># 1. Cargar paquetes e instalar si es necesario</span></span>
+<span id="cb9-2"><a href=""></a><span class="co"># install.packages(c("survey", "lavaan.survey"))</span></span>
+<span id="cb9-3"><a href=""></a><span class="fu">library</span>(survey)</span>
+<span id="cb9-4"><a href=""></a><span class="fu">library</span>(lavaan.survey)</span>
+<span id="cb9-5"><a href=""></a></span>
+<span id="cb9-6"><a href=""></a><span class="co"># 2. Crear el objeto de diseño de encuesta completo</span></span>
+<span id="cb9-7"><a href=""></a>diseno_encuesta <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span>conglomerado, <span class="co"># Variable de cluster</span></span>
+<span id="cb9-8"><a href=""></a>                             <span class="at">strata =</span> <span class="sc">~</span>estrato,     <span class="co"># Variable de estrato</span></span>
+<span id="cb9-9"><a href=""></a>                             <span class="at">weights =</span> <span class="sc">~</span>ponderador, <span class="co"># Variable de peso</span></span>
+<span id="cb9-10"><a href=""></a>                             <span class="at">data =</span> datos)</span>
+<span id="cb9-11"><a href=""></a></span>
+<span id="cb9-12"><a href=""></a><span class="co"># 3. Corregir el modelo lavaan usando el diseño de encuesta</span></span>
+<span id="cb9-13"><a href=""></a>fit_complejo <span class="ot">&lt;-</span> <span class="fu">lavaan.survey</span>(<span class="at">lavaan.fit =</span> mod_conf_cfa_pesos, </span>
+<span id="cb9-14"><a href=""></a>                              <span class="at">survey.design =</span> diseno_encuesta)</span>
+<span id="cb9-15"><a href=""></a></span>
+<span id="cb9-16"><a href=""></a><span class="co"># 4. Obtener el resumen con estimaciones, errores estándar e índices de ajuste corregidos</span></span>
+<span id="cb9-17"><a href=""></a><span class="fu">summary</span>(fit_complejo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="quarto-auto-generated-content">
 <p><img src="images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
@@ -1538,6 +1708,82 @@ Gabriel Sotomayor, Basado en material preparado por Anais Herrera Leighton
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

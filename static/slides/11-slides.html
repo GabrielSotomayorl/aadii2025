@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="11-slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="11-slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="11-slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="11-slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="11-slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="11-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="11-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="11-slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <meta name="author" content="Gabriel Sotomayor">
+  <meta name="dcterms.date" content="2025-06-16">
+  <title>Introducción al Análisis de Senderos (Parte I)</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="11-slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="11-slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="11-slides_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="11-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="11-slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="11-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="11-slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Introducción al Análisis de Senderos (Parte I)</h1>
+  <p class="subtitle">Análisis Avanzado de Datos II</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Gabriel Sotomayor 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-06-16</p>
+</section>
+<section id="contenidos-de-esta-sesión" class="slide level2 smaller" data-background-color="white">
+<h2>Contenidos de esta Sesión</h2>
+<p><strong>Análisis de Senderos (Parte I)</strong></p>
+<ol type="1">
+<li><strong>Introducción:</strong> ¿Qué es y para qué sirve el Análisis de Senderos?</li>
+<li><strong>Conceptos Básicos:</strong> Variables, diagramas y coeficientes.</li>
+<li><strong>Descomposición de Efectos:</strong> Directos, indirectos y espurios.</li>
+<li><strong>Supuestos Fundamentales</strong> del Análisis de Senderos.</li>
+</ol>
+</section>
+<section>
+<section id="introducción-al-análisis-de-senderos-path-analysis" class="title-slide slide level1 center">
+<h1>1. Introducción al Análisis de Senderos (Path Analysis)</h1>
+
+</section>
+<section id="qué-es-el-análisis-de-senderos" class="slide level2 smaller" data-background-color="white">
+<h2>¿Qué es el Análisis de Senderos?</h2>
+<ul>
+<li>El <strong>Análisis de Senderos (Path Analysis - PA)</strong> es una técnica estadística multivariada que permite <strong>evaluar el ajuste de un modelo teórico</strong> que propone una red de <strong>relaciones de dependencia (causales hipotetizadas)</strong> entre un conjunto de variables observadas.</li>
+<li><strong>Importante:</strong> El PA <strong>no prueba la causalidad</strong> de forma definitiva, pero sí nos ayuda a:
+<ul>
+<li>Determinar si un modelo causal propuesto es <strong>consistente</strong> con los datos.</li>
+<li><strong>Comparar modelos causales alternativos.</strong></li>
+<li>Identificar y cuantificar la fuerza de las diferentes “rutas” o “senderos” de influencia.</li>
+</ul></li>
+<li>Es una <strong>extensión del modelo de regresión múltiple</strong>, permitiendo examinar simultáneamente múltiples relaciones de dependencia, incluyendo la contribución <strong>directa e indirecta</strong> de las variables.</li>
+</ul>
+</section>
+<section id="origen-y-evolución-del-análisis-de-senderos" class="slide level2 smaller" data-background-color="white">
+<h2>Origen y Evolución del Análisis de Senderos</h2>
+<ul>
+<li><strong>Orígenes:</strong> Desarrollado por el genetista Sewall Wright a principios del siglo XX para estudios filogenéticos y de herencia.</li>
+<li><strong>Introducción a las Ciencias Sociales:</strong> Adoptado y popularizado gradualmente, especialmente a partir de la segunda mitad del siglo XX.</li>
+<li><strong>Popularización:</strong> El surgimiento de software estadístico potente (especialmente para Modelos de Ecuaciones Estructurales - SEM) en la década de 1980 facilitó enormemente su aplicación.</li>
+<li><strong>Uso Actual:</strong> Ampliamente utilizado en sociología, psicología, economía, ciencia política, educación, ecología y muchas otras disciplinas para modelar sistemas de relaciones.</li>
+</ul>
+</section>
+<section id="análisis-de-senderos-pa-vs.-modelos-de-ecuaciones-estructurales-sem" class="slide level2 smaller" data-background-color="white">
+<h2>Análisis de Senderos (PA) vs.&nbsp;Modelos de Ecuaciones Estructurales (SEM)</h2>
+<ul>
+<li>El <strong>Análisis de Senderos</strong> es, conceptualmente, un <strong>caso especial de los Modelos de Ecuaciones Estructurales (SEM)</strong>.</li>
+<li><strong>Diferencia Clave:</strong>
+<ul>
+<li><strong>PA (Clásico):</strong> Trabaja exclusivamente con <strong>variables observadas</strong> (medidas directamente, ej. edad, ingreso reportado, respuestas a ítems de una escala).</li>
+<li><strong>SEM (Completo):</strong> Puede incluir <strong>variables latentes</strong> (constructos no observados directamente, medidos a través de múltiples indicadores) y modelar explícitamente el <strong>error de medición</strong> de esos indicadores.</li>
+</ul></li>
+<li><strong>Variables Observables y Error:</strong> Aunque las variables en PA se miden “directamente”, estas mediciones nunca son perfectas. Siempre contienen algún grado de error aleatorio o factores imprevisibles que no son el constructo puro.</li>
+</ul>
+</section>
+<section id="análisis-de-senderos-pa-vs.-modelos-de-ecuaciones-estructurales-sem-1" class="slide level2 smaller" data-background-color="white">
+<h2>Análisis de Senderos (PA) vs.&nbsp;Modelos de Ecuaciones Estructurales (SEM)</h2>
+<ul>
+<li><strong>Ventajas del SEM (con latentes):</strong> Permite estimar el impacto del error de medición y establecer la validez de constructo de las variables latentes de forma más rigurosa.</li>
+<li><strong>Utilidad del PA:</strong> A pesar de las ventajas del SEM completo, el PA sigue siendo una herramienta <strong>muy útil y ampliamente utilizada</strong>, especialmente cuando:
+<ul>
+<li>Las variables de interés son consideradas razonablemente bien medidas por indicadores únicos.</li>
+<li>Se quiere explorar o testear modelos causales relativamente sencillos sin la complejidad adicional de modelar variables latentes.</li>
+<li>Como un paso previo o simplificado antes de un SEM más complejo.</li>
+</ul></li>
+</ul>
+</section>
+<section id="funcionamiento-y-propósitos-del-análisis-de-senderos" class="slide level2 smaller" data-background-color="white">
+<h2>Funcionamiento y Propósitos del Análisis de Senderos</h2>
+<ul>
+<li><strong>Base en Regresión:</strong> El investigador especifica un modelo donde las variables pueden ser predictoras (independientes) de algunas variables y, a su vez, predichas (dependientes) por otras dentro del mismo sistema. Esencialmente, es un <strong>sistema de ecuaciones de regresión interconectadas.</strong></li>
+<li><strong>Evaluación del Ajuste del Modelo:</strong> El objetivo central del PA es determinar el <strong>grado en que el modelo teórico propuesto (la red de senderos) representa adecuadamente las relaciones (covarianzas/correlaciones) observadas en los datos.</strong></li>
+<li><strong>Identificación de Modelos Inadecuados:</strong> Permite detectar si un modelo hipotetizado se ajusta mal a la realidad empírica.</li>
+</ul>
+</section>
+<section id="funcionamiento-y-propósitos-del-análisis-de-senderos-1" class="slide level2 smaller" data-background-color="white">
+<h2>Funcionamiento y Propósitos del Análisis de Senderos</h2>
+<ul>
+<li><strong>Estimación de Efectos:</strong> Provee estimaciones de la <strong>magnitud (fuerza) y significancia estadística</strong> de cada relación (sendero) hipotetizada en el modelo.</li>
+<li><strong>Representación Gráfica:</strong> Los modelos de senderos se representan visualmente mediante <strong>diagramas de senderos (path diagrams)</strong>.
+<ul>
+<li>Las variables se muestran (usualmente en cajas).</li>
+<li>Las relaciones hipotetizadas se representan con flechas.</li>
+<li>Se estiman <strong>coeficientes path</strong> para cada flecha, análogos a los coeficientes beta (estandarizados) de la regresión múltiple.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="conceptos-básicos-del-análisis-de-senderos" class="title-slide slide level1 center">
+<h1>2. Conceptos Básicos del Análisis de Senderos</h1>
+
+</section>
+<section id="diagrama-de-senderos-un-ejemplo-visual" class="slide level2 smaller" data-background-color="white">
+<h2>Diagrama de Senderos: Un Ejemplo Visual</h2>
+<p>Este diagrama representa un modelo teórico sobre el rendimiento académico en Lengua.</p>
+
+<img data-src="img/11/1.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"></section>
+<section id="convenciones-gráficas-en-el-análisis-de-senderos" class="slide level2 smaller" data-background-color="white">
+<h2>Convenciones Gráficas en el Análisis de Senderos</h2>
+<p>Los diagramas de senderos usan convenciones visuales estandarizadas:</p>
+<ul>
+<li><strong>Variables Observadas:</strong> Se representan con <strong>cuadrados o rectángulos</strong>.</li>
+<li><strong>Variables Latentes (si se incluyeran, más propio de SEM):</strong> Se representarían con <strong>círculos u óvalos</strong>. En PA puro, todas son observables.</li>
+<li><strong>Relaciones Causales Hipotetizadas (Senderos):</strong>
+<ul>
+<li><strong>Flechas Unidireccionales (<span class="math inline">\(\longrightarrow\)</span>):</strong> Indican una supuesta influencia directa de una variable sobre otra. La flecha va de la variable “causa” (predictora) a la variable “efecto” (predicha).</li>
+<li>Cada flecha tiene asociado un <strong>coeficiente path</strong>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="convenciones-gráficas-en-el-análisis-de-senderos-1" class="slide level2 smaller" data-background-color="white">
+<h2>Convenciones Gráficas en el Análisis de Senderos</h2>
+<ul>
+<li><strong>Covariación No Analizada (Correlaciones entre Exógenas):</strong>
+<ul>
+<li><strong>Flechas Bidireccionales Curvas (<span class="math inline">\(\longleftrightarrow\)</span>):</strong> Indican que dos variables exógenas covarían (están correlacionadas), pero no se hipotetiza una dirección causal entre ellas dentro del modelo.</li>
+</ul></li>
+<li><strong>Términos de Error/Residuales:</strong>
+<ul>
+<li>Se representan con flechas que apuntan a las variables endógenas, originándose “desde fuera” del modelo o desde un círculo (si se representa el error como variable latente). Indican la varianza no explicada.</li>
+</ul></li>
+</ul>
+</section>
+<section id="tipos-de-variables-en-un-modelo-de-senderos" class="slide level2 smaller" data-background-color="white">
+<h2>Tipos de Variables en un Modelo de Senderos</h2>
+<ul>
+<li><strong>Variables Exógenas:</strong>
+<ul>
+<li>Son aquellas variables cuyas <strong>causas NO están representadas en el modelo</strong>. No reciben flechas de otras variables <em>dentro</em> del modelo.</li>
+<li>Funcionan como los <strong>predictores iniciales</strong> o puntos de partida del sistema causal.</li>
+<li><em>En la Figura 1:</em> Aptitud Verbal (R) y Maestría (M) son exógenas.</li>
+</ul></li>
+<li><strong>Variables Endógenas:</strong>
+<ul>
+<li>Son aquellas variables cuyas <strong>causas SÍ están representadas (al menos parcialmente) en el modelo</strong>. Reciben una o más flechas de otras variables (exógenas o endógenas).</li>
+<li>Pueden ser <strong>variables dependientes finales</strong> o <strong>variables mediadoras (intervinientes)</strong>.</li>
+<li><em>En la Figura 1:</em> Ef. Escritura (E), Ef. Lengua (L), y Prom. Lengua (P) son endógenas.</li>
+</ul></li>
+</ul>
+</section>
+<section id="coeficientes-path-y-términos-de-error" class="slide level2 smaller" data-background-color="white">
+<h2>Coeficientes Path y Términos de Error</h2>
+<ul>
+<li><strong>Coeficientes Path (p o <span class="math inline">\(\beta\)</span>):</strong>
+<ul>
+<li>Son (usualmente) <strong>coeficientes de regresión estandarizados</strong>.</li>
+<li>Indican la <strong>magnitud y dirección del efecto directo</strong> de una variable predictora sobre una variable endógena, <em>controlando por todas las demás variables que también predicen directamente a esa misma variable endógena</em>.</li>
+<li>Se interpretan de forma similar a los Betas en regresión múltiple: “Por cada aumento de una desviación estándar en X, Y cambia en [valor del coeficiente path] desviaciones estándar, manteniendo constantes otras influencias sobre Y”.</li>
+</ul></li>
+<li><strong>Términos de Error (o Perturbaciones, <span class="math inline">\(e\)</span> o <span class="math inline">\(\zeta\)</span>):</strong>
+<ul>
+<li>Cada variable <strong>endógena</strong> tiene un término de error asociado.</li>
+<li>Representa la <strong>varianza de esa variable endógena que NO es explicada</strong> por los predictores incluidos en el modelo para ella.</li>
+<li>Incluye la influencia de variables omitidas, error de medición aleatorio, y cualquier otra fuente de variación no especificada.</li>
+<li><em>En la Figura 1:</em> <span class="math inline">\(e_E, e_L, e_P\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="aplicación-práctica-modelo-de-rendimiento-en-lengua" class="slide level2 smaller" data-background-color="white">
+<h2>Aplicación Práctica: Modelo de Rendimiento en Lengua</h2>
+<p>Revisitemos el modelo de Pérez, Medrano y Ayllón (2010) sobre rendimiento académico.</p>
+<ul>
+<li><strong>Variables Consideradas (todas observables en este PA):</strong>
+<ul>
+<li>Aptitud Cognitiva Verbal (R)</li>
+<li>Creencias de Autoeficacia para la Escritura (E)</li>
+<li>Creencias de Autoeficacia para el Rendimiento en Lengua (L)</li>
+<li>Estructura de Metas de Aula de Maestría (M)</li>
+<li>Promedio de Calificaciones en Lengua (P) - Variable dependiente final.</li>
+</ul></li>
+<li><strong>Relaciones Propuestas:</strong> El diagrama muestra las hipótesis sobre qué variable influye directa o indirectamente en otra.</li>
+</ul>
+</section>
+<section id="diagrama-del-modelo-de-rendimiento-en-lengua" class="slide level2 smaller" data-background-color="white">
+<h2>Diagrama del Modelo de Rendimiento en Lengua</h2>
+<p><img data-src="img/11/1.jpg" class="quarto-figure quarto-figure-center" style="width:90.0%"><br>
+<em>Este diagrama es la <strong>representación visual de la teoría</strong> que se va a testear.</em></p>
+</section>
+<section id="traducción-a-ecuaciones-estructurales" class="slide level2 smaller" data-background-color="white">
+<h2>Traducción a Ecuaciones Estructurales</h2>
+<p>Un modelo de senderos es matemáticamente un sistema de ecuaciones de regresión. Cada variable endógena tiene su propia ecuación.</p>
+<ul>
+<li><p>El PA, como extensión de la regresión múltiple, asume <strong>linealidad y aditividad</strong> en las relaciones.</p></li>
+<li><p><strong>Para la Figura 1, las ecuaciones serían:</strong></p>
+<ul>
+<li><p>Prom. Lengua (P) = <span class="math inline">\(p_{PR} \cdot \text{Aptitud Verbal (R)}\)</span> + <span class="math inline">\(p_{PE} \cdot \text{Ef. Escritura (E)}\)</span> + <span class="math inline">\(p_{PL} \cdot \text{Ef. Lengua (L)}\)</span> + <span class="math inline">\(e_P\)</span></p></li>
+<li><p>Ef. Lengua (L) = <span class="math inline">\(p_{LE} \cdot \text{Ef. Escritura (E)}\)</span> + <span class="math inline">\(p_{LM} \cdot \text{Maestría (M)}\)</span> + <span class="math inline">\(e_L\)</span></p></li>
+<li><p>Ef. Escritura (E) = <span class="math inline">\(p_{ER} \cdot \text{Aptitud Verbal (R)}\)</span> + <span class="math inline">\(p_{EM} \cdot \text{Maestría (M)}\)</span> + <span class="math inline">\(e_E\)</span></p></li>
+</ul></li>
+<li><p>Los términos <span class="math inline">\(e_P, e_L, e_E\)</span> son los <strong>residuos o errores</strong> de cada ecuación.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="descomposición-de-los-efectos-path" class="title-slide slide level1 center">
+<h1>3. Descomposición de los Efectos Path</h1>
+
+</section>
+<section id="la-riqueza-del-pa-descomponiendo-asociaciones" class="slide level2 smaller" data-background-color="white">
+<h2>La Riqueza del PA: Descomponiendo Asociaciones</h2>
+<p>Una de las grandes fortalezas del Análisis de Senderos es su capacidad para <strong>descomponer la relación total</strong> entre dos variables en diferentes tipos de efectos:</p>
+<ul>
+<li><strong>Efectos Directos:</strong> La influencia inmediata, no mediada, de una variable sobre otra. Representada por una flecha directa.</li>
+<li><strong>Efectos Indirectos:</strong> La influencia de una variable sobre otra que ocurre <strong>a través de una o más variables mediadoras (o intervinientes)</strong>.</li>
+<li><strong>Efectos Totales:</strong> La suma de todos los efectos directos e indirectos de una variable sobre otra.</li>
+</ul>
+</section>
+<section id="la-riqueza-del-pa-descomponiendo-asociaciones-1" class="slide level2 smaller" data-background-color="white">
+<h2>La Riqueza del PA: Descomponiendo Asociaciones</h2>
+<ul>
+<li><strong>Efectos Espurios y No Analizados (Correlaciones):</strong>
+<ul>
+<li><strong>Correlación Espuria:</strong> Parte de la correlación observada entre dos variables que se debe a que ambas son influenciadas por una causa común (o varias).</li>
+<li><strong>Correlación No Analizada:</strong> Correlación entre variables exógenas, que el modelo toma como dada pero no intenta explicar.</li>
+</ul></li>
+</ul>
+</section>
+<section id="efectos-directos-vs.-indirectos-ejemplo-simple" class="slide level2 smaller" data-background-color="white">
+<h2>Efectos Directos vs.&nbsp;Indirectos (Ejemplo Simple)</h2>
+<p>El PA nos ayuda a entender <em>cómo</em> una variable afecta a otra.</p>
+<ul>
+<li><strong>Efecto Directo:</strong> Ingresos <span class="math inline">\(\longrightarrow\)</span> Horas de Trabajo Doméstico<br>
+<em>Aquí, los ingresos influyen directamente en las horas dedicadas al trabajo doméstico.</em></li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 215.56 66.40" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 62.4)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-62.4 211.56,-62.4 211.56,4 -4,4"></polygon>
+<!-- Ingresos -->
+<g id="node1" class="node">
+<title>Ingresos</title>
+<polygon fill="#e53935" stroke="#e53935" points="63.65,-47.2 -0.22,-47.2 -0.22,-11.2 63.65,-11.2 63.65,-47.2"></polygon>
+<text text-anchor="middle" x="31.72" y="-25" font-family="Times,serif" font-size="14.00" fill="white">Ingresos</text>
+</g>
+<!-- HDom -->
+<g id="node2" class="node">
+<title>HDom</title>
+<polygon fill="#e53935" stroke="#e53935" points="207.63,-58.6 99.37,-58.6 99.37,0.2 207.63,0.2 207.63,-58.6"></polygon>
+<text text-anchor="middle" x="153.5" y="-41.8" font-family="Times,serif" font-size="14.00" fill="white">Horas dedicadas</text>
+<text text-anchor="middle" x="153.5" y="-25" font-family="Times,serif" font-size="14.00" fill="white">al trabajo</text>
+<text text-anchor="middle" x="153.5" y="-8.2" font-family="Times,serif" font-size="14.00" fill="white">doméstico</text>
+</g>
+<!-- Ingresos&#45;&gt;HDom -->
+<g id="edge1" class="edge">
+<title>Ingresos-&gt;HDom</title>
+<path fill="none" stroke="black" d="M63.56,-29.2C71.34,-29.2 79.97,-29.2 88.71,-29.2"></path>
+<polygon fill="black" stroke="black" points="88.99,-32.7 98.99,-29.2 88.98,-25.7 88.99,-32.7"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="efectos-directos-vs.-indirectos-ejemplo-simple-1" class="slide level2 smaller" data-background-color="white">
+<h2>Efectos Directos vs.&nbsp;Indirectos (Ejemplo Simple)</h2>
+<ul>
+<li><strong>Efecto Indirecto:</strong> Ingresos <span class="math inline">\(\longrightarrow\)</span> Contratación de Serv. Domést. <span class="math inline">\(\longrightarrow\)</span> Horas de Trabajo Doméstico<br>
+<em>Aquí, los ingresos influyen en la contratación de servicio doméstico, y ésta a su vez influye en las horas que la persona dedica al trabajo doméstico.</em></li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 368.26 66.40" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 62.4)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-62.4 364.26,-62.4 364.26,4 -4,4"></polygon>
+<!-- Ingresos -->
+<g id="node1" class="node">
+<title>Ingresos</title>
+<polygon fill="#e53935" stroke="#e53935" points="63.65,-47.2 -0.22,-47.2 -0.22,-11.2 63.65,-11.2 63.65,-47.2"></polygon>
+<text text-anchor="middle" x="31.72" y="-25" font-family="Times,serif" font-size="14.00" fill="white">Ingresos</text>
+</g>
+<!-- CTDR -->
+<g id="node2" class="node">
+<title>CTDR</title>
+<polygon fill="#e53935" stroke="#e53935" points="215.99,-58.6 99.58,-58.6 99.58,0.2 215.99,0.2 215.99,-58.6"></polygon>
+<text text-anchor="middle" x="157.78" y="-41.8" font-family="Times,serif" font-size="14.00" fill="white">Contratación de</text>
+<text text-anchor="middle" x="157.78" y="-25" font-family="Times,serif" font-size="14.00" fill="white">trabajo doméstico</text>
+<text text-anchor="middle" x="157.78" y="-8.2" font-family="Times,serif" font-size="14.00" fill="white">remunerado</text>
+</g>
+<!-- Ingresos&#45;&gt;CTDR -->
+<g id="edge1" class="edge">
+<title>Ingresos-&gt;CTDR</title>
+<path fill="none" stroke="black" d="M63.7,-29.2C71.53,-29.2 80.24,-29.2 89.1,-29.2"></path>
+<polygon fill="black" stroke="black" points="89.14,-32.7 99.14,-29.2 89.14,-25.7 89.14,-32.7"></polygon>
+</g>
+<!-- HDom -->
+<g id="node3" class="node">
+<title>HDom</title>
+<polygon fill="#e53935" stroke="#e53935" points="360.33,-58.6 252.07,-58.6 252.07,0.2 360.33,0.2 360.33,-58.6"></polygon>
+<text text-anchor="middle" x="306.2" y="-41.8" font-family="Times,serif" font-size="14.00" fill="white">Horas dedicadas</text>
+<text text-anchor="middle" x="306.2" y="-25" font-family="Times,serif" font-size="14.00" fill="white">al trabajo</text>
+<text text-anchor="middle" x="306.2" y="-8.2" font-family="Times,serif" font-size="14.00" fill="white">doméstico</text>
+</g>
+<!-- CTDR&#45;&gt;HDom -->
+<g id="edge2" class="edge">
+<title>CTDR-&gt;HDom</title>
+<path fill="none" stroke="black" d="M216.23,-29.2C224.55,-29.2 233.15,-29.2 241.58,-29.2"></path>
+<polygon fill="black" stroke="black" points="241.74,-32.7 251.74,-29.2 241.74,-25.7 241.74,-32.7"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<pre><code>*Aquí, los ingresos influyen en la contratación de servicio doméstico, y ésta a su vez influye en las horas que la persona dedica al trabajo doméstico.*</code></pre>
+</section>
+<section id="estimación-y-significación-de-los-efectos-path" class="slide level2 smaller" data-background-color="white">
+<h2>Estimación y Significación de los Efectos Path</h2>
+<ul>
+<li><strong>Coeficientes Path (Efectos Directos):</strong>
+<ul>
+<li>Se estiman como coeficientes de regresión, usualmente <strong>estandarizados (Betas)</strong>.</li>
+<li>Indican el cambio en DE en la variable dependiente por un cambio de una DE en la predictora, controlando otras predictoras de esa misma dependiente.</li>
+</ul></li>
+<li><strong>Efectos Indirectos:</strong>
+<ul>
+<li>Se calculan <strong>multiplicando los coeficientes path estandarizados</strong> a lo largo de un sendero mediado.</li>
+<li><em>Ejemplo (Figura 1):</em> Efecto indirecto de Ef. Escritura (E) sobre Prom. Lengua (P) <em>vía</em> Ef. Lengua (L) = <span class="math inline">\(p_{EL} \times p_{LP}\)</span>. Si <span class="math inline">\(p_{EL}=0.52\)</span> y <span class="math inline">\(p_{LP}=0.13\)</span>, el efecto indirecto es <span class="math inline">\(0.52 \times 0.13 = 0.0676\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="estimación-y-significación-de-los-efectos-path-1" class="slide level2 smaller" data-background-color="white">
+<h2>Estimación y Significación de los Efectos Path</h2>
+<ul>
+<li><strong>Efecto Total:</strong>
+<ul>
+<li>Suma del efecto directo (si existe) y todos los efectos indirectos significativos entre dos variables.</li>
+</ul></li>
+<li><strong>Significancia Estadística:</strong>
+<ul>
+<li>Para los efectos directos, se obtiene de la salida de regresión (t-value o z-value, p-valor).</li>
+<li>Para efectos indirectos y totales, se pueden usar métodos como el <em>bootstrapping</em> o la prueba de Sobel para estimar su significancia (<code>lavaan</code> lo puede hacer).</li>
+</ul></li>
+</ul>
+</section>
+<section id="ejemplo-descomposición-de-efectos-diagrama-con-coeficientes" class="slide level2 smaller" data-background-color="white">
+<h2>Ejemplo: Descomposición de Efectos (Diagrama con Coeficientes)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="img/11/2.jpg" class="quarto-figure quarto-figure-center"> <em>En este diagrama, los números en las flechas son coeficientes path estandarizados. Los <span class="math inline">\(R^2\)</span> indican la varianza explicada de las variables endógenas.</em></p>
+</div><div class="column" style="width:50%;">
+<div style="font-size: 0.7em; line-height: 1.2;">
+<p><strong>Interpretando los Senderos:</strong></p>
+<ul>
+<li><strong>Efecto Directo:</strong>
+<ul>
+<li>De Metas de Maestría sobre Autoeficacia en Escritura es 0.28.</li>
+</ul></li>
+<li><strong>Efectos Indirectos (Ejemplos hacia Rendimiento en Lengua):</strong>
+<ul>
+<li>El efecto de Metas de Maestría sobre Rendimiento en Lengua, mediado por Autoeficacia en Escritura y luego por Autoeficacia en Lengua, se calcula: <span class="math inline">\(0.28 \times 0.52 \times 0.13 \approx 0.019\)</span>.</li>
+<li>El efecto de Metas de Maestría sobre Rendimiento en Lengua, mediado solo por Autoeficacia en Lengua, es: <span class="math inline">\(0.17 \times 0.13 \approx 0.022\)</span>.</li>
+</ul></li>
+<li><strong>¡Y hay más posibles efectos indirectos y totales que se pueden calcular!</strong></li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="actividad-1-de-la-teoría-al-diagrama-de-senderos" class="slide level2 smaller" data-background-color="white">
+<h2>Actividad 1: De la Teoría al Diagrama de Senderos</h2>
+<div style="font-size: 0.7em; line-height: 1.2;">
+<p><strong>Instrucción:</strong> Lean cada uno de los siguientes escenarios teóricos. Para cada uno, identifiquen las variables clave y dibujen un diagrama de senderos que represente las relaciones causales hipotetizadas.</p>
+<ol type="1">
+<li><p>Se postula que la <strong>esperanza de vida</strong> de las personas se ve disminuida por su <strong>consumo de drogas</strong>. A su vez, la probabilidad de que una persona consuma drogas está inversamente relacionada con su <strong>nivel de ingresos</strong>. Finalmente, se considera que un mayor <strong>nivel de ingresos</strong> tiene un efecto positivo directo sobre la <strong>esperanza de vida</strong>.</p></li>
+<li><p>Se teoriza que la <strong>calidad del ambiente en el hogar</strong> influye positivamente en el <strong>desarrollo cognitivo infantil</strong>. Este desarrollo cognitivo, a su vez, mejora el <strong>rendimiento escolar</strong>. Además, la <strong>calidad del ambiente en el hogar</strong> también fomenta un mejor <strong>desarrollo emocional infantil</strong>. Un adecuado desarrollo emocional incrementa la <strong>autoeficacia</strong> del niño o niña, y esta autoeficacia tiene un impacto positivo en el <strong>rendimiento escolar</strong>. Por otra parte, se sabe que el <strong>ingreso del hogar</strong> puede afectar tanto el <strong>rendimiento escolar</strong> directamente, como la propia <strong>calidad del ambiente en el hogar</strong>.</p></li>
+<li><p>Un modelo sobre acción colectiva sugiere que la <strong>clase social</strong> de un individuo influye en su <strong>participación en protestas</strong>, pero este efecto no es directo, sino que opera a través de tres mecanismos distintos. Primero, la <strong>clase social</strong> moldea la <strong>percepción de tener una identidad agraviada</strong>. Esta percepción, a su vez, incrementa la tendencia a realizar una <strong>justificación exogrupal del agravio</strong> (es decir, atribuir la causa del agravio a un grupo externo). Finalmente, esta justificación aumenta la <strong>participación en protestas</strong>. Un segundo mecanismo es que la <strong>clase social</strong> afecta la <strong>percepción sobre la eficacia de las protestas</strong>, y una mayor percepción de eficacia lleva a mayor <strong>participación en protestas</strong>. El tercer mecanismo postula que la <strong>clase social</strong> influye en la <strong>legitimidad que se atribuye a las protestas</strong>, y una mayor percepción de legitimidad también incrementa la <strong>participación en protestas</strong>.</p></li>
+</ol>
+</div>
+</section></section>
+<section>
+<section id="supuestos-del-análisis-de-senderos" class="title-slide slide level1 center">
+<h1>4. Supuestos del Análisis de Senderos</h1>
+
+</section>
+<section id="supuestos-clave-del-path-analysis" class="slide level2 smaller" data-background-color="white">
+<h2>Supuestos Clave del Path Analysis</h2>
+<p>El PA es una extensión de la regresión múltiple; por lo tanto, muchos supuestos son similares, más algunos específicos del modelo:</p>
+<ul>
+<li><strong>Correcta Especificación del Modelo:</strong>
+<ul>
+<li><strong>Teoría Sólida:</strong> El modelo debe estar bien fundamentado teóricamente.</li>
+<li><strong>Variables Incluidas:</strong> Todas las variables relevantes deben estar en el modelo. La omisión de variables importantes puede sesgar los resultados.</li>
+<li><strong>Direccionalidad:</strong> Las flechas causales deben tener justificación teórica.</li>
+</ul></li>
+<li><strong>Exploración y Limpieza de Datos:</strong>
+<ul>
+<li><strong>Valores Extremos (Outliers):</strong> Detectar y tratar outliers univariados (puntajes Z) y multivariados (Distancia de Mahalanobis, <span class="math inline">\(D^2\)</span>). Pueden distorsionar gravemente las estimaciones.</li>
+<li><strong>Valores Perdidos (Missing Data):</strong> Evaluar cantidad y patrón. Considerar métodos de imputación si son numerosos o no aleatorios.</li>
+</ul></li>
+</ul>
+</section>
+<section id="supuestos-clave-del-path-analysis-1" class="slide level2 smaller" data-background-color="white">
+<h2>Supuestos Clave del Path Analysis</h2>
+<ul>
+<li><strong>Tamaño de la Muestra:</strong>
+<ul>
+<li>No hay reglas fijas, pero se recomienda:
+<ul>
+<li>Mínimo 10-20 casos <em>por parámetro libre a estimar</em> en el modelo.</li>
+<li>Un N total de al menos 200 observaciones es una guía general para obtener estimaciones estables. Modelos más complejos requieren N mayores.</li>
+</ul></li>
+</ul></li>
+<li><strong>Independencia de los Errores (Residuales):</strong>
+<ul>
+<li>El término de error de cada variable endógena NO debe estar correlacionado con las variables exógenas que la predicen.</li>
+<li>Los términos de error de diferentes variables endógenas NO deben estar correlacionados entre sí (a menos que se especifique teóricamente dicha correlación en el modelo, lo cual es posible en <code>lavaan</code>).</li>
+</ul></li>
+</ul>
+</section>
+<section id="supuestos-clave-del-path-analysis-2" class="slide level2 smaller" data-background-color="white">
+<h2>Supuestos Clave del Path Analysis</h2>
+<ul>
+<li><strong>Normalidad (para estimación ML y tests de significancia estándar):</strong>
+<ul>
+<li>Idealmente, las variables (o los residuos de las ecuaciones) deberían seguir una distribución normal multivariada.</li>
+<li>Evaluar asimetría y curtosis univariada, y tests de normalidad multivariada (ej. Mardia).</li>
+<li>Si hay no-normalidad severa, considerar estimadores robustos (ej. DWLS en <code>lavaan</code> si se usan datos ordinales, o bootstrap).</li>
+</ul></li>
+</ul>
+</section>
+<section id="supuestos-clave-del-path-analysis-3" class="slide level2 smaller" data-background-color="white">
+<h2>Supuestos Clave del Path Analysis</h2>
+<ul>
+<li><strong>Linealidad y Aditividad:</strong>
+<ul>
+<li>Se asume que las relaciones entre las variables son <strong>lineales</strong>. Si se sospechan relaciones no lineales, se deben modelar explícitamente (ej. términos cuadráticos) o usar otras técnicas.</li>
+<li>Se asume que los efectos son <strong>aditivos</strong> (no se modelan interacciones por defecto, aunque pueden incluirse).</li>
+</ul></li>
+<li><strong>Baja Multicolinealidad:</strong>
+<ul>
+<li>Las variables exógenas (o predictores de una misma endógena) no deben estar excesivamente correlacionadas entre sí (ej. |r| &gt; 0.80 o 0.85). Dificulta la estimación de efectos únicos y puede inflar errores estándar.</li>
+</ul></li>
+</ul>
+</section>
+<section id="supuestos-clave-del-path-analysis-4" class="slide level2 smaller" data-background-color="white">
+<h2>Supuestos Clave del Path Analysis</h2>
+<ul>
+<li><strong>Recursividad (Modelo Estándar):</strong>
+<ul>
+<li>Las influencias causales son <strong>unidireccionales</strong> (no hay flechas que vuelvan sobre sí mismas directa o indirectamente, formando “loops” o ciclos).</li>
+<li>Los modelos no recursivos (con feedback loops) son posibles pero más complejos de estimar e identificar.</li>
+</ul></li>
+<li><strong>Nivel de Medición:</strong>
+<ul>
+<li>Idealmente <strong>intervalar o de razón</strong> para estimadores como ML u OLS.</li>
+<li>Variables <strong>ordinales</strong> pueden usarse si se tratan como continuas (con suficientes categorías y distribuciones no muy problemáticas) o, más apropiadamente, con estimadores diseñados para datos categóricos (ej. DWLS en <code>lavaan</code>).</li>
+</ul></li>
+<li><strong>Confiabilidad de las Medidas:</strong>
+<ul>
+<li>Se asume que las variables observadas miden sus respectivos conceptos de manera <strong>confiable</strong> (con bajo error de medición aleatorio). El PA clásico no modela explícitamente el error de medición (a diferencia de SEM con variables latentes).</li>
+</ul></li>
+</ul>
+<div class="quarto-auto-generated-content">
+<p><img src="images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="11-slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="11-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="11-slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="11-slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="11-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="11-slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="11-slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="11-slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="11-slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="11-slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

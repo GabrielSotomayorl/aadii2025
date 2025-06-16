@@ -155,7 +155,8 @@ ajus_sendero1 <- sem(model = mod_sendero1_spec,
 summary(ajus_sendero1, 
         fit.measures = TRUE,
         standardized = TRUE,
-        rsquare = TRUE)
+        rsquare = TRUE,
+        modindices = TRUE)
 ```
 
 **Interpretación del `summary(ajus_sendero1)` (con DWLS):**
@@ -243,23 +244,15 @@ summary(ajus_sendero2,
 
 ```{r plot_path_model2, fig.width=10, fig.height=7}
 # Diagrama del modelo de senderos modificado
-if (requireNamespace("semPlot", quietly = TRUE)) {
+
 semPaths(ajus_sendero2, 
          what = "std", 
          whatLabels = "std",
-         layout = "tree2", 
-         edge.label.cex = 0.8, 
-         node.label.cex = 0.9,
-         residuals = TRUE, 
-         intercepts = FALSE,
+         layout = "tree", 
          edge.color = "black",
-         curve = 1.5, 
          nCharNodes = 0,
-         sizeMan = 5, 
-         mar=c(1,1,2,1)) 
-} else {
-  print("Paquete semPlot no disponible. Omitiendo gráfico.")
-}
+           fade        = FALSE,   
+         sizeMan = 8) 
 ```
 **Interpretación del Gráfico:** El diagrama ahora muestra el path directo de `derecha` a `castigo_media` (con un coeficiente estandarizado de 0.055) además de las relaciones del modelo original. Los valores en las flechas son los coeficientes estandarizados (`Std.all`). Las varianzas residuales (1 - $R^2$) para `castigo_media` y `rwa_media` también se pueden inferir o mostrar directamente en el gráfico.
 

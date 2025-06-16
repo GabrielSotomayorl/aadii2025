@@ -22,7 +22,7 @@ En este práctico, aprenderemos a especificar, estimar e interpretar modelos de 
 2.  Realizar una **revisión de supuestos** pertinente para el Análisis de Senderos, adaptando nuestras decisiones según los hallazgos.
 3.  **Estimar** los parámetros del modelo utilizando un estimador adecuado, en este caso, `DWLS`, debido a la naturaleza de nuestros datos.
 4.  Evaluar el **ajuste global** del modelo a los datos mediante diversos índices.
-5.  **Interpretar** detalladamente los coeficientes path (directos e indirectos) y la varianza explicada ($R^2$).
+5.  **Interpretar** detalladamente los coeficientes path (directos e indirectos) y la varianza explicada (`\(R^2\)`).
 6.  Visualizar el modelo de senderos para una mejor comprensión.
 
 ## Introducción al Ejemplo
@@ -42,7 +42,7 @@ Este es el diagrama conceptual que representa nuestra teoría inicial:
 Comenzamos cargando los paquetes que necesitaremos. `lavaan` será nuestra herramienta principal para el análisis de senderos.
 
 
-```r
+``` r
 # Cargar paquetes
 # install.packages(c("haven", "lavaan", "dplyr", "semPlot", "texreg", "MVN")) # Descomentar si es necesario la primera vez
 
@@ -69,7 +69,7 @@ library(MVN)     # Para test de normalidad multivariante
 Importamos los datos de la encuesta ELSOC 2016.
 
 
-```r
+``` r
 # Importar datos
 datos <- read_sav(url("https://github.com/Clases-GabrielSotomayor/pruebapagina/raw/master/content/example/input/data/elsoc2016.sav"))
 # glimpse(datos) 
@@ -80,7 +80,7 @@ datos <- read_sav(url("https://github.com/Clases-GabrielSotomayor/pruebapagina/r
 Antes de ajustar cualquier modelo, es fundamental revisar las características de nuestros datos y si cumplen (o no) con los supuestos de la técnica.
 
 
-```r
+``` r
 # Seleccionar solo las variables que se usarán en el modelo
 variables_modelo <- c("castigo_media", "rwa_media", "derecha", "izquierda", "centro")
 datos_modelo <- datos %>%
@@ -94,7 +94,7 @@ print(paste("Observaciones antes de eliminar NAs:", nrow(datos_modelo)))
 ## [1] "Observaciones antes de eliminar NAs: 2984"
 ```
 
-```r
+``` r
 datos_modelo_completos <- datos_modelo %>%
   na.omit()
 print(paste("Observaciones después de eliminar NAs:", nrow(datos_modelo_completos)))
@@ -104,7 +104,7 @@ print(paste("Observaciones después de eliminar NAs:", nrow(datos_modelo_complet
 ## [1] "Observaciones después de eliminar NAs: 2909"
 ```
 
-```r
+``` r
 print(paste("Observaciones perdidas:", nrow(datos_modelo) - nrow(datos_modelo_completos)))
 ```
 
@@ -112,7 +112,7 @@ print(paste("Observaciones perdidas:", nrow(datos_modelo) - nrow(datos_modelo_co
 ## [1] "Observaciones perdidas: 75"
 ```
 
-```r
+``` r
 # Matriz de Correlaciones
 matriz_cor <- cor(datos_modelo_completos, use = "pairwise.complete.obs") 
 print("Matriz de Correlaciones (Pearson):")
@@ -122,7 +122,7 @@ print("Matriz de Correlaciones (Pearson):")
 ## [1] "Matriz de Correlaciones (Pearson):"
 ```
 
-```r
+``` r
 print(round(matriz_cor, 2))
 ```
 
@@ -135,7 +135,7 @@ print(round(matriz_cor, 2))
 ## centro                -0.06     -0.02   -0.23     -0.28   1.00
 ```
 
-```r
+``` r
 # Normalidad Multivariante (Test de Mardia)
 resultados_mvn <- mvn(datos_modelo_completos, 
                       mvnTest = "mardia", 
@@ -149,7 +149,7 @@ print("Resultados Test de Normalidad Multivariante (Mardia):")
 ## [1] "Resultados Test de Normalidad Multivariante (Mardia):"
 ```
 
-```r
+``` r
 print(resultados_mvn$multivariateNormality)
 ```
 
@@ -160,7 +160,7 @@ print(resultados_mvn$multivariateNormality)
 ## 3             MVN             <NA>    <NA>     NO
 ```
 
-```r
+``` r
 print("Resultados Test de Normalidad Univariante (Shapiro-Wilk):")
 ```
 
@@ -168,7 +168,7 @@ print("Resultados Test de Normalidad Univariante (Shapiro-Wilk):")
 ## [1] "Resultados Test de Normalidad Univariante (Shapiro-Wilk):"
 ```
 
-```r
+``` r
 print(resultados_mvn$univariateNormality)
 ```
 
@@ -208,7 +208,7 @@ Especificamos el modelo donde el autoritarismo (`rwa_media`) media la relación 
 | `etiqueta*`       | Etiquetar un parámetro                           | `Y ~ b1*X1` (el path de X1 a Y se etiqueta como `b1`)             |
 
 
-```r
+``` r
 # Especificar el modelo de senderos inicial
 mod_sendero1_spec <- '
   # Regresiones (senderos directos)
@@ -225,15 +225,16 @@ ajus_sendero1 <- sem(model = mod_sendero1_spec,
 ### Resumen y Evaluación del Modelo Inicial
 
 
-```r
+``` r
 summary(ajus_sendero1, 
         fit.measures = TRUE,
         standardized = TRUE,
-        rsquare = TRUE)
+        rsquare = TRUE,
+        modindices = TRUE)
 ```
 
 ```
-## lavaan 0.6.15 ended normally after 33 iterations
+## lavaan 0.6-19 ended normally after 33 iterations
 ## 
 ##   Estimator                                       DWLS
 ##   Optimization method                           NLMINB
@@ -305,6 +306,18 @@ summary(ajus_sendero1,
 ##                    Estimate
 ##     castigo_media     0.092
 ##     rwa_media         0.052
+## 
+## Modification Indices:
+## 
+##             lhs op           rhs    mi    epc sepc.lv sepc.all sepc.nox
+## 1 castigo_media ~~     rwa_media 9.542  0.173   0.173    0.314    0.314
+## 2 castigo_media  ~       derecha 8.533 -0.137  -0.137   -0.056   -0.177
+## 3 castigo_media  ~     izquierda 0.809  0.044   0.044    0.020    0.056
+## 4 castigo_media  ~        centro 7.667  0.088   0.088    0.052    0.113
+## 5     rwa_media  ~ castigo_media 9.542  0.319   0.319    0.321    0.321
+## 6       derecha  ~ castigo_media 4.746 -0.019  -0.019   -0.046   -0.046
+## 7     izquierda  ~ castigo_media 2.173  0.018   0.018    0.039    0.039
+## 8        centro  ~ castigo_media 7.591  0.036   0.036    0.060    0.060
 ```
 
 **Interpretación del `summary(ajus_sendero1)` (con DWLS):**
@@ -336,7 +349,7 @@ El `summary` del modelo anterior (si se solicitan `modindices = TRUE`) podría h
 ![](https://github.com/Clases-GabrielSotomayor/pruebapagina/blob/master/content/example/input/sendero2.png?raw=true){fig-align="center"}
 
 
-```r
+``` r
 # Especificar el modelo con efecto directo de 'derecha' y etiquetas para efectos indirectos/totales
 mod_sendero2_spec <- '
   # Regresiones (senderos directos)
@@ -359,7 +372,7 @@ ajus_sendero2 <- sem(model = mod_sendero2_spec,
 ### Resumen y Evaluación del Modelo Modificado
 
 
-```r
+``` r
 summary(ajus_sendero2, 
         fit.measures = TRUE, 
         standardized = TRUE, 
@@ -367,7 +380,7 @@ summary(ajus_sendero2,
 ```
 
 ```
-## lavaan 0.6.15 ended normally after 34 iterations
+## lavaan 0.6-19 ended normally after 34 iterations
 ## 
 ##   Estimator                                       DWLS
 ##   Optimization method                           NLMINB
@@ -474,25 +487,17 @@ summary(ajus_sendero2,
 ## 5. Visualización del Modelo Final (con `semPlot`)
 
 
-```r
+``` r
 # Diagrama del modelo de senderos modificado
-if (requireNamespace("semPlot", quietly = TRUE)) {
+
 semPaths(ajus_sendero2, 
          what = "std", 
          whatLabels = "std",
-         layout = "tree2", 
-         edge.label.cex = 0.8, 
-         node.label.cex = 0.9,
-         residuals = TRUE, 
-         intercepts = FALSE,
+         layout = "tree", 
          edge.color = "black",
-         curve = 1.5, 
          nCharNodes = 0,
-         sizeMan = 5, 
-         mar=c(1,1,2,1)) 
-} else {
-  print("Paquete semPlot no disponible. Omitiendo gráfico.")
-}
+           fade        = FALSE,   
+         sizeMan = 8) 
 ```
 
 <img src="/example/11-practico_files/figure-html/plot_path_model2-1.png" width="960" />
@@ -506,6 +511,6 @@ En este práctico hemos:
 3.  Evaluado el ajuste global de ambos modelos, concluyendo que el **segundo modelo (modificado) presenta un mejor ajuste general a los datos**, según la mayoría de los índices (CFI, TLI, RMSEA, SRMR), a pesar de que el `\(\chi^2\)` sigue siendo significativo.
 4.  Interpretado los coeficientes path directos, confirmando que la posición política influye en el autoritarismo, y que tanto el autoritarismo como ser de derecha (directamente) influyen en el apoyo a castigos severos.
 5.  Definido, estimado e interpretado un **efecto indirecto significativo** de ser de derecha sobre el apoyo a castigos, mediado por el autoritarismo, así como el **efecto total**.
-6.  Observado que, aunque los efectos son estadísticamente significativos, la **varianza explicada ($R^2$)** por estos modelos es modesta (alrededor del 8.7% para `castigo_media` y 4.9% para `rwa_media`), lo que indica que hay muchos otros factores no incluidos que también son importantes para explicar estas actitudes.
+6.  Observado que, aunque los efectos son estadísticamente significativos, la **varianza explicada (`\(R^2\)`)** por estos modelos es modesta (alrededor del 8.7% para `castigo_media` y 4.9% para `rwa_media`), lo que indica que hay muchos otros factores no incluidos que también son importantes para explicar estas actitudes.
 
 Este ejercicio ilustra cómo el Análisis de Senderos nos permite testear modelos teóricos complejos de relaciones causales, descomponer los efectos para una comprensión más profunda, y tomar decisiones informadas sobre la estructura del modelo basadas en el ajuste y la teoría.

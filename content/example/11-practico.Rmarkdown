@@ -115,7 +115,9 @@ print(resultados_mvn$univariateNormality)
 
 Especificamos el modelo donde el autoritarismo (`rwa_media`) media la relación entre la posición política y el acuerdo con castigos severos (`castigo_media`).
 
-**Recordatorio de Sintaxis `lavaan`:**
+**Recordatorio de Sintaxis `lavaan`:**   
+
+
 | Sintaxis `lavaan` | Comando                                          | Ejemplo                                                           |
 |-------------------|--------------------------------------------------|-------------------------------------------------------------------|
 | `~`               | Regresar en (VD ~ VI1 + VI2...)                  | `B ~ A` (B es predicha por A)                                     |
@@ -123,6 +125,9 @@ Especificamos el modelo donde el autoritarismo (`rwa_media`) media la relación 
 | `=~`              | Factor es medido por (para variables latentes)   | `F1 =~ item1 + item2 + item3`                                     |
 | `:=`              | Parámetro Definido (ej. efecto indirecto)        | `indirect_effect := path_a * path_b`                              |
 | `etiqueta*`       | Etiquetar un parámetro                           | `Y ~ b1*X1` (el path de X1 a Y se etiqueta como `b1`)             |
+
+
+
 
 ```{r specify_fit_path_model1_dwls}
 # Especificar el modelo de senderos inicial

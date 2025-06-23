@@ -12,8 +12,11 @@ editor_options:
   chunk_output_type: console
 ---
 
+<link href="/rmarkdown-libs/htmltools-fill/fill.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+
 <script src="/rmarkdown-libs/viz/viz.js"></script>
+
 <link href="/rmarkdown-libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/grViz-binding/grViz.js"></script>
 
@@ -25,7 +28,7 @@ En este práctico, aprenderemos a especificar, estimar e interpretar modelos de 
 2.  Realizar una **revisión de supuestos** pertinente para el Análisis de Senderos, adaptando nuestras decisiones según los hallazgos.
 3.  **Estimar** los parámetros del modelo utilizando un estimador adecuado, en este caso, `DWLS`, debido a la naturaleza de nuestros datos.
 4.  Evaluar el **ajuste global** del modelo a los datos mediante diversos índices.
-5.  **Interpretar** detalladamente los coeficientes path (directos e indirectos) y la varianza explicada ($R^2$).
+5.  **Interpretar** detalladamente los coeficientes path (directos e indirectos) y la varianza explicada (`\(R^2\)`).
 6.  Visualizar el modelo de senderos para una mejor comprensión.
 
 ## Introducción al Ejemplo
@@ -171,13 +174,14 @@ print(resultados_mvn$univariateNormality)
 Especificamos el modelo donde el autoritarismo (`rwa_media`) media la relación entre la posición política y el acuerdo con castigos severos (`castigo_media`).
 
 **Recordatorio de Sintaxis `lavaan`:**
-\| Sintaxis `lavaan` \| Comando \| Ejemplo \|
-\|——————-\|————————————————–\|——————————————————————-\|
-\| `~` \| Regresar en (VD ~ VI1 + VI2…) \| `B ~ A` (B es predicha por A) \|
-\| `~~` \| (Co)varianza \| `A ~~ A` (Varianza de A) <br> `A ~~ B` (Covarianza entre A y B) \|
-\| `=~` \| Factor es medido por (para variables latentes) \| `F1 =~ item1 + item2 + item3` \|
-\| `:=` \| Parámetro Definido (ej. efecto indirecto) \| `indirect_effect := path_a * path_b` \|
-\| `etiqueta*` \| Etiquetar un parámetro \| `Y ~ b1*X1` (el path de X1 a Y se etiqueta como `b1`) \|
+
+| Sintaxis `lavaan` | Comando | Ejemplo |
+|----|----|----|
+| `~` | Regresar en (VD ~ VI1 + VI2…) | `B ~ A` (B es predicha por A) |
+| `~~` | (Co)varianza | `A ~~ A` (Varianza de A) <br> `A ~~ B` (Covarianza entre A y B) |
+| `=~` | Factor es medido por (para variables latentes) | `F1 =~ item1 + item2 + item3` |
+| `:=` | Parámetro Definido (ej. efecto indirecto) | `indirect_effect := path_a * path_b` |
+| `etiqueta*` | Etiquetar un parámetro | `Y ~ b1*X1` (el path de X1 a Y se etiqueta como `b1`) |
 
 ``` r
 # Especificar el modelo de senderos inicial
@@ -203,7 +207,7 @@ summary(ajus_sendero1,
         modindices = TRUE)
 ```
 
-    ## lavaan 0.6.15 ended normally after 33 iterations
+    ## lavaan 0.6-19 ended normally after 33 iterations
     ## 
     ##   Estimator                                       DWLS
     ##   Optimization method                           NLMINB
@@ -279,13 +283,14 @@ summary(ajus_sendero1,
     ## Modification Indices:
     ## 
     ##             lhs op           rhs    mi    epc sepc.lv sepc.all sepc.nox
-    ## 1 castigo_media  ~       derecha 8.533  0.137   0.137    0.056    0.177
-    ## 2 castigo_media  ~     izquierda 0.809 -0.044  -0.044   -0.020   -0.056
-    ## 3 castigo_media  ~        centro 7.667 -0.088  -0.088   -0.052   -0.113
-    ## 4     rwa_media  ~ castigo_media 9.542 -0.319  -0.319   -0.321   -0.321
-    ## 5       derecha  ~ castigo_media 4.746  0.019   0.019    0.046    0.046
-    ## 6     izquierda  ~ castigo_media 2.173 -0.018  -0.018   -0.039   -0.039
-    ## 7        centro  ~ castigo_media 7.591 -0.036  -0.036   -0.060   -0.060
+    ## 1 castigo_media ~~     rwa_media 9.542  0.173   0.173    0.314    0.314
+    ## 2 castigo_media  ~       derecha 8.533 -0.137  -0.137   -0.056   -0.177
+    ## 3 castigo_media  ~     izquierda 0.809  0.044   0.044    0.020    0.056
+    ## 4 castigo_media  ~        centro 7.667  0.088   0.088    0.052    0.113
+    ## 5     rwa_media  ~ castigo_media 9.542  0.319   0.319    0.321    0.321
+    ## 6       derecha  ~ castigo_media 4.746 -0.019  -0.019   -0.046   -0.046
+    ## 7     izquierda  ~ castigo_media 2.173  0.018   0.018    0.039    0.039
+    ## 8        centro  ~ castigo_media 7.591  0.036   0.036    0.060    0.060
 
 **Interpretación del `summary(ajus_sendero1)` (con DWLS):**
 
@@ -301,7 +306,7 @@ summary(ajus_sendero1,
   - `rwa_media ~ izquierda`: Path = **-0.204** (p \< 0.001). Identificarse con la izquierda se asocia con una disminución de 0.204 DE en autoritarismo.
   - `rwa_media ~ centro`: Path = **-0.075** (p = 0.002). Identificarse con el centro se asocia con una disminución de 0.075 DE en autoritarismo.
   - Todas las relaciones hipotetizadas son estadísticamente significativas.
-- **$R^2$ (Varianza Explicada):**
+- **$`R^2`$ (Varianza Explicada):**
   - Para `castigo_media`: `\(R^2 = 0.092\)`. El autoritarismo (`rwa_media`) explica el **9.2%** de la varianza en el acuerdo con castigos severos.
   - Para `rwa_media`: `\(R^2 = 0.052\)`. La posición política (derecha, izquierda, centro vs. independiente) explica el **5.2%** de la varianza en autoritarismo.
   - Estos `\(R^2\)` son modestos, lo que sugiere que hay otros factores importantes no incluidos en el modelo que explican la variación en ambas variables endógenas.
@@ -342,7 +347,7 @@ summary(ajus_sendero2,
         rsquare = TRUE)
 ```
 
-    ## lavaan 0.6.15 ended normally after 34 iterations
+    ## lavaan 0.6-19 ended normally after 34 iterations
     ## 
     ##   Estimator                                       DWLS
     ##   Optimization method                           NLMINB
@@ -434,7 +439,7 @@ summary(ajus_sendero2,
   - `castigo_media ~ derecha` (path `c`, el nuevo): Coeficiente estandarizado = **0.055** (p = 0.003). Ser de derecha tiene un efecto directo positivo y **estadísticamente significativo** sobre el acuerdo con castigos severos, incluso después de controlar por el nivel de autoritarismo.
   - `rwa_media ~ derecha` (path `b`): Coeficiente estandarizado = **0.065** (p = 0.001). El efecto de ser de derecha sobre el autoritarismo es ligeramente menor que antes (0.077) pero sigue siendo significativo.
   - Los efectos de `izquierda` (Std.all = -0.203, p \< 0.001) y `centro` (Std.all = -0.073, p = 0.002) sobre `rwa_media` se mantienen negativos y significativos.
-- **$R^2$ (Varianza Explicada):**
+- **$`R^2`$ (Varianza Explicada):**
   - Para `castigo_media`: `\(R^2 = 0.087\)` (8.7%). Hubo un pequeño aumento respecto al modelo anterior (0.080), gracias al path directo añadido.
   - Para `rwa_media`: `\(R^2 = 0.049\)` (4.9%). La varianza explicada para autoritarismo es similar, ya que sus predictores no cambiaron fundamentalmente.
 - **Parámetros Definidos (`Defined Parameters - Std.all` para interpretación estandarizada):**
@@ -469,6 +474,6 @@ En este práctico hemos:
 3. Evaluado el ajuste global de ambos modelos, concluyendo que el **segundo modelo (modificado) presenta un mejor ajuste general a los datos**, según la mayoría de los índices (CFI, TLI, RMSEA, SRMR), a pesar de que el `\(\chi^2\)` sigue siendo significativo.
 4. Interpretado los coeficientes path directos, confirmando que la posición política influye en el autoritarismo, y que tanto el autoritarismo como ser de derecha (directamente) influyen en el apoyo a castigos severos.
 5. Definido, estimado e interpretado un **efecto indirecto significativo** de ser de derecha sobre el apoyo a castigos, mediado por el autoritarismo, así como el **efecto total**.
-6. Observado que, aunque los efectos son estadísticamente significativos, la **varianza explicada ($R^2$)** por estos modelos es modesta (alrededor del 8.7% para `castigo_media` y 4.9% para `rwa_media`), lo que indica que hay muchos otros factores no incluidos que también son importantes para explicar estas actitudes.
+6. Observado que, aunque los efectos son estadísticamente significativos, la **varianza explicada (`\(R^2\)`)** por estos modelos es modesta (alrededor del 8.7% para `castigo_media` y 4.9% para `rwa_media`), lo que indica que hay muchos otros factores no incluidos que también son importantes para explicar estas actitudes.
 
 Este ejercicio ilustra cómo el Análisis de Senderos nos permite testear modelos teóricos complejos de relaciones causales, descomponer los efectos para una comprensión más profunda, y tomar decisiones informadas sobre la estructura del modelo basadas en el ajuste y la teoría.

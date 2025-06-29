@@ -71,7 +71,7 @@ ebs <- data %>%
   )
 ```
 
-## 2. Comprobación de Supuestos (Breve)
+## 2. Comprobación de Supuestos
 
 Realizamos una revisión rápida de los supuestos para informar nuestras decisiones de modelado.
 
@@ -88,7 +88,7 @@ print(paste("Observaciones completas para el análisis:", nrow(datos_modelo_comp
 
     ## [1] "Observaciones completas para el análisis: 10921"
 
-**Nota sobre Supuestos:** Como se confirmó en la ejecución del código, los datos **no cumplen con el supuesto de normalidad multivariante**. Dada esta violación y la naturaleza ordinal de muchos de nuestros indicadores, la elección del estimador **`DWLS`** (Diagonally Weighted Least Squares) en `lavaan` es la más apropiada, ya que es robusto a estas condiciones.
+Los datos **no cumplen con el supuesto de normalidad multivariante**. Dada esta violación y la naturaleza ordinal de muchos de nuestros indicadores, la elección del estimador **`DWLS`** (Diagonally Weighted Least Squares) en `lavaan` es la más apropiada, ya que es robusto a estas condiciones.
 
 ## 3. Especificación y Estimación del Modelo SEM
 
@@ -281,32 +281,36 @@ summary(ajus_sem,
 **Interpretación de la Salida de `summary()`:**
 
 **A. Evaluación del Ajuste Global del Modelo:**
-\* **Test `\(\chi^2\)`:** El estadístico es **2588.087** con **61** grados de libertad (p-valor = 0.000). Dado el gran tamaño muestral, un p-valor significativo es esperado y no invalida el modelo por sí solo. Es más informativo observar otros índices.
-\* **CFI = 0.975; TLI = 0.988:** Ambos índices son excelentes (muy por encima de 0.95), lo que sugiere un muy buen ajuste comparativo del modelo a los datos.
-\* **RMSEA = 0.062 (IC 90%: 0.060 - 0.064):** Este valor está en el rango de **ajuste aceptable/razonable** (entre 0.05 y 0.08). El intervalo de confianza es estrecho y se encuentra completamente dentro de un rango aceptable.
-\* **SRMR = 0.028:** Este valor es excelente (muy por debajo de 0.08).
+
+- **Test `\(\chi^2\)`:** El estadístico es **2588.087** con **61** grados de libertad (p-valor = 0.000). Dado el gran tamaño muestral, un p-valor significativo es esperado y no invalida el modelo por sí solo. Es más informativo observar otros índices.  
+- **CFI = 0.975; TLI = 0.988:** Ambos índices son excelentes (muy por encima de 0.95), lo que sugiere un muy buen ajuste comparativo del modelo a los datos.  
+- **RMSEA = 0.062 (IC 90%: 0.060 - 0.064):** Este valor está en el rango de **ajuste aceptable/razonable** (entre 0.05 y 0.08). El intervalo de confianza es estrecho y se encuentra completamente dentro de un rango aceptable.  
+- **SRMR = 0.028:** Este valor es excelente (muy por debajo de 0.08).
 
 **Conclusión de Ajuste:** El modelo muestra un **ajuste global muy bueno**. A pesar del `\(\chi^2\)` significativo, los índices CFI, TLI, RMSEA y SRMR indican que la estructura teórica propuesta representa adecuadamente las relaciones en los datos.
 
 **B. Interpretación del Modelo de Medida (Cargas Factoriales `Std.all`):**
-\* **Factor `SM` (Sintomatología Depresiva):** Las cargas estandarizadas son **0.755, 0.865, 0.766, y 0.721**. Todas son muy altas (\>0.7) y significativas (p\<0.001), indicando que los 4 ítems son excelentes indicadores del constructo.
-\* **Factor `SEG` (Percepción de Seguridad):** Las cargas estandarizadas son **0.849, 0.901, 0.687, y 0.521**. Los ítems sobre seguridad en el barrio de día y noche (`seg_1`, `seg_2`) son los más fuertes. La seguridad en plazas (`seg_3`) es buena y en el transporte público (`seg_4`) es aceptable, aunque es el indicador más débil. Todos son significativos.
+
+- **Factor `SM` (Sintomatología Depresiva):** Las cargas estandarizadas son **0.755, 0.865, 0.766, y 0.721**. Todas son muy altas (\>0.7) y significativas (p\<0.001), indicando que los 4 ítems son excelentes indicadores del constructo.  
+- **Factor `SEG` (Percepción de Seguridad):** Las cargas estandarizadas son **0.849, 0.901, 0.687, y 0.521**. Los ítems sobre seguridad en el barrio de día y noche (`seg_1`, `seg_2`) son los más fuertes. La seguridad en plazas (`seg_3`) es buena y en el transporte público (`seg_4`) es aceptable, aunque es el indicador más débil. Todos son significativos.
 
 **C. Interpretación del Modelo Estructural (Regressions `Std.all`):**
-\* **`qaut` (Quintil Ingreso):** Beta = **-0.095**. Un mayor quintil de ingreso se asocia significativamente con menor sintomatología depresiva.
-\* **`zona` (Rural=1):** Beta = **-0.022**. No hay una diferencia significativa en sintomatología entre zonas urbanas y rurales en este modelo, una vez controladas las otras variables.
-\* **`sexo` (Mujer=1):** Beta = **0.179**. Ser mujer se asocia significativamente con una mayor sintomatología depresiva, controlando por los otros factores.
-\* **`edad`:** Beta = **-0.038**. A mayor edad, hay una leve pero significativa disminución en la sintomatología depresiva.
-\* **`SEG` (Percepción Seguridad):** Beta = **-0.168**. Una mayor percepción de seguridad se asocia fuertemente con una **menor** sintomatología depresiva.
-\* **`maltrato`:** Beta = **0.292**. La percepción de haber sido maltratado es el **predictor más fuerte** de una mayor sintomatología depresiva.
-\* **`social` (Satisfacción Vida Social):** Beta = **-0.230**. Una mayor satisfacción con la vida social es el segundo predictor más fuerte, asociado a una **menor** sintomatología depresiva.
+
+- **`qaut` (Quintil Ingreso):** Beta = **-0.095**. Un mayor quintil de ingreso se asocia significativamente con menor sintomatología depresiva.  
+- **`zona` (Rural=1):** Beta = **-0.022**. No hay una diferencia significativa en sintomatología entre zonas urbanas y rurales en este modelo, una vez controladas las otras variables.  
+- **`sexo` (Mujer=1):** Beta = **0.179**. Ser mujer se asocia significativamente con una mayor sintomatología depresiva, controlando por los otros factores.  
+- **`edad`:** Beta = **-0.038**. A mayor edad, hay una leve pero significativa disminución en la sintomatología depresiva.  
+- **`SEG` (Percepción Seguridad):** Beta = **-0.168**. Una mayor percepción de seguridad se asocia fuertemente con una **menor** sintomatología depresiva.
+- **`maltrato`:** Beta = **0.292**. La percepción de haber sido maltratado es el **predictor más fuerte** de una mayor sintomatología depresiva.  
+- **`social` (Satisfacción Vida Social):** Beta = **-0.230**. Una mayor satisfacción con la vida social es el segundo predictor más fuerte, asociado a una **menor** sintomatología depresiva.
 
 **D. Varianza Explicada ($R^2$):**
-\* **`SM`:** `\(R^2 = 0.247\)`. El modelo en su conjunto explica el **24.7% de la varianza** en la sintomatología depresiva.
+
+- **`SM`:** `\(R^2 = 0.247\)`. El modelo en su conjunto explica el **24.7% de la varianza** en la sintomatología depresiva.
 
 ## 4. Visualización del Modelo con `lavaan.plot`
 
-El paquete `lavaan.plot` permite crear diagramas de senderos limpios y personalizables. Para evitar el “desorden” de las covarianzas entre todas las variables exógenas, se las excluimos del gráfico con `covs = FALSE` y luego las añadimos manualmente si es de interés teórico.
+El paquete `lavaan.plot` permite crear diagramas de senderos limpios y personalizables.
 
 ``` r
 # Visualizar el modelo usando lavaan.plot de forma más limpia
@@ -324,9 +328,11 @@ lavaanPlot(model = ajus_sem,
 <script type="application/json" data-for="htmlwidget-1">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n qaut; zona; sexo; edad; maltrato; social; sm_1; sm_2; sm_3; sm_4; seg_1; seg_2; seg_3; seg_4 \n node [shape = oval] \n SM; SEG \n \n edge [ color = black ] \n qaut->SM [label = \"-0.1***\"] zona->SM [label = \"-0.02***\"] sexo->SM [label = \"0.18***\"] edad->SM [label = \"-0.04***\"] SEG->SM [label = \"-0.17***\"] maltrato->SM [label = \"0.29***\"] social->SM [label = \"-0.23***\"] SM->sm_1 [label = \"0.75\"] SM->sm_2 [label = \"0.86\"] SM->sm_3 [label = \"0.77\"] SM->sm_4 [label = \"0.72\"] SEG->seg_1 [label = \"0.85\"] SEG->seg_2 [label = \"0.9\"] SEG->seg_3 [label = \"0.69\"] SEG->seg_4 [label = \"0.52\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 **Interpretación del Gráfico:**
+
 El diagrama ahora visualiza el modelo de forma mucho más clara.
-\* **Modelo de Medida (Derecha):** Vemos los dos factores latentes (`SM` y `SEG`) en óvalos, con flechas apuntando a sus respectivos indicadores (rectángulos). Los números en estas flechas son las cargas factoriales estandarizadas.
-\* **Modelo Estructural (Izquierda y Centro):** Vemos las variables exógenas (covariables) y el factor `SEG` apuntando con flechas al factor endógeno `SM`. Los números en estas flechas son los coeficientes path estandarizados, con estrellas que indican su nivel de significancia. Esto permite ver rápidamente qué relaciones son las más fuertes y significativas.
+
+- **Modelo de Medida (Derecha):** Vemos los dos factores latentes (`SM` y `SEG`) en óvalos, con flechas apuntando a sus respectivos indicadores (rectángulos). Los números en estas flechas son las cargas factoriales estandarizadas.  
+- **Modelo Estructural (Izquierda y Centro):** Vemos las variables exógenas (covariables) y el factor `SEG` apuntando con flechas al factor endógeno `SM`. Los números en estas flechas son los coeficientes path estandarizados, con estrellas que indican su nivel de significancia. Esto permite ver rápidamente qué relaciones son las más fuertes y significativas.
 
 ## 5. Conclusión del Práctico
 

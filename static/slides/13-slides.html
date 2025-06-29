@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="13-slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="13-slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="13-slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="13-slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="13-slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="13-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="13-slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="13-slides_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <meta name="author" content="Gabriel Sotomayor">
+  <meta name="dcterms.date" content="2025-06-30">
+  <title>Modelos de Ecuaciones Estructurales (SEM)</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="13-slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="13-slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="13-slides_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="13-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="13-slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="13-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="13-slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Modelos de Ecuaciones Estructurales (SEM)</h1>
+  <p class="subtitle">Análisis Avanzado de Datos II</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Gabriel Sotomayor 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-06-30</p>
+</section>
+<section id="objetivos-de-la-sesión" class="slide level2 smaller" data-background-color="white">
+<h2>Objetivos de la Sesión</h2>
+<ul>
+<li><strong>Comprender</strong> qué son los Modelos de Ecuaciones Estructurales (SEM) y cómo integran las técnicas vistas anteriormente (AFC y Análisis de Senderos).</li>
+<li><strong>Identificar</strong> los componentes clave de un SEM: el modelo de medida y el modelo estructural.</li>
+<li><strong>Reconocer</strong> los distintos tipos de variables y relaciones que se pueden modelar.</li>
+<li><strong>Entender</strong> el proceso de especificación, estimación y evaluación de un modelo SEM.</li>
+<li><strong>Conocer</strong> los principales supuestos y los índices de ajuste utilizados para validar estos modelos.</li>
+</ul>
+</section>
+<section>
+<section id="modelos-de-ecuaciones-estructurales-sem" class="title-slide slide level1 center">
+<h1>1. Modelos de Ecuaciones Estructurales (SEM)</h1>
+
+</section>
+<section id="introducción-a-los-modelos-de-ecuaciones-estructurales" class="slide level2 smaller" data-background-color="white">
+<h2>Introducción a los Modelos de Ecuaciones Estructurales</h2>
+<p>Los <strong>Modelos de Ecuaciones Estructurales (SEM)</strong> son una familia de modelos estadísticos multivariantes que representan la <strong>culminación de las técnicas que hemos estudiado</strong>, permitiendo estimar y testear complejas redes de relaciones entre múltiples variables.</p>
+<ul>
+<li>Nacieron de la necesidad de superar las limitaciones de los modelos de regresión tradicionales.</li>
+<li>Su principal ventaja es la flexibilidad: son menos restrictivos al permitir <strong>modelar explícitamente el error de medición</strong>, tanto en las variables que actúan como predictoras como en las que son predichas.</li>
+</ul>
+<p>En resumen, los SEM nos permiten testear teorías sociológicas completas, que involucran tanto la medición de conceptos abstractos como las relaciones causales entre ellos.</p>
+</section>
+<section id="la-lógica-confirmatoria-de-los-sem" class="slide level2 smaller" data-background-color="white">
+<h2>La Lógica Confirmatoria de los SEM</h2>
+<ul>
+<li><strong>Guiados por la Teoría:</strong> Los SEM son fundamentalmente <strong>modelos confirmatorios</strong>. El investigador debe proponer, <em>a priori</em>, un modelo que especifique el tipo y la dirección de todas las relaciones de interés, basándose en un sólido marco teórico o en evidencia empírica previa.</li>
+<li><strong>Objetivo Principal:</strong> El interés no es explorar, sino <strong>“confirmar”</strong> si la estructura de relaciones hipotetizada es consistente con los datos observados en una muestra.</li>
+<li><strong>Base Empírica:</strong> La estimación del modelo se basa en analizar la <strong>matriz de varianzas y covarianzas</strong> (o de correlaciones) de las variables observadas. El modelo se considera bueno si la matriz de covarianzas que <em>implica</em> nuestro modelo teórico es muy similar a la que <em>observamos</em> en nuestros datos.</li>
+</ul>
+</section>
+<section id="ejemplo-de-aplicación-en-salud" class="slide level2 smaller" data-background-color="white">
+<h2>Ejemplo de Aplicación en Salud</h2>
+<p>Imaginemos un modelo que busca explicar los <strong>síntomas psicosomáticos</strong>.</p>
+<ul>
+<li><strong>Teoría:</strong> Se postula que antecedentes personales como la <strong>autoestima</strong>, la <strong>autoeficacia</strong> y el <strong>apoyo social</strong> influyen en los síntomas, pero no solo directamente, sino también a través de variables mediadoras como el <strong>estrés</strong> y el <strong>cansancio emocional</strong>.</li>
+<li><strong>Análisis con SEM:</strong> La interpretación de los parámetros estimados (los “paths” o senderos) nos permite constatar estas relaciones. Por ejemplo, podríamos evaluar si el apoyo social tiene un efecto negativo sobre el estrés (reduciéndolo) y si, a su vez, el estrés tiene un efecto positivo sobre los síntomas psicosomáticos. El modelo nos permitiría cuantificar tanto los efectos directos como los indirectos.</li>
+</ul>
+
+<img data-src="img/13/1.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="sem-y-causalidad-una-advertencia-crucial" class="slide level2 smaller" data-background-color="white">
+<h2>SEM y Causalidad: Una Advertencia Crucial</h2>
+<p><strong>1. Estimación Estadística NO es Prueba Causal:</strong></p>
+<ul>
+<li>Aunque los diagramas SEM utilizan flechas que representan una <strong>hipótesis de influencia causal</strong>, la estimación de un parámetro significativo <strong>NO demuestra por sí sola la existencia de causalidad</strong>.<br>
+</li>
+<li>SEM es una técnica que evalúa la <strong>consistencia de los datos con un modelo causal propuesto</strong>. Un buen ajuste del modelo significa que la teoría no es refutada por los datos, pero no que es la única explicación posible.<br>
+</li>
+<li>La defensa de la causalidad requiere, además del ajuste estadístico, un <strong>sólido argumento teórico</strong> y, preferiblemente, un <strong>diseño de investigación</strong> que permita inferencia causal (ej. datos longitudinales, diseños experimentales o cuasi-experimentales).</li>
+</ul>
+</section>
+<section id="sem-y-causalidad-una-advertencia-crucial-1" class="slide level2 smaller" data-background-color="white">
+<h2>SEM y Causalidad: Una Advertencia Crucial</h2>
+<p><strong>2. Verificación de Teorías:</strong></p>
+<ul>
+<li>La lógica es: “Si mi teoría es una buena representación de la realidad, entonces la estructura de covarianzas que mi teoría implica debería ser muy similar a la estructura de covarianzas que observo en mis datos”.<br>
+</li>
+<li>SEM nos proporciona una herramienta poderosa para realizar esta comprobación de forma rigurosa.</li>
+</ul>
+</section>
+<section id="estructura-de-un-modelo-sem-un-modelo-de-dos-partes" class="slide level2 smaller" data-background-color="white">
+<h2>Estructura de un Modelo SEM: Un Modelo de “Dos Partes”</h2>
+<p>Un modelo SEM completo se puede entender como la unión de dos sub-modelos que se estiman simultáneamente:</p>
+<p><strong>1. Modelo de Medida:</strong></p>
+<ul>
+<li><strong>Propósito:</strong> Define cómo cada <strong>constructo latente</strong> se mide a través de sus <strong>indicadores observables</strong>.<br>
+</li>
+<li><strong>Equivalencia:</strong> Es, en esencia, un <strong>Análisis Factorial Confirmatorio (AFC)</strong>. Especifica qué ítems cargan en qué factores, permitiendo evaluar la validez y fiabilidad de nuestras mediciones al modelar explícitamente el error de cada indicador.</li>
+</ul>
+</section>
+<section id="estructura-de-un-modelo-sem-un-modelo-de-dos-partes-1" class="slide level2 smaller" data-background-color="white">
+<h2>Estructura de un Modelo SEM: Un Modelo de “Dos Partes”</h2>
+<p><strong>2. Modelo Estructural:</strong></p>
+<ul>
+<li><strong>Propósito:</strong> Define las <strong>relaciones causales (paths) hipotetizadas entre los constructos</strong> (generalmente, entre las variables latentes).<br>
+</li>
+<li><strong>Equivalencia:</strong> Es, en esencia, un <strong>Análisis de Senderos (Path Analysis)</strong>. Permite testear hipótesis sobre efectos directos e indirectos.</li>
+</ul>
+</section>
+<section id="casos-especiales-de-sem-que-ya-conocemos" class="slide level2 smaller" data-background-color="white">
+<h2>Casos Especiales de SEM que ya conocemos</h2>
+<ol type="1">
+<li><strong>Análisis Factorial Confirmatorio (AFC):</strong> Es un SEM que <strong>solo contiene el modelo de medida</strong>. Se enfoca en la calidad de la medición y las relaciones entre los factores son solo correlacionales, no direccionales.</li>
+<li><strong>Análisis de Senderos (Path Analysis):</strong> Es un SEM que <strong>no contiene variables latentes</strong>; las variables observadas se tratan como si fueran mediciones perfectas de los conceptos (se equiparan las variables observadas con las latentes). Por lo tanto, solo existe el modelo estructural y los errores de medición se confunden con los errores de predicción en un único término de error para cada variable endógena.</li>
+</ol>
+</section>
+<section id="tipos-de-variables-en-un-modelo-estructural" class="slide level2 smaller" data-background-color="white">
+<h2>Tipos de Variables en un Modelo Estructural</h2>
+<div style="font-size: 0.9em; line-height: 1.2;">
+<ol type="1">
+<li><strong>Variable Observada o Indicador:</strong> Se mide directamente en los datos (ej. preguntas de un cuestionario).</li>
+<li><strong>Variable Latente (o Factor):</strong> Constructo teórico que no se observa directamente y que el modelo asume está libre de error de medición. Se infiere a partir de sus indicadores.</li>
+<li><strong>Variable de Error:</strong> Representa la varianza no explicada. Hay dos tipos:
+<ul>
+<li><strong>Error de Medición:</strong> Asociado a cada indicador, es la varianza de ese indicador que no es explicada por su factor latente.</li>
+<li><strong>Error Estructural (o Perturbación):</strong> Asociado a cada variable <em>endógena</em> (latente u observada), es la varianza de esa variable que no es explicada por sus predictores en el modelo.</li>
+</ul></li>
+<li><strong>Variable Exógena:</strong> Sus causas están fuera del modelo. No recibe flechas direccionales de ninguna otra variable en el modelo.</li>
+<li><strong>Variable Endógena:</strong> Recibe al menos una flecha direccional. Su variación es (parcialmente) explicada por el modelo.</li>
+</ol>
+</div>
+</section>
+<section id="diagramas-estructurales-convenciones" class="slide level2 smaller" data-background-color="white">
+<h2>Diagramas Estructurales: Convenciones</h2>
+<p><strong>1. Representación de Variables:</strong></p>
+<ul>
+<li><strong>Rectángulos:</strong> Variables Observables (Indicadores).<br>
+</li>
+<li><strong>Óvalos o Círculos:</strong> Variables No Observables (Latentes, Errores).</li>
+</ul>
+<p><strong>2. Representación de Relaciones:</strong></p>
+<ul>
+<li><strong>Flechas Rectas Unidireccionales (</strong><span class="math inline">\(\longrightarrow\)</span>): Efectos estructurales directos (regresión).<br>
+</li>
+<li><strong>Flechas Curvas Bidireccionales (</strong><span class="math inline">\(\longleftrightarrow\)</span>): Correlaciones o covarianzas no analizadas (generalmente entre variables exógenas o entre términos de error).<br>
+</li>
+<li><strong>Parámetros:</strong> Los coeficientes (cargas, paths) se pueden mostrar sobre las flechas.</li>
+</ul>
+<p><strong>3. Término de Error:</strong></p>
+<ul>
+<li>Cada variable <strong>endógena</strong> (latente u observada) debe tener un término de error asociado, representado por una flecha que apunta hacia ella.</li>
+</ul>
+</section>
+<section id="ejemplo-de-un-modelo-sem-completo" class="slide level2 smaller" data-background-color="white">
+<h2>Ejemplo de un Modelo SEM Completo</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-size: 0.9em; line-height: 1.2;">
+<p><strong>Teoría del Modelo:</strong></p>
+<ul>
+<li><strong>Constructos Latentes:</strong> Autoestima, Autoeficacia, Apoyo Social (exógenos); Estrés, Cansancio Emocional, Síntomas Psicosomáticos (endógenos).</li>
+<li><strong>Modelo Estructural (Fig. 4):</strong> Hipotetiza las relaciones causales entre los constructos.</li>
+<li><strong>Modelo de Medida (Fig. 5):</strong> Cada constructo se mide a través de tres indicadores observables (ej. <code>INDI1CE</code>, <code>INDI2CE</code>, <code>INDI3CE</code> para Cansancio Emocional).</li>
+<li><strong>Modelo Final (Fig. 5):</strong> Integra ambas partes, permitiendo analizar las relaciones entre los constructos mientras se controla el error de medición.</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Figura 4: Modelo Estructural</strong> <img data-src="img/13/2.jpg"></p>
+</div></div>
+</section>
+<section id="ejemplo-de-un-modelo-sem-completo-1" class="slide level2 smaller" data-background-color="white">
+<h2>Ejemplo de un Modelo SEM Completo</h2>
+
+<img data-src="img/13/3.jpg" width="600" class="r-stretch"><p><em>Figura 5: Modelo Final Estimado (con modelo de medida)</em></p>
+</section>
+<section id="tipos-de-relaciones-en-sem" class="slide level2 smaller" data-background-color="white">
+<h2>Tipos de Relaciones en SEM</h2>
+<p>Los SEM nos permiten explorar una rica variedad de relaciones entre variables:</p>
+<ol type="1">
+<li><strong>Covariación vs Causalidad:</strong> Distinguir entre mera asociación y relaciones direccionales hipotetizadas.</li>
+<li><strong>Relación Espuria:</strong> Identificar cuando la correlación entre dos variables se debe a una causa común.</li>
+<li><strong>Relación “Causal” Directa e Indirecta:</strong> Descomponer el efecto total, identificando mecanismos de mediación.</li>
+<li><strong>Relación “Causal” Recíproca:</strong> Modelar bucles de retroalimentación (feedback loops).</li>
+<li><strong>Efectos Totales:</strong> La suma de los efectos directos e indirectos.</li>
+</ol>
+</section>
+<section id="supuestos-de-los-modelos-de-ecuaciones-estructurales" class="slide level2 smaller" data-background-color="white">
+<h2>Supuestos de los Modelos de Ecuaciones Estructurales</h2>
+<ul>
+<li><strong>Tamaño de muestra suficientemente grande:</strong> Mínimo 200, pero idealmente 10-20 casos por parámetro a estimar.</li>
+<li><strong>Relaciones lineales</strong> entre las variables.</li>
+<li><strong>Normalidad multivariante</strong> (importante para el método de estimación ML).</li>
+<li><strong>Identificación del modelo</strong> (grados de libertad &gt; 0).</li>
+<li><strong>Ausencia de multicolinealidad</strong> entre predictores.</li>
+<li><strong>Variables continuas</strong> (o uso de estimadores apropiados para categóricas como DWLS).</li>
+</ul>
+</section></section>
+<section>
+<section id="pasos-de-un-modelo-de-ecuaciones-estructurales" class="title-slide slide level1 center">
+<h1>Pasos de un Modelo de Ecuaciones Estructurales</h1>
+
+</section>
+<section id="paso-1-especificación-del-modelo" class="slide level2 smaller" data-background-color="white">
+<h2>Paso 1: Especificación del Modelo</h2>
+<ol type="1">
+<li><strong>Base Teórica:</strong> La teoría que respalda el modelo debe estar formulada de tal manera que pueda ser probada con datos reales. Se deben incluir todas las variables consideradas teóricamente importantes.</li>
+<li><strong>Definir Relaciones:</strong> Especificar las relaciones esperadas entre todas las variables: correlaciones entre exógenas, efectos directos (paths) en el modelo estructural, y qué indicadores miden qué factores en el modelo de medida.</li>
+<li><strong>Formular en Diagrama:</strong> Dibujar el modelo teórico en un formato gráfico. Esto ayuda a visualizar, clarificar y traducir las hipótesis en las ecuaciones y parámetros que el software estimará.</li>
+</ol>
+</section>
+<section id="paso-2-identificación-del-modelo" class="slide level2 smaller" data-background-color="white">
+<h2>Paso 2: Identificación del Modelo</h2>
+<ul>
+<li>Al igual que en el análisis de senderos, debemos asegurarnos que contamos con <strong>información suficiente para estimar el modelo</strong>.</li>
+<li>Cada parámetro debe estar correctamente identificado y ser derivable de la información en la <strong>matriz de varianzas-covarianzas</strong> de las variables observadas.</li>
+<li>Debemos revisar que los <strong>grados de libertad (gl) sean mayores a 0</strong>, lo que indica un modelo sobreidentificado y testeable.</li>
+<li><strong>Estrategias para garantizar la identificación:</strong> usar al menos tres indicadores por variable latente; fijar la métrica de cada variable latente (ej. fijando una carga a 1 o la varianza del factor a 1).</li>
+</ul>
+</section>
+<section id="paso-3-estimación-del-modelo" class="slide level2 smaller" data-background-color="white">
+<h2>Paso 3: Estimación del Modelo</h2>
+<ol type="1">
+<li>Se estiman los parámetros del modelo (cargas, paths, varianzas, etc.) a partir del modelo especificado.</li>
+<li>El método por defecto en <code>lavaan</code> es <strong>Máxima Verosimilitud (ML)</strong>, que busca los valores de los parámetros que maximizan la probabilidad de observar la matriz de covarianzas de la muestra. Hay otros estimadores disponibles (ej. DWLS, MLR) para datos que no son normales o son categóricos.</li>
+</ol>
+</section>
+<section id="paso-4-evaluación-de-ajuste" class="slide level2 smaller" data-background-color="white">
+<h2>Paso 4: Evaluación de Ajuste</h2>
+<ol type="1">
+<li><strong>Valorar el ajuste del modelo:</strong> Si las estimaciones obtenidas no reproducen correctamente la matriz de covarianzas observada en los datos, será necesario rechazar el modelo y/o reformularlo.</li>
+<li><strong>Doble Desafío en SEM:</strong> Un buen ajuste en SEM requiere que <strong>tanto el modelo de medición como el modelo estructural se ajusten bien a los datos simultáneamente</strong>, lo cual es una prueba más exigente que evaluar cada parte por separado.</li>
+</ol>
+</section>
+<section id="estadísticos-de-bondad-de-ajuste" class="slide level2 smaller" data-background-color="white">
+<h2>Estadísticos de Bondad de Ajuste</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Se utilizan tres tipos de estadísticos:</p>
+<ul>
+<li><strong>Ajuste Absoluto:</strong> Valoran qué tan bien el modelo reproduce los datos sin un punto de comparación (ej. <span class="math inline">\(\chi^2\)</span>, RMSEA).</li>
+<li><strong>Ajuste Relativo (Incremental):</strong> Comparan el ajuste del modelo propuesto con un modelo base (normalmente el “modelo nulo” de independencia) (ej. CFI, TLI).</li>
+<li><strong>Ajuste Parsimonioso:</strong> Evalúan el ajuste penalizando por la complejidad del modelo (ej. AIC, BIC, PNFI).</li>
+</ul>
+<p>Se debe reportar un conjunto de índices de diferentes tipos para una evaluación robusta.</p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="img/13/4.jpg"> <em>(Tabla de referencia con criterios comunes)</em></p>
+</div></div>
+</section>
+<section id="chi-cuadrado-chi2" class="slide level2 smaller" data-background-color="white">
+<h2>Chi Cuadrado (<span class="math inline">\(\chi^2\)</span>)</h2>
+<ul>
+<li>Es conceptualmente el más atractivo, ya que contrasta la hipótesis nula de que el modelo se ajusta perfectamente a los datos poblacionales (todos los errores del modelo son nulos).</li>
+<li>Sin embargo, es <strong>muy sensible al tamaño de la muestra</strong>: con muestras grandes (N &gt; 200-400), es muy probable que resulte significativo (p &lt; 0.05), llevando a rechazar modelos que en la práctica son muy buenos.</li>
+<li>Por lo tanto, además de valorar su significación estadística, suele compararse con sus grados de libertad (Criterio: <span class="math inline">\(\chi^2/gl\)</span> &lt; 2 o 3).</li>
+<li>A pesar de sus limitaciones, siempre se debe informar este estadístico.</li>
+</ul>
+</section>
+<section id="paso-5-re-especificación" class="slide level2 smaller" data-background-color="white">
+<h2>Paso 5: Re-especificación</h2>
+<ul>
+<li>Si el modelo presenta un ajuste insatisfactorio, se pueden introducir modificaciones (agregar o quitar parámetros).</li>
+<li>Este proceso debe ser guiado por los <strong>índices de modificación</strong> y el análisis de los <strong>residuos</strong>, pero <strong>siempre justificado por la teoría</strong>.</li>
+<li>Los cambios propuestos deben ser coherentes con el marco conceptual. No se debe “cazar el ajuste” a costa del sentido teórico.</li>
+</ul>
+</section>
+<section id="paso-6-interpretación-de-resultados" class="slide level2 smaller" data-background-color="white">
+<h2>Paso 6: Interpretación de Resultados</h2>
+<ul>
+<li><strong>Coeficientes Beta Estandarizados:</strong> Se interpretan como en regresión o análisis de senderos. Representan el cambio en desviaciones estándar en la variable dependiente por un cambio de una DE en la predictora, controlando por otras.</li>
+<li><strong>Significación de cada coeficiente:</strong> Se evalúa con el p-valor (usualmente p &lt; 0.05) para determinar si el efecto es estadísticamente diferente de cero.</li>
+<li><strong>R-cuadrado (</strong><span class="math inline">\(R^2\)</span>): Representa el porcentaje de la varianza en cada <strong>variable endógena</strong> (tanto latente como observada) que es explicado por sus predictores en el modelo.</li>
+<li><strong>Atención al Doble Papel:</strong> En SEM, los coeficientes describen tanto el <strong>modelo de medición</strong> (cargas) como el <strong>modelo estructural</strong> (paths). Es crucial interpretar ambos niveles para una comprensión completa del modelo.</li>
+</ul>
+<div class="quarto-auto-generated-content">
+<p><img src="images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="13-slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="13-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="13-slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="13-slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="13-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="13-slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="13-slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="13-slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="13-slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="13-slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

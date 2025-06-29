@@ -1,18 +1,18 @@
 ---
-title: "Análisis de Senderos II"
-linktitle: "12: Análisis de Senderos II"
-date: "2025-06-23"
-start_date: "2025-06-23"
-end_date: "2025-06-23"
+title: "Análisis de Ecuaciones Estructurales"
+linktitle: "13: Análisis de Ecuaciones Estructurales"
+date: "2025-06-30"
+start_date: "2025-06-30"
+end_date: "2025-06-30"
 menu:
   content:
     parent: Contenido
-    weight: 12
+    weight: 13
 type: docs
 toc: true
 bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
-slides: "12-slides"
+slides: "13-slides"
 ---
 
 # Slides
@@ -31,7 +31,7 @@ slides: "12-slides"
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/12-slides.html#0">
+<iframe class="embed-responsive-item" src="/slides/13-slides.html#0">
 </iframe>
 
 </div>
